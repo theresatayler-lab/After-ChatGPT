@@ -46,6 +46,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/auth" element={<Auth onLogin={handleLogin} />} />
+          <Route path="/spell-request" element={<SpellRequest />} />
           <Route path="/deities" element={<Deities />} />
           <Route path="/figures" element={<HistoricalFigures />} />
           <Route path="/sites" element={<SacredSites />} />
