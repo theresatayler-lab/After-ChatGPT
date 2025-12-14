@@ -28,6 +28,7 @@ export const Home = () => {
             src="https://customer-assets.emergentagent.com/job_mystic-circle-2/artifacts/13011twj_2.png"
             alt="Where The Crow Lands"
             className="w-64 h-64 mb-8"
+            style={{ mixBlendMode: 'multiply' }}
           />
           
           <div className="max-w-3xl">
