@@ -24,7 +24,8 @@ export const Navigation = ({ user, onLogout }) => {
             <img 
               src="https://customer-assets.emergentagent.com/job_mystic-circle-2/artifacts/hi8yz7q6_1.png" 
               alt="Where The Crow Lands Logo"
-              className="h-12 w-auto"
+              className="h-16 w-auto"
+              style={{ mixBlendMode: 'multiply' }}
             />
           </Link>
           
