@@ -169,20 +169,20 @@ export const Home = () => {
           style={{ mixBlendMode: 'multiply' }}
         />
         <div className="relative max-w-4xl mx-auto px-6 text-center">
-          <h2 className="font-italiana text-3xl md:text-5xl text-foreground mb-8">The DIY Etsy Witch Toolkit</h2>
+          <h2 className="font-italiana text-3xl md:text-5xl text-foreground mb-8">Your Power Doesn't Need Permission</h2>
           <p className="font-montserrat text-base md:text-lg text-foreground/80 leading-relaxed mb-6">
-            Between the World Wars (1910-1945), a documented occult revival emerged. Figures like Gerald Gardner,
-            Dion Fortune, and Aleister Crowley synthesized ceremonial magic, folk practices, and ancient traditions
-            into systems that would shape modern witchcraft.
+            Magic isn't mystical—it's intentional effort combined with patterns, formulas, and sacred geometry. 
+            Like alchemy before it became chemistry, these are frameworks for focusing will and creating change.
+            You don't have to believe in magic for it to work. You just have to practice it.
           </p>
           <p className="font-montserrat text-base md:text-lg text-foreground/80 leading-relaxed mb-6">
-            This archive preserves that period's documented practices while helping you craft spells for modern needs.
-            Each formula connects back to historical examples and verified sources—no made-up "ancient wisdom,"
-            just honest research and practical magick.
+            This toolkit draws from documented practices (1910-1945) not because they're "ancient secrets," but because 
+            they're tested formulas. Gardner, Fortune, and Crowley weren't mystics—they were experimenters synthesizing 
+            patterns that produced results. Now you can do the same, without gatekeepers or expensive services.
           </p>
           <p className="font-montserrat text-sm text-accent italic">
-            Historical note: While we document the claims and practices of this era, scholarly consensus treats
-            many "ancient lineage" claims skeptically. We focus on what's documented and verifiable.
+            You don't need to buy empowerment. You already have your intuition, your will, and your ability to create ritual.
+            This archive just shows you the formulas others have used—adapt them, break them, build your own.
           </p>
         </div>
       </div>
