@@ -60,6 +60,7 @@ function App() {
             element={user ? <Profile user={user} /> : <Navigate to="/auth" />}
           />
         </Routes>
+        <Footer />
       </BrowserRouter>
       <Toaster position="top-right" />
     </div>
