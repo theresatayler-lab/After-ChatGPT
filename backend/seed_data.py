@@ -80,9 +80,9 @@ async def seed_database():
             'id': 'fortune-001',
             'name': 'Dion Fortune',
             'birth_death': '1890-1946',
-            'bio': 'British occultist, ceremonial magician, and novelist. Founded the Society of the Inner Light and was a major figure in the Hermetic Order of the Golden Dawn. Her work bridged psychology and occultism.',
-            'contributions': 'Founded Society of the Inner Light, wrote extensively on Western esotericism, developed psychological approach to magic.',
-            'associated_works': ['The Mystical Qabalah', 'Psychic Self-Defence', 'The Sea Priestess', 'Moon Magic'],
+            'bio': 'British occultist, ceremonial magician, and novelist (born Violet Mary Firth). Founded the Society of the Inner Light (1922) after leaving the Golden Dawn. Her work bridged Jungian psychology and occultism. Source: Alan Richardson biographical works.',
+            'contributions': 'Founded Society of the Inner Light, wrote extensively on Western esotericism and Qabalah, developed psychological approach to magic. Known for claimed magical defense of Britain during WWII.',
+            'associated_works': ['The Mystical Qabalah (1935)', 'Psychic Self-Defence (1930)', 'The Sea Priestess (1938)', 'Moon Magic (1956, posthumous)'],
             'image_url': 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?crop=entropy&cs=srgb&fm=jpg&q=85'
         },
         {
