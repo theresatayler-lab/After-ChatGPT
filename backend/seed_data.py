@@ -89,9 +89,9 @@ async def seed_database():
             'id': 'crowley-001',
             'name': 'Aleister Crowley',
             'birth_death': '1875-1947',
-            'bio': 'English occultist, ceremonial magician, and founder of Thelema. One of the most influential figures in 20th century Western esotericism, known for his controversial lifestyle and extensive magical writings.',
-            'contributions': 'Founded Thelema, wrote The Book of the Law, reformed Golden Dawn practices, developed system of sex magic.',
-            'associated_works': ['The Book of the Law', 'Magick in Theory and Practice', 'The Book of Thoth', '777 and Other Qabalistic Writings'],
+            'bio': 'English occultist, ceremonial magician, and founder of Thelema. One of the most influential and controversial figures in 20th century Western esotericism. Received "The Book of the Law" (1904) which became Thelema\'s central text. Member and later critic of the Hermetic Order of the Golden Dawn.',
+            'contributions': 'Founded Thelema religious philosophy, reformed Golden Dawn ceremonial practices, developed system of sex magic, extensive writings on Qabalah and tarot. Influenced Gardner and Fortune despite personal conflicts.',
+            'associated_works': ['The Book of the Law (1904)', 'Magick in Theory and Practice (1929)', 'The Book of Thoth (1944)', '777 and Other Qabalistic Writings'],
             'image_url': 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?crop=entropy&cs=srgb&fm=jpg&q=85'
         },
         {
