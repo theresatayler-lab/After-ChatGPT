@@ -57,10 +57,10 @@ export const Home = () => {
               </Link>
               <Link
                 to="/rituals"
-                data-testid="hero-browse-rituals"
+                data-testid="hero-create-ritual"
                 className="px-8 py-3 bg-transparent text-primary border border-primary/30 rounded-sm font-montserrat tracking-widest uppercase text-sm hover:bg-primary/10 transition-all duration-300"
               >
-                Browse Rituals
+                Create Ritual
               </Link>
             </div>
           </motion.div>
