@@ -1,19 +1,19 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Moon, BookOpen, Users, MapPin, Scroll, Clock, Bot, Image, User, LogOut } from 'lucide-react';
+import { Moon, BookOpen, Users, MapPin, Scroll, Clock, Bot, Sparkles, User, LogOut } from 'lucide-react';
 
 export const Navigation = ({ user, onLogout }) => {
   const location = useLocation();
   
   const links = [
     { to: '/', label: 'Home', icon: Moon },
+    { to: '/spell-request', label: 'Request Spell', icon: Sparkles },
+    { to: '/rituals', label: 'Rituals', icon: Scroll },
     { to: '/deities', label: 'Deities', icon: Moon },
     { to: '/figures', label: 'Figures', icon: Users },
-    { to: '/sites', label: 'Sacred Sites', icon: MapPin },
-    { to: '/rituals', label: 'Rituals', icon: Scroll },
+    { to: '/sites', label: 'Sites', icon: MapPin },
     { to: '/timeline', label: 'Timeline', icon: Clock },
-    { to: '/ai-chat', label: 'AI Research', icon: Bot },
-    { to: '/ai-image', label: 'AI Images', icon: Image },
+    { to: '/ai-chat', label: 'Research', icon: Bot },
   ];
   
   return (
@@ -22,7 +22,10 @@ export const Navigation = ({ user, onLogout }) => {
         <div className="flex items-center justify-between h-20">
           <Link to="/" className="flex items-center space-x-3" data-testid="nav-logo">
             <Moon className="w-8 h-8 text-primary" />
-            <span className="font-italiana text-2xl text-primary">The Bloomsbury Coven</span>
+            <div className="flex flex-col">
+              <span className="font-italiana text-xl text-primary leading-tight">Where The Crow Lands</span>
+              <span className="font-montserrat text-xs text-accent">Historical Witchcraft Archive</span>
+            </div>
           </Link>
           
           <div className="flex items-center space-x-1">
@@ -34,7 +37,7 @@ export const Navigation = ({ user, onLogout }) => {
                   key={link.to}
                   to={link.to}
                   data-testid={`nav-${link.label.toLowerCase().replace(' ', '-')}`}
-                  className={`px-4 py-2 rounded-sm font-montserrat text-sm tracking-wider transition-all duration-300 flex items-center space-x-2 ${
+                  className={`px-3 py-2 rounded-sm font-montserrat text-xs tracking-wider transition-all duration-300 flex items-center space-x-1 ${
                     isActive
                       ? 'bg-primary/10 text-primary border border-primary/30'
                       : 'text-muted-foreground hover:text-primary hover:bg-primary/5'
@@ -51,7 +54,7 @@ export const Navigation = ({ user, onLogout }) => {
                 <Link
                   to="/profile"
                   data-testid="nav-profile"
-                  className="px-4 py-2 rounded-sm font-montserrat text-sm tracking-wider transition-all duration-300 flex items-center space-x-2 text-muted-foreground hover:text-primary hover:bg-primary/5"
+                  className="px-3 py-2 rounded-sm font-montserrat text-xs tracking-wider transition-all duration-300 flex items-center space-x-1 text-muted-foreground hover:text-primary hover:bg-primary/5"
                 >
                   <User className="w-4 h-4" />
                   <span>{user.name}</span>
@@ -59,7 +62,7 @@ export const Navigation = ({ user, onLogout }) => {
                 <button
                   onClick={onLogout}
                   data-testid="nav-logout"
-                  className="px-4 py-2 rounded-sm font-montserrat text-sm tracking-wider transition-all duration-300 flex items-center space-x-2 text-muted-foreground hover:text-destructive hover:bg-destructive/10"
+                  className="px-3 py-2 rounded-sm font-montserrat text-xs tracking-wider transition-all duration-300 flex items-center space-x-1 text-muted-foreground hover:text-destructive hover:bg-destructive/10"
                 >
                   <LogOut className="w-4 h-4" />
                 </button>
@@ -68,7 +71,7 @@ export const Navigation = ({ user, onLogout }) => {
               <Link
                 to="/auth"
                 data-testid="nav-login"
-                className="ml-4 px-6 py-2 bg-primary text-primary-foreground rounded-sm font-montserrat text-sm tracking-widest uppercase hover:bg-primary/90 transition-all duration-300"
+                className="ml-4 px-4 py-2 bg-primary text-primary-foreground rounded-sm font-montserrat text-xs tracking-widest uppercase hover:bg-primary/90 transition-all duration-300"
               >
                 Login
               </Link>
