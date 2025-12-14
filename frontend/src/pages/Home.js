@@ -92,7 +92,7 @@ export const Home = () => {
           <Link to="/figures" data-testid="section-figures">
             <GlassCard testId="card-figures">
               <Users className="w-12 h-12 text-primary mb-4" />
-              <h3 className="font-cinzel text-xl font-bold text-bloomsbury-rose mb-2">Historical Figures</h3>
+              <h3 className="font-cinzel text-xl font-bold text-secondary mb-2">Historical Figures</h3>
               <p className="font-montserrat text-sm text-muted-foreground leading-relaxed">
                 Gardner, Fortune, Crowley—pioneers of modern practice
               </p>
