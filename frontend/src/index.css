@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Italiana&family=Montserrat:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Crimson+Text:wght@400;600;700&family=Italiana&family=Montserrat:wght@300;400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,11 +6,11 @@
 
 body {
     margin: 0;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Crimson Text', serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #1C1C1C;
-    color: #D8CBB3;
+    background-color: #D8CBB3;
+    color: #1a1410;
 }
 
 code {
@@ -19,24 +19,24 @@ code {
 
 @layer base {
     :root {
-        --background: #2a2520;
-        --foreground: #D8CBB3;
-        --card: #3a342e;
-        --card-foreground: #D8CBB3;
-        --popover: #2a2a2a;
-        --popover-foreground: #D8CBB3;
+        --background: #D8CBB3;
+        --foreground: #1a1410;
+        --card: #e8dcc8;
+        --card-foreground: #1a1410;
+        --popover: #e8dcc8;
+        --popover-foreground: #1a1410;
         --primary: #750609;
-        --primary-foreground: #D8CBB3;
+        --primary-foreground: #f5efe0;
         --secondary: #06133c;
-        --secondary-foreground: #D8CBB3;
-        --muted: #3a3a3a;
-        --muted-foreground: #A8A8A8;
+        --secondary-foreground: #f5efe0;
+        --muted: #c4b8a4;
+        --muted-foreground: #4a443a;
         --accent: #4B5A3E;
-        --accent-foreground: #D8CBB3;
+        --accent-foreground: #f5efe0;
         --destructive: #750609;
-        --destructive-foreground: #D8CBB3;
-        --border: #4a4a4a;
-        --input: #2a2a2a;
+        --destructive-foreground: #f5efe0;
+        --border: #b8a890;
+        --input: #e8dcc8;
         --ring: #750609;
         --radius: 0.5rem;
     }
@@ -48,17 +48,45 @@ code {
     }
     body {
         @apply bg-background text-foreground;
-        background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjMmEyNTIwIi8+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz4KPC9zdmc+');
+        background-image: 
+            url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMzLjMxNCAwIDYgMi42ODYgNiA2cy0yLjY4NiA2LTYgNi02LTIuNjg2LTYtNiAyLjY4Ni02IDYtNnoiIGZpbGw9IiNjNGI4YTQiIG9wYWNpdHk9Ii4wNSIvPjwvZz48L3N2Zz4=');
     }
+}
+
+/* Paper texture overlay */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0.03;
+    background-image: repeating-linear-gradient(
+        0deg,
+        #1a1410 0px,
+        transparent 1px,
+        transparent 2px,
+        #1a1410 3px
+    ),
+    repeating-linear-gradient(
+        90deg,
+        #1a1410 0px,
+        transparent 1px,
+        transparent 2px,
+        #1a1410 3px
+    );
+    z-index: 9999;
 }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-    width: 8px;
+    width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #3a342e;
+    background: #c4b8a4;
 }
 
 ::-webkit-scrollbar-thumb {
