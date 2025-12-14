@@ -1,0 +1,110 @@
+import axios from 'axios';
+
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const API = `${BACKEND_URL}/api`;
+
+const getAuthHeader = () => {
+  const token = localStorage.getItem('token');
+  return token ? { Authorization: `Bearer ${token}` } : {};
+};
+
+export const authAPI = {
+  register: async (data) => {
+    const response = await axios.post(`${API}/auth/register`, data);
+    return response.data;
+  },
+  login: async (data) => {
+    const response = await axios.post(`${API}/auth/login`, data);
+    return response.data;
+  },
+};
+
+export const deitiesAPI = {
+  getAll: async () => {
+    const response = await axios.get(`${API}/deities`);
+    return response.data;
+  },
+  getById: async (id) => {
+    const response = await axios.get(`${API}/deities/${id}`);
+    return response.data;
+  },
+};
+
+export const figuresAPI = {
+  getAll: async () => {
+    const response = await axios.get(`${API}/historical-figures`);
+    return response.data;
+  },
+  getById: async (id) => {
+    const response = await axios.get(`${API}/historical-figures/${id}`);
+    return response.data;
+  },
+};
+
+export const sitesAPI = {
+  getAll: async () => {
+    const response = await axios.get(`${API}/sacred-sites`);
+    return response.data;
+  },
+  getById: async (id) => {
+    const response = await axios.get(`${API}/sacred-sites/${id}`);
+    return response.data;
+  },
+};
+
+export const ritualsAPI = {
+  getAll: async (category) => {
+    const url = category ? `${API}/rituals?category=${category}` : `${API}/rituals`;
+    const response = await axios.get(url);
+    return response.data;
+  },
+  getById: async (id) => {
+    const response = await axios.get(`${API}/rituals/${id}`);
+    return response.data;
+  },
+};
+
+export const timelineAPI = {
+  getAll: async () => {
+    const response = await axios.get(`${API}/timeline`);
+    return response.data;
+  },
+};
+
+export const aiAPI = {
+  chat: async (message, sessionId) => {
+    const response = await axios.post(`${API}/ai/chat`, {
+      message,
+      session_id: sessionId,
+    });
+    return response.data;
+  },
+  generateImage: async (prompt) => {
+    const response = await axios.post(`${API}/ai/generate-image`, { prompt });
+    return response.data;
+  },
+};
+
+export const favoritesAPI = {
+  getAll: async () => {
+    const response = await axios.get(`${API}/favorites`, {
+      headers: getAuthHeader(),
+    });
+    return response.data;
+  },
+  add: async (itemType, itemId) => {
+    const response = await axios.post(
+      `${API}/favorites`,
+      { item_type: itemType, item_id: itemId },
+      { headers: getAuthHeader() }
+    );
+    return response.data;
+  },
+  remove: async (itemType, itemId) => {
+    const response = await axios.delete(`${API}/favorites`, {
+      data: { item_type: itemType, item_id: itemId },
+      headers: getAuthHeader(),
+    });
+    return response.data;
+  },
+};
