@@ -93,9 +93,14 @@ export const Home = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <Link to="/spell-request" data-testid="section-spell-request">
             <GlassCard testId="card-spell-request">
-              <Sparkles className="w-12 h-12 text-primary mb-4" />
+              <img 
+                src="https://customer-assets.emergentagent.com/job_mystic-circle-2/artifacts/flkqjy53_Now_can_we_create_a_full_brand_from_this_with_graphic_downloa_0fd417a5-4e03-4cd2-a771-053079e14c28_0.png"
+                alt="Spell Request"
+                className="w-24 h-24 mx-auto mb-4 opacity-70"
+                style={{ mixBlendMode: 'multiply' }}
+              />
               <h3 className="font-cinzel text-xl font-bold text-secondary mb-2">Spell Request</h3>
-              <p className="font-montserrat text-sm text-muted-foreground leading-relaxed">
+              <p className="font-crimson text-sm text-muted-foreground leading-relaxed">
                 Describe your need, get a custom spell rooted in historical practice
               </p>
             </GlassCard>
@@ -103,9 +108,14 @@ export const Home = () => {
           
           <Link to="/deities" data-testid="section-deities">
             <GlassCard testId="card-deities">
-              <Moon className="w-12 h-12 text-primary mb-4" />
+              <img 
+                src="https://customer-assets.emergentagent.com/job_mystic-circle-2/artifacts/1sqgo2ps_Now_can_we_create_a_full_brand_from_this_with_graphic_downloa_0fd417a5-4e03-4cd2-a771-053079e14c28_3.png"
+                alt="Deities"
+                className="w-24 h-24 mx-auto mb-4 opacity-70"
+                style={{ mixBlendMode: 'multiply' }}
+              />
               <h3 className="font-cinzel text-xl font-bold text-secondary mb-2">Deities</h3>
-              <p className="font-montserrat text-sm text-muted-foreground leading-relaxed">
+              <p className="font-crimson text-sm text-muted-foreground leading-relaxed">
                 Hecate, The Morrigan, Cerridwen—goddesses of the revival period
               </p>
             </GlassCard>
@@ -113,9 +123,14 @@ export const Home = () => {
           
           <Link to="/figures" data-testid="section-figures">
             <GlassCard testId="card-figures">
-              <Users className="w-12 h-12 text-primary mb-4" />
+              <img 
+                src="https://customer-assets.emergentagent.com/job_mystic-circle-2/artifacts/nngy4wmz_COuld_we_creatre_more_of_these_--profile_bsfwy2d_--v_7_d08b86ee-a6ac-4cf3-a814-1344b45b3380_3.png"
+                alt="Historical Figures"
+                className="w-24 h-24 mx-auto mb-4 opacity-70"
+                style={{ mixBlendMode: 'multiply' }}
+              />
               <h3 className="font-cinzel text-xl font-bold text-secondary mb-2">Historical Figures</h3>
-              <p className="font-montserrat text-sm text-muted-foreground leading-relaxed">
+              <p className="font-crimson text-sm text-muted-foreground leading-relaxed">
                 Gardner, Fortune, Crowley—pioneers of modern practice
               </p>
             </GlassCard>
@@ -123,9 +138,14 @@ export const Home = () => {
           
           <Link to="/sites" data-testid="section-sites">
             <GlassCard testId="card-sites">
-              <MapPin className="w-12 h-12 text-primary mb-4" />
+              <img 
+                src="https://customer-assets.emergentagent.com/job_mystic-circle-2/artifacts/u9u50jrz_Now_can_we_create_a_full_brand_from_this_with_graphic_downloa_0fd417a5-4e03-4cd2-a771-053079e14c28_2.png"
+                alt="Sacred Sites"
+                className="w-24 h-24 mx-auto mb-4 opacity-70"
+                style={{ mixBlendMode: 'multiply' }}
+              />
               <h3 className="font-cinzel text-xl font-bold text-secondary mb-2">Sacred Sites</h3>
-              <p className="font-montserrat text-sm text-muted-foreground leading-relaxed">
+              <p className="font-crimson text-sm text-muted-foreground leading-relaxed">
                 Stonehenge, Glastonbury—power places across Europe
               </p>
             </GlassCard>
