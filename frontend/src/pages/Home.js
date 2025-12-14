@@ -98,9 +98,9 @@ export const Home = () => {
                 className="w-24 h-24 mx-auto mb-4 opacity-70"
                 style={{ mixBlendMode: 'multiply' }}
               />
-              <h3 className="font-cinzel text-xl font-bold text-secondary mb-2">Spell Request</h3>
+              <h3 className="font-cinzel text-xl font-bold text-secondary mb-2">Build Your Spell</h3>
               <p className="font-crimson text-sm text-muted-foreground leading-relaxed">
-                Describe your need, get a custom spell rooted in historical practice
+                Describe your need, get a practical formula based on tested patterns
               </p>
             </GlassCard>
           </Link>
