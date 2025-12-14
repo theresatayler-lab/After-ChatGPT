@@ -86,7 +86,7 @@ export const Rituals = () => {
             >
               <GlassCard hover={false} testId={`ritual-card-${ritual.id}`}>
                 <div className="flex items-start justify-between mb-4">
-                  <h3 className="font-cinzel text-xl font-bold text-bloomsbury-rose flex-1">
+                  <h3 className="font-cinzel text-xl font-bold text-secondary flex-1">
                     {ritual.name}
                   </h3>
                   <span className="px-3 py-1 bg-primary/10 border border-primary/30 rounded-sm font-montserrat text-xs text-primary">

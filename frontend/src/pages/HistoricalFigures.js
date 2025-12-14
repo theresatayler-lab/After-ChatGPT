@@ -65,7 +65,7 @@ export const HistoricalFigures = () => {
                 >
                   <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
                 </div>
-                <h3 className="font-cinzel text-2xl font-bold text-bloomsbury-rose mb-2">
+                <h3 className="font-cinzel text-2xl font-bold text-secondary mb-2">
                   {figure.name}
                 </h3>
                 <p className="font-montserrat text-xs uppercase tracking-widest text-primary mb-3">

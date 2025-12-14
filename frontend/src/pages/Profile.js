@@ -51,8 +51,8 @@ export const Profile = ({ user }) => {
 
         <GlassCard hover={false} testId="favorites-section">
           <div className="flex items-center gap-3 mb-6">
-            <Heart className="w-6 h-6 text-bloomsbury-rose" />
-            <h2 className="font-cinzel text-2xl text-bloomsbury-rose">Your Favorites</h2>
+            <Heart className="w-6 h-6 text-secondary" />
+            <h2 className="font-cinzel text-2xl text-secondary">Your Favorites</h2>
           </div>
 
           {loading ? (

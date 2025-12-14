@@ -67,7 +67,7 @@ Be clear about what is documented historical practice vs. modern adaptation. Kee
           {/* Input Section */}
           <div className="lg:col-span-2">
             <GlassCard hover={false} testId="spell-request-input-card">
-              <h3 className="font-cinzel text-xl text-bloomsbury-rose mb-4">What do you need?</h3>
+              <h3 className="font-cinzel text-xl text-secondary mb-4">What do you need?</h3>
               
               <div className="mb-6">
                 <label className="block font-montserrat text-sm text-muted-foreground uppercase tracking-wider mb-2">
@@ -122,7 +122,7 @@ Be clear about what is documented historical practice vs. modern adaptation. Kee
           {/* Response Section */}
           <div className="lg:col-span-3">
             <GlassCard hover={false} testId="spell-response-card">
-              <h3 className="font-cinzel text-xl text-bloomsbury-rose mb-4">Your Custom Spell</h3>
+              <h3 className="font-cinzel text-xl text-secondary mb-4">Your Custom Spell</h3>
               
               {spellResponse ? (
                 <div className="space-y-4">
@@ -187,7 +187,7 @@ Be clear about what is documented historical practice vs. modern adaptation. Kee
             <div className="flex items-start gap-4">
               <BookOpen className="w-8 h-8 text-primary flex-shrink-0" />
               <div>
-                <h4 className="font-cinzel text-lg text-bloomsbury-rose mb-2">About Our Approach</h4>
+                <h4 className="font-cinzel text-lg text-secondary mb-2">About Our Approach</h4>
                 <p className="font-montserrat text-sm text-foreground/80 leading-relaxed mb-3">
                   Every spell generated here draws from documented historical practices of the 1910-1945 period.
                   We cite specific practitioners (Gardner, Fortune, Crowley, folk traditions) and clearly distinguish

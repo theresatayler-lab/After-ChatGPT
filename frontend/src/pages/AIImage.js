@@ -53,7 +53,7 @@ export const AIImage = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <GlassCard hover={false} testId="image-generator-card">
-            <h3 className="font-cinzel text-xl text-bloomsbury-rose mb-4">Create Your Vision</h3>
+            <h3 className="font-cinzel text-xl text-secondary mb-4">Create Your Vision</h3>
             
             <div className="mb-6">
               <label className="block font-montserrat text-sm text-muted-foreground uppercase tracking-wider mb-2">
@@ -105,7 +105,7 @@ export const AIImage = () => {
           </GlassCard>
 
           <GlassCard hover={false} testId="image-display-card">
-            <h3 className="font-cinzel text-xl text-bloomsbury-rose mb-4">Generated Image</h3>
+            <h3 className="font-cinzel text-xl text-secondary mb-4">Generated Image</h3>
             
             {generatedImage ? (
               <div className="space-y-4">
