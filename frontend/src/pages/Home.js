@@ -27,8 +27,11 @@ export const Home = () => {
           <img 
             src="https://customer-assets.emergentagent.com/job_mystic-circle-2/artifacts/fmscypbs_2.png"
             alt="Where The Crow Lands"
-            className="w-64 h-64 mb-8 opacity-90"
-            style={{ mixBlendMode: 'multiply' }}
+            className="w-64 h-64 mb-8"
+            style={{ 
+              mixBlendMode: 'multiply',
+              filter: 'contrast(1.15)'
+            }}
           />
           
           <div className="max-w-3xl">
