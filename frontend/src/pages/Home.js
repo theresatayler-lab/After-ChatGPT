@@ -43,8 +43,8 @@ export const Home = () => {
               Got a problem? We've got a ritual for that.
             </p>
             <p className="font-montserrat text-base md:text-lg text-foreground/80 leading-relaxed max-w-2xl mx-auto mb-8">
-              Your DIY guide to authentic occult practice. From the documented witchcraft of 1910-1945
-              to modern spellwork—activate the magick with historically-rooted formulas.
+              You don't need an Etsy witch or tarot reader to access your power. Build your own practice with formulas, 
+              sacred geometry, and intentional effort. Magic is science—patterns and shapes we put into practice.
             </p>
             <div className="flex gap-4 justify-center flex-wrap">
               <Link
