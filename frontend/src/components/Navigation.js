@@ -21,11 +21,11 @@ export const Navigation = ({ user, onLogout }) => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between h-20">
           <Link to="/" className="flex items-center space-x-3" data-testid="nav-logo">
-            <Moon className="w-8 h-8 text-primary" />
-            <div className="flex flex-col">
-              <span className="font-italiana text-xl text-primary leading-tight">Where The Crow Lands</span>
-              <span className="font-montserrat text-xs text-accent">Historical Witchcraft Archive</span>
-            </div>
+            <img 
+              src="https://customer-assets.emergentagent.com/job_mystic-circle-2/artifacts/hi8yz7q6_1.png" 
+              alt="Where The Crow Lands Logo"
+              className="h-12 w-auto"
+            />
           </Link>
           
           <div className="flex items-center space-x-1">
