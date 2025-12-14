@@ -64,13 +64,15 @@ async def seed_database():
     ]
     
     # Seed Historical Figures
+    # NOTE: Currently using placeholder images. Historical photos available via Wikimedia Commons (public domain).
+    # For authenticity, replace with actual period photographs from archives.
     figures = [
         {
             'id': 'gardner-001',
             'name': 'Gerald Gardner',
             'birth_death': '1884-1964',
-            'bio': 'British civil servant and amateur anthropologist who founded modern Wicca in the 1940s. Gardner claimed initiation into a surviving witch coven in the New Forest and published the first books on Wiccan practice.',
-            'contributions': 'Founded Wicca, wrote "Witchcraft Today" (1954), established the Book of Shadows, created Gardnerian Wicca tradition.',
+            'bio': 'British civil servant and amateur anthropologist who founded modern Wicca in the 1940s. Gardner claimed initiation into a surviving witch coven in the New Forest in 1939. Scholarly consensus is skeptical of ancient lineage claims, but Gardner definitively synthesized ceremonial magic, folk practices, and published the first books on Wiccan practice.',
+            'contributions': 'Founded Wicca, wrote "Witchcraft Today" (1954), established the Book of Shadows, created Gardnerian Wicca tradition. Source: Ronald Hutton, "The Triumph of the Moon" (1999).',
             'associated_works': ['Witchcraft Today', 'The Meaning of Witchcraft', 'High Magic\'s Aid'],
             'image_url': 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?crop=entropy&cs=srgb&fm=jpg&q=85'
         },
