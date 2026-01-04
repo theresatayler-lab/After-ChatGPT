@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { GlassCard } from '../components/GlassCard';
+import { GrimoirePage } from '../components/GrimoirePage';
 import { aiAPI } from '../utils/api';
 import { ARCHETYPES, getArchetypeById } from '../data/archetypes';
 import { getCurrentArchetype, setCurrentArchetype } from '../components/OnboardingModal';
-import { Sparkles, AlertCircle, BookOpen, Feather, ChevronDown, Loader2, User } from 'lucide-react';
+import { Sparkles, BookOpen, Feather, ChevronDown, Loader2, User, ImageIcon } from 'lucide-react';
 import { toast } from 'sonner';
 import { Link } from 'react-router-dom';
 
 export const SpellRequest = ({ selectedArchetype: propArchetype }) => {
   const [problem, setProblem] = useState('');
-  const [spellResponse, setSpellResponse] = useState(null);
+  const [spellResult, setSpellResult] = useState(null);
   const [loading, setLoading] = useState(false);
   const [activeArchetype, setActiveArchetype] = useState(propArchetype || getCurrentArchetype());
   const [showArchetypeSelector, setShowArchetypeSelector] = useState(false);
+  const [generateImage, setGenerateImage] = useState(true);
 
   const currentGuide = activeArchetype ? getArchetypeById(activeArchetype) : null;
 
@@ -36,50 +38,23 @@ export const SpellRequest = ({ selectedArchetype: propArchetype }) => {
     }
 
     setLoading(true);
+    setSpellResult(null);
+    
     try {
-      // Build the prompt based on whether there's an archetype
-      let prompt;
-      if (currentGuide) {
-        prompt = `A practitioner comes to you seeking guidance:
-
-"${problem}"
-
-Respond AS ${currentGuide.name}, in your characteristic voice and style. Create a spell or ritual using YOUR specific tradition and approach.
-
-Include:
-1. An opening in your characteristic voice
-2. A practical spell formula from your tradition
-3. Materials you would recommend
-4. Step-by-step ritual instructions in your style
-5. Historical or personal precedent for this approach
-6. Why you chose this particular approach
-
-Stay completely in character. This is how YOU would handle this need.`;
-      } else {
-        prompt = `As a guide in the Crowlands tradition, help create a spell/ritual for this need: "${problem}"
-
-Provide:
-1. A practical spell formula
-2. Required materials (historically attested where possible)
-3. The ritual steps
-4. Historical precedent - cite specific practices from figures like Gardner, Fortune, Crowley, or traditional folk magic
-5. Sources/references for the historical elements
-
-Be clear about what is documented historical practice vs. modern adaptation. Keep it practical and honest.`;
-      }
-
-      const response = await aiAPI.chat(prompt, null, activeArchetype);
-      setSpellResponse({
-        text: response.response,
-        guide: currentGuide
-      });
-      toast.success('Spell formula generated!');
+      const response = await aiAPI.generateSpell(problem, activeArchetype, generateImage);
+      setSpellResult(response);
+      toast.success('Your spell has been crafted!');
     } catch (error) {
       toast.error('Failed to generate spell. Please try again.');
       console.error('Spell generation error:', error);
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleNewSpell = () => {
+    setProblem('');
+    setSpellResult(null);
   };
 
   // Get example problems based on current guide
@@ -95,6 +70,22 @@ Be clear about what is documented historical practice vs. modern adaptation. Kee
       'Need courage to pursue a creative project',
     ];
   };
+
+  // If we have a spell result, show the grimoire page
+  if (spellResult && spellResult.spell) {
+    return (
+      <div className="min-h-screen py-24 px-6">
+        <div className="max-w-4xl mx-auto">
+          <GrimoirePage 
+            spell={spellResult.spell}
+            archetype={spellResult.archetype}
+            imageBase64={spellResult.image_base64}
+            onNewSpell={handleNewSpell}
+          />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen py-24 px-6">
@@ -214,7 +205,7 @@ Be clear about what is documented historical practice vs. modern adaptation. Kee
               
               <div className="mb-6">
                 <label className="block font-montserrat text-sm text-muted-foreground uppercase tracking-wider mb-2">
-                  Describe your situation
+                  Describe your intention
                 </label>
                 <textarea
                   data-testid="spell-problem-input"
@@ -226,6 +217,26 @@ Be clear about what is documented historical practice vs. modern adaptation. Kee
                   rows={6}
                   className="w-full bg-input/50 border border-border focus:border-primary focus:ring-1 focus:ring-primary/50 rounded-sm px-4 py-3 text-foreground font-montserrat"
                 />
+              </div>
+
+              {/* Image Generation Toggle */}
+              <div className="mb-6 flex items-center justify-between p-3 bg-muted/20 rounded-sm">
+                <div className="flex items-center gap-2">
+                  <ImageIcon className="w-5 h-5 text-primary" />
+                  <span className="font-montserrat text-sm text-foreground">Generate spell image</span>
+                </div>
+                <button
+                  onClick={() => setGenerateImage(!generateImage)}
+                  className={`relative w-12 h-6 rounded-full transition-colors ${
+                    generateImage ? 'bg-primary' : 'bg-muted'
+                  }`}
+                >
+                  <span
+                    className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-transform ${
+                      generateImage ? 'left-7' : 'left-1'
+                    }`}
+                  />
+                </button>
               </div>
 
               <button
@@ -267,11 +278,11 @@ Be clear about what is documented historical practice vs. modern adaptation. Kee
             </GlassCard>
           </div>
 
-          {/* Response Section */}
+          {/* Preview Section */}
           <div className="lg:col-span-3">
             <GlassCard hover={false} testId="spell-response-card">
               <h3 className="font-cinzel text-xl text-secondary mb-4">
-                {spellResponse?.guide ? `Spell by ${spellResponse.guide.shortName}` : 'Your Custom Spell'}
+                {currentGuide ? `Spell by ${currentGuide.shortName}` : 'Your Custom Spell'}
               </h3>
               
               {loading ? (
@@ -282,73 +293,33 @@ Be clear about what is documented historical practice vs. modern adaptation. Kee
                       ? `${currentGuide.shortName} is crafting your ritual...`
                       : 'Crafting your spell...'}
                   </p>
-                  <p className="font-crimson text-sm text-accent italic">
-                    {currentGuide?.tenets?.[0] || 'Magic is a science of intention, repetition, and symbolic frameworks.'}
+                  <p className="font-montserrat text-sm text-muted-foreground/70 mb-4">
+                    This may take a moment as we research historical sources and craft your personalized ritual.
                   </p>
-                </div>
-              ) : spellResponse ? (
-                <div className="space-y-4">
-                  {spellResponse.guide && (
-                    <div className="flex items-center gap-3 p-3 bg-primary/5 border border-primary/20 rounded-sm">
-                      <span className="text-2xl">{spellResponse.guide.birdEmoji}</span>
-                      <div>
-                        <p className="font-cinzel text-sm text-primary">{spellResponse.guide.shortName}</p>
-                        <p className="font-montserrat text-xs text-muted-foreground">{spellResponse.guide.title}</p>
-                      </div>
-                    </div>
+                  {generateImage && (
+                    <p className="font-crimson text-sm text-accent italic">
+                      ✦ Generating a custom image for your spell...
+                    </p>
                   )}
-                  
-                  <div className="p-4 bg-card/50 border border-primary/20 rounded-sm">
-                    <div className="flex items-start gap-2 mb-2">
-                      <AlertCircle className="w-5 h-5 text-accent flex-shrink-0 mt-1" />
-                      <p className="font-montserrat text-sm text-accent leading-relaxed">
-                        {spellResponse.guide 
-                          ? `This spell is crafted in ${spellResponse.guide.shortName}'s tradition. Adapt it to your own practice.`
-                          : 'This spell combines documented historical practices with practical adaptation. Always verify sources and use your judgment.'}
-                      </p>
-                    </div>
-                  </div>
-                  
-                  <div className="prose prose-invert max-w-none">
-                    <div className="font-montserrat text-sm text-foreground leading-relaxed whitespace-pre-wrap">
-                      {spellResponse.text}
-                    </div>
-                  </div>
-                  
-                  <div className="flex gap-3 pt-4 border-t border-border">
-                    <button
-                      onClick={() => {
-                        navigator.clipboard.writeText(spellResponse.text);
-                        toast.success('Spell copied to clipboard!');
-                      }}
-                      data-testid="copy-spell-button"
-                      className="px-4 py-2 bg-transparent text-primary border border-primary/30 rounded-sm font-montserrat tracking-widest uppercase text-xs hover:bg-primary/10 transition-all duration-300"
-                    >
-                      Copy Spell
-                    </button>
-                    <button
-                      onClick={() => {
-                        setProblem('');
-                        setSpellResponse(null);
-                      }}
-                      data-testid="new-spell-button"
-                      className="px-4 py-2 bg-transparent text-primary border border-primary/30 rounded-sm font-montserrat tracking-widest uppercase text-xs hover:bg-primary/10 transition-all duration-300"
-                    >
-                      Request Another
-                    </button>
-                  </div>
                 </div>
               ) : (
                 <div className="flex flex-col items-center justify-center h-[500px] text-center">
                   <BookOpen className="w-16 h-16 text-primary/30 mb-4" />
                   <p className="font-montserrat text-muted-foreground mb-2">
-                    Your customized spell will appear here
+                    Your grimoire page will appear here
                   </p>
-                  <p className="font-montserrat text-sm text-muted-foreground/70 max-w-md">
+                  <p className="font-montserrat text-sm text-muted-foreground/70 max-w-md mb-4">
                     {currentGuide 
-                      ? `${currentGuide.shortName} will create a ritual in her unique tradition, drawing from ${currentGuide.historicalSources?.[0] || 'ancestral wisdom'}.`
-                      : 'Each formula is generated based on documented practices from the 1910-1945 occult revival, with clear citations to historical sources.'}
+                      ? `${currentGuide.shortName} will create a complete ritual with materials, steps, historical context, and beautiful imagery.`
+                      : 'Each spell includes materials, step-by-step instructions, historical sources, and optional custom imagery.'}
                   </p>
+                  <div className="flex flex-wrap gap-2 justify-center">
+                    <span className="px-2 py-1 bg-muted/30 rounded-sm text-xs font-montserrat text-muted-foreground">Materials list</span>
+                    <span className="px-2 py-1 bg-muted/30 rounded-sm text-xs font-montserrat text-muted-foreground">Ritual steps</span>
+                    <span className="px-2 py-1 bg-muted/30 rounded-sm text-xs font-montserrat text-muted-foreground">Spoken words</span>
+                    <span className="px-2 py-1 bg-muted/30 rounded-sm text-xs font-montserrat text-muted-foreground">Historical sources</span>
+                    <span className="px-2 py-1 bg-muted/30 rounded-sm text-xs font-montserrat text-muted-foreground">Custom image</span>
+                  </div>
                 </div>
               )}
             </GlassCard>
