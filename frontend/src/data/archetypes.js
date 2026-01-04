@@ -53,13 +53,18 @@ export const ARCHETYPES = [
       "Churchill's Home Guard practices",
       'WWII London Spiritualism traditions'
     ],
-    image: 'https://customer-assets.emergentagent.com/job_diywizardry/artifacts/d1pes21d_Shig19.png',
+    image: 'https://customer-assets.emergentagent.com/job_diywizardry/artifacts/127im9d9_Shig50.png',
     galleryImages: [
       'https://customer-assets.emergentagent.com/job_diywizardry/artifacts/d1pes21d_Shig19.png',
       'https://customer-assets.emergentagent.com/job_diywizardry/artifacts/38tunfde_Shig22.png',
       'https://customer-assets.emergentagent.com/job_diywizardry/artifacts/fla207tv_Shig24.png',
       'https://customer-assets.emergentagent.com/job_diywizardry/artifacts/t0qin8h2_Shig25.png',
-      'https://customer-assets.emergentagent.com/job_diywizardry/artifacts/nfowp4lh_Shig27.png'
+      'https://customer-assets.emergentagent.com/job_diywizardry/artifacts/nfowp4lh_Shig27.png',
+      'https://customer-assets.emergentagent.com/job_diywizardry/artifacts/acpoc8g8_Shig32.png',
+      'https://customer-assets.emergentagent.com/job_diywizardry/artifacts/rx4ibeoh_Shig34.png',
+      'https://customer-assets.emergentagent.com/job_diywizardry/artifacts/zy2lhhwp_Shig41.png',
+      'https://customer-assets.emergentagent.com/job_diywizardry/artifacts/127im9d9_Shig50.png',
+      'https://customer-assets.emergentagent.com/job_diywizardry/artifacts/ml25inzb_Shig52.png'
     ]
   },
   {
