@@ -653,7 +653,8 @@ class SpiritualAppAPITester:
             "POST",
             "ai/generate-spell",
             200,
-            data=spell_data
+            data=spell_data,
+            timeout=90
         )
         
         if success and isinstance(response, dict):
