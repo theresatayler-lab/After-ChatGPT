@@ -107,6 +107,18 @@ backend:
         agent: "testing"
         comment: "Favorites system working correctly. POST /api/favorites adds favorites, GET /api/favorites retrieves them, DELETE /api/favorites removes them. Requires authentication which is working properly."
 
+  - task: "Grimoire System (My Grimoire Feature)"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "Grimoire system fully functional. POST /api/grimoire/save successfully saves spells with guide attribution (archetype_id, archetype_name, archetype_title). GET /api/grimoire/spells retrieves all saved spells with correct structure. DELETE /api/grimoire/spells/{spell_id} successfully removes spells. Complete flow tested: generated spell with Shiggy guide -> saved to grimoire with guide attribution -> retrieved from grimoire -> verified guide attribution persists. All CRUD operations working correctly."
+
 frontend:
   - task: "Frontend Testing - Not Performed"
     implemented: true
