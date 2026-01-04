@@ -62,8 +62,29 @@ export const SpellRequest = ({ selectedArchetype: propArchetype }) => {
       const response = await aiAPI.generateSpell(problem, activeArchetype, generateImage);
       setSpellResult(response);
       toast.success('Your spell has been crafted!');
+      
+      // Update subscription status if limits changed
+      if (response.limit_info) {
+        const token = localStorage.getItem('token');
+        if (token) {
+          const status = await subscriptionAPI.getStatus();
+          setSubscriptionStatus(status);
+          
+          // Warn if nearing limit
+          if (status.spells_remaining === 1) {
+            toast.warning('This was your second-to-last free spell! Upgrade for unlimited access.');
+          } else if (status.spells_remaining === 0) {
+            toast.error('You\'ve used all 3 free spells. Upgrade to Pro for unlimited spell generation!');
+          }
+        }
+      }
     } catch (error) {
-      toast.error('Failed to generate spell. Please try again.');
+      // Check if it's a limit error
+      if (error.response?.status === 403 && error.response?.data?.detail?.error === 'spell_limit_reached') {
+        toast.error(error.response.data.detail.message, { duration: 6000 });
+      } else {
+        toast.error('Failed to generate spell. Please try again.');
+      }
       console.error('Spell generation error:', error);
     } finally {
       setLoading(false);
