@@ -29,9 +29,12 @@ export const SpellRequest = ({ selectedArchetype: propArchetype }) => {
         try {
           const status = await subscriptionAPI.getStatus();
           setSubscriptionStatus(status);
+          console.log('Subscription status loaded:', status);
         } catch (error) {
           console.error('Failed to load subscription status:', error);
         }
+      } else {
+        console.log('No token - anonymous user');
       }
     };
     loadSubscriptionStatus();
