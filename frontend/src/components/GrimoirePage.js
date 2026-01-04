@@ -114,6 +114,13 @@ export const GrimoirePage = ({ spell, archetype, imageBase64, onNewSpell }) => {
   const downloadAsPdf = async () => {
     if (!grimoireRef.current) return;
     
+    // Check subscription
+    if (subscriptionTier === 'free') {
+      toast.error('Upgrade to Pro to download PDFs! Only $19/year.', { duration: 5000 });
+      setTimeout(() => navigate('/upgrade'), 1500);
+      return;
+    }
+    
     setIsGeneratingPdf(true);
     toast.info('Generating your grimoire page...');
     
@@ -169,6 +176,12 @@ export const GrimoirePage = ({ spell, archetype, imageBase64, onNewSpell }) => {
       console.error('Save spell error:', error);
       if (error.response?.status === 401) {
         toast.error('Please log in to save spells');
+      } else if (error.response?.status === 403 && error.response?.data?.detail?.error === 'feature_locked') {
+        toast.error(error.response.data.detail.message, { duration: 6000 });
+        setTimeout(() => navigate('/upgrade'), 2000);
+      } else {
+        toast.error('Failed to save spell. Please try again.');
+      }
       } else {
         toast.error('Failed to save spell. Please try again.');
       }
