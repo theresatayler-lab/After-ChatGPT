@@ -141,7 +141,9 @@ export const GrimoirePage = ({ spell, archetype, imageBase64, onNewSpell }) => {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
+      ref={grimoireRef}
       className={`bg-card/80 border-2 ${style.borderColor} rounded-sm overflow-hidden shadow-xl`}
+      style={{ backgroundColor: '#D8CBB3' }}
     >
       {/* Header Image */}
       {imageBase64 && (
