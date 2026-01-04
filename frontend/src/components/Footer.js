@@ -9,10 +9,10 @@ export const Footer = () => {
           {/* Logo and Description */}
           <div className="flex flex-col items-center md:items-start">
             <img 
-              src="https://customer-assets.emergentagent.com/job_diywizardry/artifacts/734861j5_generated-image-2026-01-04%20%286%29.png"
+              src="https://customer-assets.emergentagent.com/job_diywizardry/artifacts/9hb654f4_image.png"
               alt="Where The Crowlands Badge"
               className="h-48 w-48 mb-6"
-              style={{ mixBlendMode: 'darken' }}
+              style={{ mixBlendMode: 'lighten' }}
             />
             <p className="font-crimson text-sm text-center md:text-left text-muted-foreground leading-relaxed">
               Build your own practice. No gatekeepers, no expensive services—just formulas, patterns, and your power.
