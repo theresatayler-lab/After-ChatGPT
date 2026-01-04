@@ -106,6 +106,7 @@ class TimelineEvent(BaseModel):
 class ChatMessage(BaseModel):
     message: str
     session_id: Optional[str] = None
+    archetype: Optional[str] = None  # Optional archetype ID for persona-based responses
 
 class ImageGenerationRequest(BaseModel):
     prompt: str
