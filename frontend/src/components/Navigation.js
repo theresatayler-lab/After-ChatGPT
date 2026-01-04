@@ -26,7 +26,7 @@ export const Navigation = ({ user, onLogout }) => {
               src="https://customer-assets.emergentagent.com/job_diywizardry/artifacts/734861j5_generated-image-2026-01-04%20%286%29.png" 
               alt="Where The Crowlands Logo"
               className="h-16 w-auto"
-              style={{ mixBlendMode: 'multiply' }}
+              style={{ mixBlendMode: 'darken' }}
             />
           </Link>
           
