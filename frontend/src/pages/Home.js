@@ -25,7 +25,7 @@ export const Home = () => {
         <div className="relative z-10 text-center max-w-5xl px-6 flex flex-col items-center">
           {/* Large Central Logo */}
           <div 
-            className="w-72 h-72 mb-8 flex items-center justify-center rounded-full"
+            className="w-80 h-80 mb-8 flex items-center justify-center p-4"
             style={{ backgroundColor: '#D8CBB3' }}
           >
             <img 
