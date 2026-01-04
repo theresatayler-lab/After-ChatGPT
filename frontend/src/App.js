@@ -13,11 +13,14 @@ import { AIChat } from './pages/AIChat';
 import { AIImage } from './pages/AIImage';
 import { Profile } from './pages/Profile';
 import { SpellRequest } from './pages/SpellRequest';
+import { Guides } from './pages/Guides';
 import { Footer } from './components/Footer';
+import { OnboardingModal } from './components/OnboardingModal';
 import './App.css';
 
 function App() {
   const [user, setUser] = useState(null);
+  const [selectedArchetype, setSelectedArchetype] = useState(null);
 
   useEffect(() => {
     // Check if user is logged in
@@ -25,6 +28,12 @@ function App() {
     const storedUser = localStorage.getItem('user');
     if (token && storedUser) {
       setUser(JSON.parse(storedUser));
+    }
+    
+    // Load saved archetype
+    const savedArchetype = localStorage.getItem('crowlands_selected_archetype');
+    if (savedArchetype) {
+      setSelectedArchetype(savedArchetype);
     }
   }, []);
 
@@ -40,20 +49,26 @@ function App() {
     window.location.href = '/';
   };
 
+  const handleSelectArchetype = (archetypeId) => {
+    setSelectedArchetype(archetypeId);
+  };
+
   return (
     <div className="App">
       <BrowserRouter>
+        <OnboardingModal onSelectArchetype={handleSelectArchetype} />
         <Navigation user={user} onLogout={handleLogout} />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/auth" element={<Auth onLogin={handleLogin} />} />
-          <Route path="/spell-request" element={<SpellRequest />} />
+          <Route path="/spell-request" element={<SpellRequest selectedArchetype={selectedArchetype} />} />
+          <Route path="/guides" element={<Guides />} />
           <Route path="/deities" element={<Deities />} />
           <Route path="/figures" element={<HistoricalFigures />} />
           <Route path="/sites" element={<SacredSites />} />
           <Route path="/rituals" element={<Rituals />} />
           <Route path="/timeline" element={<Timeline />} />
-          <Route path="/ai-chat" element={<AIChat />} />
+          <Route path="/ai-chat" element={<AIChat selectedArchetype={selectedArchetype} />} />
           <Route path="/ai-image" element={<AIImage />} />
           <Route
             path="/profile"
