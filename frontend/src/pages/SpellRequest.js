@@ -109,9 +109,9 @@ export const SpellRequest = ({ selectedArchetype: propArchetype }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="mb-8 relative"
+          className="mb-8 relative z-50"
         >
-          <GlassCard hover={false} className="overflow-visible">
+          <GlassCard hover={false} className="overflow-visible relative z-50">
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
               <div className="flex items-center gap-4">
                 {currentGuide ? (
