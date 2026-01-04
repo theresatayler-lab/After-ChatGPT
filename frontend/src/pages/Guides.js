@@ -98,20 +98,6 @@ export const Guides = () => {
 };
 
 const GuideCard = ({ archetype, index, isCurrentGuide, isExpanded, onToggle, onSelectAsGuide }) => {
-  // Placeholder silhouette
-  const PlaceholderSilhouette = () => (
-    <div className="w-full h-48 bg-gradient-to-b from-card to-muted/30 flex items-center justify-center border-b border-border">
-      <div className="relative">
-        <svg viewBox="0 0 100 100" className="w-32 h-32 text-primary/20">
-          <ellipse cx="50" cy="35" rx="20" ry="25" fill="currentColor" />
-          <path d="M30 60 Q50 90 70 60 Q50 75 30 60" fill="currentColor" />
-          <circle cx="50" cy="30" r="15" fill="currentColor" opacity="0.5" />
-        </svg>
-        <span className="absolute bottom-0 right-0 text-3xl">{archetype.birdEmoji}</span>
-      </div>
-    </div>
-  );
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -121,7 +107,17 @@ const GuideCard = ({ archetype, index, isCurrentGuide, isExpanded, onToggle, onS
         isCurrentGuide ? 'border-primary shadow-lg' : 'border-border'
       }`}
     >
-      <PlaceholderSilhouette />
+      {/* Placeholder silhouette */}
+      <div className="w-full h-48 bg-gradient-to-b from-card to-muted/30 flex items-center justify-center border-b border-border">
+        <div className="relative">
+          <svg viewBox="0 0 100 100" className="w-32 h-32 text-primary/20">
+            <ellipse cx="50" cy="35" rx="20" ry="25" fill="currentColor" />
+            <path d="M30 60 Q50 90 70 60 Q50 75 30 60" fill="currentColor" />
+            <circle cx="50" cy="30" r="15" fill="currentColor" opacity="0.5" />
+          </svg>
+          <span className="absolute bottom-0 right-0 text-3xl">{archetype.birdEmoji}</span>
+        </div>
+      </div>
       
       <div className="p-6">
         {/* Header */}
