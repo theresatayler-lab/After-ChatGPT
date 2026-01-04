@@ -166,6 +166,7 @@ export const SpellRequest = ({ selectedArchetype: propArchetype }) => {
                     <button
                       onClick={() => handleArchetypeChange(null)}
                       className={`w-full text-left px-4 py-3 font-montserrat text-sm hover:bg-primary/5 transition-all border-b border-border flex items-center gap-3 ${!activeArchetype ? 'bg-primary/10 text-primary' : 'text-foreground'}`}
+                      style={{ display: 'flex', minHeight: '60px' }}
                     >
                       <div className="w-10 h-10 rounded-full bg-muted/50 flex items-center justify-center flex-shrink-0">
                         <User className="w-5 h-5 text-muted-foreground" />
