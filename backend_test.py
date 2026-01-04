@@ -254,6 +254,119 @@ class SpiritualAppAPITester:
             return True
         return False
 
+    def test_get_archetypes(self):
+        """Test getting all archetypes"""
+        success, response = self.run_test(
+            "Get All Archetypes",
+            "GET",
+            "archetypes",
+            200
+        )
+        
+        if success and isinstance(response, list):
+            print(f"   Found {len(response)} archetypes")
+            expected_archetypes = ['shiggy', 'kathleen', 'catherine', 'theresa']
+            found_ids = [archetype.get('id') for archetype in response]
+            
+            for expected in expected_archetypes:
+                if expected in found_ids:
+                    print(f"   ✅ Found archetype: {expected}")
+                else:
+                    print(f"   ❌ Missing archetype: {expected}")
+                    return False
+            
+            return len(response) == 4
+        return False
+
+    def test_ai_chat_neutral(self):
+        """Test AI chat without archetype (neutral persona)"""
+        chat_data = {
+            "message": "Create a simple protection spell for my home"
+        }
+        
+        success, response = self.run_test(
+            "AI Chat - Neutral Persona",
+            "POST",
+            "ai/chat",
+            200,
+            data=chat_data
+        )
+        
+        if success and isinstance(response, dict) and 'response' in response:
+            print(f"   AI Response length: {len(response['response'])} characters")
+            # Check that no archetype was used
+            if response.get('archetype') is None:
+                print("   ✅ Neutral persona used (no archetype)")
+                return True
+            else:
+                print(f"   ❌ Expected neutral, got archetype: {response.get('archetype')}")
+                return False
+        return False
+
+    def test_ai_chat_shiggy(self):
+        """Test AI chat with Shiggy archetype"""
+        chat_data = {
+            "message": "I need courage for a difficult conversation with my family",
+            "archetype": "shiggy"
+        }
+        
+        success, response = self.run_test(
+            "AI Chat - Shiggy Archetype",
+            "POST",
+            "ai/chat",
+            200,
+            data=chat_data
+        )
+        
+        if success and isinstance(response, dict) and 'response' in response:
+            ai_response = response['response'].lower()
+            print(f"   AI Response length: {len(response['response'])} characters")
+            
+            # Check for Shiggy-specific elements
+            shiggy_indicators = ['poetry', 'courage', 'bird', 'omen', 'rubáiyát', 'practical', 'daily practice']
+            found_indicators = [indicator for indicator in shiggy_indicators if indicator in ai_response]
+            
+            if found_indicators:
+                print(f"   ✅ Shiggy persona detected - found: {', '.join(found_indicators)}")
+                return True
+            else:
+                print(f"   ❌ Shiggy persona not detected in response")
+                print(f"   Response preview: {response['response'][:200]}...")
+                return False
+        return False
+
+    def test_ai_chat_kathleen(self):
+        """Test AI chat with Kathleen archetype"""
+        chat_data = {
+            "message": "Help me protect family secrets while healing old wounds",
+            "archetype": "kathleen"
+        }
+        
+        success, response = self.run_test(
+            "AI Chat - Kathleen Archetype",
+            "POST",
+            "ai/chat",
+            200,
+            data=chat_data
+        )
+        
+        if success and isinstance(response, dict) and 'response' in response:
+            ai_response = response['response'].lower()
+            print(f"   AI Response length: {len(response['response'])} characters")
+            
+            # Check for Kathleen-specific elements
+            kathleen_indicators = ['secret', 'protection', 'resilience', 'family', 'document', 'photograph', 'veil', 'guard']
+            found_indicators = [indicator for indicator in kathleen_indicators if indicator in ai_response]
+            
+            if found_indicators:
+                print(f"   ✅ Kathleen persona detected - found: {', '.join(found_indicators)}")
+                return True
+            else:
+                print(f"   ❌ Kathleen persona not detected in response")
+                print(f"   Response preview: {response['response'][:200]}...")
+                return False
+        return False
+
     def test_ai_chat(self):
         """Test AI chat functionality"""
         chat_data = {
