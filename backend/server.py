@@ -121,6 +121,25 @@ class FavoriteRequest(BaseModel):
     item_type: str
     item_id: str
 
+class SaveSpellRequest(BaseModel):
+    spell_data: dict
+    archetype_id: Optional[str] = None
+    archetype_name: Optional[str] = None
+    archetype_title: Optional[str] = None
+    image_base64: Optional[str] = None
+
+class SavedSpellResponse(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+    id: str
+    user_id: str
+    spell_data: dict
+    archetype_id: Optional[str] = None
+    archetype_name: Optional[str] = None
+    archetype_title: Optional[str] = None
+    image_base64: Optional[str] = None
+    created_at: str
+    title: str
+
 # Helper functions
 def hash_password(password: str) -> str:
     return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
