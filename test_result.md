@@ -119,6 +119,18 @@ backend:
         agent: "testing"
         comment: "Grimoire system fully functional. POST /api/grimoire/save successfully saves spells with guide attribution (archetype_id, archetype_name, archetype_title). GET /api/grimoire/spells retrieves all saved spells with correct structure. DELETE /api/grimoire/spells/{spell_id} successfully removes spells. Complete flow tested: generated spell with Shiggy guide -> saved to grimoire with guide attribution -> retrieved from grimoire -> verified guide attribution persists. All CRUD operations working correctly."
 
+  - task: "Subscription System Backend API"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "Backend subscription API fully functional. GET /api/subscription/status correctly returns subscription_tier, spell_limit (3 for free users), spells_remaining, can_save_spells (false for free), can_download_pdf (false for free). Spell generation correctly increments spell_generation_count for free users. Limit enforcement working - returns 403 error when free users exceed 3 spells. Save to grimoire correctly blocked for free users with 403 error and upgrade message."
+
 frontend:
   - task: "Change Guide Dropdown - All 4 Guides with Portraits"
     implemented: true
@@ -131,6 +143,78 @@ frontend:
       - working: true
         agent: "testing"
         comment: "Successfully tested the 'Change Guide' dropdown on /spell-request page. All 4 guides (Shiggy, Kathleen, Catherine, Theresa) appear in the dropdown with their portrait images loaded from valid URLs. 'No Guide' option present as first item. 'Meet All Guides →' link present as last item. All guide options are clickable and functional - clicking each guide successfully updates the selected guide in the UI with toast notifications. Portrait images verified with valid src attributes pointing to customer-assets.emergentagent.com. Dropdown has maxHeight: 500px making it scrollable to view all 6 items (No Guide + 4 Guides + Meet All Guides link). Complete functionality working as expected."
+
+  - task: "Auth Page - Login/Registration Toggle"
+    implemented: true
+    working: false
+    file: "/app/frontend/src/pages/Auth.js"
+    stuck_count: 1
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: false
+        agent: "testing"
+        comment: "CRITICAL BUG: The toggle button to switch between login and registration forms is not working. When clicking the toggle button (data-testid='auth-toggle-button'), the form does not switch from 'Enter the Coven' (login) to 'Join the Coven' (registration). The NAME field never appears, preventing user registration through the UI. Backend registration API works correctly when tested directly via curl. This is a frontend React state update issue."
+
+  - task: "Spell Limit Banner for Free Users"
+    implemented: true
+    working: false
+    file: "/app/frontend/src/pages/SpellRequest.js"
+    stuck_count: 1
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: false
+        agent: "testing"
+        comment: "Spell limit banner (SpellLimitBanner component) is not displaying for logged-in free users. The component should show 'X of 3 free spells remaining' at the top of /spell-request page. Backend correctly returns subscription status with spells_remaining, but the banner is not visible in the UI. This prevents users from knowing how many free spells they have left."
+
+  - task: "Save to Grimoire - Pro Only Restriction"
+    implemented: true
+    working: false
+    file: "/app/frontend/src/components/GrimoirePage.js"
+    stuck_count: 1
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: false
+        agent: "testing"
+        comment: "Save to Grimoire button does not show '(Pro Only)' text for free users. The button text should be 'Save (Pro Only)' and button should be disabled for free users (subscription_tier === 'free'). Currently shows just 'Save to Grimoire' without restriction indicator. When clicked, it does show a toast message 'Please log in to save spells to your grimoire' for anonymous users, but doesn't redirect to /upgrade or show proper upgrade prompt for logged-in free users."
+
+  - task: "Save as PDF - Pro Only Restriction"
+    implemented: true
+    working: false
+    file: "/app/frontend/src/components/GrimoirePage.js"
+    stuck_count: 1
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: false
+        agent: "testing"
+        comment: "Save as PDF button does not show '(Pro Only)' text for free users. The button text should be 'PDF (Pro Only)' and button should be disabled for free users. Currently shows just 'Save as PDF' without restriction indicator. The code in GrimoirePage.js checks subscriptionTier but the state is not being set correctly from the subscription API response."
+
+  - task: "Upgrade Page"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/Upgrade.js"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "Upgrade page displays correctly with Free ($0) and Pro ($19/year) pricing tiers. Features are clearly listed: unlimited spell generation, save to grimoire, PDF download for Pro tier. 'COMING SOON - STRIPE INTEGRATION' button is present and disabled. All pricing information and feature comparisons are accurate."
+
+  - task: "Anonymous User Spell Generation"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/SpellRequest.js"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "Anonymous users (not logged in) can successfully generate spells without limits. No spell limit banner appears for anonymous users (correct behavior). Spell generation works normally. However, Save to Grimoire button should prompt for login, which it does via toast message."
 
 metadata:
   created_by: "testing_agent"
