@@ -163,7 +163,8 @@ export const ARCHETYPES = [
       'Irish folk music and storytelling',
       'Victorian bird-keeping customs'
     ],
-    placeholderImage: 'catherine'
+    image: null, // Placeholder until image is uploaded
+    galleryImages: []
   },
   {
     id: 'theresa',
