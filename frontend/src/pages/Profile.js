@@ -102,12 +102,158 @@ export const Profile = ({ user }) => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
           <User className="w-20 h-20 text-primary mx-auto mb-4" />
           <h1 className="font-italiana text-4xl md:text-6xl text-primary mb-2">{user.name}</h1>
           <p className="font-montserrat text-muted-foreground">{user.email}</p>
+          
+          {/* Subscription Badge */}
+          {subscriptionStatus && (
+            <div className="mt-4 inline-flex items-center gap-2 px-4 py-2 bg-primary/10 border border-primary/30 rounded-sm">
+              <Crown className="w-4 h-4 text-primary" />
+              <span className="font-montserrat text-sm text-primary font-medium">
+                {subscriptionStatus.subscription_tier === 'paid' ? 'Pro Member' : 'Free Tier'}
+              </span>
+            </div>
+          )}
         </motion.div>
+
+        <div className="grid gap-6 mb-6">
+          {/* Subscription Status Card */}
+          {subscriptionStatus && (
+            <GlassCard hover={false}>
+              <div className="flex items-center gap-3 mb-4">
+                <Crown className="w-6 h-6 text-secondary" />
+                <h2 className="font-cinzel text-2xl text-secondary">Subscription Status</h2>
+              </div>
+              
+              <div className="space-y-3">
+                <div className="flex justify-between items-center">
+                  <span className="font-montserrat text-sm text-muted-foreground">Plan:</span>
+                  <span className="font-montserrat text-sm text-foreground font-medium">
+                    {subscriptionStatus.subscription_tier === 'paid' ? 'Pro ($19/year)' : 'Free'}
+                  </span>
+                </div>
+                
+                {subscriptionStatus.subscription_tier === 'free' && (
+                  <>
+                    <div className="flex justify-between items-center">
+                      <span className="font-montserrat text-sm text-muted-foreground">Spells Used:</span>
+                      <span className="font-montserrat text-sm text-foreground">
+                        {subscriptionStatus.spells_used} / {subscriptionStatus.spell_limit}
+                      </span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="font-montserrat text-sm text-muted-foreground">Remaining:</span>
+                      <span className="font-montserrat text-sm text-accent font-medium">
+                        {subscriptionStatus.spells_remaining} free spells
+                      </span>
+                    </div>
+                  </>
+                )}
+                
+                {subscriptionStatus.subscription_tier === 'paid' && (
+                  <div className="flex justify-between items-center">
+                    <span className="font-montserrat text-sm text-muted-foreground">Spells Generated:</span>
+                    <span className="font-montserrat text-sm text-primary font-medium">
+                      {subscriptionStatus.total_spells_generated} (Unlimited)
+                    </span>
+                  </div>
+                )}
+                
+                {subscriptionStatus.subscription_tier === 'free' && (
+                  <div className="pt-3 border-t border-border">
+                    <a
+                      href="/upgrade"
+                      className="block w-full text-center px-4 py-2 bg-primary text-primary-foreground rounded-sm font-montserrat tracking-widest uppercase text-xs hover:bg-primary/90 transition-all"
+                    >
+                      Upgrade to Pro - $19/year
+                    </a>
+                  </div>
+                )}
+              </div>
+            </GlassCard>
+          )}
+
+          {/* Email Change Card */}
+          <GlassCard hover={false}>
+            <div className="flex items-center gap-3 mb-4">
+              <Mail className="w-6 h-6 text-secondary" />
+              <h2 className="font-cinzel text-2xl text-secondary">Email Settings</h2>
+            </div>
+
+            {!isChangingEmail ? (
+              <div>
+                <div className="flex justify-between items-center mb-4">
+                  <div>
+                    <p className="font-montserrat text-sm text-muted-foreground">Current Email</p>
+                    <p className="font-montserrat text-base text-foreground font-medium">{user.email}</p>
+                  </div>
+                  <button
+                    onClick={() => setIsChangingEmail(true)}
+                    className="px-4 py-2 bg-primary text-primary-foreground rounded-sm font-montserrat tracking-widest uppercase text-xs hover:bg-primary/90 transition-all"
+                  >
+                    Change Email
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <form onSubmit={handleUpdateEmail} className="space-y-4">
+                <div>
+                  <label className="block font-montserrat text-sm text-muted-foreground uppercase tracking-wider mb-2">
+                    New Email Address
+                  </label>
+                  <input
+                    type="email"
+                    value={emailFormData.newEmail}
+                    onChange={(e) => setEmailFormData({ ...emailFormData, newEmail: e.target.value })}
+                    placeholder="your.new@email.com"
+                    className="w-full bg-input/50 border border-border focus:border-primary focus:ring-1 focus:ring-primary/50 rounded-sm px-4 py-3 text-foreground font-montserrat"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block font-montserrat text-sm text-muted-foreground uppercase tracking-wider mb-2">
+                    Confirm Password
+                  </label>
+                  <input
+                    type="password"
+                    value={emailFormData.password}
+                    onChange={(e) => setEmailFormData({ ...emailFormData, password: e.target.value })}
+                    placeholder="Enter your current password"
+                    className="w-full bg-input/50 border border-border focus:border-primary focus:ring-1 focus:ring-primary/50 rounded-sm px-4 py-3 text-foreground font-montserrat"
+                    required
+                  />
+                  <p className="font-montserrat text-xs text-muted-foreground mt-1">
+                    Required for security
+                  </p>
+                </div>
+
+                <div className="flex gap-3">
+                  <button
+                    type="submit"
+                    disabled={updatingEmail}
+                    className="flex-1 px-4 py-3 bg-primary text-primary-foreground rounded-sm font-montserrat tracking-widest uppercase text-sm hover:bg-primary/90 transition-all disabled:opacity-50"
+                  >
+                    {updatingEmail ? 'Updating...' : 'Update Email'}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsChangingEmail(false);
+                      setEmailFormData({ newEmail: '', password: '' });
+                    }}
+                    className="px-4 py-3 bg-transparent text-muted-foreground border border-border rounded-sm font-montserrat tracking-widest uppercase text-sm hover:bg-muted/10 transition-all"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            )}
+          </GlassCard>
+        </div>
 
         <GlassCard hover={false} testId="favorites-section">
           <div className="flex items-center gap-3 mb-6">
