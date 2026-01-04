@@ -363,9 +363,9 @@ Be clear about what is documented historical practice vs. modern adaptation. Kee
               <div>
                 <h4 className="font-cinzel text-lg text-secondary mb-2">Magic as Science</h4>
                 <p className="font-montserrat text-sm text-foreground/80 leading-relaxed mb-3">
-                  These formulas aren't mystical secrets—they're patterns that people like Gardner, Fortune, and Crowley 
+                  These formulas aren&apos;t mystical secrets—they&apos;re patterns that people like Gardner, Fortune, and Crowley 
                   tested and documented. They work through focused intention, repetition, and symbolic frameworks. 
-                  Like any science, you don't have to believe in it. You just practice it and see what happens.
+                  Like any science, you don&apos;t have to believe in it. You just practice it and see what happens.
                 </p>
                 <p className="font-montserrat text-sm text-accent italic">
                   You have the power. These are just formulas others used. Adapt them. Break them. Build your own.
