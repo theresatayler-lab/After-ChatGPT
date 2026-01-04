@@ -85,7 +85,7 @@ export const Guides = () => {
                   poetry, and through truth-telling.
                 </p>
                 <p className="font-crimson text-base text-accent italic">
-                  You don't need to choose just one. Their wisdom overlaps, contradicts, and complements. 
+                  You don&apos;t need to choose just one. Their wisdom overlaps, contradicts, and complements. 
                   Like any family, they argue. Like any lineage, they build on what came before.
                 </p>
               </div>
