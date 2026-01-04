@@ -23,12 +23,12 @@ export const Home = () => {
         </div>
         
         <div className="relative z-10 text-center max-w-5xl px-6 flex flex-col items-center">
-          {/* Large Central Logo - darken blend makes white transparent */}
+          {/* Large Central Logo - lighten blend makes black transparent */}
           <img 
-            src="https://customer-assets.emergentagent.com/job_diywizardry/artifacts/734861j5_generated-image-2026-01-04%20%286%29.png"
+            src="https://customer-assets.emergentagent.com/job_diywizardry/artifacts/9hb654f4_image.png"
             alt="Where The Crowlands"
-            className="w-56 h-56 mb-6 object-contain"
-            style={{ mixBlendMode: 'darken' }}
+            className="w-64 h-64 mb-6 object-contain"
+            style={{ mixBlendMode: 'lighten' }}
           />
           
           <div className="max-w-3xl">
