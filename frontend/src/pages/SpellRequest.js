@@ -151,23 +151,50 @@ export const SpellRequest = ({ selectedArchetype: propArchetype }) => {
                   <motion.div
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="absolute right-0 mt-2 w-64 bg-card border border-border rounded-sm shadow-xl z-20"
+                    className="absolute right-0 mt-2 w-80 bg-card border border-border rounded-sm shadow-xl z-20 max-h-96 overflow-y-auto"
                   >
                     <button
                       onClick={() => handleArchetypeChange(null)}
-                      className={`w-full text-left px-4 py-3 font-montserrat text-sm hover:bg-primary/5 transition-all border-b border-border ${!activeArchetype ? 'bg-primary/10 text-primary' : 'text-foreground'}`}
+                      className={`w-full text-left px-4 py-3 font-montserrat text-sm hover:bg-primary/5 transition-all border-b border-border flex items-center gap-3 ${!activeArchetype ? 'bg-primary/10 text-primary' : 'text-foreground'}`}
                     >
-                      <span className="font-medium">No Guide</span>
-                      <p className="text-xs text-muted-foreground">Neutral guidance</p>
+                      <div className="w-10 h-10 rounded-full bg-muted/50 flex items-center justify-center flex-shrink-0">
+                        <User className="w-5 h-5 text-muted-foreground" />
+                      </div>
+                      <div>
+                        <span className="font-medium">No Guide</span>
+                        <p className="text-xs text-muted-foreground">Neutral Crowlands guidance</p>
+                      </div>
                     </button>
                     {ARCHETYPES.map((archetype) => (
                       <button
                         key={archetype.id}
                         onClick={() => handleArchetypeChange(archetype.id)}
-                        className={`w-full text-left px-4 py-3 font-montserrat text-sm hover:bg-primary/5 transition-all border-b border-border last:border-b-0 ${activeArchetype === archetype.id ? 'bg-primary/10 text-primary' : 'text-foreground'}`}
+                        className={`w-full text-left px-4 py-3 font-montserrat text-sm hover:bg-primary/5 transition-all border-b border-border last:border-b-0 flex items-center gap-3 ${activeArchetype === archetype.id ? 'bg-primary/10 text-primary' : 'text-foreground'}`}
                       >
-                        <span className="font-medium">{archetype.birdEmoji} {archetype.shortName}</span>
-                        <p className="text-xs text-muted-foreground">{archetype.title}</p>
+                        <div 
+                          className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 border border-border"
+                          style={{ backgroundColor: '#D8CBB3' }}
+                        >
+                          {archetype.image ? (
+                            <img 
+                              src={archetype.image} 
+                              alt={archetype.shortName}
+                              className="w-full h-full object-cover"
+                              style={{ mixBlendMode: 'multiply', objectPosition: '50% 20%' }}
+                            />
+                          ) : (
+                            <div className="w-full h-full flex items-center justify-center text-lg">
+                              {archetype.birdEmoji}
+                            </div>
+                          )}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <span className="font-medium flex items-center gap-1">
+                            {archetype.shortName}
+                            <span className="text-sm">{archetype.birdEmoji}</span>
+                          </span>
+                          <p className="text-xs text-muted-foreground truncate">{archetype.title}</p>
+                        </div>
                       </button>
                     ))}
                     <Link
