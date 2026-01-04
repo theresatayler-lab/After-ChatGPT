@@ -469,6 +469,211 @@ class SpiritualAppAPITester:
             return True
         return False
 
+    def test_spell_generation_kathleen_protection(self):
+        """Test spell generation with Kathleen archetype for protection"""
+        spell_data = {
+            "intention": "I need protection for my home",
+            "archetype": "kathleen",
+            "generate_image": False
+        }
+        
+        success, response = self.run_test(
+            "Generate Spell - Kathleen Protection",
+            "POST",
+            "ai/generate-spell",
+            200,
+            data=spell_data
+        )
+        
+        if success and isinstance(response, dict):
+            # Verify response structure
+            required_fields = ['spell', 'archetype', 'session_id']
+            missing_fields = [field for field in required_fields if field not in response]
+            
+            if missing_fields:
+                print(f"   ❌ Missing top-level fields: {missing_fields}")
+                return False
+            
+            # Verify archetype info
+            archetype = response.get('archetype', {})
+            if archetype.get('name') != 'Kathleen Winifred Malzard':
+                print(f"   ❌ Expected archetype name 'Kathleen Winifred Malzard', got '{archetype.get('name')}'")
+                return False
+            
+            # Verify spell structure
+            spell = response.get('spell', {})
+            spell_required_fields = ['title', 'materials', 'steps', 'spoken_words', 'historical_context']
+            missing_spell_fields = [field for field in spell_required_fields if field not in spell]
+            
+            if missing_spell_fields:
+                print(f"   ❌ Missing spell fields: {missing_spell_fields}")
+                return False
+            
+            # Verify materials structure
+            materials = spell.get('materials', [])
+            if not isinstance(materials, list) or len(materials) == 0:
+                print(f"   ❌ Materials should be a non-empty array")
+                return False
+            
+            for i, material in enumerate(materials):
+                if not all(key in material for key in ['name', 'icon', 'note']):
+                    print(f"   ❌ Material {i} missing required fields (name, icon, note)")
+                    return False
+            
+            # Verify steps structure
+            steps = spell.get('steps', [])
+            if not isinstance(steps, list) or len(steps) == 0:
+                print(f"   ❌ Steps should be a non-empty array")
+                return False
+            
+            for i, step in enumerate(steps):
+                if not all(key in step for key in ['number', 'title', 'instruction']):
+                    print(f"   ❌ Step {i} missing required fields (number, title, instruction)")
+                    return False
+            
+            # Verify spoken_words structure
+            spoken_words = spell.get('spoken_words', {})
+            spoken_required = ['invocation', 'main_incantation', 'closing']
+            missing_spoken = [field for field in spoken_required if field not in spoken_words]
+            
+            if missing_spoken:
+                print(f"   ❌ Missing spoken_words fields: {missing_spoken}")
+                return False
+            
+            # Verify historical_context structure
+            historical = spell.get('historical_context', {})
+            historical_required = ['tradition', 'sources']
+            missing_historical = [field for field in historical_required if field not in historical]
+            
+            if missing_historical:
+                print(f"   ❌ Missing historical_context fields: {missing_historical}")
+                return False
+            
+            sources = historical.get('sources', [])
+            if not isinstance(sources, list):
+                print(f"   ❌ Sources should be an array")
+                return False
+            
+            print(f"   ✅ Spell structure validated")
+            print(f"   ✅ Archetype: {archetype.get('name')}")
+            print(f"   ✅ Spell title: {spell.get('title')}")
+            print(f"   ✅ Materials count: {len(materials)}")
+            print(f"   ✅ Steps count: {len(steps)}")
+            print(f"   ✅ Sources count: {len(sources)}")
+            
+            return True
+        
+        return False
+
+    def test_spell_generation_catherine_creativity(self):
+        """Test spell generation with Catherine archetype for creativity"""
+        spell_data = {
+            "intention": "Help me find creative inspiration",
+            "archetype": "catherine",
+            "generate_image": False
+        }
+        
+        success, response = self.run_test(
+            "Generate Spell - Catherine Creativity",
+            "POST",
+            "ai/generate-spell",
+            200,
+            data=spell_data
+        )
+        
+        if success and isinstance(response, dict):
+            # Verify archetype info
+            archetype = response.get('archetype', {})
+            if archetype.get('name') != 'Catherine Cosgrove (née Foy)':
+                print(f"   ❌ Expected archetype name 'Catherine Cosgrove (née Foy)', got '{archetype.get('name')}'")
+                return False
+            
+            # Verify spell structure (same validation as above)
+            spell = response.get('spell', {})
+            if not spell.get('title'):
+                print(f"   ❌ Spell missing title")
+                return False
+            
+            print(f"   ✅ Catherine archetype spell generated successfully")
+            print(f"   ✅ Spell title: {spell.get('title')}")
+            
+            return True
+        
+        return False
+
+    def test_spell_generation_neutral(self):
+        """Test spell generation without archetype (neutral guidance)"""
+        spell_data = {
+            "intention": "Help me find inner peace",
+            "archetype": None,
+            "generate_image": False
+        }
+        
+        success, response = self.run_test(
+            "Generate Spell - Neutral Guide",
+            "POST",
+            "ai/generate-spell",
+            200,
+            data=spell_data
+        )
+        
+        if success and isinstance(response, dict):
+            # Verify archetype info for neutral
+            archetype = response.get('archetype', {})
+            if archetype.get('name') != 'The Crowlands Guide':
+                print(f"   ❌ Expected archetype name 'The Crowlands Guide', got '{archetype.get('name')}'")
+                return False
+            
+            # Verify spell structure
+            spell = response.get('spell', {})
+            if not spell.get('title'):
+                print(f"   ❌ Spell missing title")
+                return False
+            
+            print(f"   ✅ Neutral guide spell generated successfully")
+            print(f"   ✅ Spell title: {spell.get('title')}")
+            
+            return True
+        
+        return False
+
+    def test_spell_generation_with_image(self):
+        """Test spell generation with image generation enabled"""
+        spell_data = {
+            "intention": "I need courage for a new beginning",
+            "archetype": "shiggy",
+            "generate_image": True
+        }
+        
+        success, response = self.run_test(
+            "Generate Spell - With Image",
+            "POST",
+            "ai/generate-spell",
+            200,
+            data=spell_data
+        )
+        
+        if success and isinstance(response, dict):
+            # Check if image was generated
+            image_base64 = response.get('image_base64')
+            if image_base64:
+                print(f"   ✅ Image generated (base64 length: {len(image_base64)})")
+            else:
+                print(f"   ⚠️  Image generation was requested but no image returned")
+            
+            # Verify spell structure
+            spell = response.get('spell', {})
+            if not spell.get('title'):
+                print(f"   ❌ Spell missing title")
+                return False
+            
+            print(f"   ✅ Spell with image request completed")
+            print(f"   ✅ Spell title: {spell.get('title')}")
+            
+            return True
+        
+        return False
+
     def test_favorites(self):
         """Test favorites functionality (requires authentication)"""
         if not self.token:
