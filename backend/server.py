@@ -394,6 +394,201 @@ async def get_archetypes():
         })
     return archetypes
 
+# Historical sources database for citations
+HISTORICAL_SOURCES = {
+    'protection': [
+        {'author': 'Dion Fortune', 'work': 'Psychic Self-Defence', 'year': 1930, 'quote': 'The best defence is a strong aura'},
+        {'author': 'Israel Regardie', 'work': 'The Golden Dawn', 'year': 1937, 'quote': 'The Lesser Banishing Ritual of the Pentagram'},
+        {'author': 'Doreen Valiente', 'work': 'Witchcraft for Tomorrow', 'year': 1978, 'quote': 'Traditional British cunning craft'},
+    ],
+    'courage': [
+        {'author': 'Aleister Crowley', 'work': 'Magick in Theory and Practice', 'year': 1929, 'quote': 'Do what thou wilt shall be the whole of the Law'},
+        {'author': 'Dion Fortune', 'work': 'The Mystical Qabalah', 'year': 1935, 'quote': 'Geburah, the sphere of Mars and courage'},
+    ],
+    'love': [
+        {'author': 'Gerald Gardner', 'work': 'Witchcraft Today', 'year': 1954, 'quote': 'The Great Rite and sacred union'},
+        {'author': 'Doreen Valiente', 'work': 'An ABC of Witchcraft', 'year': 1973, 'quote': 'Love magic in the old tradition'},
+    ],
+    'healing': [
+        {'author': 'Dion Fortune', 'work': 'Sane Occultism', 'year': 1929, 'quote': 'The healing power of the mind'},
+        {'author': 'Israel Regardie', 'work': 'The Middle Pillar', 'year': 1938, 'quote': 'Energy work for healing'},
+    ],
+    'divination': [
+        {'author': 'A.E. Waite', 'work': 'The Pictorial Key to the Tarot', 'year': 1911, 'quote': 'The wisdom of the cards'},
+        {'author': 'Aleister Crowley', 'work': 'The Book of Thoth', 'year': 1944, 'quote': 'Tarot as a map of consciousness'},
+    ],
+    'ancestors': [
+        {'author': 'Gerald Gardner', 'work': 'The Meaning of Witchcraft', 'year': 1959, 'quote': 'The Old Religion and ancestor veneration'},
+        {'author': 'Margaret Murray', 'work': 'The Witch-Cult in Western Europe', 'year': 1921, 'quote': 'Historical practices of communion with the dead'},
+    ],
+    'general': [
+        {'author': 'Dion Fortune', 'work': 'Applied Magic', 'year': 1962, 'quote': 'Practical techniques for the modern practitioner'},
+        {'author': 'W.E. Butler', 'work': 'The Magician: His Training and Work', 'year': 1959, 'quote': 'Foundational magical practice'},
+    ]
+}
+
+# Archetype-specific image style prompts
+ARCHETYPE_IMAGE_STYLES = {
+    'shiggy': 'vintage WWII era wartime poster style, Rubáiyát of Omar Khayyám illustration, Edmund Dulac aesthetic, muted earth tones with gold accents, birds and poetry motifs, 1940s British home front imagery',
+    'kathleen': 'Edwardian spiritualist séance aesthetic, West End London 1920s, coded wartime symbolism, Victorian mourning jewelry motifs, sepia tones, protective talismans, mysterious veiled imagery',
+    'catherine': 'Art Nouveau and Art Deco fusion, Spitalfields artisan craft, folk spiritualist imagery, bird illustrations, musical instruments, Huguenot and Irish folk art blend, warm earthy colors with gold leaf',
+    'theresa': 'modern collage aesthetic with vintage elements, birds in flight, family photographs and artifacts, investigative journalism style, truth-seeking imagery, contemporary with ancestral echoes',
+    'neutral': 'vintage occult grimoire illustration, woodcut engraving style, parchment texture, mystical symbols, 1920s-1940s esoteric art'
+}
+
+# Enhanced spell generation endpoint with structured output
+@api_router.post('/ai/generate-spell')
+async def generate_spell(request: SpellRequest):
+    """Generate a structured spell with historical context and optional imagery"""
+    try:
+        session_id = str(uuid.uuid4())
+        archetype_id = request.archetype
+        
+        # Get archetype info
+        if archetype_id and archetype_id in ARCHETYPE_PERSONAS:
+            persona = ARCHETYPE_PERSONAS[archetype_id]
+            archetype_name = persona['name']
+            archetype_title = persona['title']
+        else:
+            archetype_id = None
+            archetype_name = 'The Crowlands Guide'
+            archetype_title = 'Keeper of Ancestral Wisdom'
+        
+        # Fetch related content from database for context
+        deities = await db.deities.find({}, {'_id': 0, 'name': 1, 'description': 1}).to_list(10)
+        rituals = await db.rituals.find({}, {'_id': 0, 'name': 1, 'description': 1}).to_list(10)
+        figures = await db.historical_figures.find({}, {'_id': 0, 'name': 1, 'bio': 1}).to_list(10)
+        
+        # Build context from database
+        db_context = ""
+        if deities:
+            db_context += f"\\nRELEVANT DEITIES FROM OUR ARCHIVE: {', '.join([d['name'] for d in deities])}"
+        if rituals:
+            db_context += f"\\nRELEVANT RITUALS FROM OUR ARCHIVE: {', '.join([r['name'] for r in rituals])}"
+        if figures:
+            db_context += f"\\nHISTORICAL FIGURES TO REFERENCE: {', '.join([f['name'] for f in figures])}"
+        
+        # Build the structured prompt
+        structured_prompt = f"""Create a spell/ritual for this intention: "{request.intention}"
+
+You MUST respond with a JSON object in this EXACT format (no markdown, just pure JSON):
+{{
+    "title": "A poetic, evocative title for this spell",
+    "subtitle": "A brief tagline or description (10 words max)",
+    "introduction": "A 2-3 sentence personal introduction in your voice, speaking directly to the seeker",
+    "materials": [
+        {{"name": "Material name", "icon": "candle|herb|crystal|feather|water|fire|moon|sun|book|pen|mirror|salt|oil|incense|bell|cord|photo|bowl", "note": "Brief note on why/how to use"}},
+    ],
+    "timing": {{
+        "moon_phase": "New Moon|Waxing|Full Moon|Waning|Any",
+        "time_of_day": "Dawn|Morning|Noon|Dusk|Night|Midnight|Any",
+        "day": "Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday|Any",
+        "note": "Brief explanation of timing significance"
+    }},
+    "steps": [
+        {{"number": 1, "title": "Step title", "instruction": "Detailed instruction", "duration": "5 minutes", "note": "Optional tip or variation"}}
+    ],
+    "spoken_words": {{
+        "invocation": "Words to speak at the beginning (can be poetry, affirmation, or prayer)",
+        "main_incantation": "The central words of power for this spell",
+        "closing": "Words to seal and close the ritual"
+    }},
+    "historical_context": {{
+        "tradition": "Name the magical tradition this draws from",
+        "time_period": "1910-1945 or relevant era",
+        "practitioners": ["Historical figures who used similar practices"],
+        "sources": [
+            {{"author": "Author name", "work": "Book/work title", "year": 1930, "relevance": "How this source relates to the spell"}}
+        ],
+        "cultural_notes": "Any important cultural or historical context"
+    }},
+    "variations": [
+        {{"name": "Variation name", "description": "How to adapt for different needs"}}
+    ],
+    "warnings": ["Any cautions or ethical considerations"],
+    "closing_message": "A personal message of encouragement in your voice",
+    "image_prompt": "A detailed prompt to generate a header image for this spell (describe visual elements, mood, symbols)"
+}}
+
+IMPORTANT GUIDELINES:
+- Include 4-8 materials with appropriate icons
+- Include 5-8 detailed steps
+- Cite at least 2-3 historical sources with real books/authors from the 1910-1945 period
+- The spoken_words should feel authentic to your tradition
+- Make the historical_context genuinely educational
+{db_context}
+
+Respond ONLY with the JSON object, no other text."""
+
+        # Get system message based on archetype
+        if archetype_id and archetype_id in ARCHETYPE_PERSONAS:
+            system_message = ARCHETYPE_PERSONAS[archetype_id]['system_prompt'] + "\\n\\nYou must respond with structured JSON as specified."
+        else:
+            system_message = DEFAULT_SYSTEM_MESSAGE + "\\n\\nYou must respond with structured JSON as specified."
+        
+        chat = LlmChat(
+            api_key=EMERGENT_LLM_KEY,
+            session_id=session_id,
+            system_message=system_message
+        ).with_model('openai', 'gpt-5.1')
+        
+        user_message = UserMessage(text=structured_prompt)
+        response = await chat.send_message(user_message)
+        
+        # Parse the JSON response
+        import json
+        try:
+            # Clean up response if needed (remove markdown code blocks)
+            clean_response = response.strip()
+            if clean_response.startswith('```'):
+                clean_response = clean_response.split('```')[1]
+                if clean_response.startswith('json'):
+                    clean_response = clean_response[4:]
+            clean_response = clean_response.strip()
+            
+            spell_data = json.loads(clean_response)
+        except json.JSONDecodeError:
+            # If JSON parsing fails, return the raw response
+            spell_data = {
+                'title': 'Your Custom Spell',
+                'raw_response': response,
+                'parse_error': True
+            }
+        
+        # Generate image if requested
+        image_base64 = None
+        if request.generate_image and 'image_prompt' in spell_data:
+            try:
+                style = ARCHETYPE_IMAGE_STYLES.get(archetype_id or 'neutral', ARCHETYPE_IMAGE_STYLES['neutral'])
+                image_prompt = f"{style}, {spell_data['image_prompt']}, mystical ritual scene, no text"
+                
+                image_gen = OpenAIImageGeneration(api_key=EMERGENT_LLM_KEY)
+                images = await image_gen.generate_images(
+                    prompt=image_prompt,
+                    model='gpt-image-1',
+                    number_of_images=1
+                )
+                
+                if images and len(images) > 0:
+                    image_base64 = base64.b64encode(images[0]).decode('utf-8')
+            except Exception as img_error:
+                logging.error(f'Spell image generation error: {str(img_error)}')
+        
+        return {
+            'spell': spell_data,
+            'image_base64': image_base64,
+            'archetype': {
+                'id': archetype_id,
+                'name': archetype_name,
+                'title': archetype_title
+            },
+            'session_id': session_id
+        }
+        
+    except Exception as e:
+        logging.error(f'Spell generation error: {str(e)}')
+        raise HTTPException(status_code=500, detail=f'Failed to generate spell: {str(e)}')
+
 # AI Image Generation endpoint
 @api_router.post('/ai/generate-image')
 async def generate_image(request: ImageGenerationRequest):
