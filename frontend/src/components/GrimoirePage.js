@@ -73,7 +73,7 @@ export const GrimoirePage = ({ spell, archetype, imageBase64, onNewSpell }) => {
   const [completedSteps, setCompletedSteps] = useState(new Set());
   const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
-  const [subscriptionTier, setSubscriptionTier] = useState(null);
+  const [subscriptionTier, setSubscriptionTier] = useState('free'); // Default to free
   const grimoireRef = useRef(null);
   const navigate = useNavigate();
   
@@ -87,9 +87,13 @@ export const GrimoirePage = ({ spell, archetype, imageBase64, onNewSpell }) => {
         try {
           const status = await subscriptionAPI.getStatus();
           setSubscriptionTier(status.subscription_tier);
+          console.log('Subscription tier loaded:', status.subscription_tier);
         } catch (error) {
           console.error('Failed to check subscription:', error);
+          setSubscriptionTier('free'); // Default to free on error
         }
+      } else {
+        setSubscriptionTier('free'); // Anonymous users are treated as free
       }
     };
     checkSubscription();
