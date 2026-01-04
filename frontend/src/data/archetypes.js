@@ -53,8 +53,14 @@ export const ARCHETYPES = [
       "Churchill's Home Guard practices",
       'WWII London Spiritualism traditions'
     ],
-    image: null, // Placeholder until image is uploaded
-    galleryImages: []
+    image: 'https://customer-assets.emergentagent.com/job_diywizardry/artifacts/d1pes21d_Shig19.png',
+    galleryImages: [
+      'https://customer-assets.emergentagent.com/job_diywizardry/artifacts/d1pes21d_Shig19.png',
+      'https://customer-assets.emergentagent.com/job_diywizardry/artifacts/38tunfde_Shig22.png',
+      'https://customer-assets.emergentagent.com/job_diywizardry/artifacts/fla207tv_Shig24.png',
+      'https://customer-assets.emergentagent.com/job_diywizardry/artifacts/t0qin8h2_Shig25.png',
+      'https://customer-assets.emergentagent.com/job_diywizardry/artifacts/nfowp4lh_Shig27.png'
+    ]
   },
   {
     id: 'kathleen',
