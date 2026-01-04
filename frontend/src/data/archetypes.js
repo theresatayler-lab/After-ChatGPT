@@ -53,7 +53,8 @@ export const ARCHETYPES = [
       "Churchill's Home Guard practices",
       'WWII London Spiritualism traditions'
     ],
-    placeholderImage: 'shiggy'
+    image: null, // Placeholder until image is uploaded
+    galleryImages: []
   },
   {
     id: 'kathleen',
