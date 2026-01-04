@@ -116,8 +116,22 @@ export const SpellRequest = ({ selectedArchetype: propArchetype }) => {
               <div className="flex items-center gap-4">
                 {currentGuide ? (
                   <>
-                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                      <span className="text-2xl">{currentGuide.birdEmoji}</span>
+                    <div 
+                      className="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 border-2 border-border"
+                      style={{ backgroundColor: '#D8CBB3' }}
+                    >
+                      {currentGuide.image ? (
+                        <img 
+                          src={currentGuide.image} 
+                          alt={currentGuide.shortName}
+                          className="w-full h-full object-cover"
+                          style={{ mixBlendMode: 'multiply', objectPosition: '50% 20%' }}
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center text-2xl">
+                          {currentGuide.birdEmoji}
+                        </div>
+                      )}
                     </div>
                     <div>
                       <p className="font-cinzel text-sm text-secondary">Your Guide</p>
