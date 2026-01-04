@@ -73,9 +73,27 @@ export const GrimoirePage = ({ spell, archetype, imageBase64, onNewSpell }) => {
   const [completedSteps, setCompletedSteps] = useState(new Set());
   const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
+  const [subscriptionTier, setSubscriptionTier] = useState(null);
   const grimoireRef = useRef(null);
+  const navigate = useNavigate();
   
   const style = ARCHETYPE_STYLES[archetype?.id] || ARCHETYPE_STYLES.neutral;
+  
+  // Check subscription status
+  React.useEffect(() => {
+    const checkSubscription = async () => {
+      const token = localStorage.getItem('token');
+      if (token) {
+        try {
+          const status = await subscriptionAPI.getStatus();
+          setSubscriptionTier(status.subscription_tier);
+        } catch (error) {
+          console.error('Failed to check subscription:', error);
+        }
+      }
+    };
+    checkSubscription();
+  }, []);
   
   const toggleStep = (stepNumber) => {
     const newCompleted = new Set(completedSteps);
