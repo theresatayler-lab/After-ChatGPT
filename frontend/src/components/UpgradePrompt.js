@@ -36,7 +36,10 @@ export const UpgradePrompt = ({ feature, message, compact = false }) => {
 };
 
 export const SpellLimitBanner = ({ remaining, limit }) => {
+  console.log('SpellLimitBanner rendered with:', { remaining, limit });
+  
   if (remaining === -1) return null; // Paid user
+  if (remaining === undefined || limit === undefined) return null; // Data not loaded yet
   
   const percentage = (remaining / limit) * 100;
   const isLow = remaining <= 1;
