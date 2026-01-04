@@ -153,3 +153,12 @@ export const grimoireAPI = {
     return response.data;
   },
 };
+
+export const subscriptionAPI = {
+  getStatus: async () => {
+    const response = await axios.get(`${API}/subscription/status`, {
+      headers: getAuthHeader(),
+    });
+    return response.data;
+  },
+};
