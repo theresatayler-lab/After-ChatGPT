@@ -225,8 +225,21 @@ async def login(credentials: UserLogin):
     if not user or not verify_password(credentials.password, user['password_hash']):
         raise HTTPException(status_code=401, detail='Invalid credentials')
     
+    # Update last login
+    await db.users.update_one(
+        {'id': user['id']},
+        {'$set': {'last_login': datetime.now(timezone.utc).isoformat()}}
+    )
+    
     token = create_token(user['id'])
-    user_response = UserResponse(id=user['id'], email=user['email'], name=user['name'])
+    user_response = UserResponse(
+        id=user['id'], 
+        email=user['email'], 
+        name=user['name'],
+        subscription_tier=user.get('subscription_tier', 'free'),
+        subscription_status=user.get('subscription_status', 'active'),
+        spell_generation_count=user.get('spell_generation_count', 0)
+    )
     return AuthResponse(token=token, user=user_response)
 
 # Deities endpoints
