@@ -179,18 +179,44 @@ async def register(user_data: UserRegister):
         raise HTTPException(status_code=400, detail='Email already registered')
     
     user_id = str(uuid.uuid4())
+    current_time = datetime.now(timezone.utc)
     user = {
         'id': user_id,
         'email': user_data.email,
         'name': user_data.name,
         'password_hash': hash_password(user_data.password),
         'favorites': [],
-        'created_at': datetime.now(timezone.utc).isoformat()
+        'created_at': current_time.isoformat(),
+        
+        # Subscription fields
+        'subscription_tier': 'free',
+        'subscription_status': 'active',
+        'subscription_start': None,
+        'subscription_end': None,
+        'stripe_customer_id': None,
+        'stripe_subscription_id': None,
+        
+        # Usage tracking
+        'spell_generation_count': 0,
+        'spell_generation_reset': (current_time + timedelta(days=30)).isoformat(),
+        'total_spells_generated': 0,
+        'total_spells_saved': 0,
+        
+        # Analytics
+        'last_login': current_time.isoformat(),
+        'upgraded_at': None
     }
     await db.users.insert_one(user)
     
     token = create_token(user_id)
-    user_response = UserResponse(id=user_id, email=user_data.email, name=user_data.name)
+    user_response = UserResponse(
+        id=user_id, 
+        email=user_data.email, 
+        name=user_data.name,
+        subscription_tier='free',
+        subscription_status='active',
+        spell_generation_count=0
+    )
     return AuthResponse(token=token, user=user_response)
 
 @api_router.post('/auth/login', response_model=AuthResponse)
