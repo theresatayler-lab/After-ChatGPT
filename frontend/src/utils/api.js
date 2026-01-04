@@ -80,6 +80,14 @@ export const aiAPI = {
     });
     return response.data;
   },
+  generateSpell: async (intention, archetype = null, generateImage = true) => {
+    const response = await axios.post(`${API}/ai/generate-spell`, {
+      intention,
+      archetype,
+      generate_image: generateImage,
+    });
+    return response.data;
+  },
   generateImage: async (prompt) => {
     const response = await axios.post(`${API}/ai/generate-image`, { prompt });
     return response.data;
