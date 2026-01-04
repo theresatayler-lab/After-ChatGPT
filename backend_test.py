@@ -718,6 +718,160 @@ class SpiritualAppAPITester:
             
         return success
 
+    def test_grimoire_save_spell(self):
+        """Test saving a spell to grimoire (requires authentication)"""
+        if not self.token:
+            print("⚠️  Skipping grimoire save test - no authentication token")
+            return False
+        
+        # Create a test spell data
+        spell_data = {
+            "spell_data": {
+                "title": "Test Protection Spell",
+                "subtitle": "A simple test spell",
+                "introduction": "This is a test spell for grimoire functionality",
+                "materials": [
+                    {"name": "White Candle", "icon": "candle", "note": "For purification"},
+                    {"name": "Salt", "icon": "salt", "note": "For protection"}
+                ],
+                "steps": [
+                    {"number": 1, "title": "Prepare Space", "instruction": "Clear your space", "duration": "5 minutes"},
+                    {"number": 2, "title": "Light Candle", "instruction": "Light the white candle", "duration": "1 minute"}
+                ],
+                "spoken_words": {
+                    "invocation": "I call upon protective forces",
+                    "main_incantation": "By salt and flame, protection claimed",
+                    "closing": "So it is done"
+                },
+                "historical_context": {
+                    "tradition": "Folk Magic",
+                    "time_period": "1920s",
+                    "practitioners": ["Traditional practitioners"],
+                    "sources": [
+                        {"author": "Test Author", "work": "Test Book", "year": 1925, "relevance": "Protection spells"}
+                    ]
+                }
+            },
+            "archetype_id": "shiggy",
+            "archetype_name": "Sheila \"Shiggy\" Tayler",
+            "archetype_title": "The Psychic Matriarch",
+            "image_base64": None
+        }
+        
+        success, response = self.run_test(
+            "Save Spell to Grimoire",
+            "POST",
+            "grimoire/save",
+            200,
+            data=spell_data
+        )
+        
+        if success and isinstance(response, dict):
+            # Verify response structure
+            required_fields = ['id', 'user_id', 'spell_data', 'title', 'created_at']
+            missing_fields = [field for field in required_fields if field not in response]
+            
+            if missing_fields:
+                print(f"   ❌ Missing fields in save response: {missing_fields}")
+                return False
+            
+            # Store spell_id for later tests
+            self.saved_spell_id = response.get('id')
+            print(f"   ✅ Spell saved with ID: {self.saved_spell_id}")
+            print(f"   ✅ Spell title: {response.get('title')}")
+            print(f"   ✅ Archetype: {response.get('archetype_name')}")
+            
+            return True
+        
+        return False
+
+    def test_grimoire_get_spells(self):
+        """Test retrieving all spells from grimoire (requires authentication)"""
+        if not self.token:
+            print("⚠️  Skipping grimoire get test - no authentication token")
+            return False
+        
+        success, response = self.run_test(
+            "Get Grimoire Spells",
+            "GET",
+            "grimoire/spells",
+            200
+        )
+        
+        if success and isinstance(response, list):
+            print(f"   ✅ Found {len(response)} spells in grimoire")
+            
+            # Verify spell structure if any spells exist
+            if len(response) > 0:
+                spell = response[0]
+                required_fields = ['id', 'user_id', 'spell_data', 'title', 'created_at']
+                missing_fields = [field for field in required_fields if field not in spell]
+                
+                if missing_fields:
+                    print(f"   ❌ Missing fields in spell: {missing_fields}")
+                    return False
+                
+                print(f"   ✅ First spell title: {spell.get('title')}")
+                if spell.get('archetype_name'):
+                    print(f"   ✅ First spell archetype: {spell.get('archetype_name')}")
+            
+            return True
+        
+        return False
+
+    def test_grimoire_delete_spell(self):
+        """Test deleting a spell from grimoire (requires authentication)"""
+        if not self.token:
+            print("⚠️  Skipping grimoire delete test - no authentication token")
+            return False
+        
+        if not hasattr(self, 'saved_spell_id') or not self.saved_spell_id:
+            print("⚠️  No saved spell ID available for deletion test")
+            return False
+        
+        success, response = self.run_test(
+            f"Delete Spell from Grimoire",
+            "DELETE",
+            f"grimoire/spells/{self.saved_spell_id}",
+            200
+        )
+        
+        if success and isinstance(response, dict):
+            if response.get('success'):
+                print(f"   ✅ Spell deleted successfully")
+                return True
+            else:
+                print(f"   ❌ Delete response did not indicate success")
+                return False
+        
+        return False
+
+    def test_grimoire_full_flow(self):
+        """Test complete grimoire flow: save -> get -> delete"""
+        if not self.token:
+            print("⚠️  Skipping grimoire full flow test - no authentication token")
+            return False
+        
+        print("\n📖 Testing Complete Grimoire Flow...")
+        
+        # Step 1: Save a spell
+        if not self.test_grimoire_save_spell():
+            print("   ❌ Failed to save spell")
+            return False
+        
+        # Step 2: Retrieve spells
+        if not self.test_grimoire_get_spells():
+            print("   ❌ Failed to retrieve spells")
+            return False
+        
+        # Step 3: Delete the spell
+        if not self.test_grimoire_delete_spell():
+            print("   ❌ Failed to delete spell")
+            return False
+        
+        print("   ✅ Complete grimoire flow successful")
+        return True
+
 def main():
     print("🧙‍♀️ Starting Spiritual App API Testing...")
     print("=" * 60)
