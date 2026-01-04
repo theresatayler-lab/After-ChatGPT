@@ -530,9 +530,37 @@ ARCHETYPE_IMAGE_STYLES = {
 
 # Enhanced spell generation endpoint with structured output
 @api_router.post('/ai/generate-spell')
-async def generate_spell(request: SpellRequest):
+async def generate_spell(
+    request: SpellRequest,
+    credentials: Optional[HTTPAuthorizationCredentials] = Depends(HTTPBearer(auto_error=False))
+):
     """Generate a structured spell with historical context and optional imagery"""
     try:
+        # Check if user is authenticated
+        user = None
+        if credentials:
+            try:
+                token = credentials.credentials
+                payload = jwt.decode(token, JWT_SECRET, algorithms=[JWT_ALGORITHM])
+                user_id = payload.get('user_id')
+                user = await db.users.find_one({'id': user_id}, {'_id': 0})
+            except:
+                pass  # Anonymous user
+        
+        # Check generation limits for authenticated users
+        if user:
+            limit_check = await check_spell_generation_limit(user)
+            if not limit_check['can_generate']:
+                raise HTTPException(
+                    status_code=403, 
+                    detail={
+                        'error': 'spell_limit_reached',
+                        'message': f"You've reached your limit of {limit_check['limit']} free spells. Upgrade to Pro for unlimited spell generation!",
+                        'limit': limit_check['limit'],
+                        'current_count': limit_check['current_count']
+                    }
+                )
+        
         session_id = str(uuid.uuid4())
         archetype_id = request.archetype
         
