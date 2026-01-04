@@ -67,6 +67,7 @@ function App() {
           <Route path="/spell-request" element={<SpellRequest selectedArchetype={selectedArchetype} />} />
           <Route path="/guides" element={<Guides />} />
           <Route path="/upgrade" element={<Upgrade />} />
+          <Route path="/payment-success" element={<PaymentSuccess />} />
           <Route path="/deities" element={<Deities />} />
           <Route path="/figures" element={<HistoricalFigures />} />
           <Route path="/sites" element={<SacredSites />} />
