@@ -916,6 +916,10 @@ def main():
     print("\n⭐ Testing Favorites...")
     tester.test_favorites()
     
+    # Test Grimoire (My Grimoire feature - requires auth)
+    print("\n📖 Testing Grimoire (My Grimoire Feature)...")
+    tester.test_grimoire_full_flow()
+    
     # Print results
     print("\n" + "=" * 60)
     print(f"📊 Test Results: {tester.tests_passed}/{tester.tests_run} passed")
