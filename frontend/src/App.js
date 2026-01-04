@@ -16,6 +16,7 @@ import { SpellRequest } from './pages/SpellRequest';
 import { Guides } from './pages/Guides';
 import { MyGrimoire } from './pages/MyGrimoire';
 import { Upgrade } from './pages/Upgrade';
+import { PaymentSuccess } from './pages/PaymentSuccess';
 import { Footer } from './components/Footer';
 import { OnboardingModal } from './components/OnboardingModal';
 import './App.css';
