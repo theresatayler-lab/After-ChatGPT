@@ -216,21 +216,26 @@ const ArchetypeCard = ({ archetype, isSelected, onSelect }) => {
       }`}
     >
       {/* Image or Placeholder */}
-      <div className="w-full h-32 bg-gradient-to-b from-card to-muted/30 flex items-center justify-center rounded-t-sm border-b border-border overflow-hidden">
+      <div className="w-full h-40 bg-gradient-to-b from-muted/20 to-muted/40 flex items-center justify-center rounded-t-sm border-b border-border overflow-hidden relative">
         {archetype.image ? (
-          <img 
-            src={archetype.image} 
-            alt={archetype.shortName}
-            className="w-full h-full object-cover object-top"
-          />
+          <>
+            <img 
+              src={archetype.image} 
+              alt={archetype.shortName}
+              className="w-full h-full object-cover object-center"
+              style={{ objectPosition: '50% 20%' }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-transparent to-transparent" />
+            <span className="absolute bottom-2 right-2 text-2xl drop-shadow-lg">{archetype.birdEmoji}</span>
+          </>
         ) : (
-          <div className="relative">
-            <svg viewBox="0 0 100 100" className="w-24 h-24 text-primary/20">
-              <ellipse cx="50" cy="35" rx="20" ry="25" fill="currentColor" />
-              <path d="M30 60 Q50 90 70 60 Q50 75 30 60" fill="currentColor" />
-              <circle cx="50" cy="30" r="15" fill="currentColor" opacity="0.5" />
+          <div className="relative flex flex-col items-center justify-center">
+            <svg viewBox="0 0 100 100" className="w-20 h-20 text-primary/30">
+              <ellipse cx="50" cy="35" rx="18" ry="22" fill="currentColor" />
+              <path d="M32 55 Q50 85 68 55 Q50 70 32 55" fill="currentColor" />
+              <circle cx="50" cy="30" r="12" fill="currentColor" opacity="0.6" />
             </svg>
-            <span className="absolute bottom-0 right-0 text-2xl">{archetype.birdEmoji}</span>
+            <span className="text-2xl mt-1">{archetype.birdEmoji}</span>
           </div>
         )}
       </div>
