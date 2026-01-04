@@ -206,7 +206,7 @@ export const SpellRequest = ({ selectedArchetype: propArchetype }) => {
                     >
                       Meet All Guides →
                     </Link>
-                  </motion.div>
+                  </div>
                 )}
               </div>
             </div>
