@@ -181,6 +181,7 @@ export const SpellRequest = ({ selectedArchetype: propArchetype }) => {
                         key={archetype.id}
                         onClick={() => handleArchetypeChange(archetype.id)}
                         className={`w-full text-left px-4 py-3 font-montserrat text-sm hover:bg-primary/5 transition-all border-b border-border last:border-b-0 flex items-center gap-3 ${activeArchetype === archetype.id ? 'bg-primary/10 text-primary' : 'text-foreground'}`}
+                        style={{ display: 'flex', minHeight: '70px' }}
                       >
                         <div 
                           className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 border border-border"
