@@ -18,6 +18,7 @@ export const SpellRequest = ({ selectedArchetype: propArchetype }) => {
   const [showArchetypeSelector, setShowArchetypeSelector] = useState(false);
   const [generateImage, setGenerateImage] = useState(true);
   const [subscriptionStatus, setSubscriptionStatus] = useState(null);
+  const videoSectionRef = React.useRef(null);
 
   const currentGuide = activeArchetype ? getArchetypeById(activeArchetype) : null;
 
