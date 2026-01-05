@@ -231,6 +231,142 @@ export const GrimoirePage = ({ spell, archetype, imageBase64, onNewSpell }) => {
     );
   }
 
+  // Tarot Card View Component
+  const TarotCardView = () => {
+    const tarot = spell.tarot_card;
+    if (!tarot) return null;
+    
+    return (
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="max-w-sm mx-auto"
+      >
+        <div 
+          className={`relative bg-gradient-to-b from-card via-card to-card/90 border-2 ${style.borderColor} rounded-lg shadow-2xl overflow-hidden`}
+          style={{ 
+            backgroundColor: '#D8CBB3',
+            aspectRatio: '2.5/3.5'
+          }}
+        >
+          {/* Card Border Design */}
+          <div className="absolute inset-2 border border-primary/30 rounded-md pointer-events-none" />
+          <div className="absolute inset-4 border border-primary/20 rounded-sm pointer-events-none" />
+          
+          {/* Card Content */}
+          <div className="relative h-full flex flex-col p-6">
+            {/* Top Symbol */}
+            <div className="text-center mb-4">
+              <span className="text-4xl">{tarot.symbol || '✧'}</span>
+            </div>
+            
+            {/* Title */}
+            <h2 className="font-italiana text-2xl md:text-3xl text-primary text-center mb-2">
+              {tarot.title || spell.title}
+            </h2>
+            
+            {/* Archetype Attribution */}
+            {archetype && (
+              <p className="font-montserrat text-xs text-muted-foreground text-center mb-4 tracking-widest uppercase">
+                {archetype.name}
+              </p>
+            )}
+            
+            {/* Divider */}
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <div className="h-px bg-primary/30 flex-1" />
+              <Moon className="w-4 h-4 text-primary/50" />
+              <div className="h-px bg-primary/30 flex-1" />
+            </div>
+            
+            {/* Essence */}
+            <div className="flex-1 flex flex-col justify-center text-center space-y-4">
+              <p className="font-crimson text-base text-foreground leading-relaxed">
+                {tarot.essence}
+              </p>
+              
+              {/* Key Action */}
+              <div className={`p-3 ${style.bgAccent} rounded-sm`}>
+                <p className="font-montserrat text-xs text-muted-foreground uppercase tracking-wider mb-1">Key Action</p>
+                <p className="font-crimson text-sm text-foreground">{tarot.key_action}</p>
+              </div>
+              
+              {/* Incantation */}
+              <div className="py-3 border-y border-primary/20">
+                <p className="font-crimson text-lg text-primary italic text-center">
+                  "{tarot.incantation}"
+                </p>
+              </div>
+            </div>
+            
+            {/* Bottom Info */}
+            <div className="mt-4 space-y-2">
+              {tarot.timing && (
+                <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground">
+                  <Clock className="w-3 h-3" />
+                  <span className="font-montserrat">{tarot.timing}</span>
+                </div>
+              )}
+              
+              {tarot.warning && (
+                <p className="font-montserrat text-xs text-destructive/80 text-center italic">
+                  ⚠ {tarot.warning}
+                </p>
+              )}
+            </div>
+            
+            {/* Bottom Symbol */}
+            <div className="text-center mt-4">
+              <span className="text-2xl opacity-50">{tarot.symbol || '✧'}</span>
+            </div>
+          </div>
+        </div>
+        
+        {/* View Full Ritual Button */}
+        <div className="mt-6 text-center">
+          <button
+            onClick={() => setViewMode('full')}
+            className="px-6 py-3 bg-primary text-primary-foreground rounded-sm font-montserrat tracking-widest uppercase text-sm hover:bg-primary/90 transition-all flex items-center justify-center gap-2 mx-auto"
+          >
+            <BookOpen className="w-4 h-4" />
+            View Full Ritual
+          </button>
+        </div>
+        
+        {/* Quick Actions */}
+        <div className="flex justify-center gap-3 mt-4">
+          <button
+            onClick={copySpellToClipboard}
+            className="p-2 bg-transparent text-primary border border-primary/30 rounded-sm hover:bg-primary/10 transition-all"
+            title="Copy to clipboard"
+          >
+            <Copy className="w-4 h-4" />
+          </button>
+          <button
+            onClick={saveToGrimoire}
+            disabled={isSaving}
+            className="p-2 bg-accent text-accent-foreground rounded-sm hover:bg-accent/90 transition-all disabled:opacity-50"
+            title="Save to Grimoire"
+          >
+            <Save className={`w-4 h-4 ${isSaving ? 'animate-pulse' : ''}`} />
+          </button>
+          <button
+            onClick={onNewSpell}
+            className="p-2 bg-transparent text-primary border border-primary/30 rounded-sm hover:bg-primary/10 transition-all"
+            title="New Spell"
+          >
+            <Sparkles className="w-4 h-4" />
+          </button>
+        </div>
+      </motion.div>
+    );
+  };
+
+  // If viewing tarot card mode and we have tarot data
+  if (viewMode === 'card' && spell.tarot_card) {
+    return <TarotCardView />;
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -239,6 +375,32 @@ export const GrimoirePage = ({ spell, archetype, imageBase64, onNewSpell }) => {
       className={`bg-card/80 border-2 ${style.borderColor} rounded-sm overflow-hidden shadow-xl`}
       style={{ backgroundColor: '#D8CBB3' }}
     >
+      {/* View Toggle - Show only if tarot_card exists */}
+      {spell.tarot_card && (
+        <div className="flex justify-center gap-2 p-4 bg-muted/30 border-b border-border">
+          <button
+            onClick={() => setViewMode('card')}
+            className={`px-4 py-2 rounded-sm font-montserrat tracking-wider text-xs transition-all ${
+              viewMode === 'card' 
+                ? 'bg-primary text-primary-foreground' 
+                : 'bg-transparent text-muted-foreground hover:text-primary'
+            }`}
+          >
+            ✧ Card View
+          </button>
+          <button
+            onClick={() => setViewMode('full')}
+            className={`px-4 py-2 rounded-sm font-montserrat tracking-wider text-xs transition-all ${
+              viewMode === 'full' 
+                ? 'bg-primary text-primary-foreground' 
+                : 'bg-transparent text-muted-foreground hover:text-primary'
+            }`}
+          >
+            📖 Full Grimoire
+          </button>
+        </div>
+      )}
+
       {/* Header Image */}
       {imageBase64 && (
         <div className="relative h-48 md:h-64 overflow-hidden">
