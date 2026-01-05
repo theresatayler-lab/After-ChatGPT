@@ -235,6 +235,15 @@ KATHERINE_SAMPLE_SPELLS = [
         "archetype_title": "The Weaver of Hidden Knowledge",
         "category": "Protective Dark Magic",
         "spell_data": {
+            "tarot_card": {
+                "title": "Witch Bottle",
+                "symbol": "⚗️",
+                "essence": "A trap for harm. What enters does not leave. What is caught, returns to sender.",
+                "key_action": "Fill a sealed bottle with iron pins, thorns, mirrors, and your taglock. Bury it.",
+                "incantation": "What enters does not leave. What is caught is returned. I am defended.",
+                "timing": "Waning Moon, Night, Saturday",
+                "warning": "This is binding magic. Once sealed, it cannot be easily undone."
+            },
             "title": "The Witch Bottle of Binding and Protection",
             "subtitle": "Traditional Cunning Craft Defense Adapted for Modern Practice",
             "introduction": "The witch bottle is perhaps the oldest protective magic in the British Isles. Archaeologists have found them buried in foundations, hidden in walls, placed beneath hearths—wherever our ancestors wanted protection that would last. This is not gentle magic. This is a barricade. A trap. A binding. When something or someone is sending harm your way, the witch bottle catches it, contains it, and sends it back. I do not teach this lightly. But sometimes, seeker, defense is necessary.",
