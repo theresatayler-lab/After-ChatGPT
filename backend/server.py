@@ -583,6 +583,30 @@ async def get_archetypes():
         })
     return archetypes
 
+@api_router.get('/sample-spells/{archetype_id}')
+async def get_sample_spells(archetype_id: str):
+    """Return sample spells for a specific archetype"""
+    spells = await db.sample_spells.find(
+        {"archetype_id": archetype_id},
+        {"_id": 0}
+    ).to_list(100)
+    return spells
+
+@api_router.get('/sample-spells')
+async def get_all_sample_spells():
+    """Return all sample spells"""
+    spells = await db.sample_spells.find({}, {"_id": 0}).to_list(100)
+    return spells
+
+@api_router.post('/admin/seed-katherine-spells')
+async def admin_seed_katherine_spells():
+    """Seed Katherine's sample spells into the database (admin only)"""
+    try:
+        count = await seed_katherine_spells(db)
+        return {"message": f"Successfully seeded {count} Katherine sample spells", "count": count}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
 # Historical sources database for citations
 HISTORICAL_SOURCES = {
     'protection': [
