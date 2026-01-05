@@ -17,6 +17,7 @@ from emergentintegrations.llm.chat import LlmChat, UserMessage
 from emergentintegrations.llm.openai.image_generation import OpenAIImageGeneration
 from emergentintegrations.payments.stripe.checkout import StripeCheckout, CheckoutSessionResponse, CheckoutStatusResponse, CheckoutSessionRequest
 import base64
+from katherine_spells import KATHERINE_SAMPLE_SPELLS, seed_katherine_spells
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
