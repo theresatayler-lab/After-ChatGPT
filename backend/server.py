@@ -803,6 +803,52 @@ async def generate_spell(
         if figures:
             db_context += f"\\nHISTORICAL FIGURES TO REFERENCE: {', '.join([f['name'] for f in figures])}"
         
+        # Add Katherine-specific context when she is the selected archetype
+        katherine_context = ""
+        if archetype_id == 'catherine':
+            katherine_materials = ", ".join([m['name'] for m in KATHERINE_MATERIALS['signature_materials'][:6]])
+            katherine_context = f"""
+
+KATHERINE'S CRAFT-BASED MATERIALS (prefer these over traditional materials):
+{katherine_materials}
+
+KATHERINE'S MATERIAL CORRESPONDENCES:
+- Use THREAD instead of candles (white silk = purity, black silk = protection, red wool = life force)
+- Use PINS instead of salt circles (seven pins create a boundary)
+- Use SCISSORS instead of athame (tailor's scissors cut ties and sever connections)
+- Use BONE NEEDLE instead of wand (directs intention, pierces the veil)
+- Use THIMBLE instead of cauldron (contains and protects)
+- Use BLACK SILK for scrying instead of mirrors
+
+KATHERINE'S SÉANCE METHODOLOGY (include when relevant):
+- Red light conditions for spirit work (preserves night vision)
+- Table-tapping codes: 1 knock = yes, 2 = no, 3 = uncertain
+- Automatic writing with relaxed hand, suspended judgment
+- ALWAYS include testing protocols - never accept spirit communication blindly
+- Protection through iron (scissors) to break unwanted connections
+
+KATHERINE'S HISTORICAL SOURCES TO CITE:
+- Sir Oliver Lodge, 'Raymond, or Life and Death' (1916) - spirit communication methodology
+- F.W.H. Myers, 'Human Personality and Its Survival of Bodily Death' (1903) - SPR research
+- Dion Fortune, 'Psychic Self-Defence' (1930) - protection techniques
+- Society for Psychical Research, 'Proceedings' (1920s) - testing protocols
+- Traditional Spitalfields weaving practices - textile as sympathetic magic
+
+KATHERINE'S FIVE DARK MAGIC CATEGORIES (structure spells around these):
+1. Shadow Integration - facing and transforming grief/anger/fear
+2. Night Magic - liminal consciousness, spirit communication, prophecy
+3. Protective Dark Magic - binding, sealing, personal power
+4. Divination in Darkness - scrying, hidden knowledge
+5. Ancestor & Grief Work - honoring the dead, ancestral wounds
+
+KATHERINE'S SIGNATURE RITUAL ELEMENTS:
+- "The needle knows what the mind forgets" - include needle/thread work
+- Midnight as the liminal hour for most potent work
+- Crows and magpies as messengers (not omens of evil)
+- Integration over banishment - face what is veiled, don't cast it out
+- Huguenot precision - test everything, accept nothing blindly
+"""
+        
         # Build the structured prompt
         structured_prompt = f"""Create a spell/ritual for this intention: "{request.intention}"
 
