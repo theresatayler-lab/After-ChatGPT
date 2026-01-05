@@ -22,12 +22,12 @@ export const Home = () => {
           <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/50 to-background" />
         </div>
         
-        <div className="relative z-10 text-center max-w-5xl px-6 flex flex-col items-center">
+        <div className="relative z-10 text-center max-w-5xl px-4 sm:px-6 flex flex-col items-center">
           {/* Large Central Logo - lighten blend makes black transparent */}
           <img 
             src="https://customer-assets.emergentagent.com/job_diywizardry/artifacts/9hb654f4_image.png"
             alt="Where The Crowlands"
-            className="w-64 h-64 mb-6 object-contain"
+            className="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 mb-4 sm:mb-6 object-contain"
             style={{ mixBlendMode: 'lighten' }}
           />
           
@@ -37,17 +37,17 @@ export const Home = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="font-italiana text-5xl md:text-7xl text-primary mb-6 tracking-tight leading-none">
+            <h1 className="font-italiana text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-primary mb-4 sm:mb-6 tracking-tight leading-none">
               Where The Crowlands
             </h1>
-            <p className="font-cinzel text-xl md:text-2xl text-accent mb-4">
+            <p className="font-cinzel text-lg sm:text-xl md:text-2xl text-accent mb-3 sm:mb-4">
               Got a problem? We've got a ritual for that.
             </p>
-            <p className="font-montserrat text-base md:text-lg text-foreground/80 leading-relaxed max-w-2xl mx-auto mb-8">
+            <p className="font-montserrat text-sm sm:text-base md:text-lg text-foreground/80 leading-relaxed max-w-2xl mx-auto mb-6 sm:mb-8 px-2">
               You don't need an Etsy witch or tarot reader to access your power. Build your own practice with formulas, 
               sacred geometry, and intentional effort. Magic is science—patterns and shapes we put into practice.
             </p>
-            <div className="flex gap-4 justify-center flex-wrap">
+            <div className="flex gap-3 sm:gap-4 justify-center flex-wrap px-2">
               <Link
                 to="/spell-request"
                 data-testid="hero-spell-request"
