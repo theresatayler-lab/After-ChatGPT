@@ -25,12 +25,12 @@ export const Home = () => {
         </div>
         
         <div className="relative z-10 text-center max-w-5xl px-4 sm:px-6 flex flex-col items-center">
-          {/* Large Central Logo - lighten blend makes black transparent */}
+          {/* Ornate Logo - multiply blend removes white background */}
           <img 
-            src="https://customer-assets.emergentagent.com/job_diywizardry/artifacts/9hb654f4_image.png"
+            src="https://customer-assets.emergentagent.com/job_mystic-circle-2/artifacts/li34ks3x_Where%20the%20Crowlands%20Logos.png"
             alt="Where The Crowlands"
-            className="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 mb-4 sm:mb-6 object-contain"
-            style={{ mixBlendMode: 'lighten' }}
+            className="w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 mb-4 sm:mb-6 object-contain"
+            style={{ mixBlendMode: 'multiply' }}
           />
           
           <div className="max-w-3xl">
