@@ -38,16 +38,46 @@ export const Home = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="font-italiana text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-primary mb-4 sm:mb-6 tracking-tight leading-none">
+            <h1 className="font-italiana text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-primary mb-6 sm:mb-8 tracking-tight leading-none">
               Where The Crowlands
             </h1>
-            <p className="font-cinzel text-lg sm:text-xl md:text-2xl text-accent mb-3 sm:mb-4">
-              Got a problem? We've got a ritual for that.
-            </p>
-            <p className="font-montserrat text-sm sm:text-base md:text-lg text-foreground/80 leading-relaxed max-w-2xl mx-auto mb-6 sm:mb-8 px-2">
-              You don't need an Etsy witch or tarot reader to access your power. Build your own practice with formulas, 
-              sacred geometry, and intentional effort. Magic is science—patterns and shapes we put into practice.
-            </p>
+            
+            <div className="font-crimson text-sm sm:text-base md:text-lg text-foreground/90 leading-relaxed max-w-3xl mx-auto mb-6 sm:mb-8 px-4 space-y-4">
+              <p>
+                Where the Crowlands is a toolkit for alchemizing what you already have in hand. Rooted in history: 
+                the Huguenot mystics who fled persecution and brought their craft with them. The Jersey witches 
+                who worked weather and fate. The Irish and Celtic mystics who kept forbidden knowledge alive between 
+                the lines; to the table-tappers and spiritualists who brought the hidden world into the light. 
+                Churchill's secret army of cockney defence rebels who pledged to keep us safe. The druids before them. 
+                The alchemy underneath it all.
+              </p>
+              
+              <p>
+                This isn't about belief. It's about pattern, intention, and lineage. It's about understanding that 
+                the magic we have abandoned is not woowoo but intention, craft, commitment and ritual, and intention 
+                with action can change the course of history—whether our ancestors named it or not—is still yours 
+                to work with.
+              </p>
+              
+              <p>
+                Based on and in homage of real people, my family, with a lot of creative lore at the core, Where 
+                the Crowlands is a fun and practical way to bring a little alchemy, magic, and beauty into your 
+                life by accessing the past and using it to create your own spells, rituals, path and practices.
+              </p>
+              
+              <p className="text-accent italic">
+                Based predominately after British history and mysticism with more plans to expand cultural context, 
+                historic reference and respect to all—every culture and group has relied on what lies beneath the 
+                veil of certainty. Now more than ever, in the wake of a once again uncertain world with powers 
+                shifting and the edge of uncertainty and reality challenging our concepts and beliefs around what 
+                and who represents light and dark... it's time to bring a little magic back.
+              </p>
+              
+              <p className="font-cinzel text-lg sm:text-xl text-primary mt-6">
+                Coming soon. 🌙
+              </p>
+            </div>
+
             
             {/* Art Deco accent line */}
             <div className="flex items-center justify-center gap-3 mb-6 sm:mb-8">
