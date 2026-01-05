@@ -926,8 +926,10 @@ You MUST respond with a JSON object in this EXACT format (no markdown, just pure
 }}
 
 IMPORTANT GUIDELINES:
-- Include 4-8 materials with appropriate icons
-- Include 5-8 detailed steps
+- The tarot_card section is a BRIEF summary that fits on a card - keep ALL fields very short
+- The tarot_card incantation should be the most memorable, quotable line from the spell
+- Include 4-8 materials with appropriate icons in the full spell
+- Include 5-8 detailed steps in the full spell
 - Cite at least 2-3 historical sources with real books/authors from the 1910-1945 period
 - The spoken_words should feel authentic to your tradition
 - Make the historical_context genuinely educational
