@@ -550,18 +550,10 @@ export const GrimoirePage = ({ spell, archetype, imageBase64, onNewSpell }) => {
             <img 
               src={SEAL_LOGO_URL}
               alt="Where The Crowlands Seal"
-              className="w-32 h-32 md:w-40 md:h-40 object-contain opacity-40"
+              className="w-36 h-36 md:w-48 md:h-48 object-contain"
               style={{ 
-                filter: 'sepia(30%) contrast(1.1) brightness(0.9)',
-                mixBlendMode: 'multiply'
-              }}
-            />
-            {/* Embossed overlay effect */}
-            <div 
-              className="absolute inset-0 pointer-events-none"
-              style={{
-                background: 'radial-gradient(circle, transparent 60%, rgba(139, 90, 43, 0.1) 100%)',
-                mixBlendMode: 'overlay'
+                mixBlendMode: 'multiply',
+                opacity: 0.6
               }}
             />
           </div>
