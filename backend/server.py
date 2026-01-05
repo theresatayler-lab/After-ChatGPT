@@ -312,6 +312,29 @@ async def update_email(request: UpdateEmailRequest, user = Depends(get_current_u
         spell_generation_count=user.get('spell_generation_count', 0)
     )
 
+# Waitlist / Email Collection
+@api_router.post('/waitlist/join')
+async def join_waitlist(request: WaitlistRequest):
+    """Collect email for waitlist and early access"""
+    # Check if email already on waitlist
+    existing = await db.waitlist.find_one({'email': request.email}, {'_id': 0})
+    if existing:
+        return {'success': True, 'message': 'Email already registered', 'already_exists': True}
+    
+    # Add to waitlist
+    waitlist_entry = {
+        'id': str(uuid.uuid4()),
+        'email': request.email,
+        'name': request.name,
+        'source': request.source,
+        'created_at': datetime.now(timezone.utc).isoformat(),
+        'notified': False
+    }
+    
+    await db.waitlist.insert_one(waitlist_entry)
+    
+    return {'success': True, 'message': 'Successfully joined the waitlist!'}
+
 # Deities endpoints
 @api_router.get('/deities', response_model=List[Deity])
 async def get_deities():
