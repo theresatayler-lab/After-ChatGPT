@@ -11,6 +11,9 @@ import html2pdf from 'html2pdf.js';
 import { grimoireAPI, subscriptionAPI } from '../utils/api';
 import { useNavigate } from 'react-router-dom';
 
+// Ornate seal logo for spell pages
+const SEAL_LOGO_URL = "https://customer-assets.emergentagent.com/job_870e50df-769b-4f54-87c7-dc69482a19cb/artifacts/chlv6yqv_Screenshot%202026-01-05%20at%201.24.24%E2%80%AFPM.png";
+
 // Icon mapping for materials
 const MATERIAL_ICONS = {
   candle: Flame,
