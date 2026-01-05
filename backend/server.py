@@ -897,7 +897,7 @@ IMPORTANT GUIDELINES:
 - Cite at least 2-3 historical sources with real books/authors from the 1910-1945 period
 - The spoken_words should feel authentic to your tradition
 - Make the historical_context genuinely educational
-{db_context}
+{katherine_context}{db_context}
 
 Respond ONLY with the JSON object, no other text."""
 
