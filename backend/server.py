@@ -941,18 +941,22 @@ Respond ONLY with the JSON object, no other text."""
 
         # Get system message based on archetype
         if archetype_id and archetype_id in ARCHETYPE_PERSONAS:
-            system_message = ARCHETYPE_PERSONAS[archetype_id]['system_prompt'] + "\\n\\nYou must respond with structured JSON as specified."
+            system_message = ARCHETYPE_PERSONAS[archetype_id]['system_prompt'] + "\n\nYou must respond with structured JSON as specified."
         else:
-            system_message = DEFAULT_SYSTEM_MESSAGE + "\\n\\nYou must respond with structured JSON as specified."
+            system_message = DEFAULT_SYSTEM_MESSAGE + "\n\nYou must respond with structured JSON as specified."
         
-        chat = LlmChat(
-            api_key=EMERGENT_LLM_KEY,
-            session_id=session_id,
-            system_message=system_message
-        ).with_model('openai', 'gpt-5.1')
+        # Use direct OpenAI API for spell generation
+        chat_response = await openai_client.chat.completions.create(
+            model="gpt-4o",
+            messages=[
+                {"role": "system", "content": system_message},
+                {"role": "user", "content": structured_prompt}
+            ],
+            temperature=0.8,
+            max_tokens=4000
+        )
         
-        user_message = UserMessage(text=structured_prompt)
-        response = await chat.send_message(user_message)
+        response = chat_response.choices[0].message.content
         
         # Parse the JSON response
         import json
@@ -981,15 +985,18 @@ Respond ONLY with the JSON object, no other text."""
                 style = ARCHETYPE_IMAGE_STYLES.get(archetype_id or 'neutral', ARCHETYPE_IMAGE_STYLES['neutral'])
                 image_prompt = f"{style}, {spell_data['image_prompt']}, mystical ritual scene, no text"
                 
-                image_gen = OpenAIImageGeneration(api_key=EMERGENT_LLM_KEY)
-                images = await image_gen.generate_images(
+                # Use direct OpenAI API for image generation
+                image_response = await openai_client.images.generate(
+                    model="dall-e-3",
                     prompt=image_prompt,
-                    model='gpt-image-1',
-                    number_of_images=1
+                    size="1024x1024",
+                    quality="standard",
+                    n=1,
+                    response_format="b64_json"
                 )
                 
-                if images and len(images) > 0:
-                    image_base64 = base64.b64encode(images[0]).decode('utf-8')
+                if image_response.data and len(image_response.data) > 0:
+                    image_base64 = image_response.data[0].b64_json
             except Exception as img_error:
                 logging.error(f'Spell image generation error: {str(img_error)}')
         
