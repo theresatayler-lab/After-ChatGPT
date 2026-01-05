@@ -142,12 +142,11 @@ export const GrimoirePage = ({ spell, archetype, imageBase64, onNewSpell }) => {
     }
     
     setIsGeneratingPdf(true);
-    toast.info('Generating your grimoire page...');
     
     try {
-      console.log('Starting PDF generation...');
+      // Try using html2pdf
+      console.log('Attempting PDF generation with html2pdf...');
       const element = grimoireRef.current;
-      console.log('Element found:', element);
       
       const opt = {
         margin: [10, 10, 10, 10],
@@ -158,7 +157,7 @@ export const GrimoirePage = ({ spell, archetype, imageBase64, onNewSpell }) => {
           useCORS: true,
           allowTaint: true,
           backgroundColor: '#D8CBB3',
-          logging: true
+          logging: false
         },
         jsPDF: { 
           unit: 'mm', 
@@ -168,14 +167,16 @@ export const GrimoirePage = ({ spell, archetype, imageBase64, onNewSpell }) => {
         pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
       };
       
-      console.log('Calling html2pdf with options:', opt);
-      await html2pdf().set(opt).from(element).save();
-      console.log('PDF generation completed');
-      toast.success('Grimoire page downloaded!');
+      const worker = html2pdf();
+      await worker.set(opt).from(element).save();
+      
+      toast.success('PDF downloaded to your Downloads folder!');
     } catch (error) {
-      console.error('PDF generation error:', error);
-      console.error('Error stack:', error.stack);
-      toast.error(`Failed to generate PDF: ${error.message}`);
+      console.error('html2pdf error:', error);
+      
+      // Fallback: Open print dialog
+      toast.info('Opening print dialog - use "Save as PDF" option');
+      window.print();
     } finally {
       setIsGeneratingPdf(false);
     }
