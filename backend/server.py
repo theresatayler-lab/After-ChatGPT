@@ -145,6 +145,11 @@ class SavedSpellResponse(BaseModel):
     created_at: str
     title: str
 
+class WaitlistRequest(BaseModel):
+    email: EmailStr
+    name: Optional[str] = None
+    source: Optional[str] = 'homepage'
+
 # Helper functions
 def hash_password(password: str) -> str:
     return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
