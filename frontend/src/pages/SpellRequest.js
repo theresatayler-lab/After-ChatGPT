@@ -296,11 +296,11 @@ export const SpellRequest = ({ selectedArchetype: propArchetype }) => {
           </GlassCard>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 sm:gap-6">
           {/* Input Section */}
           <div className="lg:col-span-2">
             <GlassCard hover={false} testId="spell-request-input-card">
-              <h3 className="font-cinzel text-xl text-secondary mb-4">
+              <h3 className="font-cinzel text-lg sm:text-xl text-secondary mb-4">
                 {currentGuide ? `Ask ${currentGuide.shortName}` : 'What do you need?'}
               </h3>
               
