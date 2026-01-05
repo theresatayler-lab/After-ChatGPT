@@ -83,6 +83,15 @@ KATHERINE_SAMPLE_SPELLS = [
         "archetype_title": "The Weaver of Hidden Knowledge",
         "category": "Night Magic",
         "spell_data": {
+            "tarot_card": {
+                "title": "Midnight Stitch",
+                "symbol": "🧵",
+                "essence": "Sew your intention into fabric at the liminal hour between days.",
+                "key_action": "At midnight, stitch a sigil while repeating your intention aloud.",
+                "incantation": "Three knots bind what I have sewn. So it is stitched, so it shall be.",
+                "timing": "Exactly Midnight, Any Moon",
+                "warning": "Never cut the thread until the intention manifests."
+            },
             "title": "The Midnight Stitch",
             "subtitle": "Sewing Intentions at the Liminal Hour",
             "introduction": "The hour before and after midnight is a doorway—neither one day nor the next, belonging to both and neither. In this crack between times, intentions sewn into fabric carry unusual power. The Spitalfields weavers knew this. I learned it at my mother's knee, watching her work by candlelight when the house slept. Tonight, I teach you.",
