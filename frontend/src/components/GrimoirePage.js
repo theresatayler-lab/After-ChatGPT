@@ -137,13 +137,6 @@ export const GrimoirePage = ({ spell, archetype, imageBase64, onNewSpell }) => {
   const downloadAsPdf = async () => {
     if (!grimoireRef.current) return;
     
-    // Check subscription
-    if (subscriptionTier === 'free') {
-      toast.error('Upgrade to Pro to download PDFs! Only $19/year.', { duration: 5000 });
-      setTimeout(() => navigate('/upgrade'), 1500);
-      return;
-    }
-    
     setIsGeneratingPdf(true);
     toast.info('Generating your grimoire page...');
     
