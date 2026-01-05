@@ -879,6 +879,15 @@ KATHERINE'S SIGNATURE RITUAL ELEMENTS:
 
 You MUST respond with a JSON object in this EXACT format (no markdown, just pure JSON):
 {{
+    "tarot_card": {{
+        "title": "Short evocative title (3-5 words max)",
+        "symbol": "A single emoji or symbol that represents this spell",
+        "essence": "One sentence capturing the core purpose (under 15 words)",
+        "key_action": "The single most important action to take (under 20 words)",
+        "incantation": "A brief, memorable phrase of power (under 15 words)",
+        "timing": "When to perform, very brief (e.g., 'Full Moon, Midnight')",
+        "warning": "One line caution if needed (under 15 words)"
+    }},
     "title": "A poetic, evocative title for this spell",
     "subtitle": "A brief tagline or description (10 words max)",
     "introduction": "A 2-3 sentence personal introduction in your voice, speaking directly to the seeker",
