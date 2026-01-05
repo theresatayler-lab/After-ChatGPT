@@ -12,7 +12,7 @@ import { grimoireAPI, subscriptionAPI } from '../utils/api';
 import { useNavigate } from 'react-router-dom';
 
 // Ornate seal logo for spell pages
-const SEAL_LOGO_URL = "https://customer-assets.emergentagent.com/job_diywizardry/artifacts/9hb654f4_image.png";
+const SEAL_LOGO_URL = "https://customer-assets.emergentagent.com/job_870e50df-769b-4f54-87c7-dc69482a19cb/artifacts/jdsp7esr_WhereTheCrowLandsLogo.png";
 
 // Icon mapping for materials
 const MATERIAL_ICONS = {
