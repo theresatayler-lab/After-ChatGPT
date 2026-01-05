@@ -95,7 +95,7 @@ export const Home = () => {
             <span className="text-deep-blue/60 text-lg">✦</span>
             <div className="h-px w-12 sm:w-20 bg-gradient-to-l from-transparent to-deep-blue/40"></div>
           </div>
-          <h2 className="font-playfair text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-deep-blue mb-3 tracking-wide font-bold border-4 border-deep-blue/30 py-4 px-6 rounded-sm bg-deep-blue/5">
+          <h2 className="font-italiana text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-foreground mb-3 tracking-wide">
             Explore the Archive
           </h2>
           <p className="font-crimson text-sm sm:text-base text-deep-blue/70 italic">
