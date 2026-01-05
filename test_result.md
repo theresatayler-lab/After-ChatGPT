@@ -191,6 +191,9 @@ frontend:
       - working: false
         agent: "testing"
         comment: "Save as PDF button does not show '(Pro Only)' text for free users. The button text should be 'PDF (Pro Only)' and button should be disabled for free users. Currently shows just 'Save as PDF' without restriction indicator. The code in GrimoirePage.js checks subscriptionTier but the state is not being set correctly from the subscription API response."
+      - working: false
+        agent: "testing"
+        comment: "PDF DOWNLOAD FUNCTIONALITY ITSELF IS WORKING PERFECTLY. Tested anonymous user spell generation and PDF download. The PDF button is enabled, clickable, and successfully triggers download with correct filename (e.g., 'The_Sigil_of_Seamless_Passage_grimoire.pdf'). Console logs confirm: html2pdf.js loads correctly, html2canvas renders the spell page (719x5131px), and PDF generation completes successfully. Download event captured. HOWEVER, the Pro-only restriction UI is still missing - button does not show '(Pro Only)' text or disabled state for free users. The core PDF generation feature works, but the subscription tier restriction display is not implemented."
 
   - task: "Upgrade Page"
     implemented: true
