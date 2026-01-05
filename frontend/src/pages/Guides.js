@@ -24,23 +24,23 @@ export const Guides = () => {
   };
 
   return (
-    <div className="min-h-screen py-24 px-6">
+    <div className="min-h-screen py-16 sm:py-20 md:py-24 px-4 sm:px-6">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-12"
+          className="text-center mb-8 sm:mb-10 md:mb-12"
         >
-          <Feather className="w-16 h-16 text-primary mx-auto mb-4" />
-          <h1 className="font-italiana text-4xl md:text-5xl text-primary mb-4">
+          <Feather className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 text-primary mx-auto mb-3 sm:mb-4" />
+          <h1 className="font-italiana text-3xl sm:text-4xl md:text-5xl text-primary mb-3 sm:mb-4">
             Meet the Guides
           </h1>
-          <p className="font-montserrat text-base text-muted-foreground max-w-2xl mx-auto mb-2">
+          <p className="font-montserrat text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto mb-2 px-2">
             Four generations of women who practiced in secret, each with her own wisdom, 
             ritual style, and way of seeing the world.
           </p>
-          <p className="font-crimson text-lg text-accent italic">
+          <p className="font-crimson text-base sm:text-lg text-accent italic px-2">
             &ldquo;The women who walked before you left their spells in stories, their magic in memories.&rdquo;
           </p>
         </motion.div>
