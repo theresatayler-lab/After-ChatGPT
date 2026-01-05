@@ -46,6 +46,7 @@ module.exports = {
         'forest-moss': '#4B5A3E',
         'blood-red': '#750609',
         'midnight-blue': '#06133c',
+        'deep-blue': '#1D2847',
         'parchment': '#e8dcc8',
         'ink-black': '#1a1410',
       },
