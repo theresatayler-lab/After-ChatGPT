@@ -544,6 +544,29 @@ export const GrimoirePage = ({ spell, archetype, imageBase64, onNewSpell }) => {
           </div>
         )}
 
+        {/* Embossed Seal Stamp */}
+        <div className="flex justify-center py-6">
+          <div className="relative">
+            <img 
+              src={SEAL_LOGO_URL}
+              alt="Where The Crowlands Seal"
+              className="w-32 h-32 md:w-40 md:h-40 object-contain opacity-40"
+              style={{ 
+                filter: 'sepia(30%) contrast(1.1) brightness(0.9)',
+                mixBlendMode: 'multiply'
+              }}
+            />
+            {/* Embossed overlay effect */}
+            <div 
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background: 'radial-gradient(circle, transparent 60%, rgba(139, 90, 43, 0.1) 100%)',
+                mixBlendMode: 'overlay'
+              }}
+            />
+          </div>
+        </div>
+
         {/* Action Buttons */}
         <div className="flex flex-wrap gap-3 pt-4 border-t border-border">
           <button
