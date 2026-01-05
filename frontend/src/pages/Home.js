@@ -64,24 +64,7 @@ export const Home = () => {
             
             <div className="font-crimson text-sm sm:text-base md:text-lg text-foreground/90 leading-relaxed max-w-3xl mx-auto px-4 space-y-4">
               <p>
-                The magic we've abandoned isn't "woo woo"—it's intention, craft, commitment, and ritual.
-              </p>
-              
-              <p>
-                It is that intention paired with action can change history.
-              </p>
-              
-              <p>
-                Whether our ancestors named it or not, that power is still yours to work with.
-              </p>
-              
-              <p>
-                Inspired by real people—my family—and grounded in plenty of creative lore, Where the Crowlands offers 
-                a fun, practical way to bring alchemy, magic, and beauty into your life.
-              </p>
-              
-              <p>
-                Access the data and practises of the past to create your own spells, rituals, and road.
+                The magic we've abandoned isn't "woo woo"—it's intention, craft, commitment, and ritual. It is that intention paired with action can change history. Whether our ancestors named it or not, that power is still yours to work with. Inspired by real people—my family—and grounded in plenty of creative lore, Where the Crowlands offers a fun, practical way to bring alchemy, magic, and beauty into your life. Access the data and practises of the past to create your own spells, rituals, and road.
               </p>
               
               <p className="text-accent italic">
