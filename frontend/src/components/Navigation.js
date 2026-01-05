@@ -38,10 +38,10 @@ export const Navigation = ({ user, onLogout }) => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2" data-testid="nav-logo" onClick={handleLinkClick}>
             <img 
-              src="https://customer-assets.emergentagent.com/job_diywizardry/artifacts/9hb654f4_image.png" 
+              src="https://customer-assets.emergentagent.com/job_mystic-circle-2/artifacts/li34ks3x_Where%20the%20Crowlands%20Logos.png" 
               alt="Where The Crowlands Logo"
               className="h-10 sm:h-12 md:h-16 w-auto"
-              style={{ mixBlendMode: 'lighten' }}
+              style={{ mixBlendMode: 'multiply' }}
             />
           </Link>
           
