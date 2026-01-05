@@ -612,6 +612,125 @@ HISTORICAL_SOURCES = {
     'general': [
         {'author': 'Dion Fortune', 'work': 'Applied Magic', 'year': 1962, 'quote': 'Practical techniques for the modern practitioner'},
         {'author': 'W.E. Butler', 'work': 'The Magician: His Training and Work', 'year': 1959, 'quote': 'Foundational magical practice'},
+    ],
+    # Katherine-specific historical sources
+    'spiritualism': [
+        {'author': 'Sir Oliver Lodge', 'work': 'Raymond, or Life and Death', 'year': 1916, 'quote': 'Evidence of survival after death through mediumship'},
+        {'author': 'Arthur Conan Doyle', 'work': 'The History of Spiritualism', 'year': 1926, 'quote': 'The phenomena of the séance room'},
+        {'author': 'F.W.H. Myers', 'work': 'Human Personality and Its Survival of Bodily Death', 'year': 1903, 'quote': 'The subliminal self and spirit communication'},
+        {'author': 'Society for Psychical Research', 'work': 'Proceedings of the SPR', 'year': 1920, 'quote': 'Scientific investigation of paranormal claims'},
+        {'author': 'Nandor Fodor', 'work': 'Encyclopaedia of Psychic Science', 'year': 1934, 'quote': 'Comprehensive documentation of spiritualist phenomena'},
+        {'author': 'Harry Price', 'work': 'Fifty Years of Psychical Research', 'year': 1939, 'quote': 'Critical examination of mediumship and spirit photography'},
+    ],
+    'seance_methodology': [
+        {'author': 'Hereward Carrington', 'work': 'The Physical Phenomena of Spiritualism', 'year': 1907, 'quote': 'Proper conditions for the séance room'},
+        {'author': 'William Crookes', 'work': 'Researches in the Phenomena of Spiritualism', 'year': 1874, 'quote': 'Scientific protocols for spirit investigation'},
+        {'author': 'College of Psychic Studies', 'work': 'Guidelines for Circle Work', 'year': 1925, 'quote': 'The London Spiritualist Alliance methodology'},
+        {'author': 'W. Stainton Moses', 'work': 'Spirit Teachings', 'year': 1883, 'quote': 'Automatic writing as spirit communication'},
+    ],
+    'textile_magic': [
+        {'author': 'Traditional Cunning Craft', 'work': 'British Folk Magic Traditions', 'year': 1800, 'quote': 'Knotwork binds intention; the needle pierces the veil'},
+        {'author': 'Huguenot Silk Weavers', 'work': 'Spitalfields Weaving Traditions', 'year': 1700, 'quote': 'Every pattern holds a prayer, every thread carries memory'},
+        {'author': 'Cecil Williamson', 'work': 'Museum of Witchcraft Archives', 'year': 1951, 'quote': 'The poppet and the pin—sympathetic magic through cloth'},
+        {'author': 'Owen Davies', 'work': 'Popular Magic: Cunning-folk in English History', 'year': 2003, 'quote': 'Witch bottles and protective textile charms'},
+    ],
+    'shadow_work': [
+        {'author': 'Dion Fortune', 'work': 'The Machinery of the Mind', 'year': 1922, 'quote': 'The shadow must be faced, not fled'},
+        {'author': 'W.B. Yeats', 'work': 'A Vision', 'year': 1925, 'quote': 'The anti-self and the mask'},
+        {'author': 'Violet Firth (Dion Fortune)', 'work': 'The Esoteric Philosophy of Love and Marriage', 'year': 1924, 'quote': 'Integration of the hidden self'},
+        {'author': 'Israel Regardie', 'work': 'The Art of True Healing', 'year': 1932, 'quote': 'Confronting inner darkness for transformation'},
+    ],
+    'grief_work': [
+        {'author': 'Sir Oliver Lodge', 'work': 'Raymond, or Life and Death', 'year': 1916, 'quote': 'Communication with the fallen of the Great War'},
+        {'author': 'Vale Owen', 'work': 'The Life Beyond the Veil', 'year': 1920, 'quote': 'Messages from those who passed in the war'},
+        {'author': 'Arthur Conan Doyle', 'work': 'The New Revelation', 'year': 1918, 'quote': 'Spiritualism as comfort for the bereaved'},
+        {'author': 'Cenotaph Memorial Commission', 'work': 'National Mourning Practices', 'year': 1920, 'quote': 'Public ritual for private grief'},
+    ],
+    'huguenot_traditions': [
+        {'author': 'French Protestant Church of London', 'work': 'The Inner Light Tradition', 'year': 1700, 'quote': 'Finding the divine in silence and contemplation'},
+        {'author': 'Robin Gwynn', 'work': 'Huguenot Heritage', 'year': 1985, 'quote': 'The refugee weavers of Spitalfields'},
+        {'author': 'Tessa Murdoch', 'work': 'The Quiet Conquest', 'year': 1985, 'quote': 'Huguenot influence on English craft and spirituality'},
+    ]
+}
+
+# Katherine-specific material correspondences (craft-based sympathetic magic)
+KATHERINE_MATERIALS = {
+    'traditional_to_craft': {
+        'white_candle': {'craft_name': 'White silk thread', 'icon': 'cord', 'meaning': 'Purity, new beginnings, spirit light'},
+        'black_candle': {'craft_name': 'Black silk ribbon', 'icon': 'cord', 'meaning': 'Protection, shadow work, binding negativity'},
+        'red_candle': {'craft_name': 'Red wool thread', 'icon': 'cord', 'meaning': 'Life force, courage, blood ties to ancestors'},
+        'salt_circle': {'craft_name': 'Circle of pins', 'icon': 'salt', 'meaning': 'Protective boundary, piercing illusion'},
+        'athame': {'craft_name': 'Tailor\'s scissors', 'icon': 'feather', 'meaning': 'Cutting ties, severing connections, decisive action'},
+        'wand': {'craft_name': 'Bone needle', 'icon': 'feather', 'meaning': 'Directing intention, piercing the veil'},
+        'cauldron': {'craft_name': 'Silver thimble', 'icon': 'bowl', 'meaning': 'Containing power, protecting the finger that points'},
+        'mirror': {'craft_name': 'Black silk for scrying', 'icon': 'mirror', 'meaning': 'Reflection, shadow sight, spirit vision'},
+        'pentacle': {'craft_name': 'Embroidered sigil on cloth', 'icon': 'star', 'meaning': 'Woven protection, pattern of power'},
+        'chalice': {'craft_name': 'Porcelain button dish', 'icon': 'bowl', 'meaning': 'Receiving messages, holding intention'},
+    },
+    'signature_materials': [
+        {'name': 'Bone needle', 'icon': 'feather', 'note': 'The needle pierces the veil between worlds—use your oldest needle'},
+        {'name': 'Black silk thread', 'icon': 'cord', 'note': 'For binding, protection, and shadow work. Silk holds intention longest'},
+        {'name': 'White linen cloth', 'icon': 'book', 'note': 'The working surface—linen connects to Huguenot weaving tradition'},
+        {'name': 'Tailor\'s chalk', 'icon': 'pen', 'note': 'For marking sigils that can be brushed away when the work is done'},
+        {'name': 'Seven pins', 'icon': 'salt', 'note': 'One for each day of creation; pins fix intention in place'},
+        {'name': 'Red sealing wax', 'icon': 'fire', 'note': 'To seal letters to the dead, close witch bottles, bind poppets'},
+        {'name': 'Crow feather', 'icon': 'feather', 'note': 'Messenger of the dead—crows carry words between worlds'},
+        {'name': 'Small mirror or polished thimble', 'icon': 'mirror', 'note': 'For shadow scrying in low light conditions'},
+        {'name': 'Mourning jewelry or hair locket', 'icon': 'heart', 'note': 'Victorian tradition—hair holds the essence of the departed'},
+        {'name': 'Red darkroom candle', 'icon': 'candle', 'note': 'Séance lighting—red light preserves night vision and spirit sight'},
+    ],
+    'seance_tools': [
+        {'name': 'Spirit slate', 'icon': 'book', 'note': 'Two slates bound together for automatic spirit writing'},
+        {'name': 'Planchette or talking board', 'icon': 'pen', 'note': 'For direct spirit communication—test all messages received'},
+        {'name': 'Spirit trumpet (cone of card)', 'icon': 'bell', 'note': 'Amplifies spirit voices; can be made from black card'},
+        {'name': 'Blackout curtain or cloth', 'icon': 'cord', 'note': 'Creates proper séance darkness—essential for physical phenomena'},
+        {'name': 'Bell for signaling', 'icon': 'bell', 'note': 'One ring for yes, two for no—establish protocols before beginning'},
+        {'name': 'Phosphorescent tape', 'icon': 'star', 'note': 'Mark objects to detect movement in darkness'},
+    ]
+}
+
+# Katherine's séance protocols and ritual elements
+KATHERINE_SEANCE_PROTOCOLS = {
+    'room_preparation': [
+        'Draw blackout curtains or cover windows completely',
+        'Light only red candles or a single red darkroom lamp',
+        'Arrange chairs in a circle, hands touching or linked by cord',
+        'Place a white cloth in the center as the working surface',
+        'Have a notebook ready for automatic writing or recording',
+        'Set a bell at the center for spirit signaling',
+    ],
+    'testing_protocols': [
+        'Ask questions only you would know the answer to',
+        'Request specific names, dates, or details that can be verified',
+        'Never lead the communication—let spirits provide information',
+        'Test for cold reading by giving false information and seeing if it\'s accepted',
+        'Keep records of all communications for later analysis',
+        'If in doubt, end the session—protection over curiosity',
+    ],
+    'table_tapping_codes': {
+        'one_knock': 'Yes / Affirmative',
+        'two_knocks': 'No / Negative', 
+        'three_knocks': 'Uncertain / Cannot say',
+        'continuous_rapping': 'Strong emotion / Urgency',
+        'silence': 'Question not understood or spirit departed',
+    },
+    'automatic_writing_method': [
+        'Sit comfortably with paper and pencil at the ready',
+        'Enter a light meditative state—do not force',
+        'Hold the pencil loosely, resting hand on paper',
+        'Ask a clear question, then suspend conscious thought',
+        'Allow the hand to move without directing it',
+        'Continue for set time (15-30 minutes), then stop regardless of results',
+        'Read and analyze only after the session is complete',
+        'Test all information received before accepting as genuine',
+    ],
+    'protection_measures': [
+        'Never surrender your will to any spirit communication',
+        'Maintain a circle of protection (pins, salt, or stitched boundary)',
+        'Have a clear method to end the session at any time',
+        'Do not communicate when tired, ill, or emotionally vulnerable',
+        'Ground yourself thoroughly before and after every session',
+        'Keep iron nearby (scissors work well) to break unwanted connections',
     ]
 }
 
