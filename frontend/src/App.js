@@ -62,7 +62,8 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <OnboardingModal onSelectArchetype={handleSelectArchetype} />
+        {/* OnboardingModal disabled - users go straight to site */}
+        {/* <OnboardingModal onSelectArchetype={handleSelectArchetype} /> */}
         <Navigation user={user} onLogout={handleLogout} />
         <Routes>
           <Route path="/" element={<Home />} />
