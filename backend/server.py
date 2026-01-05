@@ -558,14 +558,18 @@ async def chat_with_ai(message_data: ChatMessage):
         else:
             system_message = DEFAULT_SYSTEM_MESSAGE
         
-        chat = LlmChat(
-            api_key=EMERGENT_LLM_KEY,
-            session_id=session_id,
-            system_message=system_message
-        ).with_model('openai', 'gpt-5.1')
+        # Use direct OpenAI API for chat
+        chat_response = await openai_client.chat.completions.create(
+            model="gpt-4o",
+            messages=[
+                {"role": "system", "content": system_message},
+                {"role": "user", "content": message_data.message}
+            ],
+            temperature=0.8,
+            max_tokens=2000
+        )
         
-        user_message = UserMessage(text=message_data.message)
-        response = await chat.send_message(user_message)
+        response = chat_response.choices[0].message.content
         
         return {'response': response, 'session_id': session_id, 'archetype': message_data.archetype}
     except Exception as e:
