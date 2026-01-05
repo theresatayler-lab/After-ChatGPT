@@ -395,7 +395,7 @@ export const SpellRequest = ({ selectedArchetype: propArchetype }) => {
               </h3>
               
               {loading ? (
-                <div className="flex flex-col items-center justify-center min-h-[400px] sm:h-[500px] text-center relative">
+                <div className="flex flex-col items-center justify-center min-h-[400px] sm:h-[500px] text-center">
                   {/* Show guide video if available */}
                   {currentGuide && currentGuide.video ? (
                     <div className="w-full max-w-md mb-6">
