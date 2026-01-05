@@ -1039,15 +1039,18 @@ Respond ONLY with the JSON object, no other text."""
 @api_router.post('/ai/generate-image')
 async def generate_image(request: ImageGenerationRequest):
     try:
-        image_gen = OpenAIImageGeneration(api_key=EMERGENT_LLM_KEY)
-        images = await image_gen.generate_images(
+        # Use direct OpenAI API for image generation
+        image_response = await openai_client.images.generate(
+            model="dall-e-3",
             prompt=f"1920s-1940s mystical art style, {request.prompt}, art deco influences, rich jewel tones, Bloomsbury aesthetic",
-            model='gpt-image-1',
-            number_of_images=1
+            size="1024x1024",
+            quality="standard",
+            n=1,
+            response_format="b64_json"
         )
         
-        if images and len(images) > 0:
-            image_base64 = base64.b64encode(images[0]).decode('utf-8')
+        if image_response.data and len(image_response.data) > 0:
+            image_base64 = image_response.data[0].b64_json
             return {'image_base64': image_base64}
         else:
             raise HTTPException(status_code=500, detail='No image was generated')
