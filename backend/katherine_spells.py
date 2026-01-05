@@ -9,6 +9,15 @@ KATHERINE_SAMPLE_SPELLS = [
         "archetype_title": "The Weaver of Hidden Knowledge",
         "category": "Shadow Integration",
         "spell_data": {
+            "tarot_card": {
+                "title": "Mirror of Truth",
+                "symbol": "🪞",
+                "essence": "Face what hides in your shadow. The mirror shows, the needle integrates.",
+                "key_action": "Scry into black silk at midnight; stitch what you learn into cloth.",
+                "incantation": "What is hidden shall be witnessed. What is witnessed becomes wisdom.",
+                "timing": "Waning Moon, Midnight, Saturday",
+                "warning": "Do not attempt when emotionally raw."
+            },
             "title": "The Mirror of Truth",
             "subtitle": "A Scrying Ritual for Shadow Integration",
             "introduction": "Come, seeker. You have carried something in your shadow long enough—a grief unspoken, a fear unnamed, a truth too heavy to hold in the light. Tonight, we face it together. The mirror does not lie, but it also does not judge. What you see is simply what is. And what is can be transformed.",
