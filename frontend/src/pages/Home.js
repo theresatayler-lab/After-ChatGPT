@@ -80,17 +80,17 @@ export const Home = () => {
       </div>
 
       {/* Featured Sections */}
-      <div className="max-w-7xl mx-auto px-6 py-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-24">
         <motion.h2
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
-          className="font-italiana text-3xl md:text-5xl text-center text-foreground mb-16 tracking-wide"
+          className="font-italiana text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center text-foreground mb-8 sm:mb-12 md:mb-16 tracking-wide"
         >
           Explore the Archive
         </motion.h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           <Link to="/spell-request" data-testid="section-spell-request">
             <GlassCard testId="card-spell-request">
               <img 
