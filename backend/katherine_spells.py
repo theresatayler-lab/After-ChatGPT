@@ -156,6 +156,15 @@ KATHERINE_SAMPLE_SPELLS = [
         "archetype_title": "The Weaver of Hidden Knowledge",
         "category": "Ancestor & Grief Work",
         "spell_data": {
+            "tarot_card": {
+                "title": "Crow's Vigil",
+                "symbol": "🐦‍⬛",
+                "essence": "Open a door to the dead. Wait. Listen. The crow carries messages.",
+                "key_action": "Write your message, bind it to a crow feather, keep vigil by candlelight.",
+                "incantation": "I call you with love, not compulsion. Come if you will. I am listening.",
+                "timing": "Full Moon, Night, Saturday",
+                "warning": "Test all communications. Never demand or command the dead."
+            },
             "title": "The Crow's Vigil",
             "subtitle": "A Night Ritual to Honor and Communicate with the Dead",
             "introduction": "After the Great War, we were a nation of mourners. Every family had their dead—sons, husbands, brothers who never came home, or who came home changed forever. The spiritualist movement offered hope: that death was not the end, that our loved ones could still hear us, still respond. I attended many séances in those years. Most were frauds. But some... some were real. This ritual is for those who need to speak to their dead. Not to summon or command, but to open a door and wait. The crow will carry your message.",
