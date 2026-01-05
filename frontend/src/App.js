@@ -71,6 +71,9 @@ function App() {
           <Route path="/guides" element={<Guides />} />
           <Route path="/upgrade" element={<Upgrade />} />
           <Route path="/payment-success" element={<PaymentSuccess />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="/privacy" element={<Privacy />} />
           <Route path="/deities" element={<Deities />} />
           <Route path="/figures" element={<HistoricalFigures />} />
           <Route path="/sites" element={<SacredSites />} />
