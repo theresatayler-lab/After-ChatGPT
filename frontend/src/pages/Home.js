@@ -79,9 +79,13 @@ export const Home = () => {
               </p>
             </div>
 
+            {/* Waitlist Form */}
+            <div className="mt-8 sm:mt-12">
+              <WaitlistForm source="homepage" />
+            </div>
             
             {/* Art Deco accent line */}
-            <div className="flex items-center justify-center gap-3 mb-6 sm:mb-8">
+            <div className="flex items-center justify-center gap-3 mt-12 mb-6 sm:mb-8">
               <div className="h-px w-12 sm:w-20 bg-gradient-to-r from-transparent to-deep-blue/40"></div>
               <span className="text-deep-blue/60 text-sm">✦</span>
               <div className="h-px w-12 sm:w-20 bg-gradient-to-l from-transparent to-deep-blue/40"></div>
