@@ -39,9 +39,13 @@ export const Home = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="font-italiana text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-primary mb-6 sm:mb-8 tracking-tight leading-none">
+            <h1 className="font-italiana text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-primary mb-4 sm:mb-5 tracking-tight leading-none">
               Where The Crowlands
             </h1>
+            
+            <p className="font-cinzel text-lg sm:text-xl md:text-2xl text-secondary mb-6 sm:mb-8">
+              Magic, math and science aren't such strange bedfellows.
+            </p>
             
             <div className="font-crimson text-sm sm:text-base md:text-lg text-foreground/90 leading-relaxed max-w-3xl mx-auto px-4 space-y-4">
               <p>
@@ -50,10 +54,6 @@ export const Home = () => {
                 of forbidden knowledge, to those closer to my own heart and timeline, the table-tappers and spiritualists 
                 revealing the hidden world, Churchill's secret army of Cockney rebels defending the home front. The druids, 
                 templers, occultists, astrologers, hermetic philosophers, "witches" midwives and alchemists before them…
-              </p>
-              
-              <p className="font-cinzel text-lg sm:text-xl text-secondary">
-                Magic, math and science aren't such strange bedfellows.
               </p>
             </div>
 
