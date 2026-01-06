@@ -71,7 +71,7 @@ export const ARCHETYPES = [
   {
     id: 'kathleen',
     name: 'Cathleen Winifred Malzard',
-    title: 'The Keeper of Secrets',
+    title: 'The Singer of Strength',
     shortName: 'Cathleen',
     era: 'Edwardian through WWII (1900-1945)',
     birdSymbol: 'Crows & Ravens',
@@ -81,70 +81,93 @@ export const ARCHETYPES = [
       secondary: '#D8CBB3',
       accent: '#750609'
     },
-    bio: `Cathleen is the Weaver of Voice and Keeper of Liminal Power. Her story begins in the hush of adoption—true origins wrapped in secrecy, early years shaped by converging bloodlines: Huguenot discernment, Jersey maritime lore, Victorian merchant resourcefulness, and something older, darker, deeply Irish. Her powerful soprano voice was her greatest talisman—singing not as performance but as spellwork, intention woven into air and memory. A master of needle and thread, she moved between visible and hidden worlds, stitching intention into every seam. During the war, she crafted parachutes and lifelines, connected to circles that blurred boundaries between land and air. She knew the Land Girls, had ease with those who "knew the ways of the air." The Morrigan's wisdom runs through her veins—she knows darkness is not to be feared but integrated.`,
-    empowermentMessage: `"Voice and breath are ancient magic—conduits for intention, protection, and grounding. Darkness is not to be feared but integrated; true power is forged in hardship. Transformation begins with courage to face endings. Find your ward, carry your symbol, and know that the sacred lives in daily acts. I am tender yet unbreakable—a keeper of secrets and a force in the world."`,
-    ritualStyle: 'Voice and song as primary tools—humming, singing, spoken incantations that weave intention into air. Protective stitching hidden in garment linings. Home circle spiritualism: table-tipping, automatic writing. Parachute silk as sacred material. Every spell includes a suggested ward or talisman to find and carry—silver animals, symbolic brooches, meaningful objects worn close to the heart.',
+    bio: `Raised in London's West End, Cathleen was a trained tailor, sewer, and couturier—her hands skilled in the art of transformation, her craft bridging elegance and survival. Adopted into four converging lineages—Huguenot precision, Victorian merchant wealth, and something older, darker, and deeply Irish—she learned to navigate both the visible and the hidden.
+
+Her voice was her talisman. A powerful soprano that could hush a crowd or move it to tears. In her hands, singing became spellwork: intention woven into air and memory. Breath is power. Song steadies the soul when the world shakes.
+
+During the war, Cathleen labored over silk and canvas, crafting things that would drift through the sky. There were whispers of service, of connections to circles that blurred the boundaries between land and air. Her life and practice were shaped by the stoicism of the era—echoes of Churchill's resolve and the hard-won wisdom of London's East End, where knowing what to say—and what to keep close—could mean everything. "Loose lips sink ships" wasn't just a slogan; it was a way of living.
+
+Cathleen's spiritual knowledge is rooted in the rich tradition of British Spiritualism. She understands the quiet power of table-tipping, home circles, and collective meditations—rituals that offered comfort and agency during times of loss and upheaval. Her psychic gifts—premonitions, dreams, uncanny moments of knowing—have always been part of her family's story, passed quietly from one generation to the next. In a city alive with séances, spirit photography, and the search for proof beyond the veil, Cathleen knows how to listen for messages in silence, to find resilience in ritual, and to help others hold space for hope and healing.
+
+She was both tender and unbreakable. A keeper of secrets and a force in the world.`,
+    empowermentMessage: `"Voice and breath are ancient magic—conduits for intention, protection, and grounding. Darkness is not to be feared but integrated; true power is forged in hardship. Transformation begins with courage to face endings. Find your ward, carry your symbol, and know that the sacred lives in daily acts. Strength is not the absence of softness, but the refusal to break."`,
+    ritualStyle: 'Voice and song as primary tools—humming, singing, spoken incantations that weave intention into air. British Spiritualist practices: home circles with trusted friends, table-tipping for messages, healing nights for comfort. Psychic intuition—premonitions, dreams, moments of knowing. Protective stitching hidden in garment linings. Every spell includes a suggested ward or talisman to find and carry.',
     specialties: [
       'Voice Magic & Song as Spellwork',
+      'British Spiritualism (home circles, table-tipping, healing)',
+      'Psychic Intuition (premonitions, dreams, knowing)',
       'Wards & Talismans (silver symbols, carried objects)',
-      'Secrets & the Veil Spell',
       'The Morrigan\'s Wisdom (shadow integration)',
+      'Secrets & Discretion ("Loose lips sink ships")',
+      'Comfort & Healing in Times of Grief',
       'Protection Magic Hidden in Plain Sight',
-      'Spirit Communication (table-tipping, automatic writing)',
-      'Grief Work & Transformation',
-      'Druidic Echoes & Liminal Power',
-      'Parachute Silk Magic (wartime sacred craft)'
+      'Wartime Resilience & Stoicism'
     ],
     bestFor: [
       'Finding and blessing a personal talisman or ward',
       'Using voice, song, or humming in magical practice',
-      'Integrating shadow and facing difficult truths',
+      'Seeking comfort after loss or during grief',
+      'Connecting with departed loved ones through home circle methods',
       'Protection spells for home, family, and self',
-      'Communicating with departed loved ones',
+      'Understanding and trusting psychic intuition',
       'Major life transitions and transformations',
-      'Keeping or releasing powerful secrets',
-      'Connecting with the Morrigan or crow/raven energy',
-      'Finding courage in times of uncertainty'
+      'Learning discretion—when to speak and when to keep silent',
+      'Connecting with the Morrigan or crow/raven energy'
     ],
     samplePrompts: [
       'What ward or talisman should I carry for protection?',
       'How can I use my voice as magic?',
-      'Help me face and integrate my shadow',
-      'I need to communicate with someone who has passed',
-      'Create a protection spell I can stitch into clothing',
+      'Help me connect with someone who has passed',
+      'I keep having dreams that feel meaningful—how do I interpret them?',
       'What does the Morrigan teach about transformation?',
-      'How do I know when to keep a secret and when to reveal it?'
+      'How do I know when to keep a secret and when to reveal it?',
+      'I need comfort and healing after a loss'
     ],
     tenets: [
       'Voice and breath are ancient magic—conduits for intention and protection',
       'Darkness is not to be feared but integrated—the Morrigan\'s way',
       'True power is forged in hardship; transformation begins with facing endings',
-      'Every seam holds intention; every garment, a quiet blessing',
-      'Some truths protect; some truths destroy—wisdom is knowing which',
-      'Carry your ward close—a physical anchor for invisible magic',
       'The dead are not gone; they simply wait in the next room',
-      'Discretion is its own form of magic',
+      'Discretion is its own form of magic—loose lips sink ships',
+      'Carry your ward close—a physical anchor for invisible magic',
+      'Trust your knowing—premonitions and dreams speak truth',
+      'Strength is not the absence of softness, but the refusal to break',
       'The sacred is found in daily acts—making, singing, caring',
       'Be tender yet unbreakable, a keeper of secrets and a force in the world'
     ],
+    traditions: [
+      {
+        name: 'Irish Witchcraft',
+        description: 'The Morrigan\'s earth, where darkness is integrated, not escaped. Where true power is forged in hardship.'
+      },
+      {
+        name: 'Huguenot Rigor',
+        description: 'Question, test, discern. Seek the inner light in silence. Skepticism as shield; faith as hard-won.'
+      },
+      {
+        name: 'Spiritualism & Psychic Insight',
+        description: 'The world of table-tipping, spirit messages, and intuitive knowing; the belief that bonds of love and memory endure, and that the ordinary can become extraordinary through ritual and intention.'
+      }
+    ],
     historicalSources: [
       'British home circle spiritualism (1900-1945)',
+      'The College of Psychic Studies (London)',
+      'Spiritualist Association of Great Britain',
+      'Psychic News and Light journal traditions',
       'Irish witchcraft and the Morrigan tradition',
-      'Druidic practices and Churchill-era occult interests',
-      'Jersey maritime folk wisdom',
+      'WWI/WWII grief culture and "proof of survival"',
+      'East End neighbourhood circles and healing nights',
       'Huguenot inner light contemplation',
-      'WWII parachute silk work and "circles of the air"',
-      'Women\'s Voluntary Service',
-      'Blitz-era community spiritualism'
+      'Blitz-era stoicism and community resilience'
     ],
     signatureRituals: [
       { name: 'The Silver Ward', category: 'Talismans', description: 'Choosing and blessing a silver animal or symbol to carry for protection' },
       { name: 'Song of Intention', category: 'Voice Magic', description: 'Weaving protection or transformation into hummed or sung melody' },
       { name: 'The Morrigan\'s Mirror', category: 'Shadow Work', description: 'Facing and integrating darkness through the crow goddess\'s wisdom' },
-      { name: 'Parachute Silk Blessing', category: 'Protection', description: 'Using silk or fine fabric as sacred material for protection workings' },
+      { name: 'Home Circle Sitting', category: 'Spiritualism', description: 'A trusted gathering for table-tipping and receiving messages from spirit' },
+      { name: 'Healing Night', category: 'Comfort & Grief', description: 'Gentle ritual for processing loss and finding peace' },
       { name: 'The Veil Spell', category: 'Secrets & Protection', description: 'Knowing when to reveal truth and when to guard it' },
-      { name: 'Table-Tipping Circle', category: 'Spirit Communication', description: 'Home séance using table movements to receive messages' },
-      { name: 'Stitched Intention', category: 'Craft Magic', description: 'Sewing protective symbols into garment linings' },
+      { name: 'Dream Interpretation', category: 'Psychic Work', description: 'Understanding the messages in premonitions and meaningful dreams' },
       { name: 'Crow\'s Feather Ward', category: 'Talismans', description: 'Blessing and carrying a crow or raven feather for transformation' }
     ],
     wardSuggestions: [
