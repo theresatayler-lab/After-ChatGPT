@@ -20,6 +20,7 @@ import { PaymentSuccess } from './pages/PaymentSuccess';
 import { About } from './pages/About';
 import { FAQ } from './pages/FAQ';
 import { Privacy } from './pages/Privacy';
+import WardFinder from './pages/WardFinder';
 import { Footer } from './components/Footer';
 import { OnboardingModal } from './components/OnboardingModal';
 import './App.css';
