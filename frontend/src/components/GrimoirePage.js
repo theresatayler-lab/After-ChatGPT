@@ -206,6 +206,19 @@ const TarotCardView = ({ spell, archetype, style, imageBase64, onViewFull, onCop
                 </p>
               )}
               
+              {/* Cathleen's Ward Preview - shown on card when available */}
+              {spell.suggested_ward && (
+                <div className="bg-slate-800/60 backdrop-blur-sm border border-slate-500/40 rounded-sm p-2 mt-2">
+                  <div className="flex items-center justify-center gap-2">
+                    <span className="text-lg">{spell.suggested_ward.symbol || '🪶'}</span>
+                    <div className="text-center">
+                      <p className="font-montserrat text-[10px] text-slate-400 uppercase tracking-wider">Your Ward</p>
+                      <p className="font-crimson text-sm text-slate-200">{spell.suggested_ward.name}</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+              
               {/* Bottom symbol */}
               <div className="text-center pt-2">
                 <span className="text-2xl text-amber-500/40">{tarot.symbol || '✧'}</span>
