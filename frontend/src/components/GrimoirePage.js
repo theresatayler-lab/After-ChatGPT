@@ -553,7 +553,7 @@ export const GrimoirePage = ({ spell, archetype, imageBase64, onNewSpell }) => {
                   <span className="text-3xl">{spell.suggested_ward.symbol || '🪶'}</span>
                 </div>
                 <div>
-                  <p className="font-cinzel text-xs text-secondary/70 uppercase tracking-wider">Cathleen's Gift</p>
+                  <p className="font-cinzel text-xs text-secondary/70 uppercase tracking-wider">Cathleen&apos;s Gift</p>
                   <h3 className="font-cinzel text-xl text-secondary">Your Ward: {spell.suggested_ward.name}</h3>
                 </div>
               </div>
