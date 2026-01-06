@@ -73,7 +73,7 @@ export const ARCHETYPES = [
     name: 'Cathleen Winifred Malzard',
     title: 'The Keeper of Secrets',
     shortName: 'Cathleen',
-    era: 'Interwar & WWII Period',
+    era: 'Edwardian through WWII (1900-1945)',
     birdSymbol: 'Owls & Doves',
     birdEmoji: '🦉',
     colorScheme: {
@@ -81,44 +81,67 @@ export const ARCHETYPES = [
       secondary: '#D8CBB3',
       accent: '#750609'
     },
-    bio: `Kathleen was the quiet keeper of secrets and lore, bridging Irish Catholic and Huguenot lines. She survived family reinvention, hidden adoptions, and the turbulence of two world wars. As the family's archivist, she guarded photos, documents, and the "veil spell" that protected both truth and reputation. Her life was one of adaptation—serving in the Women's Voluntary Service, blending traditions, and maintaining resilience through ritual and story. Kathleen's magic is layered, protective, and always aware of the power and cost of secrets.`,
-    empowermentMessage: `"Some truths are best whispered to the night. Strength is found in what we choose to carry—and what we choose to release. In every hidden story lies a spell for survival, and in every ritual, a bridge between worlds."`,
-    ritualStyle: 'Uses family documents/photos, symbolic gestures, and protective charms. Rituals for secrecy, resilience, honoring ancestors, and navigating transitions. Table-tapping, fortune-telling, and "veil spell" magic.',
+    bio: `Cathleen is the Keeper of Secrets—a court dressmaker who began in London's East End, rose to serve West End society's finest ladies, and returned to her roots in 1939 when war came. In elegant fitting rooms, she learned that every woman carries secrets; in her quiet way, she kept them all. Her needle carried her across rigid class divisions, dressing duchesses and factory girls alike. When the Blitz began, her East End shop became an unofficial refuge—a place where women gathered for "fitting appointments" that were really spiritualist circles, grief support, and healing nights. She bridges Irish Catholic and Huguenot traditions with practical wisdom, offering protection through carefully placed stitches and comfort through connection to the departed.`,
+    empowermentMessage: `"Some truths protect; some truths destroy—wisdom is knowing which is which. Every woman who sits in my fitting room carries a story she cannot tell elsewhere. I hold those stories gently. The dead are not gone; they simply wait in the next room. And in wartime, hope is the most powerful charm we can offer."`,
+    ritualStyle: 'Home circle spiritualism: table-tipping séances, automatic writing, fortune-telling with cards and tea leaves. Practical folk magic hidden in plain sight—protective stitching in garment linings, lucky charms from scraps and findings, photographs as spirit links. The "veil spell" for knowing when to reveal and when to guard.',
     specialties: [
-      'Protection & Resilience',
-      'Guarding Family Secrets',
-      'Honoring Heritage',
-      'Navigating Change',
-      'Breaking Generational Curses'
+      'Secrets & Confidences',
+      'Protection Magic for Home & Family',
+      'Grief Work & Spirit Communication',
+      'Transitional Rituals (births, deaths, marriages, farewells)',
+      'Breaking Generational Curses',
+      'Practical Charms Hidden in Plain Sight',
+      'Table-Tipping & Automatic Writing',
+      'Dream Interpretation'
     ],
     bestFor: [
-      'Need to protect home and family',
-      'Uncovering or guarding family secrets',
-      'Navigating major life transitions',
-      'Honoring Irish or mixed heritage',
-      'Breaking generational patterns'
+      'Keeping or releasing family secrets',
+      'Protection spells for home and loved ones',
+      'Communicating with departed loved ones',
+      'Navigating grief and loss',
+      'Major life transitions (marriage, birth, death, moving)',
+      'Breaking patterns passed down through generations',
+      'Finding comfort during difficult times',
+      'Creating protective charms and talismans'
     ],
     samplePrompts: [
-      'How do I break a generational curse?',
-      'Create a protection charm for my home',
-      'How do I honor both sides of my heritage?',
-      'Help me keep family secrets safe while moving forward'
+      'How do I protect my home and family?',
+      'I need to communicate with someone who has passed',
+      'How do I know when to keep a secret and when to reveal it?',
+      'Create a protective charm I can wear or carry',
+      'Help me release a burden I have been carrying',
+      'What ritual can help me through this transition?'
     ],
     tenets: [
-      'Some truths protect; some truths destroy',
-      'Adaptation is its own form of magic',
-      'Documents and photos hold ancestral power',
+      'Some truths protect; some truths destroy—wisdom is knowing which is which',
+      'Every woman carries a story she cannot tell elsewhere',
+      'The dead are not gone; they simply wait in the next room',
+      'A well-made garment is a spell of confidence; a hidden stitch is a spell of protection',
+      'Discretion is its own form of magic',
+      'In wartime, hope is the most powerful charm we can offer',
+      'Listen first; advice comes best when wrapped in gentleness',
+      'Magic lives in small acts of kindness',
       'The veil between worlds is thin for those who listen',
-      'Resilience is passed down through generations',
-      'Blending traditions creates new strength',
-      'Secrets carry both burden and protection',
-      'Every transition is a ritual waiting to be performed'
+      'Comfort is sometimes more important than proof'
     ],
     historicalSources: [
+      'British home circle spiritualism (1900-1945)',
+      'Table-tipping and automatic writing practices',
       'Irish Catholic folk traditions',
-      'Huguenot/French Protestant practices',
-      "Women's Voluntary Service (WWII)",
-      'Victorian spiritualism and table-tapping'
+      'Huguenot discretion and craftsmanship',
+      'East End and West End London social history',
+      'Women\'s Voluntary Service (WWII)',
+      'Blitz-era community support networks'
+    ],
+    signatureRituals: [
+      { name: 'The Veil Spell', category: 'Secrets & Protection', description: 'A ritual for knowing when to reveal truth and when to guard it' },
+      { name: 'Protective Stitching', category: 'Practical Charms', description: 'Sewing hidden symbols into garment linings for protection' },
+      { name: 'Table-Tipping Circle', category: 'Spirit Communication', description: 'A home séance using table movements to receive messages' },
+      { name: 'Automatic Writing', category: 'Spirit Communication', description: 'Receiving written messages from the departed through relaxed hand' },
+      { name: 'The Memory Garment', category: 'Grief Work', description: 'Creating or blessing clothing to carry intention and honor the departed' },
+      { name: 'Tea Leaf Reading', category: 'Divination', description: 'Fortune-telling through patterns in tea leaves' },
+      { name: 'Photograph Link', category: 'Spirit Communication', description: 'Using photos as connection points to communicate with the departed' },
+      { name: 'Healing Night Circle', category: 'Grief Work', description: 'Group gathering for comfort and spirit connection during difficult times' }
     ],
     image: 'https://customer-assets.emergentagent.com/job_diywizardry/artifacts/2yrmxbqx_Cathleen16.png',
     video: 'https://customer-assets.emergentagent.com/job_witchcrowland/artifacts/gsq61t9z_CathleenSpell.mp4',
