@@ -124,7 +124,7 @@ export const Navigation = ({ user, onLogout }) => {
             )}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-sm text-muted-foreground hover:text-primary transition-all"
+              className="p-2 rounded-sm text-amber-100/70 hover:text-amber-200 transition-all"
               aria-label="Toggle menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -134,7 +134,13 @@ export const Navigation = ({ user, onLogout }) => {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="lg:hidden border-t border-border py-4">
+          <div 
+            className="lg:hidden py-4"
+            style={{
+              borderTop: '1px solid rgba(139, 90, 43, 0.2)',
+              background: 'rgba(26, 21, 18, 0.98)',
+            }}
+          >
             <div className="space-y-1">
               {links.map((link) => {
                 if (link.requiresAuth && !user) return null;
@@ -148,8 +154,8 @@ export const Navigation = ({ user, onLogout }) => {
                     onClick={handleLinkClick}
                     className={`flex items-center space-x-3 px-4 py-3 rounded-sm font-montserrat text-sm transition-all ${
                       isActive
-                        ? 'bg-primary/10 text-primary border-l-4 border-primary'
-                        : 'text-muted-foreground hover:bg-primary/5'
+                        ? 'bg-amber-500/10 text-amber-300 border-l-4 border-amber-500'
+                        : 'text-amber-100/70 hover:bg-amber-500/5 hover:text-amber-200'
                     }`}
                   >
                     <Icon className="w-5 h-5" />
@@ -164,7 +170,7 @@ export const Navigation = ({ user, onLogout }) => {
                     onLogout();
                     handleLinkClick();
                   }}
-                  className="w-full flex items-center space-x-3 px-4 py-3 rounded-sm font-montserrat text-sm text-destructive hover:bg-destructive/10 transition-all"
+                  className="w-full flex items-center space-x-3 px-4 py-3 rounded-sm font-montserrat text-sm text-red-400 hover:bg-red-500/10 transition-all"
                 >
                   <LogOut className="w-5 h-5" />
                   <span>Logout</span>
@@ -173,7 +179,7 @@ export const Navigation = ({ user, onLogout }) => {
                 <Link
                   to="/auth"
                   onClick={handleLinkClick}
-                  className="flex items-center justify-center px-4 py-3 bg-primary text-primary-foreground rounded-sm font-montserrat text-sm tracking-widest uppercase hover:bg-primary/90 transition-all"
+                  className="flex items-center justify-center mx-4 px-4 py-3 bg-gradient-to-r from-amber-700 via-amber-600 to-amber-700 text-amber-50 rounded-sm font-montserrat text-sm tracking-widest uppercase hover:from-amber-600 hover:via-amber-500 hover:to-amber-600 transition-all"
                 >
                   Login
                 </Link>
