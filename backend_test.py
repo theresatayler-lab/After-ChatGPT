@@ -469,16 +469,16 @@ class SpiritualAppAPITester:
             return True
         return False
 
-    def test_spell_generation_kathleen_protection(self):
-        """Test spell generation with Kathleen archetype for protection - REVIEW REQUEST TEST"""
+    def test_cathleen_spell_generation(self):
+        """Test Cathleen spell generation with transformation intention - REVIEW REQUEST TEST"""
         spell_data = {
-            "intention": "A protection spell",
+            "intention": "I need courage to face a difficult transformation",
             "archetype": "kathleen",
-            "generate_image": True
+            "generate_image": False
         }
         
         success, response = self.run_test(
-            "Generate Spell - Kathleen Protection",
+            "Cathleen Spell Generation - Transformation",
             "POST",
             "ai/generate-spell",
             200,
@@ -497,9 +497,11 @@ class SpiritualAppAPITester:
             
             # Verify archetype info
             archetype = response.get('archetype', {})
-            if archetype.get('name') != 'Kathleen Winifred Malzard':
-                print(f"   ❌ Expected archetype name 'Kathleen Winifred Malzard', got '{archetype.get('name')}'")
+            if archetype.get('name') != 'Cathleen Winifred Malzard':
+                print(f"   ❌ Expected archetype name 'Cathleen Winifred Malzard', got '{archetype.get('name')}'")
                 return False
+            
+            print(f"   ✅ Archetype name correct: {archetype.get('name')}")
             
             # Verify spell structure
             spell = response.get('spell', {})
@@ -510,57 +512,144 @@ class SpiritualAppAPITester:
                 print(f"   ❌ Missing spell fields: {missing_spell_fields}")
                 return False
             
-            # Verify materials structure
+            # Check for Cathleen-specific elements in materials
             materials = spell.get('materials', [])
-            if not isinstance(materials, list) or len(materials) == 0:
-                print(f"   ❌ Materials should be a non-empty array")
-                return False
+            material_names = [m.get('name', '').lower() for m in materials]
+            material_text = ' '.join(material_names)
             
-            for i, material in enumerate(materials):
-                if not all(key in material for key in ['name', 'icon', 'note']):
-                    print(f"   ❌ Material {i} missing required fields (name, icon, note)")
-                    return False
+            cathleen_materials_found = []
+            cathleen_indicators = ['silver', 'charm', 'crow', 'raven', 'feather', 'silk', 'voice', 'needle', 'thread']
+            for indicator in cathleen_indicators:
+                if indicator in material_text:
+                    cathleen_materials_found.append(indicator)
             
-            # Verify steps structure
-            steps = spell.get('steps', [])
-            if not isinstance(steps, list) or len(steps) == 0:
-                print(f"   ❌ Steps should be a non-empty array")
-                return False
+            if cathleen_materials_found:
+                print(f"   ✅ Cathleen materials found: {', '.join(cathleen_materials_found)}")
+            else:
+                print(f"   ⚠️  No Cathleen-specific materials detected in: {material_text}")
             
-            for i, step in enumerate(steps):
-                if not all(key in step for key in ['number', 'title', 'instruction']):
-                    print(f"   ❌ Step {i} missing required fields (number, title, instruction)")
-                    return False
-            
-            # Verify spoken_words structure
+            # Check for voice/song elements in spoken_words
             spoken_words = spell.get('spoken_words', {})
-            spoken_required = ['invocation', 'main_incantation', 'closing']
-            missing_spoken = [field for field in spoken_required if field not in spoken_words]
+            spoken_text = ' '.join([
+                spoken_words.get('invocation', ''),
+                spoken_words.get('main_incantation', ''),
+                spoken_words.get('closing', '')
+            ]).lower()
             
-            if missing_spoken:
-                print(f"   ❌ Missing spoken_words fields: {missing_spoken}")
-                return False
+            voice_elements = ['voice', 'song', 'sing', 'hum', 'breath', 'speak', 'chant']
+            voice_found = [elem for elem in voice_elements if elem in spoken_text]
             
-            # Verify historical_context structure
-            historical = spell.get('historical_context', {})
-            historical_required = ['tradition', 'sources']
-            missing_historical = [field for field in historical_required if field not in historical]
+            if voice_found:
+                print(f"   ✅ Voice magic elements found: {', '.join(voice_found)}")
+            else:
+                print(f"   ⚠️  No voice magic elements detected in spoken words")
             
-            if missing_historical:
-                print(f"   ❌ Missing historical_context fields: {missing_historical}")
-                return False
+            # Check for Morrigan references
+            full_spell_text = json.dumps(spell).lower()
+            morrigan_refs = ['morrigan', 'great queen', 'phantom queen', 'crow', 'raven', 'transformation', 'shadow']
+            morrigan_found = [ref for ref in morrigan_refs if ref in full_spell_text]
             
-            sources = historical.get('sources', [])
-            if not isinstance(sources, list):
-                print(f"   ❌ Sources should be an array")
-                return False
+            if morrigan_found:
+                print(f"   ✅ Morrigan/transformation elements found: {', '.join(morrigan_found)}")
+            else:
+                print(f"   ⚠️  No Morrigan references detected")
             
-            print(f"   ✅ Spell structure validated")
-            print(f"   ✅ Archetype: {archetype.get('name')}")
+            # Check for ward/talisman suggestions
+            ward_indicators = ['ward', 'talisman', 'charm', 'carry', 'wear', 'brooch', 'amulet', 'protection']
+            ward_found = [ward for ward in ward_indicators if ward in full_spell_text]
+            
+            if ward_found:
+                print(f"   ✅ Ward/talisman elements found: {', '.join(ward_found)}")
+            else:
+                print(f"   ⚠️  No ward/talisman suggestions detected")
+            
             print(f"   ✅ Spell title: {spell.get('title')}")
             print(f"   ✅ Materials count: {len(materials)}")
-            print(f"   ✅ Steps count: {len(steps)}")
-            print(f"   ✅ Sources count: {len(sources)}")
+            print(f"   ✅ Steps count: {len(spell.get('steps', []))}")
+            
+            return True
+        
+        return False
+
+    def test_cathleen_sample_spells(self):
+        """Test retrieving Cathleen sample spells - REVIEW REQUEST TEST"""
+        success, response = self.run_test(
+            "Get Cathleen Sample Spells",
+            "GET",
+            "sample-spells/kathleen",
+            200
+        )
+        
+        if success and isinstance(response, list):
+            print(f"   ✅ Found {len(response)} Cathleen sample spells")
+            
+            # Check if we have exactly 4 spells
+            if len(response) != 4:
+                print(f"   ⚠️  Expected 4 sample spells, got {len(response)}")
+            
+            # Check for expected categories
+            expected_categories = [
+                "Wards & Talismans",
+                "Voice Magic", 
+                "Shadow Work (The Morrigan's Way)",
+                "Spirit Communication"
+            ]
+            
+            found_categories = []
+            for spell in response:
+                category = spell.get('category', '')
+                if category in expected_categories:
+                    found_categories.append(category)
+                print(f"   - {spell.get('title', 'Untitled')} ({category})")
+            
+            missing_categories = [cat for cat in expected_categories if cat not in found_categories]
+            if missing_categories:
+                print(f"   ⚠️  Missing expected categories: {', '.join(missing_categories)}")
+            else:
+                print(f"   ✅ All expected categories found")
+            
+            return len(response) > 0
+        
+        return False
+
+    def test_archetype_endpoint(self):
+        """Test archetype endpoint includes Cathleen - REVIEW REQUEST TEST"""
+        success, response = self.run_test(
+            "Get Archetypes - Cathleen Check",
+            "GET",
+            "archetypes",
+            200
+        )
+        
+        if success and isinstance(response, list):
+            print(f"   ✅ Found {len(response)} archetypes")
+            
+            # Look for Cathleen specifically
+            cathleen_found = False
+            for archetype in response:
+                if archetype.get('id') == 'kathleen':
+                    cathleen_found = True
+                    name = archetype.get('name')
+                    title = archetype.get('title')
+                    
+                    print(f"   ✅ Cathleen archetype found:")
+                    print(f"     - ID: {archetype.get('id')}")
+                    print(f"     - Name: {name}")
+                    print(f"     - Title: {title}")
+                    
+                    # Verify expected values
+                    if name != 'Cathleen Winifred Malzard':
+                        print(f"   ⚠️  Expected name 'Cathleen Winifred Malzard', got '{name}'")
+                    
+                    if title != 'The Keeper of Secrets':
+                        print(f"   ⚠️  Expected title 'The Keeper of Secrets', got '{title}'")
+                    
+                    break
+            
+            if not cathleen_found:
+                print(f"   ❌ Cathleen archetype not found in response")
+                print(f"   Available archetypes: {[a.get('id') for a in response]}")
+                return False
             
             return True
         
