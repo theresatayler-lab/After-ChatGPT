@@ -1765,6 +1765,77 @@ async def delete_saved_spell(spell_id: str, user = Depends(get_current_user)):
     
     return {'success': True, 'message': 'Spell deleted from grimoire'}
 
+# Ward saving endpoints
+class SaveWardRequest(BaseModel):
+    ward_data: dict  # The ward object (name, symbol, meaning, etc.)
+    situation: str  # What the user asked about
+    archetype_id: str = "kathleen"
+    archetype_name: str = "Cathleen"
+
+@api_router.post('/grimoire/save-ward')
+async def save_ward_to_grimoire(request: SaveWardRequest, user = Depends(get_current_user)):
+    """Save a ward suggestion to the user's personal grimoire"""
+    
+    # Check subscription - only paid users can save
+    subscription_tier = user.get('subscription_tier', 'free')
+    if subscription_tier == 'free':
+        raise HTTPException(
+            status_code=403,
+            detail={
+                'error': 'feature_locked',
+                'message': 'Upgrade to Pro to save wards to your grimoire! Only $19/year for unlimited saves.',
+                'feature': 'save_ward'
+            }
+        )
+    
+    ward_id = str(uuid.uuid4())
+    
+    saved_ward = {
+        'id': ward_id,
+        'user_id': user['id'],
+        'type': 'ward',  # Distinguish from spells
+        'ward_data': request.ward_data,
+        'situation': request.situation,
+        'archetype_id': request.archetype_id,
+        'archetype_name': request.archetype_name,
+        'name': request.ward_data.get('name', 'Unknown Ward'),
+        'symbol': request.ward_data.get('symbol', '🪶'),
+        'created_at': datetime.now(timezone.utc).isoformat()
+    }
+    
+    await db.user_wards.insert_one(saved_ward)
+    
+    # Increment saved ward counter
+    await db.users.update_one(
+        {'id': user['id']},
+        {'$inc': {'total_wards_saved': 1}}
+    )
+    
+    return {'success': True, 'ward': saved_ward}
+
+@api_router.get('/grimoire/wards')
+async def get_user_wards(user = Depends(get_current_user)):
+    """Retrieve all wards saved by the current user"""
+    wards = await db.user_wards.find(
+        {'user_id': user['id']}, 
+        {'_id': 0}
+    ).sort('created_at', -1).to_list(100)
+    
+    return wards
+
+@api_router.delete('/grimoire/wards/{ward_id}')
+async def delete_saved_ward(ward_id: str, user = Depends(get_current_user)):
+    """Delete a saved ward from the user's grimoire"""
+    result = await db.user_wards.delete_one({
+        'id': ward_id,
+        'user_id': user['id']
+    })
+    
+    if result.deleted_count == 0:
+        raise HTTPException(status_code=404, detail='Ward not found or unauthorized')
+    
+    return {'success': True, 'message': 'Ward deleted from grimoire'}
+
 # Subscription endpoints
 @api_router.get('/subscription/status')
 async def get_subscription_status(user = Depends(get_current_user)):
