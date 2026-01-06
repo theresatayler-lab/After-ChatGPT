@@ -161,73 +161,239 @@ export const MyGrimoire = () => {
             <Loader2 className="w-12 h-12 text-primary animate-spin mb-4" />
             <p className="font-montserrat text-muted-foreground">Loading your grimoire...</p>
           </div>
-        ) : spells.length === 0 ? (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-center py-20"
-          >
-            <BookOpen className="w-20 h-20 text-primary/30 mx-auto mb-6" />
-            <h2 className="font-cinzel text-2xl text-secondary mb-4">Your grimoire is empty</h2>
-            <p className="font-montserrat text-muted-foreground mb-6 max-w-md mx-auto">
-              Start building your personal collection by generating spells and saving them to your grimoire.
-            </p>
-            <a
-              href="/spell-request"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-sm font-montserrat tracking-widest uppercase text-sm hover:bg-primary/90 transition-all"
-            >
-              <Sparkles className="w-5 h-5" />
-              Create Your First Spell
-            </a>
-          </motion.div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {spells.map((spell, index) => (
-              <motion.div
-                key={spell.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.05 }}
-                className="bg-card/80 border-2 border-border rounded-sm overflow-hidden hover:border-primary/30 transition-all group"
+          <>
+            {/* Tabs */}
+            <div className="flex justify-center gap-4 mb-8">
+              <button
+                onClick={() => setActiveTab('spells')}
+                className={`px-6 py-3 font-montserrat text-sm uppercase tracking-wider rounded-sm transition-all flex items-center gap-2 ${
+                  activeTab === 'spells'
+                    ? 'bg-primary text-primary-foreground'
+                    : 'bg-card/50 text-muted-foreground hover:bg-card border border-border'
+                }`}
               >
-                {/* Spell Image */}
-                {spell.image_base64 ? (
-                  <div className="relative h-48 overflow-hidden">
-                    <img
-                      src={`data:image/png;base64,${spell.image_base64}`}
-                      alt={spell.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent" />
-                  </div>
-                ) : (
-                  <div className="h-48 bg-muted/20 flex items-center justify-center">
-                    <BookOpen className="w-16 h-16 text-primary/30" />
-                  </div>
-                )}
+                <Sparkles className="w-4 h-4" />
+                Spells ({spells.length})
+              </button>
+              <button
+                onClick={() => setActiveTab('wards')}
+                className={`px-6 py-3 font-montserrat text-sm uppercase tracking-wider rounded-sm transition-all flex items-center gap-2 ${
+                  activeTab === 'wards'
+                    ? 'bg-secondary text-secondary-foreground'
+                    : 'bg-card/50 text-muted-foreground hover:bg-card border border-border'
+                }`}
+              >
+                <Hand className="w-4 h-4" />
+                Wards ({wards.length})
+              </button>
+            </div>
 
-                {/* Spell Info */}
-                <div className="p-4">
-                  <h3 className="font-italiana text-xl text-primary mb-2 line-clamp-2">
-                    {spell.title}
-                  </h3>
-                  
-                  {spell.archetype_name && (
-                    <p className="font-montserrat text-xs text-muted-foreground mb-3">
-                      by {spell.archetype_name}
-                    </p>
-                  )}
+            {/* Spells Tab */}
+            {activeTab === 'spells' && (
+              spells.length === 0 ? (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="text-center py-20"
+                >
+                  <BookOpen className="w-20 h-20 text-primary/30 mx-auto mb-6" />
+                  <h2 className="font-cinzel text-2xl text-secondary mb-4">No spells saved yet</h2>
+                  <p className="font-montserrat text-muted-foreground mb-6 max-w-md mx-auto">
+                    Start building your personal collection by generating spells and saving them to your grimoire.
+                  </p>
+                  <a
+                    href="/spell-request"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-sm font-montserrat tracking-widest uppercase text-sm hover:bg-primary/90 transition-all"
+                  >
+                    <Sparkles className="w-5 h-5" />
+                    Create Your First Spell
+                  </a>
+                </motion.div>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {spells.map((spell, index) => (
+                    <motion.div
+                      key={spell.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.05 }}
+                      className="bg-card/80 border-2 border-border rounded-sm overflow-hidden hover:border-primary/30 transition-all group"
+                    >
+                      {/* Spell Image */}
+                      {spell.image_base64 ? (
+                        <div className="relative h-48 overflow-hidden">
+                          <img
+                            src={`data:image/png;base64,${spell.image_base64}`}
+                            alt={spell.title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent" />
+                        </div>
+                      ) : (
+                        <div className="h-48 bg-muted/20 flex items-center justify-center">
+                          <BookOpen className="w-16 h-16 text-primary/30" />
+                        </div>
+                      )}
 
-                  <div className="flex items-center gap-2 text-xs text-muted-foreground mb-4">
-                    <Calendar className="w-3 h-3" />
-                    <span className="font-montserrat">
-                      {new Date(spell.created_at).toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'short',
-                        day: 'numeric'
-                      })}
-                    </span>
-                  </div>
+                      {/* Spell Info */}
+                      <div className="p-4">
+                        <h3 className="font-italiana text-xl text-primary mb-2 line-clamp-2">
+                          {spell.title}
+                        </h3>
+                        
+                        {spell.archetype_name && (
+                          <p className="font-montserrat text-xs text-muted-foreground mb-3">
+                            by {spell.archetype_name}
+                          </p>
+                        )}
+
+                        <div className="flex items-center gap-2 text-xs text-muted-foreground mb-4">
+                          <Calendar className="w-3 h-3" />
+                          <span className="font-montserrat">
+                            {new Date(spell.created_at).toLocaleDateString('en-US', {
+                              year: 'numeric',
+                              month: 'short',
+                              day: 'numeric'
+                            })}
+                          </span>
+                        </div>
+
+                        {/* Actions */}
+                        <div className="flex gap-2">
+                          <button
+                            onClick={() => handleViewSpell(spell)}
+                            className="flex-1 px-3 py-2 bg-primary/10 text-primary rounded-sm font-montserrat text-xs uppercase tracking-wider hover:bg-primary/20 transition-colors flex items-center justify-center gap-2"
+                          >
+                            <Eye className="w-3 h-3" />
+                            View
+                          </button>
+                          <button
+                            onClick={() => handleDeleteSpell(spell.id)}
+                            disabled={deleting === spell.id}
+                            className="px-3 py-2 bg-destructive/10 text-destructive rounded-sm font-montserrat text-xs uppercase tracking-wider hover:bg-destructive/20 transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
+                          >
+                            {deleting === spell.id ? (
+                              <Loader2 className="w-3 h-3 animate-spin" />
+                            ) : (
+                              <Trash2 className="w-3 h-3" />
+                            )}
+                          </button>
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              )
+            )}
+
+            {/* Wards Tab */}
+            {activeTab === 'wards' && (
+              wards.length === 0 ? (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="text-center py-20"
+                >
+                  <Hand className="w-20 h-20 text-secondary/30 mx-auto mb-6" />
+                  <h2 className="font-cinzel text-2xl text-secondary mb-4">No wards saved yet</h2>
+                  <p className="font-montserrat text-muted-foreground mb-6 max-w-md mx-auto">
+                    Ask Cathleen to help you find the perfect ward for your situation.
+                  </p>
+                  <a
+                    href="/ward-finder"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-secondary text-secondary-foreground rounded-sm font-montserrat tracking-widest uppercase text-sm hover:bg-secondary/90 transition-all"
+                  >
+                    <Hand className="w-5 h-5" />
+                    Find Your Ward
+                  </a>
+                </motion.div>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {wards.map((ward, index) => (
+                    <motion.div
+                      key={ward.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.05 }}
+                      className="bg-card/80 border-2 border-secondary/30 rounded-lg overflow-hidden hover:border-secondary/50 transition-all"
+                    >
+                      {/* Ward Header */}
+                      <div className="p-5 bg-secondary/10">
+                        <div className="flex items-center gap-4">
+                          <div className="p-3 bg-secondary/20 rounded-full">
+                            <span className="text-3xl">{ward.symbol || ward.ward_data?.symbol || '🪶'}</span>
+                          </div>
+                          <div>
+                            <h3 className="font-cinzel text-xl text-foreground">
+                              {ward.name || ward.ward_data?.name}
+                            </h3>
+                            <p className="font-montserrat text-xs text-secondary/70 uppercase tracking-wider">
+                              {ward.ward_data?.category || 'Personal Ward'}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Ward Info */}
+                      <div className="p-4 space-y-3">
+                        <p className="font-montserrat text-xs text-muted-foreground">
+                          <span className="font-medium">Asked about:</span> {ward.situation?.substring(0, 80)}...
+                        </p>
+                        
+                        {ward.ward_data?.meaning && (
+                          <div className="flex items-start gap-2">
+                            <Heart className="w-4 h-4 text-secondary mt-0.5 flex-shrink-0" />
+                            <p className="font-montserrat text-sm text-foreground/80 line-clamp-2">
+                              {ward.ward_data.meaning}
+                            </p>
+                          </div>
+                        )}
+
+                        {ward.ward_data?.where_to_find && (
+                          <div className="flex items-start gap-2">
+                            <MapPin className="w-4 h-4 text-secondary mt-0.5 flex-shrink-0" />
+                            <p className="font-montserrat text-sm text-foreground/80 line-clamp-2">
+                              {ward.ward_data.where_to_find}
+                            </p>
+                          </div>
+                        )}
+
+                        <div className="flex items-center gap-2 text-xs text-muted-foreground pt-2">
+                          <Calendar className="w-3 h-3" />
+                          <span className="font-montserrat">
+                            {new Date(ward.created_at).toLocaleDateString('en-US', {
+                              year: 'numeric',
+                              month: 'short',
+                              day: 'numeric'
+                            })}
+                          </span>
+                          <span className="text-secondary">• from Cathleen</span>
+                        </div>
+
+                        {/* Delete Button */}
+                        <button
+                          onClick={() => handleDeleteWard(ward.id)}
+                          disabled={deleting === ward.id}
+                          className="w-full mt-2 px-3 py-2 bg-destructive/10 text-destructive rounded-sm font-montserrat text-xs uppercase tracking-wider hover:bg-destructive/20 transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
+                        >
+                          {deleting === ward.id ? (
+                            <Loader2 className="w-3 h-3 animate-spin" />
+                          ) : (
+                            <>
+                              <Trash2 className="w-3 h-3" />
+                              Remove
+                            </>
+                          )}
+                        </button>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              )
+            )}
+          </>
+        )}
 
                   {/* Action Buttons */}
                   <div className="flex gap-2">
