@@ -130,6 +130,39 @@ const WardCard = ({ ward, index, situation, onSave, isSaving, isSaved }) => {
                   </div>
                 </div>
               )}
+              
+              {/* Save Button */}
+              <div className="pt-4 border-t border-secondary/20">
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onSave(ward);
+                  }}
+                  disabled={isSaving || isSaved}
+                  className={`w-full px-4 py-2 rounded-lg font-montserrat text-sm transition-all flex items-center justify-center gap-2 ${
+                    isSaved 
+                      ? 'bg-green-500/20 text-green-400 border border-green-500/30 cursor-default'
+                      : 'bg-secondary/20 text-secondary border border-secondary/40 hover:bg-secondary/30'
+                  } ${isSaving ? 'opacity-50 cursor-wait' : ''}`}
+                >
+                  {isSaved ? (
+                    <>
+                      <Check className="w-4 h-4" />
+                      Saved to Grimoire
+                    </>
+                  ) : isSaving ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      Saving...
+                    </>
+                  ) : (
+                    <>
+                      <Save className="w-4 h-4" />
+                      Save to My Grimoire
+                    </>
+                  )}
+                </button>
+              </div>
             </div>
           </motion.div>
         )}
