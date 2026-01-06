@@ -530,6 +530,58 @@ export const GrimoirePage = ({ spell, archetype, imageBase64, onNewSpell }) => {
           </div>
         )}
 
+        {/* Cathleen's Suggested Ward - Special feature for her spells */}
+        {spell.suggested_ward && (
+          <section className="relative">
+            <div className="absolute inset-0 bg-gradient-to-r from-slate-800/30 via-slate-700/20 to-slate-800/30 rounded-lg" />
+            <div className="relative p-6 border-2 border-secondary/40 rounded-lg bg-background/50">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-3 bg-secondary/20 rounded-full">
+                  <span className="text-3xl">{spell.suggested_ward.symbol || '🪶'}</span>
+                </div>
+                <div>
+                  <p className="font-cinzel text-xs text-secondary/70 uppercase tracking-wider">Cathleen's Gift</p>
+                  <h3 className="font-cinzel text-xl text-secondary">Your Ward: {spell.suggested_ward.name}</h3>
+                </div>
+              </div>
+              
+              <div className="space-y-4 font-montserrat text-sm">
+                <div className="flex items-start gap-2">
+                  <Heart className="w-4 h-4 text-secondary mt-1 flex-shrink-0" />
+                  <div>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">What It Means</p>
+                    <p className="text-foreground/90">{spell.suggested_ward.meaning}</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-2">
+                  <Eye className="w-4 h-4 text-secondary mt-1 flex-shrink-0" />
+                  <div>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">How to Find It</p>
+                    <p className="text-foreground/90">{spell.suggested_ward.how_to_find}</p>
+                  </div>
+                </div>
+                
+                {spell.suggested_ward.activation && (
+                  <div className="flex items-start gap-2">
+                    <Sparkles className="w-4 h-4 text-secondary mt-1 flex-shrink-0" />
+                    <div>
+                      <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Awakening Your Ward</p>
+                      <p className="text-foreground/90">{spell.suggested_ward.activation}</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+              
+              <div className="mt-4 pt-4 border-t border-secondary/20">
+                <p className="font-montserrat text-xs text-muted-foreground italic text-center">
+                  "Carry your ward close—a physical anchor for invisible magic." — Cathleen
+                </p>
+              </div>
+            </div>
+          </section>
+        )}
+
         {/* Materials */}
         {spell.materials && spell.materials.length > 0 && (
           <section>
