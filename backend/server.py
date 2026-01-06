@@ -793,10 +793,74 @@ KATHERINE_SEANCE_PROTOCOLS = {
     ]
 }
 
+# Cathleen-specific material correspondences (voice-magic, talismans, Morrigan work)
+CATHLEEN_MATERIALS = {
+    'signature_materials': [
+        {'name': 'Silver charm (rabbit, owl, or raven)', 'icon': 'heart', 'note': 'Personal ward to carry—silver holds intention and protects'},
+        {'name': 'Crow or raven feather', 'icon': 'feather', 'note': 'The Morrigan\'s messenger—carry for transformation and courage'},
+        {'name': 'Black silk ribbon', 'icon': 'cord', 'note': 'For binding messages, sealing intentions, marking thresholds'},
+        {'name': 'White candle (beeswax preferred)', 'icon': 'candle', 'note': 'Light for guidance and blessing—beacon for the beloved dead'},
+        {'name': 'Needle and thread', 'icon': 'feather', 'note': 'For protective stitching hidden in garment linings'},
+        {'name': 'Fabric scraps from meaningful garments', 'icon': 'cord', 'note': 'Cloth holds memory—use for charm-making'},
+        {'name': 'Photographs of departed loved ones', 'icon': 'photo', 'note': 'Physical link to spirits you wish to contact'},
+        {'name': 'Playing cards or tarot deck', 'icon': 'book', 'note': 'For divination and fortune-telling'},
+        {'name': 'Tea leaves and cup', 'icon': 'bowl', 'note': 'Reading the leaves is practical, accessible divination'},
+        {'name': 'Small bell', 'icon': 'bell', 'note': 'For opening and closing spirit sessions'},
+        {'name': 'Bowl of salt', 'icon': 'salt', 'note': 'For grounding and purification after spirit work'},
+        {'name': 'Parachute silk or fine light fabric', 'icon': 'cord', 'note': 'Connection to those who flew and fell—sacred wartime material'},
+    ],
+    'ward_suggestions': [
+        {'name': 'Silver Rabbit', 'meaning': 'Luck, fertility, quick thinking, maternal protection'},
+        {'name': 'Silver Owl', 'meaning': 'Wisdom, night vision, seeing hidden truth'},
+        {'name': 'Silver Raven', 'meaning': 'Transformation, the Morrigan\'s blessing, carrying messages'},
+        {'name': 'Crow Feather', 'meaning': 'Magic, intelligence, ancestral connection, courage'},
+        {'name': 'Symbolic Brooch', 'meaning': 'Protection worn close to the heart, identity, belonging'},
+        {'name': 'Lucky Button', 'meaning': 'Holding things together, connection, practical everyday magic'},
+        {'name': 'Silk Scrap', 'meaning': 'Lightness, connection to air and those who flew, protection from above'},
+        {'name': 'Small River Stone', 'meaning': 'Grounding, connection to place, endurance through hardship'},
+    ],
+    'voice_magic_elements': [
+        {'name': 'Three-note hum', 'type': 'activation', 'note': 'Find your personal three notes to awaken wards and seals'},
+        {'name': 'Lullaby vibration', 'type': 'protection', 'note': 'Gentle humming creates protective shields around sleeping loved ones'},
+        {'name': 'Spoken incantation', 'type': 'declaration', 'note': 'Voice carries intention into the world—speak clearly, mean every word'},
+        {'name': 'Silent internal hum', 'type': 'emergency', 'note': 'When you cannot sing aloud, hum internally—the magic still works'},
+        {'name': 'Call and response', 'type': 'communion', 'note': 'In circle work, voices weaving together amplify power'},
+    ]
+}
+
+# Cathleen-specific historical sources
+CATHLEEN_HISTORICAL_SOURCES = {
+    'morrigan_traditions': [
+        {'author': 'Lady Gregory', 'work': 'Gods and Fighting Men', 'year': 1904, 'quote': 'The Morrigan\'s role in transformation and battlefield courage'},
+        {'author': 'Celtic Mythology', 'work': 'Táin Bó Cúailnge', 'year': 800, 'quote': 'The Great Queen as prophet, shapeshifter, and goddess of sovereignty'},
+        {'author': 'W.Y. Evans-Wentz', 'work': 'The Fairy-Faith in Celtic Countries', 'year': 1911, 'quote': 'Irish traditions of the crow as sacred messenger'},
+        {'author': 'Morgan Daimler', 'work': 'The Morrigan: Meeting the Great Queens', 'year': 2014, 'quote': 'Modern reconstructionist approach to Morrigan devotion'},
+    ],
+    'voice_magic': [
+        {'author': 'Gladys Osborne Leonard', 'work': 'My Life in Two Worlds', 'year': 1931, 'quote': 'Voice as conduit for spirit communication'},
+        {'author': 'Estelle Roberts', 'work': 'Fifty Years a Medium', 'year': 1959, 'quote': 'The power of the spoken word in mediumship'},
+        {'author': 'W.Y. Evans-Wentz', 'work': 'The Fairy-Faith in Celtic Countries', 'year': 1911, 'quote': 'Celtic traditions of protective singing and spoken charms'},
+    ],
+    'home_circle_spiritualism': [
+        {'author': 'Sir Oliver Lodge', 'work': 'Raymond, or Life and Death', 'year': 1916, 'quote': 'Family table sessions to contact the war dead'},
+        {'author': 'Barbanell, Maurice', 'work': 'This Is Spiritualism', 'year': 1959, 'quote': 'Guide to home circle practice and table-tipping'},
+        {'author': 'Hannen Swaffer', 'work': 'My Greatest Story', 'year': 1945, 'quote': 'Journalism and spiritualism in wartime Britain'},
+    ],
+    'jersey_maritime_traditions': [
+        {'author': 'Jersey Folk Tradition', 'work': 'Channel Island Customs', 'year': 1890, 'quote': 'The liminal power of islands between tides'},
+        {'author': 'Maritime Folk Magic', 'work': 'Sailors\' Charms and Protections', 'year': 1850, 'quote': 'Protective practices for those who travel by sea'},
+    ],
+    'wartime_spiritualism': [
+        {'author': 'Mass Observation Archive', 'work': 'Blitz Spirit Documents', 'year': 1941, 'quote': 'Singing in shelters as communal protection'},
+        {'author': 'Women\'s Voluntary Service', 'work': 'Service Records', 'year': 1942, 'quote': 'Women\'s wartime networks and hidden knowledge'},
+        {'author': 'Helen Duncan Trial Records', 'work': 'The Last Witch Trial', 'year': 1944, 'quote': 'State suppression of wartime mediumship'},
+    ]
+}
+
 # Archetype-specific image style prompts
 ARCHETYPE_IMAGE_STYLES = {
     'shiggy': 'vintage WWII era wartime poster style, Rubáiyát of Omar Khayyám illustration, Edmund Dulac aesthetic, muted earth tones with gold accents, birds and poetry motifs, 1940s British home front imagery',
-    'kathleen': 'Edwardian parlour séance aesthetic, intimate candlelit home circle, East End London 1930s-1940s Blitz era, tea cups and playing cards, table-tipping atmosphere, warm domestic setting with mystical undertones, photographs and personal mementos, protective motherly energy, sepia and warm amber tones with hints of deep blue, owl and dove imagery, lace and fabric textures',
+    'kathleen': 'Celtic goddess aesthetic, the Morrigan imagery with crows and ravens, intimate candlelit home circle, East End London 1930s-1940s Blitz era, parachute silk textures, table-tipping séance atmosphere, warm domestic setting with mystical undertones, silver talismans and brooches, protective motherly energy, deep blue and black tones with silver and red accents, voice and song motifs, lace and fine fabric textures',
     'catherine': '1920s British spiritualist séance aesthetic, Art Deco meets Victorian mourning, Spitalfields weaver imagery, needle and thread motifs, shadow and candlelight, blackout séance room atmosphere, spirit photography aesthetic with ethereal double exposures, crows and magpies as messengers, tarot and scrying mirrors, parchment and textile textures, Huguenot precision meets occult mystery, sepia and deep burgundy tones',
     'theresa': 'modern collage aesthetic with vintage elements, birds in flight, family photographs and artifacts, investigative journalism style, truth-seeking imagery, contemporary with ancestral echoes',
     'neutral': 'vintage occult grimoire illustration, woodcut engraving style, parchment texture, mystical symbols, 1920s-1940s esoteric art'
