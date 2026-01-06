@@ -60,9 +60,9 @@ export const About = () => {
             </div>
 
             <div>
-              <h3 className="font-cinzel text-base sm:text-lg text-primary mb-2">Kathleen Winifred Malzard</h3>
+              <h3 className="font-cinzel text-base sm:text-lg text-primary mb-2">Cathleen Winifred Malzard</h3>
               <p className="font-montserrat text-sm sm:text-base text-foreground/80 leading-relaxed">
-                The Keeper of Secrets, bridging Irish Catholic and Huguenot traditions. Kathleen served in 
+                The Keeper of Secrets, bridging Irish Catholic and Huguenot traditions. Cathleen served in 
                 the Women's Voluntary Service and guarded family documents, photos, and the &ldquo;veil spell&rdquo; 
                 that protects truth and reputation. Her magic is layered, protective, and navigates the delicate 
                 balance between revealing and guarding.
