@@ -656,6 +656,84 @@ async def chat_with_ai(message_data: ChatMessage):
         logging.error(f'AI chat error: {str(e)}')
         raise HTTPException(status_code=500, detail='Failed to process chat request')
 
+# Spell personalization questions endpoint
+@api_router.get('/spell-context-questions')
+async def get_spell_context_questions():
+    """Return leading questions to personalize spell generation"""
+    return {
+        "questions": [
+            {
+                "id": "materials",
+                "question": "What materials do you have access to? (select all that apply)",
+                "options": [
+                    {"value": "candles", "label": "Candles or oil lamps"},
+                    {"value": "herbs", "label": "Herbs, plants, or flowers"},
+                    {"value": "stones", "label": "Stones, crystals, or shells"},
+                    {"value": "fabric", "label": "Fabric, thread, or ribbon"},
+                    {"value": "water", "label": "Bowls, water, or mirrors"},
+                    {"value": "photos", "label": "Photographs or mementos"},
+                    {"value": "paper", "label": "Paper, pen, and journal"},
+                    {"value": "kitchen", "label": "Kitchen items (salt, honey, spices)"},
+                    {"value": "none", "label": "I'll gather what's needed"}
+                ],
+                "type": "multiselect",
+                "required": False
+            },
+            {
+                "id": "time",
+                "question": "How much time can you dedicate?",
+                "options": [
+                    {"value": "quick", "label": "5-10 minutes (quick practice)"},
+                    {"value": "medium", "label": "20-30 minutes (focused session)"},
+                    {"value": "deep", "label": "1 hour or more (deep working)"},
+                    {"value": "extended", "label": "Multiple days (extended ritual)"}
+                ],
+                "type": "single",
+                "required": False
+            },
+            {
+                "id": "experience",
+                "question": "Your experience with ritual practice?",
+                "options": [
+                    {"value": "beginner", "label": "Complete beginner - guide me through"},
+                    {"value": "some", "label": "Some experience - I know the basics"},
+                    {"value": "regular", "label": "Regular practitioner"},
+                    {"value": "experienced", "label": "Experienced - give me depth"}
+                ],
+                "type": "single",
+                "required": False
+            },
+            {
+                "id": "environment",
+                "question": "Where will you perform this ritual?",
+                "options": [
+                    {"value": "apartment", "label": "Small apartment or room"},
+                    {"value": "house", "label": "House with private space"},
+                    {"value": "garden", "label": "Garden or outdoor space"},
+                    {"value": "nature", "label": "Woods, beach, or natural setting"},
+                    {"value": "discreet", "label": "Shared space - need to be discreet"}
+                ],
+                "type": "single",
+                "required": False
+            },
+            {
+                "id": "style",
+                "question": "What kind of ritual appeals to you most?",
+                "options": [
+                    {"value": "contemplative", "label": "Quiet contemplation and meditation"},
+                    {"value": "active", "label": "Active, movement-based practice"},
+                    {"value": "creative", "label": "Creative - writing, crafting, making"},
+                    {"value": "vocal", "label": "Vocal - singing, chanting, speaking"},
+                    {"value": "nature", "label": "Nature-based - working with elements"},
+                    {"value": "surprise", "label": "Surprise me with something new"}
+                ],
+                "type": "single",
+                "required": False
+            }
+        ],
+        "instructions": "These questions help personalize your spell. All are optional - skip any you prefer."
+    }
+
 # Archetypes endpoint - returns all archetypes data
 @api_router.get('/archetypes')
 async def get_archetypes():
