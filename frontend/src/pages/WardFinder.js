@@ -405,7 +405,15 @@ const WardFinder = () => {
                     Your Suggested Wards
                   </h2>
                   {result.wards?.map((ward, index) => (
-                    <WardCard key={index} ward={ward} index={index} />
+                    <WardCard 
+                      key={index} 
+                      ward={ward} 
+                      index={index}
+                      situation={situation}
+                      onSave={handleSaveWard}
+                      isSaving={savingWards[ward.name]}
+                      isSaved={savedWards[ward.name]}
+                    />
                   ))}
                 </div>
                 
