@@ -1,24 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { BookOpen, Trash2, Eye, Loader2, Calendar, Sparkles } from 'lucide-react';
+import { BookOpen, Trash2, Eye, Loader2, Calendar, Sparkles, Hand, Heart, MapPin } from 'lucide-react';
 import { grimoireAPI } from '../utils/api';
 import { GrimoirePage } from '../components/GrimoirePage';
 import { toast } from 'sonner';
 
+const API_URL = process.env.REACT_APP_BACKEND_URL;
+
 export const MyGrimoire = () => {
   const [spells, setSpells] = useState([]);
+  const [wards, setWards] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedSpell, setSelectedSpell] = useState(null);
+  const [selectedWard, setSelectedWard] = useState(null);
   const [deleting, setDeleting] = useState(null);
+  const [activeTab, setActiveTab] = useState('spells');
 
   useEffect(() => {
-    loadSpells();
+    loadGrimoire();
   }, []);
 
-  const loadSpells = async () => {
+  const loadGrimoire = async () => {
     try {
-      const data = await grimoireAPI.getAllSpells();
-      setSpells(data);
+      const [spellsData, wardsData] = await Promise.all([
+        grimoireAPI.getAllSpells(),
+        loadWards()
+      ]);
+      setSpells(spellsData);
+      setWards(wardsData || []);
     } catch (error) {
       console.error('Failed to load grimoire:', error);
       if (error.response?.status === 401) {
@@ -28,6 +37,23 @@ export const MyGrimoire = () => {
       }
     } finally {
       setLoading(false);
+    }
+  };
+
+  const loadWards = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) return [];
+      
+      const response = await fetch(`${API_URL}/api/grimoire/wards`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      
+      if (!response.ok) return [];
+      return await response.json();
+    } catch (error) {
+      console.error('Failed to load wards:', error);
+      return [];
     }
   };
 
@@ -52,12 +78,41 @@ export const MyGrimoire = () => {
     }
   };
 
+  const handleDeleteWard = async (wardId) => {
+    if (!window.confirm('Are you sure you want to remove this ward from your grimoire?')) {
+      return;
+    }
+
+    setDeleting(wardId);
+    try {
+      const token = localStorage.getItem('token');
+      const response = await fetch(`${API_URL}/api/grimoire/wards/${wardId}`, {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      
+      if (!response.ok) throw new Error('Failed to delete');
+      
+      setWards(wards.filter(w => w.id !== wardId));
+      toast.success('Ward removed from grimoire');
+      if (selectedWard?.id === wardId) {
+        setSelectedWard(null);
+      }
+    } catch (error) {
+      console.error('Failed to delete ward:', error);
+      toast.error('Failed to remove ward');
+    } finally {
+      setDeleting(null);
+    }
+  };
+
   const handleViewSpell = (spell) => {
     setSelectedSpell(spell);
   };
 
   const handleBackToList = () => {
     setSelectedSpell(null);
+    setSelectedWard(null);
   };
 
   // If viewing a specific spell, show the full grimoire page
