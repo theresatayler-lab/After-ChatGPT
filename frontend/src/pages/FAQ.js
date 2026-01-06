@@ -13,7 +13,7 @@ const faqs = [
       },
       {
         q: 'Who are the four guides?',
-        a: 'Shiggy (Sheila Tayler) - The Psychic Matriarch of post-war London; Kathleen Malzard - The Keeper of Secrets bridging Irish and Huguenot traditions; Catherine Cosgrove - The Bird-Witch of Victorian Spitalfields; and Theresa Tayler - The Seer & Storyteller. Each guide has a unique voice, ritual style, and area of expertise spanning over a century of practice.'
+        a: 'Shiggy (Sheila Tayler) - The Psychic Matriarch of post-war London; Cathleen Malzard - The Keeper of Secrets bridging Irish and Huguenot traditions; Katherine - The Weaver of Hidden Knowledge; and Theresa Tayler - The Seer & Storyteller. Each guide has a unique voice, ritual style, and area of expertise spanning over a century of practice.'
       },
       {
         q: 'Do I have to choose a guide?',
