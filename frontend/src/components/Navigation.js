@@ -75,10 +75,6 @@ export const Navigation = ({ user, onLogout }) => {
                       ? 'text-amber-300 bg-amber-500/10 border-b-2 border-amber-500' 
                       : 'text-amber-100/70 hover:text-amber-200 hover:bg-amber-500/5'
                   }`}
-                    isActive
-                      ? 'bg-primary/10 text-primary border border-primary/30'
-                      : 'text-muted-foreground hover:text-primary hover:bg-primary/5'
-                  }`}
                 >
                   <Icon className="w-4 h-4" />
                   <span>{link.label}</span>
@@ -91,7 +87,7 @@ export const Navigation = ({ user, onLogout }) => {
                 <Link
                   to="/profile"
                   data-testid="nav-profile"
-                  className="px-3 py-2 rounded-sm font-montserrat text-xs tracking-wider transition-all duration-300 flex items-center space-x-1 text-muted-foreground hover:text-primary hover:bg-primary/5"
+                  className="px-3 py-2 rounded-sm font-montserrat text-xs tracking-wider transition-all duration-300 flex items-center space-x-1 text-amber-100/70 hover:text-amber-200 hover:bg-amber-500/5"
                 >
                   <User className="w-4 h-4" />
                   <span>{user.name}</span>
@@ -99,7 +95,7 @@ export const Navigation = ({ user, onLogout }) => {
                 <button
                   onClick={onLogout}
                   data-testid="nav-logout"
-                  className="px-3 py-2 rounded-sm font-montserrat text-xs tracking-wider transition-all duration-300 flex items-center space-x-1 text-muted-foreground hover:text-destructive hover:bg-destructive/10"
+                  className="px-3 py-2 rounded-sm font-montserrat text-xs tracking-wider transition-all duration-300 flex items-center space-x-1 text-amber-100/70 hover:text-red-400 hover:bg-red-500/10"
                 >
                   <LogOut className="w-4 h-4" />
                 </button>
@@ -108,7 +104,7 @@ export const Navigation = ({ user, onLogout }) => {
               <Link
                 to="/auth"
                 data-testid="nav-login"
-                className="ml-4 px-4 py-2 bg-primary text-primary-foreground rounded-sm font-montserrat text-xs tracking-widest uppercase hover:bg-primary/90 transition-all duration-300"
+                className="ml-4 px-4 py-2 bg-gradient-to-r from-amber-700 via-amber-600 to-amber-700 text-amber-50 rounded-sm font-montserrat text-xs tracking-widest uppercase hover:from-amber-600 hover:via-amber-500 hover:to-amber-600 transition-all duration-300"
               >
                 Login
               </Link>
@@ -121,7 +117,7 @@ export const Navigation = ({ user, onLogout }) => {
               <Link
                 to="/profile"
                 onClick={handleLinkClick}
-                className="p-2 rounded-sm text-muted-foreground hover:text-primary transition-all"
+                className="p-2 rounded-sm text-amber-100/70 hover:text-amber-200 transition-all"
               >
                 <User className="w-5 h-5" />
               </Link>
