@@ -1102,7 +1102,7 @@ You MUST respond with a JSON object in this EXACT format (no markdown, just pure
     }},
     "historical_context": {{
         "tradition": "Name the magical tradition this draws from",
-        "time_period": "1910-1945 or relevant era",
+        "time_period": "The relevant era for this practice",
         "practitioners": ["Historical figures who used similar practices"],
         "sources": [
             {{"author": "Author name", "work": "Book/work title", "year": 1930, "relevance": "How this source relates to the spell"}}
@@ -1117,14 +1117,51 @@ You MUST respond with a JSON object in this EXACT format (no markdown, just pure
     "image_prompt": "A detailed prompt to generate a header image for this spell (describe visual elements, mood, symbols)"
 }}
 
-IMPORTANT GUIDELINES:
-- The tarot_card section is a BRIEF summary that fits on a card - keep ALL fields very short
-- The tarot_card incantation should be the most memorable, quotable line from the spell
-- Include 4-8 materials with appropriate icons in the full spell
-- Include 5-8 detailed steps in the full spell
-- Cite at least 2-3 historical sources with real books/authors from the 1910-1945 period
-- The spoken_words should feel authentic to your tradition
-- Make the historical_context genuinely educational
+CRITICAL GUIDELINES FOR RICH, VARIED SPELLS:
+
+1. DRAW FROM DIVERSE SPIRITUAL TRADITIONS (not just 1900s Britain):
+   - Ancient Celtic & Irish practices (Druids, bean feasa, Morrigan traditions)
+   - Medieval grimoire traditions (cunning craft, herbalism, protective charms)
+   - Victorian & Edwardian spiritualism (séances, mediumship, psychical research)
+   - Folk magic from multiple cultures (hoodoo, hedge witchcraft, kitchen magic)
+   - Theosophical & Golden Dawn influences
+   - Modern psychological frameworks (shadow work, ritual psychology)
+   - Indigenous wisdom traditions (where appropriate and respectful)
+   While speaking in the voice of your era (1900s-1940s Britain), draw wisdom from ALL reliable sources.
+
+2. AVOID REPETITIVE MATERIALS - vary your suggestions:
+   - Don't always suggest candles—consider: oil lamps, lanterns, firelight, starlight
+   - Don't always suggest salt—consider: iron filings, brick dust, ash, blessed water
+   - Don't always suggest crystals—consider: river stones, shells, bones, coins, buttons
+   - Don't always suggest herbs—consider: tree bark, flower petals, seeds, roots, moss
+   - Rotate through categories: found objects, household items, natural materials, symbolic objects
+   - Consider what the seeker might ALREADY HAVE access to
+
+3. MAKE EACH SPELL UNIQUE:
+   - Vary the structure: some spells are single-action, some are elaborate multi-day workings
+   - Vary the timing: not always full moon/midnight—dawn, dusk, rainy days, first frost
+   - Vary the approach: some contemplative, some active, some creative, some destructive
+   - Create unexpected combinations: sewing + singing, cooking + meditation, walking + incantation
+   - Include at least one surprising or unusual element in each spell
+
+4. PERSONALIZATION BASED ON CONTEXT:
+   - If seeker mentions specific materials they have, incorporate those
+   - If seeker mentions time constraints, offer abbreviated versions
+   - If seeker mentions specific challenges, address those directly
+   - Consider the seeker's likely environment (apartment vs. house, urban vs. rural)
+
+5. HISTORICAL SOURCES - BE EXPANSIVE:
+   - Cite sources from MULTIPLE eras, not just 1920s-1940s
+   - Include folklore collections (Briggs, Frazer, Campbell)
+   - Include practical magic texts (Agrippa, Leland, Valiente)
+   - Include spiritual memoirs and autobiographies
+   - Include academic studies on folk practice
+   - Make historical_context genuinely EDUCATIONAL and surprising
+
+6. THE TAROT CARD SUMMARY must be BRIEF - all fields under 20 words
+7. Include 4-8 VARIED materials with appropriate icons
+8. Include 5-8 detailed steps - but vary the complexity
+9. The spoken_words should feel authentic, poetic, and MEMORABLE
 {katherine_context}{cathleen_context}{db_context}
 
 Respond ONLY with the JSON object, no other text."""
