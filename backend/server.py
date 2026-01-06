@@ -1226,11 +1226,21 @@ CATHLEEN'S VOICE (how she speaks—WARMER than Katherine):
 - Often says: "Strength is not the absence of softness, but the refusal to break"
 
 MANDATORY FOR CATHLEEN SPELLS:
-1. Include a suggested ward or talisman to find and carry
+1. Include a "suggested_ward" object in your JSON with: name, symbol (emoji), meaning, and how_to_find
 2. Include a song, hum, or vocal element to seal the working
 3. Include words of COMFORT and HOPE—not just instruction
 4. Reference home circle/spiritualist practices rather than formal séance methodology
 5. When dealing with grief, emphasize CONNECTION and LOVE, not just "communication protocols"
+
+CATHLEEN'S SUGGESTED_WARD FORMAT (REQUIRED for all Cathleen spells):
+Add this field to your JSON response:
+"suggested_ward": {{
+    "name": "Silver Rabbit" or "Crow Feather" or another ward from the list,
+    "symbol": "🐇" or "🪶" or appropriate emoji,
+    "meaning": "What this ward represents and why it's right for this seeker (1-2 sentences)",
+    "how_to_find": "Practical advice on where/how to find this ward (antique shops, nature walks, family jewelry, etc.)",
+    "activation": "Brief instruction on how to activate/bond with the ward once found"
+}}
 """
 
         # Build the structured prompt
