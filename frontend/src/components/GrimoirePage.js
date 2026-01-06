@@ -258,66 +258,7 @@ const TarotCardView = ({ spell, archetype, style, imageBase64, onViewFull, onCop
 };
 
 export const GrimoirePage = ({ spell, archetype, imageBase64, onNewSpell }) => {
-            {tarot.timing && (
-              <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground">
-                <Clock className="w-3 h-3" />
-                <span className="font-montserrat">{tarot.timing}</span>
-              </div>
-            )}
-            
-            {tarot.warning && (
-              <p className="font-montserrat text-xs text-destructive/80 text-center italic">
-                ⚠ {tarot.warning}
-              </p>
-            )}
-          </div>
-          
-          {/* Bottom Symbol */}
-          <div className="text-center mt-4">
-            <span className="text-2xl opacity-50">{tarot.symbol || '✧'}</span>
-          </div>
-        </div>
-      </div>
-      
-      {/* View Full Ritual Button */}
-      <div className="mt-6 text-center">
-        <button
-          onClick={onViewFull}
-          className="px-6 py-3 bg-primary text-primary-foreground rounded-sm font-montserrat tracking-widest uppercase text-sm hover:bg-primary/90 transition-all flex items-center justify-center gap-2 mx-auto"
-        >
-          <BookOpen className="w-4 h-4" />
-          View Full Ritual
-        </button>
-      </div>
-      
-      {/* Quick Actions */}
-      <div className="flex justify-center gap-3 mt-4">
-        <button
-          onClick={onCopy}
-          className="p-2 bg-transparent text-primary border border-primary/30 rounded-sm hover:bg-primary/10 transition-all"
-          title="Copy to clipboard"
-        >
-          <Copy className="w-4 h-4" />
-        </button>
-        <button
-          onClick={onSave}
-          disabled={isSaving}
-          className="p-2 bg-accent text-accent-foreground rounded-sm hover:bg-accent/90 transition-all disabled:opacity-50"
-          title="Save to Grimoire"
-        >
-          <Save className={`w-4 h-4 ${isSaving ? 'animate-pulse' : ''}`} />
-        </button>
-        <button
-          onClick={onNewSpell}
-          className="p-2 bg-transparent text-primary border border-primary/30 rounded-sm hover:bg-primary/10 transition-all"
-          title="New Spell"
-        >
-          <Sparkles className="w-4 h-4" />
-        </button>
-      </div>
-    </motion.div>
-  );
-};
+  const [showHistoricalContext, setShowHistoricalContext] = useState(false);
 
 export const GrimoirePage = ({ spell, archetype, imageBase64, onNewSpell }) => {
   const [showHistoricalContext, setShowHistoricalContext] = useState(false);
