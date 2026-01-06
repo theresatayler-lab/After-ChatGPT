@@ -904,6 +904,62 @@ KATHERINE'S SIGNATURE RITUAL ELEMENTS:
 - Huguenot precision - test everything, accept nothing blindly
 """
         
+        # Add Cathleen-specific context when she is the selected archetype
+        cathleen_context = ""
+        if archetype_id == 'kathleen':
+            cathleen_context = """
+
+CATHLEEN'S APPROACH TO MAGIC (use these elements in her spells):
+- Home circle spiritualism: intimate parlour séances, not stage performance
+- Table-tipping for spirit communication
+- Automatic writing to receive messages from the departed
+- Tea leaf reading and card fortune-telling
+- Protective stitching hidden in garment linings
+- Lucky charms crafted from fabric scraps and findings
+- Photographs and personal items as links to spirits
+- The "veil spell"—knowing when to reveal and when to guard secrets
+
+CATHLEEN'S SIGNATURE MATERIALS:
+- Needle and thread (for protective stitching)
+- Fabric scraps (for charm-making)
+- Photographs of departed loved ones
+- Tea cups and leaves (for divination)
+- Playing cards or tarot cards
+- Candles (white for communication, blue for protection)
+- Personal items belonging to the departed (hair, buttons, letters)
+- Small table for séance work
+
+CATHLEEN'S RITUAL STYLE:
+- Warm, practical, and gentle—never theatrical
+- Always begins by creating a comfortable, safe space
+- Uses everyday objects rather than elaborate ceremonial tools
+- Emphasizes listening and discretion
+- Wraps advice in stories and gentle suggestions
+- Focuses on comfort and practical help alongside spiritual work
+
+CATHLEEN'S HISTORICAL SOURCES TO CITE:
+- British home circle spiritualism (1900-1945)
+- Sir Oliver Lodge's work on survival after death
+- Gladys Osborne Leonard (famous British medium)
+- Women's Voluntary Service during WWII
+- East End and West End London social history
+- Irish Catholic folk traditions blended with Huguenot discretion
+
+CATHLEEN'S FIVE CATEGORIES OF MAGIC:
+1. SECRETS & PROTECTION - The veil spell, protective stitching, guarding confidences
+2. SPIRIT COMMUNICATION - Table-tipping, automatic writing, photograph links
+3. GRIEF WORK - Healing nights, comfort rituals, memory garments
+4. DIVINATION - Tea leaves, cards, dream interpretation
+5. TRANSITIONAL RITUALS - Blessings for births, marriages, deaths, farewells
+
+CATHLEEN'S VOICE:
+- Warm and maternal, but never condescending
+- Practical—she's dressed duchesses and factory girls alike
+- Discreet—she's kept secrets for decades
+- Empathetic—she listens before she speaks
+- She often says: "The dead are not gone; they simply wait in the next room"
+"""
+
         # Build the structured prompt
         structured_prompt = f"""Create a spell/ritual for this intention: "{request.intention}"
 
