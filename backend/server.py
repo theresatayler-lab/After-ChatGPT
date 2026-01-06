@@ -1291,8 +1291,17 @@ You MUST respond with a JSON object in this EXACT format (no markdown, just pure
     ],
     "warnings": ["Any cautions or ethical considerations"],
     "closing_message": "A personal message of encouragement in your voice",
-    "image_prompt": "A detailed prompt to generate a header image for this spell (describe visual elements, mood, symbols)"
+    "image_prompt": "A detailed prompt to generate a header image for this spell (describe visual elements, mood, symbols)",
+    "suggested_ward": {{
+        "name": "Name of the ward or talisman (FOR CATHLEEN ONLY - omit for other archetypes)",
+        "symbol": "Emoji representing the ward",
+        "meaning": "What this ward represents and why it's right for this seeker",
+        "how_to_find": "Where/how to find this ward",
+        "activation": "How to activate/bond with the ward"
+    }}
 }}
+
+NOTE: The "suggested_ward" field is REQUIRED for Cathleen spells and OPTIONAL for others.
 
 CRITICAL GUIDELINES FOR RICH, VARIED SPELLS:
 
