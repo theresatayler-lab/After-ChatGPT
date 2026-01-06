@@ -269,7 +269,7 @@ const GuideCard = ({ archetype, index, isCurrentGuide, isExpanded, onToggle, onS
               <ul className="space-y-1">
                 {archetype.tenets.slice(0, 4).map((tenet, i) => (
                   <li key={i} className="font-crimson text-xs text-foreground/70 italic">
-                    "{tenet}"
+                    &ldquo;{tenet}&rdquo;
                   </li>
                 ))}
               </ul>
