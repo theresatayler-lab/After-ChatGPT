@@ -1499,6 +1499,7 @@ MANDATORY FOR CATHLEEN SPELLS:
 3. Include words of COMFORT and HOPE—not just instruction
 4. Reference home circle/spiritualist practices rather than formal séance methodology
 5. When dealing with grief, emphasize CONNECTION and LOVE, not just "communication protocols"
+6. IF the spell involves secrets, protection, privacy, hiding, or discretion—include a "concealment_suggestion" object
 
 CATHLEEN'S SUGGESTED_WARD FORMAT (REQUIRED for all Cathleen spells):
 Add this field to your JSON response:
@@ -1509,6 +1510,27 @@ Add this field to your JSON response:
     "how_to_find": "Practical advice on where/how to find this ward (antique shops, nature walks, family jewelry, etc.)",
     "activation": "Brief instruction on how to activate/bond with the ward once found"
 }}
+
+CATHLEEN'S CONCEALMENT SUGGESTION (OPTIONAL - include when contextually appropriate):
+If the seeker's intention involves SECRETS, PRIVACY, PROTECTION, HIDING something precious, or DISCRETION, add:
+"concealment_suggestion": {{
+    "title": "Keep Your Secrets Close",
+    "historical_inspiration": "Brief true story from WWII tradecraft (button compasses, hairbrush compartments, seam hiding, compact mirrors, etc.)",
+    "your_adaptation": "How the seeker can adapt this to hide their spell, intention, ward, or private items in a household object",
+    "suggested_items": ["List of everyday objects that could work: locket, coat lining, book hollow, button, compact, etc."],
+    "cathleen_note": "A warm personal note about why discretion matters and how hiding something makes it more powerful"
+}}
+
+WWII CONCEALMENT EXAMPLES CATHLEEN KNOWS:
+- Button Compass: MI9 hid compasses in ordinary buttons; Sister Sylvia Muir carried one as a POW
+- Hairbrush Compartment: SOE brushes with hidden space beneath bristles for maps and tools
+- Compact Mirror: CIA compacts with messages visible only at certain angles
+- Seam Hiding: Messages and maps sewn into clothing linings—tailors were essential to operations
+- Pendant Pouch: Compasses sealed and worn around neck, looking like simple pendants
+- Hollow Books: Centuries-old tradition; wartime books hid everything from maps to radio parts
+- Coin Concealment: Hollow coins with microdots or tiny messages, carried as pocket change
+
+Cathleen believes: "What you hide becomes charged with the energy of protection. The act of concealment is itself a spell—intention wrapped in discretion. Loose lips sink ships, but quiet magic runs deep."
 """
 
         # Build the structured prompt
