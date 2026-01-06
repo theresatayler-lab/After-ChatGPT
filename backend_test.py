@@ -470,11 +470,11 @@ class SpiritualAppAPITester:
         return False
 
     def test_spell_generation_kathleen_protection(self):
-        """Test spell generation with Kathleen archetype for protection"""
+        """Test spell generation with Kathleen archetype for protection - REVIEW REQUEST TEST"""
         spell_data = {
-            "intention": "I need protection for my home",
+            "intention": "A protection spell",
             "archetype": "kathleen",
-            "generate_image": False
+            "generate_image": True
         }
         
         success, response = self.run_test(
