@@ -792,7 +792,7 @@ KATHERINE_SEANCE_PROTOCOLS = {
 # Archetype-specific image style prompts
 ARCHETYPE_IMAGE_STYLES = {
     'shiggy': 'vintage WWII era wartime poster style, Rubáiyát of Omar Khayyám illustration, Edmund Dulac aesthetic, muted earth tones with gold accents, birds and poetry motifs, 1940s British home front imagery',
-    'kathleen': 'Edwardian spiritualist séance aesthetic, West End London 1920s, coded wartime symbolism, Victorian mourning jewelry motifs, sepia tones, protective talismans, mysterious veiled imagery',
+    'kathleen': 'Edwardian parlour séance aesthetic, intimate candlelit home circle, East End London 1930s-1940s Blitz era, tea cups and playing cards, table-tipping atmosphere, warm domestic setting with mystical undertones, photographs and personal mementos, protective motherly energy, sepia and warm amber tones with hints of deep blue, owl and dove imagery, lace and fabric textures',
     'catherine': '1920s British spiritualist séance aesthetic, Art Deco meets Victorian mourning, Spitalfields weaver imagery, needle and thread motifs, shadow and candlelight, blackout séance room atmosphere, spirit photography aesthetic with ethereal double exposures, crows and magpies as messengers, tarot and scrying mirrors, parchment and textile textures, Huguenot precision meets occult mystery, sepia and deep burgundy tones',
     'theresa': 'modern collage aesthetic with vintage elements, birds in flight, family photographs and artifacts, investigative journalism style, truth-seeking imagery, contemporary with ancestral echoes',
     'neutral': 'vintage occult grimoire illustration, woodcut engraving style, parchment texture, mystical symbols, 1920s-1940s esoteric art'
