@@ -1065,6 +1065,58 @@ async def generate_spell(
         if figures:
             db_context += f"\\nHISTORICAL FIGURES TO REFERENCE: {', '.join([f['name'] for f in figures])}"
         
+        # Build personalization context from leading questions (if provided)
+        personalization_context = ""
+        if request.context:
+            ctx = request.context
+            personalization_parts = []
+            
+            if ctx.get('materials'):
+                materials_list = ctx['materials'] if isinstance(ctx['materials'], list) else [ctx['materials']]
+                personalization_parts.append(f"SEEKER HAS ACCESS TO: {', '.join(materials_list)} - prioritize using these materials")
+            
+            if ctx.get('time'):
+                time_map = {
+                    'quick': 'KEEP IT BRIEF: Seeker has only 5-10 minutes. Create a focused, simple ritual.',
+                    'medium': 'MODERATE LENGTH: Seeker has 20-30 minutes. Include proper setup and closing.',
+                    'deep': 'DEEP WORKING: Seeker has 1+ hours. Create a rich, multi-layered ritual.',
+                    'extended': 'EXTENDED RITUAL: Seeker can work over multiple days. Include preparation, main working, and integration phases.'
+                }
+                personalization_parts.append(time_map.get(ctx['time'], ''))
+            
+            if ctx.get('experience'):
+                exp_map = {
+                    'beginner': 'BEGINNER SEEKER: Explain everything clearly. Include detailed instructions and why each step matters. Avoid jargon.',
+                    'some': 'SOME EXPERIENCE: Seeker knows basics. Include intermediate techniques but explain unusual elements.',
+                    'regular': 'REGULAR PRACTITIONER: Can assume familiarity with standard practices. Include some advanced elements.',
+                    'experienced': 'EXPERIENCED PRACTITIONER: Include depth, nuance, and advanced variations. Can use technical language.'
+                }
+                personalization_parts.append(exp_map.get(ctx['experience'], ''))
+            
+            if ctx.get('environment'):
+                env_map = {
+                    'apartment': 'SMALL SPACE: Design for apartment living. Minimize smoke, large flames, or loud sounds.',
+                    'house': 'PRIVATE SPACE: Can include candles, incense, and vocal work without concern.',
+                    'garden': 'OUTDOOR SPACE: Include earth-touching elements, weather-dependent timing, natural materials.',
+                    'nature': 'NATURE SETTING: Fully embrace outdoor elements—trees, water, sky, earth. Include walking or movement.',
+                    'discreet': 'DISCRETION NEEDED: Design for shared/public spaces. Use portable, inconspicuous tools. Internal/silent variations.'
+                }
+                personalization_parts.append(env_map.get(ctx['environment'], ''))
+            
+            if ctx.get('style'):
+                style_map = {
+                    'contemplative': 'CONTEMPLATIVE STYLE: Emphasize meditation, visualization, breath work, stillness.',
+                    'active': 'ACTIVE STYLE: Include movement, walking, physical actions, gesture magic.',
+                    'creative': 'CREATIVE STYLE: Center the ritual around making something—writing, crafting, drawing, sewing.',
+                    'vocal': 'VOCAL STYLE: Emphasize singing, chanting, spoken word, humming, breath as sound.',
+                    'nature': 'NATURE-BASED: Work with elements—water, earth, fire, air, plants, stones, weather.',
+                    'surprise': 'SURPRISE THE SEEKER: Include unexpected elements, unusual combinations, fresh approaches.'
+                }
+                personalization_parts.append(style_map.get(ctx['style'], ''))
+            
+            if personalization_parts:
+                personalization_context = "\\n\\nSEEKER PERSONALIZATION:\\n" + "\\n".join([p for p in personalization_parts if p])
+        
         # Add Katherine-specific context when she is the selected archetype
         katherine_context = ""
         if archetype_id == 'catherine':
