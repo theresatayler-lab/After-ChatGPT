@@ -32,17 +32,30 @@ export const Navigation = ({ user, onLogout }) => {
   };
   
   return (
-    <nav className="border-b border-border bg-background/95 backdrop-blur-sm sticky top-0 z-50">
+    <nav 
+      className="sticky top-0 z-50"
+      style={{
+        background: 'linear-gradient(to bottom, rgba(26, 21, 18, 0.98) 0%, rgba(26, 21, 18, 0.95) 100%)',
+        backdropFilter: 'blur(8px)',
+        borderBottom: '1px solid rgba(139, 90, 43, 0.2)',
+      }}
+    >
+      {/* Decorative top border */}
+      <div className="h-px bg-gradient-to-r from-transparent via-amber-600/50 to-transparent" />
+      
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2" data-testid="nav-logo" onClick={handleLinkClick}>
-            <img 
-              src="https://customer-assets.emergentagent.com/job_mystic-circle-2/artifacts/li34ks3x_Where%20the%20Crowlands%20Logos.png" 
-              alt="Where The Crowlands Logo"
-              className="h-10 sm:h-12 md:h-16 w-auto"
-              style={{ mixBlendMode: 'multiply' }}
-            />
+          {/* Logo with glow */}
+          <Link to="/" className="flex items-center space-x-2 group" data-testid="nav-logo" onClick={handleLinkClick}>
+            <div className="relative">
+              <div className="absolute inset-0 blur-md opacity-0 group-hover:opacity-50 transition-opacity bg-amber-500/30" />
+              <img 
+                src="https://customer-assets.emergentagent.com/job_mystic-circle-2/artifacts/li34ks3x_Where%20the%20Crowlands%20Logos.png" 
+                alt="Where The Crowlands Logo"
+                className="relative h-10 sm:h-12 md:h-16 w-auto"
+                style={{ filter: 'brightness(1.1)' }}
+              />
+            </div>
           </Link>
           
           {/* Desktop Navigation */}
@@ -58,6 +71,10 @@ export const Navigation = ({ user, onLogout }) => {
                   to={link.to}
                   data-testid={`nav-${link.label.toLowerCase().replace(' ', '-')}`}
                   className={`px-3 py-2 rounded-sm font-montserrat text-xs tracking-wider transition-all duration-300 flex items-center space-x-1 ${
+                    isActive 
+                      ? 'text-amber-300 bg-amber-500/10 border-b-2 border-amber-500' 
+                      : 'text-amber-100/70 hover:text-amber-200 hover:bg-amber-500/5'
+                  }`}
                     isActive
                       ? 'bg-primary/10 text-primary border border-primary/30'
                       : 'text-muted-foreground hover:text-primary hover:bg-primary/5'
