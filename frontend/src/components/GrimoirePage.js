@@ -428,6 +428,7 @@ export const GrimoirePage = ({ spell, archetype, imageBase64, onNewSpell }) => {
         spell={spell}
         archetype={archetype}
         style={style}
+        imageBase64={imageBase64}
         onViewFull={() => setViewMode('full')}
         onCopy={copySpellToClipboard}
         onSave={saveToGrimoire}
