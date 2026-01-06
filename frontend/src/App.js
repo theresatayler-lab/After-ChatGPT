@@ -71,6 +71,7 @@ function App() {
           <Route path="/auth" element={<Auth onLogin={handleLogin} />} />
           <Route path="/spell-request" element={<SpellRequest selectedArchetype={selectedArchetype} />} />
           <Route path="/guides" element={<Guides />} />
+          <Route path="/ward-finder" element={<WardFinder />} />
           <Route path="/upgrade" element={<Upgrade />} />
           <Route path="/payment-success" element={<PaymentSuccess />} />
           <Route path="/about" element={<About />} />
