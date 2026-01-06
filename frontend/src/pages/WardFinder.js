@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  Sparkles, Send, Heart, Eye, MapPin, Hand, Package,
-  Loader2, ArrowLeft, RefreshCw
+  Sparkles, Heart, Eye, MapPin, Hand, Package,
+  Loader2, ArrowLeft, RefreshCw, Save, Check
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
@@ -14,7 +14,7 @@ const API_URL = process.env.REACT_APP_BACKEND_URL;
 // Cathleen's image
 const CATHLEEN_IMAGE = "https://customer-assets.emergentagent.com/job_diywizardry/artifacts/2yrmxbqx_Cathleen16.png";
 
-const WardCard = ({ ward, index }) => {
+const WardCard = ({ ward, index, situation, onSave, isSaving, isSaved }) => {
   const [expanded, setExpanded] = useState(false);
   
   return (
