@@ -43,71 +43,219 @@ const ARCHETYPE_STYLES = {
     accentColor: 'text-primary',
     bgAccent: 'bg-primary/5',
     headerGradient: 'from-primary/20 to-transparent',
+    cardGradient: 'from-amber-900/90 via-amber-800/80 to-amber-900/90',
   },
   kathleen: {
     borderColor: 'border-secondary',
     accentColor: 'text-secondary',
     bgAccent: 'bg-secondary/5',
     headerGradient: 'from-secondary/20 to-transparent',
+    cardGradient: 'from-slate-800/90 via-slate-700/80 to-slate-800/90',
   },
   catherine: {
     borderColor: 'border-accent',
     accentColor: 'text-accent',
     bgAccent: 'bg-accent/5',
     headerGradient: 'from-accent/20 to-transparent',
+    cardGradient: 'from-stone-800/90 via-stone-700/80 to-stone-800/90',
   },
   theresa: {
     borderColor: 'border-primary',
     accentColor: 'text-primary',
     bgAccent: 'bg-primary/5',
     headerGradient: 'from-primary/10 via-secondary/10 to-transparent',
+    cardGradient: 'from-violet-900/90 via-violet-800/80 to-violet-900/90',
   },
   neutral: {
     borderColor: 'border-border',
     accentColor: 'text-primary',
     bgAccent: 'bg-muted/30',
     headerGradient: 'from-muted/30 to-transparent',
+    cardGradient: 'from-zinc-800/90 via-zinc-700/80 to-zinc-800/90',
   },
 };
 
-// Tarot Card View Component - separated to avoid re-render issues
-const TarotCardView = ({ spell, archetype, style, onViewFull, onCopy, onSave, onNewSpell, isSaving }) => {
+// Enhanced Tarot Card View with Image
+const TarotCardView = ({ spell, archetype, style, imageBase64, onViewFull, onCopy, onSave, onNewSpell, isSaving }) => {
   const tarot = spell?.tarot_card;
   if (!tarot) return null;
   
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: 1, scale: 1 }}
-      className="max-w-sm mx-auto"
+      initial={{ opacity: 0, scale: 0.95, rotateY: -10 }}
+      animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="max-w-md mx-auto perspective-1000"
     >
+      {/* Main Card */}
       <div 
-        className={`relative bg-gradient-to-b from-card via-card to-card/90 border-2 ${style.borderColor} rounded-lg shadow-2xl overflow-hidden`}
+        className="relative rounded-xl overflow-hidden"
         style={{ 
-          backgroundColor: '#D8CBB3',
-          aspectRatio: '2.5/3.5'
+          aspectRatio: '2.5/4',
+          boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 40px rgba(139, 90, 43, 0.2)',
         }}
       >
-        {/* Card Border Design */}
-        <div className="absolute inset-2 border border-primary/30 rounded-md pointer-events-none" />
-        <div className="absolute inset-4 border border-primary/20 rounded-sm pointer-events-none" />
+        {/* Gold outer border effect */}
+        <div 
+          className="absolute inset-0 rounded-xl"
+          style={{
+            background: 'linear-gradient(135deg, #B8860B 0%, #DAA520 20%, #FFD700 50%, #DAA520 80%, #B8860B 100%)',
+            padding: '4px',
+          }}
+        />
         
-        {/* Card Content */}
-        <div className="relative h-full flex flex-col p-6">
-          {/* Top Symbol */}
-          <div className="text-center mb-4">
-            <span className="text-4xl">{tarot.symbol || '✧'}</span>
+        {/* Card inner container */}
+        <div className="absolute inset-1 rounded-lg overflow-hidden bg-[#1a1a1a]">
+          {/* Background Image */}
+          {imageBase64 ? (
+            <div className="absolute inset-0">
+              <img 
+                src={`data:image/png;base64,${imageBase64}`}
+                alt={spell.title}
+                className="w-full h-full object-cover"
+              />
+              {/* Gradient overlays for readability */}
+              <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/80" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+            </div>
+          ) : (
+            <div className={`absolute inset-0 bg-gradient-to-b ${style.cardGradient}`} />
+          )}
+          
+          {/* Decorative inner borders */}
+          <div className="absolute inset-3 border border-amber-500/30 rounded-md pointer-events-none" />
+          <div className="absolute inset-5 border border-amber-400/20 rounded-sm pointer-events-none" />
+          
+          {/* Corner ornaments */}
+          <div className="absolute top-4 left-4 w-6 h-6 border-t-2 border-l-2 border-amber-500/50" />
+          <div className="absolute top-4 right-4 w-6 h-6 border-t-2 border-r-2 border-amber-500/50" />
+          <div className="absolute bottom-4 left-4 w-6 h-6 border-b-2 border-l-2 border-amber-500/50" />
+          <div className="absolute bottom-4 right-4 w-6 h-6 border-b-2 border-r-2 border-amber-500/50" />
+          
+          {/* Card Content */}
+          <div className="relative h-full flex flex-col p-6 text-white">
+            {/* Top Section - Symbol & Title */}
+            <div className="text-center mb-2">
+              <span className="text-4xl drop-shadow-lg">{tarot.symbol || '✧'}</span>
+            </div>
+            
+            <h2 
+              className="font-italiana text-2xl md:text-3xl text-amber-100 text-center mb-1"
+              style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.8)' }}
+            >
+              {tarot.title || spell.title}
+            </h2>
+            
+            {/* Archetype Attribution */}
+            {archetype && (
+              <p className="font-montserrat text-xs text-amber-300/80 text-center mb-3 tracking-[0.2em] uppercase">
+                {archetype.name}
+              </p>
+            )}
+            
+            {/* Decorative divider */}
+            <div className="flex items-center justify-center gap-2 mb-3">
+              <div className="h-px bg-gradient-to-r from-transparent to-amber-500/50 flex-1" />
+              <Moon className="w-4 h-4 text-amber-400/60" />
+              <div className="h-px bg-gradient-to-l from-transparent to-amber-500/50 flex-1" />
+            </div>
+            
+            {/* Middle Section - Essence & Key Action */}
+            <div className="flex-1 flex flex-col justify-center space-y-3">
+              {/* Essence */}
+              <p 
+                className="font-crimson text-base text-amber-50/90 text-center leading-relaxed"
+                style={{ textShadow: '1px 1px 4px rgba(0,0,0,0.7)' }}
+              >
+                {tarot.essence}
+              </p>
+              
+              {/* Key Action Box */}
+              <div className="bg-black/40 backdrop-blur-sm border border-amber-500/30 rounded-sm p-3">
+                <p className="font-montserrat text-xs text-amber-400/70 uppercase tracking-wider mb-1 text-center">
+                  Key Action
+                </p>
+                <p className="font-crimson text-sm text-amber-50/80 text-center">
+                  {tarot.key_action}
+                </p>
+              </div>
+              
+              {/* Incantation */}
+              <div className="py-3 border-y border-amber-500/30">
+                <p 
+                  className="font-crimson text-lg text-amber-200 italic text-center"
+                  style={{ textShadow: '1px 1px 6px rgba(0,0,0,0.8)' }}
+                >
+                  &ldquo;{tarot.incantation}&rdquo;
+                </p>
+              </div>
+            </div>
+            
+            {/* Bottom Section - Timing & Warning */}
+            <div className="mt-3 space-y-2">
+              {tarot.timing && (
+                <div className="flex items-center justify-center gap-2 text-xs text-amber-300/70">
+                  <Clock className="w-3 h-3" />
+                  <span className="font-montserrat tracking-wider">{tarot.timing}</span>
+                </div>
+              )}
+              
+              {tarot.warning && (
+                <p className="font-montserrat text-xs text-red-400/80 text-center italic">
+                  ⚠ {tarot.warning}
+                </p>
+              )}
+              
+              {/* Bottom symbol */}
+              <div className="text-center pt-2">
+                <span className="text-2xl text-amber-500/40">{tarot.symbol || '✧'}</span>
+              </div>
+            </div>
           </div>
-          
-          {/* Title */}
-          <h2 className="font-italiana text-2xl md:text-3xl text-primary text-center mb-2">
-            {tarot.title || spell.title}
-          </h2>
-          
-          {/* Archetype Attribution */}
-          {archetype && (
-            <p className="font-montserrat text-xs text-muted-foreground text-center mb-4 tracking-widest uppercase">
-              {archetype.name}
+        </div>
+      </div>
+      
+      {/* Action Buttons Below Card */}
+      <div className="mt-6 space-y-4">
+        {/* View Full Ritual Button */}
+        <button
+          onClick={onViewFull}
+          className="w-full px-6 py-3 bg-gradient-to-r from-amber-700 via-amber-600 to-amber-700 text-amber-50 rounded-sm font-montserrat tracking-widest uppercase text-sm hover:from-amber-600 hover:via-amber-500 hover:to-amber-600 transition-all flex items-center justify-center gap-2 shadow-lg"
+          style={{ boxShadow: '0 4px 15px rgba(139, 90, 43, 0.4)' }}
+        >
+          <BookOpen className="w-4 h-4" />
+          View Full Ritual
+        </button>
+        
+        {/* Quick Actions */}
+        <div className="flex justify-center gap-3">
+          <button
+            onClick={onCopy}
+            className="p-3 bg-card/80 text-primary border border-primary/30 rounded-sm hover:bg-primary/10 transition-all shadow-md"
+            title="Copy to clipboard"
+          >
+            <Copy className="w-4 h-4" />
+          </button>
+          <button
+            onClick={onSave}
+            disabled={isSaving}
+            className="p-3 bg-accent text-accent-foreground rounded-sm hover:bg-accent/90 transition-all disabled:opacity-50 shadow-md"
+            title="Save to Grimoire"
+          >
+            <Save className={`w-4 h-4 ${isSaving ? 'animate-pulse' : ''}`} />
+          </button>
+          <button
+            onClick={onNewSpell}
+            className="p-3 bg-card/80 text-primary border border-primary/30 rounded-sm hover:bg-primary/10 transition-all shadow-md"
+            title="New Spell"
+          >
+            <Sparkles className="w-4 h-4" />
+          </button>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
             </p>
           )}
           
