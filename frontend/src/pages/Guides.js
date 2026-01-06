@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { GlassCard } from '../components/GlassCard';
 import { ARCHETYPES, getArchetypeById } from '../data/archetypes';
 import { setCurrentArchetype, getCurrentArchetype } from '../components/OnboardingModal';
-import { Feather, BookOpen, Sparkles, Heart, ArrowRight, Check } from 'lucide-react';
+import { Feather, BookOpen, Sparkles, Heart, ArrowRight, Check, Hand } from 'lucide-react';
 import { toast } from 'sonner';
 
 export const Guides = () => {
