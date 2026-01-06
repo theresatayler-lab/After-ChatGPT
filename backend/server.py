@@ -1329,7 +1329,7 @@ CRITICAL GUIDELINES FOR RICH, VARIED SPELLS:
 7. Include 4-8 VARIED materials with appropriate icons
 8. Include 5-8 detailed steps - but vary the complexity
 9. The spoken_words should feel authentic, poetic, and MEMORABLE
-{katherine_context}{cathleen_context}{db_context}
+{katherine_context}{cathleen_context}{db_context}{personalization_context}
 
 Respond ONLY with the JSON object, no other text."""
 
