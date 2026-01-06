@@ -975,7 +975,12 @@ def main():
     
     # Test archetype system (priority tests from review request)
     print("\n🎭 Testing Archetype System...")
-    tester.test_get_archetypes()
+    tester.test_archetype_endpoint()
+    
+    # Test Cathleen-specific functionality (REVIEW REQUEST PRIORITY)
+    print("\n🌟 Testing Cathleen Archetype Enrichment (REVIEW REQUEST)...")
+    tester.test_cathleen_spell_generation()
+    tester.test_cathleen_sample_spells()
     
     # Test all content endpoints (these should work without auth)
     print("\n🌙 Testing Content APIs...")
@@ -985,9 +990,8 @@ def main():
     tester.test_get_rituals()
     tester.test_get_timeline()
     
-    # Test Enhanced Spell Generation System (PRIORITY TESTS)
+    # Test Enhanced Spell Generation System (ADDITIONAL TESTS)
     print("\n✨ Testing Enhanced Spell Generation System...")
-    tester.test_spell_generation_kathleen_protection()
     tester.test_spell_generation_catherine_creativity()
     tester.test_spell_generation_neutral()
     tester.test_spell_generation_with_image()
