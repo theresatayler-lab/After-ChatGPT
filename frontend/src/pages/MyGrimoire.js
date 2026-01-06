@@ -394,33 +394,6 @@ export const MyGrimoire = () => {
             )}
           </>
         )}
-
-                  {/* Action Buttons */}
-                  <div className="flex gap-2">
-                    <button
-                      onClick={() => handleViewSpell(spell)}
-                      className="flex-1 px-3 py-2 bg-primary text-primary-foreground rounded-sm font-montserrat text-xs tracking-wider uppercase hover:bg-primary/90 transition-all flex items-center justify-center gap-1"
-                    >
-                      <Eye className="w-3 h-3" />
-                      View
-                    </button>
-                    <button
-                      onClick={() => handleDeleteSpell(spell.id)}
-                      disabled={deleting === spell.id}
-                      className="px-3 py-2 bg-transparent text-destructive border border-destructive/30 rounded-sm font-montserrat text-xs hover:bg-destructive/10 transition-all disabled:opacity-50"
-                    >
-                      {deleting === spell.id ? (
-                        <Loader2 className="w-4 h-4 animate-spin" />
-                      ) : (
-                        <Trash2 className="w-4 h-4" />
-                      )}
-                    </button>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        )}
       </div>
     </div>
   );
