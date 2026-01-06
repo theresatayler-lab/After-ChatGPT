@@ -5,7 +5,7 @@ CATHLEEN_SAMPLE_SPELLS = [
     {
         "id": "cathleen-silver-ward",
         "archetype_id": "kathleen",
-        "archetype_name": "Cathleen Winifred Malzard",
+        "archetype_name": "Cathleen",
         "archetype_title": "The Keeper of Secrets",
         "category": "Wards & Talismans",
         "spell_data": {
@@ -78,7 +78,7 @@ CATHLEEN_SAMPLE_SPELLS = [
     {
         "id": "cathleen-song-of-protection",
         "archetype_id": "kathleen",
-        "archetype_name": "Cathleen Winifred Malzard",
+        "archetype_name": "Cathleen",
         "archetype_title": "The Keeper of Secrets",
         "category": "Voice Magic",
         "spell_data": {
@@ -149,7 +149,7 @@ CATHLEEN_SAMPLE_SPELLS = [
     {
         "id": "cathleen-morrigan-mirror",
         "archetype_id": "kathleen",
-        "archetype_name": "Cathleen Winifred Malzard",
+        "archetype_name": "Cathleen",
         "archetype_title": "The Keeper of Secrets",
         "category": "Shadow Work (The Morrigan's Way)",
         "spell_data": {
@@ -225,7 +225,7 @@ CATHLEEN_SAMPLE_SPELLS = [
     {
         "id": "cathleen-table-tipping",
         "archetype_id": "kathleen",
-        "archetype_name": "Cathleen Winifred Malzard",
+        "archetype_name": "Cathleen",
         "archetype_title": "The Keeper of Secrets",
         "category": "Spirit Communication",
         "spell_data": {

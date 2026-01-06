@@ -70,7 +70,7 @@ export const ARCHETYPES = [
   },
   {
     id: 'kathleen',
-    name: 'Cathleen Winifred Malzard',
+    name: 'Cathleen',
     title: 'The Singer of Strength',
     shortName: 'Cathleen',
     era: 'Edwardian through WWII (1900-1945)',
