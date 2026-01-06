@@ -122,6 +122,43 @@ class SpellRequest(BaseModel):
     intention: str
     archetype: Optional[str] = None
     generate_image: bool = True
+    # Optional personalization context from leading questions
+    context: Optional[dict] = None  # Can include: materials_available, time_available, experience_level, environment, specific_challenges
+
+class SpellContextQuestions(BaseModel):
+    """Leading questions to personalize spells"""
+    questions: List[dict] = [
+        {
+            "id": "materials",
+            "question": "What materials do you already have access to?",
+            "options": ["candles", "herbs/plants", "crystals/stones", "fabric/thread", "water/bowls", "mirrors", "photos/mementos", "paper/pen", "none specifically"],
+            "type": "multiselect"
+        },
+        {
+            "id": "time",
+            "question": "How much time can you dedicate to this ritual?",
+            "options": ["5-10 minutes (quick practice)", "20-30 minutes (focused session)", "1 hour+ (deep working)", "multiple days (extended ritual)"],
+            "type": "single"
+        },
+        {
+            "id": "experience",
+            "question": "How would you describe your experience with ritual practice?",
+            "options": ["complete beginner", "some experience", "regular practitioner", "experienced"],
+            "type": "single"
+        },
+        {
+            "id": "environment",
+            "question": "Where will you perform this ritual?",
+            "options": ["small apartment", "house with garden", "outdoors/nature", "shared space (need discretion)", "anywhere works"],
+            "type": "single"
+        },
+        {
+            "id": "style",
+            "question": "What kind of ritual appeals to you?",
+            "options": ["quiet contemplation", "active/movement-based", "creative (writing, crafting)", "vocal (singing, speaking)", "nature-based", "surprise me"],
+            "type": "single"
+        }
+    ]
 
 class ImageGenerationRequest(BaseModel):
     prompt: str
