@@ -256,38 +256,8 @@ const TarotCardView = ({ spell, archetype, style, imageBase64, onViewFull, onCop
     </motion.div>
   );
 };
-            </p>
-          )}
-          
-          {/* Divider */}
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <div className="h-px bg-primary/30 flex-1" />
-            <Moon className="w-4 h-4 text-primary/50" />
-            <div className="h-px bg-primary/30 flex-1" />
-          </div>
-          
-          {/* Essence */}
-          <div className="flex-1 flex flex-col justify-center text-center space-y-4">
-            <p className="font-crimson text-base text-foreground leading-relaxed">
-              {tarot.essence}
-            </p>
-            
-            {/* Key Action */}
-            <div className={`p-3 ${style.bgAccent} rounded-sm`}>
-              <p className="font-montserrat text-xs text-muted-foreground uppercase tracking-wider mb-1">Key Action</p>
-              <p className="font-crimson text-sm text-foreground">{tarot.key_action}</p>
-            </div>
-            
-            {/* Incantation */}
-            <div className="py-3 border-y border-primary/20">
-              <p className="font-crimson text-lg text-primary italic text-center">
-                &ldquo;{tarot.incantation}&rdquo;
-              </p>
-            </div>
-          </div>
-          
-          {/* Bottom Info */}
-          <div className="mt-4 space-y-2">
+
+export const GrimoirePage = ({ spell, archetype, imageBase64, onNewSpell }) => {
             {tarot.timing && (
               <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground">
                 <Clock className="w-3 h-3" />
