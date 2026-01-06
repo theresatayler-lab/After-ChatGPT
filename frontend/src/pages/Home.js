@@ -191,33 +191,51 @@ export const Home = () => {
           </div>
         </div>
       </div>
-              <span className="text-deep-blue/60 text-sm">✦</span>
-              <div className="h-px w-12 sm:w-20 bg-gradient-to-l from-transparent to-deep-blue/40"></div>
-            </div>
-            
-            <div className="flex gap-3 sm:gap-4 justify-center flex-wrap px-2">
-              <Link
-                to="/spell-request"
-                data-testid="hero-spell-request"
-                className="relative px-6 sm:px-8 py-3 bg-primary text-primary-foreground rounded-sm font-montserrat tracking-widest uppercase text-xs sm:text-sm hover:bg-primary/90 transition-all duration-300 border-2 border-deep-blue/20 glow-effect flex items-center gap-2 min-h-[48px] overflow-hidden group"
+
+      {/* Features Section with dark mystical styling */}
+      <div className="relative py-20 px-4">
+        <div className="max-w-6xl mx-auto">
+          <MysticalDivider variant="moon" />
+          
+          <h2 
+            className="font-italiana text-3xl md:text-4xl text-amber-100 text-center mb-12"
+            style={{ textShadow: '0 2px 10px rgba(139, 90, 43, 0.4)' }}
+          >
+            Your Path Awaits
+          </h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { icon: Sparkles, title: 'Craft Your Spells', desc: 'Generate personalized rituals guided by four ancestral archetypes' },
+              { icon: BookOpen, title: 'Build Your Grimoire', desc: 'Save and organize your magical workings in your personal collection' },
+              { icon: Moon, title: 'Explore the Archives', desc: 'Discover historical practices, deities, and sacred sites' },
+            ].map((feature, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.2 }}
+                className="relative group"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-deep-blue/0 via-deep-blue/10 to-deep-blue/0 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 relative z-10" />
-                <span className="relative z-10">Request a Spell</span>
-              </Link>
-              <Link
-                to="/rituals"
-                data-testid="hero-create-ritual"
-                className="px-6 sm:px-8 py-3 bg-transparent text-deep-blue border-2 border-deep-blue/40 rounded-sm font-montserrat tracking-widest uppercase text-xs sm:text-sm hover:bg-deep-blue/10 transition-all duration-300 min-h-[48px]"
-              >
-                Create Ritual
-              </Link>
-            </div>
-          </motion.div>
+                <div className="absolute inset-0 border border-amber-500/20 rounded-lg group-hover:border-amber-500/40 transition-colors" />
+                <div className="absolute inset-2 border border-amber-500/10 rounded-md" />
+                <div className="relative p-8 text-center">
+                  <feature.icon className="w-10 h-10 text-amber-400 mx-auto mb-4" />
+                  <h3 className="font-cinzel text-xl text-amber-100 mb-3">{feature.title}</h3>
+                  <p className="font-crimson text-amber-100/70">{feature.desc}</p>
+                </div>
+              </motion.div>
+            ))}
           </div>
+          
+          <MysticalDivider />
         </div>
       </div>
+    </div>
+  );
+};
 
+export default Home;
       {/* Art Deco Decorative Divider */}
       <DecorativeDivider symbol="🌙" />
 
