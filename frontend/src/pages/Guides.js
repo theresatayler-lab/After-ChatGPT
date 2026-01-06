@@ -299,6 +299,17 @@ const GuideCard = ({ archetype, index, isCurrentGuide, isExpanded, onToggle, onS
             <span>Choose as My Guide</span>
           </button>
         )}
+        
+        {/* Special Cathleen Feature - Ward Finder */}
+        {archetype.id === 'kathleen' && (
+          <button
+            onClick={() => navigate('/ward-finder')}
+            className="w-full mt-3 px-4 py-2 bg-secondary/20 text-secondary border border-secondary/40 rounded-sm font-montserrat tracking-widest uppercase text-xs hover:bg-secondary/30 transition-all flex items-center justify-center gap-2"
+          >
+            <Hand className="w-4 h-4" />
+            <span>Find Your Ward</span>
+          </button>
+        )}
       </div>
     </motion.div>
   );
