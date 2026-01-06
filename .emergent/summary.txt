@@ -1,112 +1,157 @@
 <analysis>**original_problem_statement:**
-The user's goal is to create Where The Crowlands, a sophisticated full-stack application for building DIY rituals. The app is guided by four AI archetypes (Sheila, Kathleen, Catherine, Theresa) and is designed with an 18th-century grimoire aesthetic.
-
-Initial development focused on establishing the core archetype system and a basic spell generator. The project has since evolved to include more advanced features based on user requests, including:
-1.  A Personal Grimoire system for users to save their generated spells.
-2.  A subscription model to gate premium features like unlimited spell generation and PDF downloads.
-3.  Integration of user-provided videos to play during the spell generation process.
-4.  Adding a waitlist on the homepage to capture emails for pre-launch promotion.
-5.  Refining the app's visual design with specific fonts, colors, and motifs.
-6.  Adding static pages like About, FAQ, and Privacy Policy.
-7.  Improving mobile responsiveness.
+The user's goal is to create Where The Crowlands, a sophisticated full-stack application for building DIY rituals. The app is guided by four AI archetypes (Sheila, Kathleen, Catherine, Theresa) and is designed with an 18th-century grimoire aesthetic. Key features include a Personal Grimoire for saving spells, a subscription model for premium features, integration of videos and custom images, a waitlist, and static content pages. The user has a strong focus on a rich, nuanced, and historically grounded narrative for each archetype, and a highly specific, intricate visual aesthetic.
 
 **User's preferred language**: English
 
 **what currently exists?**
-The application is a functional full-stack project (React/FastAPI/MongoDB) with several key features implemented:
--   **User Authentication**: A complete JWT-based system for user registration and login is in place.
--   **Archetype System**: A fully operational system allows users to choose a guide, which influences the AI's persona during spell generation.
--   **Grimoire Feature**: Users can generate richly detailed spells, which are rendered on a styled grimoire page. They can save these spells to their personal grimoire, view them on a dedicated My Grimoire page, and delete them.
--   **Subscription Foundation**: A tier system (               total        used        free      shared  buff/cache   available
-Mem:        16359156     9271716     1819844       46216     5566596     7087440
-Swap:              0           0           0, ) is integrated into the backend. Feature gating is active, limiting free users to 3 spell generations and restricting save/download functionality. The UI includes upgrade prompts and a static Upgrade to Pro page.
--   **Stripe Integration (Ready)**: The backend code for a 9/year Stripe subscription is complete, including checkout sessions and webhooks. It uses a test key and is ready to be activated with the user's live keys.
--   **Video Integration**: User-provided videos for each archetype now play during the spell generation loading state, with auto-scrolling to enhance visibility.
--   **Static Pages & Waitlist**: About, FAQ, and Privacy Policy pages have been created and are linked in the navigation and footer. The homepage features updated copy and a waitlist form that successfully collects emails into the database.
--   **Mobile Responsiveness**: Initial optimizations have been made, including a mobile hamburger menu and responsive layouts for key pages.
+The application is a functional full-stack project (React/FastAPI/MongoDB).
+- **Core Features**: User authentication, an Archetype selection system, and a My Grimoire feature for saving/viewing/deleting spells are fully functional.
+- **Monetization**: A subscription system (               total        used        free      shared  buff/cache   available
+Mem:        16359156     8448972      755260       45672     7556260     7910184
+Swap:              0           0           0/) is in place, gating features like spell generation limits. The backend code for Stripe integration is ready but uses a test key.
+- **AI Integration**: The app has been successfully migrated from the Emergent Universal Key to the user's personal OpenAI API key for both text (GPT-5.1) and image (DALL-E 3) generation.
+- **Archetype Enrichment**: The Katherine archetype has been deeply fleshed out with a unique persona, magical style, and historical context based on user-provided documents. This includes custom backend prompts, material correspondences, and sample spells. The Cathleen archetype is currently undergoing a similar enrichment process.
+- **Spell Display**: A dual-format system displays generated spells first as a visually rich, image-centric Tarot Card summary, with an option to expand to a Full Grimoire detailed view.
+- **UI/Aesthetic**: A major visual overhaul has been implemented, establishing a dark, mystical theme for the Homepage, Navigation, and Footer, although this is pending further refinement based on user feedback. The onboarding modal has been removed for a more direct user experience.
 
 **Last working item**:
--   **Last item agent was working**: The agent was troubleshooting why the user could not see the aesthetic/CSS changes (new fonts, colors) that were implemented. Despite the agent verifying the changes were live on the preview URL, the user reported no visual difference. As a resolution, the agent reverted the design changes and moved on to other tasks at the user's request.
--   **Status**: BLOCKED
--   **Agent Testing Done**: Y
--   **Which testing method agent to use?**: Frontend testing agent
+-   **Last item agent was working**: The agent was refining the Cathleen archetype. The user provided a significant amount of new, detailed information about her persona, including her connection to The Morrigan, use of voice as magic, and wartime background. The agent was in the process of incorporating these new, distinct details into Cathleen's backend prompts () and frontend data () to ensure she is unique from the Katherine archetype.
+-   **Status**: IN PROGRESS
+-   **Agent Testing Done**: N
+-   **Which testing method agent to use?**: Frontend testing agent (to verify Cathleen's updated profile on the  page) and backend testing agent (to test spell generation with her newly nuanced prompt).
 -   **User Testing Done**: N
 
 **All Pending/In progress Issue list**:
--   **Issue 1**: User cannot see design/CSS changes on the preview URL (P0)
--   **Issue 2**: PDF download functionality is not working for the user (P1)
--   **Issue 3**: The new ornate logo's background blending needs user validation (P2)
+-   **Issue 1**: New site design needs refinement to match user's vision (P0)
+-   **Issue 2**: User cannot see design/CSS changes on the preview URL (P1, Recurring Blocker)
+-   **Issue 3**: PDF download functionality is not working for the user (P2)
+-   **Issue 4**: The new ornate logo's background blending needs user validation (P3)
 
 **Issues Detail**:
--   **Issue 1: User cannot see design/CSS changes on the preview URL**
-    -   **Attempted fixes**: The agent implemented new fonts and colors, verified the changes in the deployed code, and even made the changes more drastic for visibility. The user still saw the old design after hard refreshes and in incognito mode. The changes were ultimately reverted.
+-   **Issue 1: New site design needs refinement to match user's vision**
+    -   **Attempted fixes**: The agent implemented a site-wide dark theme with a brown and gold palette.
+    -   **User Feedback**: The user found the design altogether too brown and gold and requested more of the red accents and some deep blue with a more art deco or mystic colour scheme. The user has agreed to provide an inspiration page/mood board.
     -   **Next debug checklist**:
-        1.  Re-attempt a single, unmissable design change (e.g., change the main title color to bright green).
+        1.  Wait for the user to provide the inspiration page or mood board.
+        2.  Based on the new assets, define a new color palette (deep reds, blues, rich blacks, with gold as an accent).
+        3.  Re-implement the design on , , and  using the new palette and incorporating Art Deco/occult motifs.
+        4.  Verify the changes with the user before applying them to other pages.
+    -   **Why fix this issue and what will be achieved with the fix?**: This is the highest priority for the user. Aligning the visual identity with their specific aesthetic vision is critical for project success.
+    -   **Status**: BLOCKED (on user providing inspiration)
+    -   **Is recurring issue?**: N
+    -   **Should Test frontend/backend/both after fix?**: frontend
+    -   **Blocked on other issue**: None.
+
+-   **Issue 2: User cannot see design/CSS changes on the preview URL**
+    -   **Attempted fixes**: In a previous session, changes were reverted because the user couldn't see them. The root cause was never found.
+    -   **Next debug checklist**:
+        1.  After implementing the next design change (from Issue 1), if the user reports not seeing it, this issue becomes the top priority.
         2.  Ask the user to perform a cache clear using their browser's developer tools (Empty Cache and Hard Reload).
-        3.  If the issue persists, call the  to investigate potential CDN or platform-level caching issues specific to the user's view of the preview URL.
-    -   **Why fix this issue and what will be achieved with the fix?**: This is a major blocker for any future visual enhancements and resolving it is key to fulfilling the user's design vision.
+        3.  If the issue persists, call the  to investigate potential CDN or platform-level caching issues specific to the user's view.
+    -   **Why fix this issue and what will be achieved with the fix?**: This is a critical development blocker that prevents any visual progress.
     -   **Status**: NOT STARTED
     -   **Is recurring issue?**: Y
     -   **Should Test frontend/backend/both after fix?**: frontend
-    -   **Blocked on other issue**: Potentially a platform caching issue.
+    -   **Blocked on other issue**: None.
 
--   **Issue 2: PDF download functionality is not working for the user**
-    -   **Attempted fixes**: The agent fixed a bug that disabled the button for Pro users. When downloads still failed for the user, a fallback was implemented: if the primary  library fails, the browser's native print dialog is triggered, allowing the user to Save as PDF.
+-   **Issue 3: PDF download functionality is not working for the user**
+    -   **Attempted fixes**: A fallback was implemented: if  fails, the browser's native print dialog is triggered, allowing Save as PDF.
     -   **Next debug checklist**:
         1.  Ask the user to test the Save as PDF button again.
         2.  Confirm if either an automatic download occurs OR the browser's print dialog appears.
-        3.  If the print dialog appears, confirm with the user that this is an acceptable workaround. If not, investigate  compatibility with React 19.
-        4.  If nothing happens, ask the user to open the developer console (F12) and report any errors that appear when they click the button.
-    -   **Why fix this issue and what will be achieved with the fix?**: PDF downloads are a core premium feature and must be reliable for paying users.
+        3.  If the print dialog appears, confirm if this is an acceptable workaround.
+        4.  If nothing happens, ask the user to report any developer console errors.
+    -   **Why fix this issue and what will be achieved with the fix?**: PDF downloads are a core premium feature.
     -   **Status**: USER VERIFICATION PENDING
     -   **Is recurring issue?**: Y
     -   **Should Test frontend/backend/both after fix?**: frontend
     -   **Blocked on other issue**: None.
 
--   **Issue 3: The new ornate logo's background blending needs user validation**
-    -   **Attempted fixes**: A new, more ornate logo provided by the user was integrated using  to make its white background transparent.
+-   **Issue 4: The new ornate logo's background blending needs user validation**
+    -   **Attempted fixes**: The logo was integrated using  to make its white background transparent.
     -   **Next debug checklist**:
-        1.  Ask the user to review the new logo on the homepage, navigation bar, and footer.
-        2.  Confirm if the current blending effect is visually satisfactory.
-        3.  If not, reiterate that providing a logo file with a true transparent background (a  with an alpha channel) is the only way to guarantee a perfect blend.
-    -   **Why fix this issue and what will be achieved with the fix?**: This is a long-standing aesthetic issue for the user. Getting approval on the logo is important for their overall satisfaction.
+        1.  Ask the user to review the logo on the homepage, navigation bar, and footer now that the dark theme is active.
+        2.  Confirm if the current blending effect is satisfactory.
+    -   **Why fix this issue and what will be achieved with the fix?**: A long-standing aesthetic issue for the user.
     -   **Status**: USER VERIFICATION PENDING
     -   **Is recurring issue?**: Y
     -   **Should Test frontend/backend/both after fix?**: frontend
     -   **Blocked on other issue**: None.
 
 **In progress Task List**:
--   None.
+-   **Task 1: Complete Cathleen Archetype Enhancement (P0)**
+    -   **Where to resume**: The agent has updated the main persona in  and . The next steps are to add Cathleen-specific , , and sample spells (in a new  file), mirroring the detailed implementation done for Katherine.
+    -   **What will be achieved with this?**: Cathleen's persona will be as rich and nuanced as Katherine's, leading to higher-quality, distinct spell generation when she is selected as a guide.
+    -   **Status**: IN PROGRESS
+    -   **Should Test frontend/backend/both after fix?**: both
+    -   **Blocked on something**: None.
 
 **Upcoming and Future Tasks**
 -   **Upcoming Tasks**:
-    -   **(P0) Build Premium Spell Book Compiler**: A core premium feature to allow users to select spells from their grimoire and compile them into a custom, downloadable, multi-page PDF book with chapters, notes, and a cover.
-    -   **(P1) Implement Image Integration for Spells**: The user wants to use their own curated Midjourney images within generated spells. This requires clarifying the exact system (e.g., replace AI images, use images as decorative infographic elements, or a hybrid).
-    -   **(P2) Activate Stripe Integration**: The code is in place. This task involves getting the user's live Stripe keys and flipping the switch to enable real payments.
-    -   **(P3) Finalize Mobile Responsiveness**: A full pass across all pages and components is needed to ensure a polished and touch-friendly experience on all mobile devices.
+    -   (P1) **Enhance Remaining Archetypes (Sheila & Theresa)**: Once Cathleen is complete, apply the same deep enrichment process to the final two guides using user-provided materials.
+    -   (P2) **Build Premium Spell Book Compiler**: A core premium feature to allow users to select spells from their grimoire and compile them into a custom, downloadable, multi-page PDF book.
+    -   (P3) **Implement Image Integration for Spells**: Clarify the user's desired system for integrating their own Midjourney images into spells.
+    -   (P4) **Activate Stripe Integration**: Switch from the test key to the user's live Stripe keys to enable real payments.
 -   **Future Tasks**:
     -   Implement a Print-on-Demand service integration.
-    -   Add tooltips for esoteric terms to improve user education.
-    -   Refactor  into a modular structure to improve maintainability.
+    -   Add tooltips for esoteric terms.
+    -   Refactor  into a modular structure.
+    -   Create a Spell Library UI to browse the sample spells.
 
 **Completed work in this session**
--   **Monetization Foundation & Stripe Readiness**: Implemented a complete subscription system with user tiers (               total        used        free      shared  buff/cache   available
-Mem:        16359156     9274040     1817324       46216     5566792     7085116
-Swap:              0           0           0/), feature gating (spell limits, save/download blocks), and UI upgrade prompts. The backend is fully coded for Stripe integration.
--   **Save Spell / My Grimoire Feature**: Successfully built the entire feature, including backend endpoints and frontend UI for saving, viewing, and deleting spells.
--   **Video during Spell Generation**: Integrated user-provided videos for each archetype that play during the spell generation loading state, with an auto-scroll feature to improve visibility.
--   **Homepage Overhaul & Waitlist**: Implemented extensive new marketing copy, repositioned layout elements for better conversion, and added a functional waitlist form that saves emails to the database. CSV export functionality was also added.
--   **Static Pages (About, FAQ, Privacy)**: Created, styled, and linked the three essential static pages in both the main navigation and the footer.
--   **Account Management & UI Fixes**: Added an email change feature, resolved a critical  CSS bug that was breaking the Change Guide dropdown, fixed a z-index issue, and handled multiple user account administration requests (deletion, re-registration, and upgrades).
--   **Mobile Responsiveness (Phase 1)**: Implemented a responsive hamburger menu for the main navigation and applied mobile-friendly styles to several key pages.
+-   **OpenAI Key Migration**: Migrated the entire backend from the Emergent Universal Key to the user's personal OpenAI API key for text and image generation. This involved updating , installing the usage: openai [-h] [-v] [-b API_BASE] [-k API_KEY] [-p PROXY [PROXY ...]]
+              [-o ORGANIZATION] [-t {openai,azure}]
+              [--api-version API_VERSION] [--azure-endpoint AZURE_ENDPOINT]
+              [--azure-ad-token AZURE_AD_TOKEN] [-V]
+              {api,tools,migrate,grit} ...
+
+positional arguments:
+  {api,tools,migrate,grit}
+    api                 Direct API calls
+    tools               Client side tools for convenience
+
+options:
+  -h, --help            show this help message and exit
+  -v, --verbose         Set verbosity.
+  -b API_BASE, --api-base API_BASE
+                        What API base url to use.
+  -k API_KEY, --api-key API_KEY
+                        What API key to use.
+  -p PROXY [PROXY ...], --proxy PROXY [PROXY ...]
+                        What proxy to use.
+  -o ORGANIZATION, --organization ORGANIZATION
+                        Which organization to run as (will use your default
+                        organization if not specified)
+  -t {openai,azure}, --api-type {openai,azure}
+                        The backend API to call, must be `openai` or `azure`
+  --api-version API_VERSION
+                        The Azure API version, e.g.
+                        'https://learn.microsoft.com/en-us/azure/ai-
+                        services/openai/reference#rest-api-versioning'
+  --azure-endpoint AZURE_ENDPOINT
+                        The Azure endpoint, e.g.
+                        'https://endpoint.openai.azure.com'
+  --azure-ad-token AZURE_AD_TOKEN
+                        A token from Azure Active Directory,
+                        https://www.microsoft.com/en-
+                        us/security/business/identity-access/microsoft-entra-
+                        id
+  -V, --version         show program's version number and exit library, and refactoring all API calls in .
+-   **Dual-Format Spell Display**: Implemented a two-part view for generated spells: a compact, visually rich Tarot Card view (with image) and an expandable Full Grimoire view. This involved significant updates to backend prompts and frontend rendering in .
+-   **Critical Frontend Bug Fix**: Resolved a major bug where spell results were not displaying by refactoring an inline React component () into a standalone component, fixing a state-destroying re-render issue.
+-   **Deep Katherine Archetype Enrichment**: Fully developed the Katherine archetype by integrating extensive user-provided documents into her frontend bio (), backend AI persona (), and created supporting historical sources, material lists, and seedable sample spells ().
+-   **Initial Cathleen Archetype Enrichment**: Began the same enrichment process for Cathleen, correcting her name throughout the codebase and updating her core persona in  and  based on new documents.
+-   **Major UI Redesign (Phase 1)**: Implemented a site-wide dark, mystical theme on the Homepage, Navigation, and Footer, replacing the previous light parchment design.
+-   **UX Improvement**: Removed the initial onboarding modal, allowing users to land directly on the homepage.
+-   **Logo Integration**: Added the user's ornate logo as an embossed seal on the spell result pages.
 
 **Earlier issues found/mentioned but not fixed**
--   None that aren't already listed in the All Pending/In progress Issue list.
+-   None that are not already listed in the pending issues.
 
 **Known issue recurrence from previous fork**
--   **Issue recurrence in previous fork**: The logo's background blending has been a persistent aesthetic issue.
+-   **Issue recurrence in previous fork**: The user's inability to see CSS/design changes.
 -   **Recurrence count**: 2+
--   **Status**: USER VERIFICATION PENDING
+-   **Status**: NOT STARTED
 
 **Code Architecture**
 
@@ -115,84 +160,152 @@ Swap:              0           0           0/), feature gating (spell limits, sa
 -   **Frontend**: React, Tailwind CSS, html2pdf.js, Framer Motion
 -   **Backend**: FastAPI (Python)
 -   **Database**: MongoDB
--   **AI Integration**:  for OpenAI models.
--   **Payments**:  for Stripe (checkout sessions, webhooks).
--   **Subscription Modeling**: Feature gating based on user fields () in the database.
--   **DOM Interaction**: Using  and  for UX enhancements.
+-   **AI Integration**: Direct OpenAI SDK for GPT-5.1 (text) and DALL-E 3 (images).
+-   **AI Prompt Engineering**: Dynamic, context-rich system prompts based on the selected archetype, including specific historical sources, material correspondences, and ritual styles.
+-   **React State Management**: Fixed a critical bug related to component re-rendering by extracting a stateful component from its parent.
 
 **key DB schema**
 -   **users**: 
 -   **user_spells**: 
--   **waitlist**:  (NEW)
+-   **waitlist**: 
+-   **sample_spells**:  (Implicitly created)
 
 **changes in tech stack**
--   The  library was installed and is now used for Stripe payments.
+-   Migrated from  for LLM/Image generation to the official usage: openai [-h] [-v] [-b API_BASE] [-k API_KEY] [-p PROXY [PROXY ...]]
+              [-o ORGANIZATION] [-t {openai,azure}]
+              [--api-version API_VERSION] [--azure-endpoint AZURE_ENDPOINT]
+              [--azure-ad-token AZURE_AD_TOKEN] [-V]
+              {api,tools,migrate,grit} ...
+
+positional arguments:
+  {api,tools,migrate,grit}
+    api                 Direct API calls
+    tools               Client side tools for convenience
+
+options:
+  -h, --help            show this help message and exit
+  -v, --verbose         Set verbosity.
+  -b API_BASE, --api-base API_BASE
+                        What API base url to use.
+  -k API_KEY, --api-key API_KEY
+                        What API key to use.
+  -p PROXY [PROXY ...], --proxy PROXY [PROXY ...]
+                        What proxy to use.
+  -o ORGANIZATION, --organization ORGANIZATION
+                        Which organization to run as (will use your default
+                        organization if not specified)
+  -t {openai,azure}, --api-type {openai,azure}
+                        The backend API to call, must be `openai` or `azure`
+  --api-version API_VERSION
+                        The Azure API version, e.g.
+                        'https://learn.microsoft.com/en-us/azure/ai-
+                        services/openai/reference#rest-api-versioning'
+  --azure-endpoint AZURE_ENDPOINT
+                        The Azure endpoint, e.g.
+                        'https://endpoint.openai.azure.com'
+  --azure-ad-token AZURE_AD_TOKEN
+                        A token from Azure Active Directory,
+                        https://www.microsoft.com/en-
+                        us/security/business/identity-access/microsoft-entra-
+                        id
+  -V, --version         show program's version number and exit Python library.
 
 **All files of reference**
 -   **Created**:
-    -   , , , , , 
-    -   , 
+    -   : Stores seed data for Katherine's sample spells.
+    -   : Intended to centralize decorative UI elements (currently unused, code was hardcoded).
 -   **Updated Heavily**:
-    -   : Massively expanded to include Grimoire, Subscription, Stripe, Waitlist, and Admin endpoints.
-    -   : Completely overhauled with new copy and a waitlist form.
-    -   : Modified to show loading videos and enforce subscription limits.
-    -   : Refactored entirely for mobile responsiveness.
-    -   : Updated to handle subscription checks and add a PDF download fallback.
-    -   : Added video URLs.
+    -   : Replaced Emergent LLM Key with OpenAI SDK. Added highly detailed, context-specific prompts for Katherine and Cathleen. Added logic to generate a  summary. Added endpoints for seeding sample spells.
+    -   : Massive overhaul of Katherine's and Cathleen's profiles with rich new biographical and magical details from user documents.
+    -   : Complete redesign to implement the Tarot Card/Full Grimoire dual-view system and fix a critical rendering bug.
+    -   , , : Rewritten to implement the new dark, mystical theme.
+    -   : Added the  variable.
 
 **Areas that need refactoring**:
--    is now extremely large and monolithic. It urgently needs to be broken down into a modular structure using FastAPI's  for different concerns (e.g., , , ).
+-   ****: This file is increasingly monolithic and urgently needs to be broken down into a modular structure (e.g., , ).
+-   ****: The agent created this file but then hardcoded styles directly into pages. The design implementation should be refactored to use these reusable components.
 
 **key api endpoints**
--   : Saves a spell to a user's collection.
--   : Retrieves all saved spells for the current user.
--   : Adds an email to the pre-launch waitlist.
--   : Initiates the payment flow for a subscription.
--   : Listens for successful payment events from Stripe.
--   : Checks the current user's subscription tier and usage.
--   : Allows a user to change their registered email.
+-   : Significantly updated to use the direct OpenAI SDK and include archetype-specific contexts. The response now contains both the full spell and a  object.
+-   : A new admin endpoint to seed the database with sample spells for the Katherine archetype.
 
 **Critical Info for New Agent**
--   **Top Blocker**: The user cannot see CSS/design changes on their end, despite the agent verifying they are live on the preview URL. This is likely a CDN or platform caching issue. Do not attempt further design work until this is resolved. Your first step on this topic should be to work with the user to definitively confirm the issue and then escalate to the  if needed.
--   **Next Feature**: The user's next priority is building the Premium Spell Book Compiler. After that, they want to integrate their own Midjourney images into the spell generation process. You will need to clarify the exact mechanics of this image system with the user.
--   **Monetization**: The Stripe integration code is complete but uses a test key. The user has decided to build out more features before activating payments. Do not push to go live with payments until the user is ready.
--   **User's Account**: The user's primary test account is  and it is set to the PAID (Pro) tier.
+-   **Aesthetic is #1 Priority**: The user is highly focused on the visual design. Your immediate priority after completing the Cathleen task is to address the user's feedback on the current design. Wait for their inspiration/mood board before proceeding with any more design changes.
+-   **Archetype Enrichment is the Core Loop**: The primary development task is to flesh out the four guides. Follow the established pattern: read user docs -> update  (frontend bio) -> update  (backend AI prompt) -> add specific materials/sources and sample spells.
+-   **OpenAI Key is Live**: The app uses the user's personal OpenAI API key stored in . All generation costs are now billed directly to them. The Emergent Universal Key is no longer used for generation.
+-   **Beware the CSS Caching Ghost**: A recurring issue from a previous fork is the user not being able to see CSS changes. If the user reports this after your next design update, immediately pivot to debugging potential caching issues and escalate to the  if necessary.
 
 **documents and test reports created in this job**
--   CSV exports of the waitlist and user list were created in  (e.g., ).
+-   
+-   Test reports from the backend testing agent are in .
 
 **Last 10 User Messages and any pending HUMAN messages**
-1.  **User**: Requested a CSV export of the waitlist. (Agent provided)
-2.  **User**: Asked why their email wasn't on the waitlist. (Agent clarified the difference between 'waitlist' and 'registered users' and provided a combined export)
-3.  **User**: Reported that the PDF download function isn't working. (Agent implemented a fallback)
-4.  **User**: Provided new homepage copy and requested the waitlist form be moved up. (Agent implemented)
-5.  **User**: Requested to merge several paragraphs of the new copy. (Agent implemented)
-6.  **User**: Provided a final tweak to the last paragraph of the copy. (Agent implemented)
-7.  **User**: Requested a line of text be moved to a subhead position. (Agent implemented)
-8.  **User**: Provided a new ornate logo and asked to use it to fix the background blending issue. (Agent implemented)
-9.  **User**: Asked why the previous design changes didn't work. (Agent explained the likely caching issue)
-10. **User**: Confirmed they want to build static pages next. (Agent completed this)
-    *Pending*: The user's last message was a request for the agent to remember and explain why the design changes didn't work, which the agent answered. The next step is for the user to decide on the next feature to build.
+1.  **User**: Asks to work on Cathleen's profile next. (IN PROGRESS)
+2.  **User**: Provides 3 documents for Cathleen. (DONE)
+3.  **User**: Confirms to merge the old Kathleen with the new Cathleen and correct spelling. (DONE)
+4.  **User**: Clarifies Cathleen's background to avoid overlap with Katherine. (DONE)
+5.  **User**: Provides a large block of rich text to further define Cathleen. (IN PROGRESS)
+6.  **User**: Asks for suggestions on making the site more beautiful. (DONE)
+7.  **User**: Approves all design suggestions (all of the above). (DONE)
+8.  **User**: Reports that most design changes are not reflected, except for the Tarot Card, and asks the agent to fix it. (DONE - Agent re-implemented)
+9.  **User**: Gives feedback on the new design (too brown/gold) and asks for more red/blue/Art Deco elements, offering to create an inspiration page. (PENDING - Waiting on user)
+10. **User**: Asks about Cathleen's profile after agent provides a summary. (IN PROGRESS - Agent is currently working on it)
 
 **Project Health Check:**
--   **Broken**:
-    -   The process for deploying and viewing CSS changes is not working reliably for the user.
-    -   The primary PDF download mechanism () is failing for the user; a fallback is in place but the root cause is unknown.
+-   **Broken**: The core mechanism for the user to view deployed CSS changes is unreliable and has been a recurring blocker. The primary PDF download mechanism () is known to fail for the user.
 -   **Mocked**: None.
 
 **3rd Party Integrations**
--   **OpenAI GPT models**:  library — uses Emergent LLM Key.
--   **html2pdf.js**: Frontend library for PDF generation.
+-   **OpenAI GPT-5.1 & DALL-E 3**: Official usage: openai [-h] [-v] [-b API_BASE] [-k API_KEY] [-p PROXY [PROXY ...]]
+              [-o ORGANIZATION] [-t {openai,azure}]
+              [--api-version API_VERSION] [--azure-endpoint AZURE_ENDPOINT]
+              [--azure-ad-token AZURE_AD_TOKEN] [-V]
+              {api,tools,migrate,grit} ...
+
+positional arguments:
+  {api,tools,migrate,grit}
+    api                 Direct API calls
+    tools               Client side tools for convenience
+
+options:
+  -h, --help            show this help message and exit
+  -v, --verbose         Set verbosity.
+  -b API_BASE, --api-base API_BASE
+                        What API base url to use.
+  -k API_KEY, --api-key API_KEY
+                        What API key to use.
+  -p PROXY [PROXY ...], --proxy PROXY [PROXY ...]
+                        What proxy to use.
+  -o ORGANIZATION, --organization ORGANIZATION
+                        Which organization to run as (will use your default
+                        organization if not specified)
+  -t {openai,azure}, --api-type {openai,azure}
+                        The backend API to call, must be `openai` or `azure`
+  --api-version API_VERSION
+                        The Azure API version, e.g.
+                        'https://learn.microsoft.com/en-us/azure/ai-
+                        services/openai/reference#rest-api-versioning'
+  --azure-endpoint AZURE_ENDPOINT
+                        The Azure endpoint, e.g.
+                        'https://endpoint.openai.azure.com'
+  --azure-ad-token AZURE_AD_TOKEN
+                        A token from Azure Active Directory,
+                        https://www.microsoft.com/en-
+                        us/security/business/identity-access/microsoft-entra-
+                        id
+  -V, --version         show program's version number and exit Python library — requires User API Key (configured in ).
+-   **html2pdf.js**: Frontend library for client-side PDF generation.
 -   **Stripe**:  library — requires User API Key (currently using a placeholder test key).
 
 **Testing status**
--   **Testing agent used after significant changes**: YES
+-   **Testing agent used after significant changes**: YES, a backend testing agent was used to debug the spell display issue.
 -   **Troubleshoot agent used after agent stuck in loop**: NO
 -   **Test files created**: None.
--   **Known regressions**: The user is unable to see any CSS changes deployed by the agent, which is a major regression in the development feedback loop.
+-   **Known regressions**: The user's inability to reliably see CSS changes is a major regression in the development feedback loop that has carried over from a previous session.
 
 **Credentials to test flow:**
--   Register a new user, or use the user's Pro account:  (password is known by the user). An admin endpoint exists to upgrade any new test account to Pro.
+-   Register a new user via the UI. An admin endpoint exists to upgrade any new test account to the Pro tier if needed for testing premium features. The application now uses the user's provided OpenAI API key for all AI-related functionality.
 
 **What agent forgot to execute**
--   The agent did not resolve the root cause of the CSS changes not being visible to the user. While the changes were reverted at the user's request, the underlying platform/caching problem remains and will block future design work.</analysis>
+-   The agent created a reusable component file, , but then failed to use it, instead hardcoding the styles directly into the page components (, , ). This introduces technical debt and should be refactored.
+-   The root cause of the recurring CSS visibility issue for the user was not investigated, despite it being a top blocker from the previous handoff. It remains an unaddressed, high-risk problem.</analysis>
