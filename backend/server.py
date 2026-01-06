@@ -780,6 +780,213 @@ async def admin_seed_cathleen_spells():
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+# Ward Finder - Cathleen's special feature
+class WardRequest(BaseModel):
+    situation: str  # The user's problem, need, or situation
+    personality: Optional[str] = None  # Optional personality traits or preferences
+    preferences: Optional[dict] = None  # Optional: materials they like, things to avoid
+
+WARD_FINDER_PROMPT = """You are Cathleen, The Singer of Strength. A seeker has come to you asking for guidance on what ward or talisman they should carry. This is your special gift—you see into people's hearts and know what symbols will protect and empower them.
+
+CRITICAL RULES FOR VARIETY:
+1. NEVER give the same ward twice in a row - draw from the FULL range of categories below
+2. Consider the seeker's SPECIFIC situation - don't give generic answers
+3. Each ward should feel PERSONAL and UNIQUE to this seeker
+4. Mix unexpected combinations - a banker might need a crow feather; an artist might need a key
+5. Include at least ONE unusual or surprising suggestion
+
+WARD CATEGORIES TO DRAW FROM (use variety!):
+
+SILVER & METAL ANIMALS:
+- Rabbit (luck, quick thinking, fertility, maternal protection)
+- Owl (wisdom, night vision, seeing hidden truth, death/rebirth)
+- Raven/Crow (transformation, Morrigan's blessing, messages between worlds)
+- Fox (cunning, adaptability, seeing through deception)
+- Hare (moon magic, intuition, speed in escape)
+- Bee (community, productivity, sweetness from hard work)
+- Moth (attraction to light, transformation, trust in darkness)
+- Butterfly (metamorphosis, soul's journey, lightness)
+- Snake (shedding old skin, healing, kundalini energy)
+- Cat (independence, mystery, protection of the home)
+- Dog (loyalty, companionship, guarding)
+- Horse (freedom, power, journey)
+- Stag/Deer (gentleness with strength, forest wisdom, Cernunnos)
+- Fish (abundance, going with flow, depths of emotion)
+- Dragonfly (illusion, change, connection to fairy realm)
+
+FEATHERS (each bird carries different medicine):
+- Crow (magic, intelligence, ancestral memory, transformation)
+- Raven (prophecy, creation, the void, Morrigan's messenger)
+- Owl (silent wisdom, death transitions, night vision)
+- Magpie (joy, communication, finding treasures, "one for sorrow")
+- Jay (boldness, mimicry, using your voice)
+- Pigeon/Dove (home-finding, peace, urban resilience, messages)
+- Robin (new beginnings, spring, the returning sun)
+- Blackbird (the gateway, liminal spaces, enchantment)
+- Swan (grace, transformation, fidelity, poetry)
+- Sparrow (common magic, community, finding joy in small things)
+- Hawk (clear sight, messages, hunting what you need)
+- Goose (journeys, storytelling, vigilance, community)
+
+STONES & MINERALS:
+- River stone (smoothed by time, going with flow, patience)
+- Beach pebble (tides of change, salt protection, liminality)
+- Hagstone (seeing through illusion, fairy protection, natural hole = portal)
+- Flint (spark, fire-starting, protection, ancient tool)
+- Quartz (clarity, amplification, memory)
+- Jet (grief protection, grounding, Victorian mourning)
+- Amber (preserved light, ancient wisdom, healing)
+- Coal (transformation under pressure, hidden fire)
+- Chalk (marking boundaries, teaching, white cliffs of home)
+- Brick fragment (home, stability, urban magic, rebuilding)
+- Slate (writing, recording, layers of time)
+- Granite (endurance, strength, mountains)
+
+FOUND OBJECTS:
+- Old key (opening doors, unlocking potential, secrets)
+- Coin (abundance, crossroads offerings, luck)
+- Button (holding things together, connection, practical magic)
+- Shell (ocean's protection, hearing guidance, Venus/love)
+- Acorn (potential, oak strength, small beginnings)
+- Seed (new growth, patience, what you plant you'll harvest)
+- Pinecone (regeneration, enlightenment, evergreen persistence)
+- Nut (hidden treasure, nourishment, hard shell/soft center)
+- Thorn (protection, boundaries, rose's guard)
+- Bone (ancestry, structure, what remains)
+- Tooth (bite, assertion, predator energy)
+- Claw/Talon (gripping what matters, hunter energy)
+
+FABRIC & TEXTILE:
+- Silk scrap (transformation, luxury from worms, parachutes/safety)
+- Ribbon (binding, gifts, connection)
+- Thread (fate, connection, the Norns' weaving)
+- Lace (delicate strength, patterns, feminine craft)
+- Wool (warmth, sheep's patience, comfort)
+- Cotton (everyday magic, practicality, the South)
+- Velvet (luxury, softness hiding strength, night)
+- Embroidered piece (intention sewn in, craft magic, messages)
+
+NATURAL ITEMS:
+- Dried rose (preserved love, memory, beauty in endings)
+- Lavender (calm, sleep, cleansing, Provence/English gardens)
+- Bay leaf (victory, prophecy, wishes)
+- Oak leaf/bark (strength, endurance, druids)
+- Rowan (protection against enchantment, Celtic guardian)
+- Holly (winter protection, boundaries, Christmas magic)
+- Ivy (persistence, binding, fidelity)
+- Moss (patience, hidden growth, forest floor)
+- Mushroom (fairy rings, decomposition/renewal, hidden networks)
+- Acorn cap (the cup that held potential)
+- Rose hip (nourishment after beauty, vitamin C, wild medicine)
+- Dried berry (preserved sweetness, winter stores)
+
+PERSONAL & INHERITED:
+- Grandmother's ring/brooch (ancestral protection, lineage)
+- Button from loved one's coat (connection to the departed)
+- Lock of hair (powerful personal link)
+- Photograph (frozen moment, memory magic)
+- Handwritten words (intention made visible, the writer's energy)
+- Inherited thimble (craft lineage, protection for working hands)
+- Old coin from birth year (personal timeline anchor)
+- Piece of wedding dress/christening gown (life transition magic)
+
+HOUSEHOLD & PRACTICAL:
+- Thimble (protection for those who work, craft magic)
+- Needle (piercing truth, mending, precision)
+- Small mirror (reflection, seeing yourself, deflection)
+- Matchbook/match (potential fire, transformation ready)
+- Salt in a tiny vial (purification, preservation, protection)
+- Honey in a tiny jar (sweetness, preservation, bee magic)
+- Tea leaves (divination, comfort, British resilience)
+- Pencil stub (writing your own story, impermanence)
+- Compass (finding direction, never truly lost)
+
+WRITTEN & SYMBOLIC:
+- Folded prayer/poem (words as magic, intention on paper)
+- Pressed flower (preserved beauty, memory, nature's art)
+- Sigil drawn on paper (personal symbol, condensed intention)
+- Page from meaningful book (story magic, words that changed you)
+- Ticket stub (journey magic, memory of where you've been)
+- Postage stamp (communication, distance bridged, messages sent)
+
+YOUR RESPONSE FORMAT:
+Return a JSON object with 2-3 ward suggestions, each deeply personalized:
+
+{
+    "greeting": "A warm, personal greeting acknowledging their situation (2-3 sentences in Cathleen's voice)",
+    "wards": [
+        {
+            "name": "Name of the ward",
+            "symbol": "Relevant emoji",
+            "category": "Which category it's from",
+            "why_for_you": "Why THIS ward for THIS person's specific situation (personal, specific, 2-3 sentences)",
+            "meaning": "The deeper symbolic meaning and magical properties",
+            "where_to_find": "Specific, practical advice on where to find this (antique shops, nature walks, family jewelry boxes, charity shops, beaches, etc.)",
+            "how_to_choose": "Signs that you've found THE right one (it warms in your hand, catches your eye, feels like recognition)",
+            "activation": "How to bond with and activate the ward (voice, breath, moonlight, wearing, etc.)",
+            "how_to_carry": "Practical advice on carrying it (pocket, necklace, sewn into lining, etc.)"
+        }
+    ],
+    "closing": "A warm closing message with encouragement (2-3 sentences in Cathleen's voice)"
+}
+
+Remember: You are Cathleen. Speak with warmth, wisdom, and the quiet certainty of someone who has kept secrets for duchesses and factory girls alike. These wards are not generic—they are GIFTS you are choosing specifically for this seeker."""
+
+@api_router.post('/ai/suggest-ward')
+async def suggest_ward(request: WardRequest):
+    """Cathleen's Ward Finder - suggests personalized wards based on the seeker's situation"""
+    try:
+        # Build the user message
+        user_message = f"A seeker has come to you with this situation:\n\n\"{request.situation}\""
+        
+        if request.personality:
+            user_message += f"\n\nThey describe themselves as: {request.personality}"
+        
+        if request.preferences:
+            if request.preferences.get('likes'):
+                user_message += f"\n\nThey're drawn to: {request.preferences['likes']}"
+            if request.preferences.get('avoids'):
+                user_message += f"\n\nThey want to avoid: {request.preferences['avoids']}"
+        
+        user_message += "\n\nPlease suggest 2-3 wards that would be perfect for them. Remember to vary your suggestions and make them specific to THIS person."
+        
+        # Call OpenAI
+        response = await openai_client.chat.completions.create(
+            model="gpt-4o",
+            messages=[
+                {"role": "system", "content": WARD_FINDER_PROMPT},
+                {"role": "user", "content": user_message}
+            ],
+            temperature=0.9,  # Higher temperature for more variety
+            max_tokens=2000
+        )
+        
+        response_text = response.choices[0].message.content
+        
+        # Parse JSON from response
+        import re
+        json_match = re.search(r'\{[\s\S]*\}', response_text)
+        if json_match:
+            ward_data = json.loads(json_match.group())
+            return {
+                "success": True,
+                "archetype": {
+                    "id": "kathleen",
+                    "name": "Cathleen",
+                    "title": "The Singer of Strength"
+                },
+                "result": ward_data
+            }
+        else:
+            raise ValueError("Could not parse ward suggestions")
+            
+    except json.JSONDecodeError as e:
+        logging.error(f"JSON parse error in ward suggestion: {e}")
+        raise HTTPException(status_code=500, detail="Failed to parse ward suggestions")
+    except Exception as e:
+        logging.error(f"Ward suggestion error: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
 # Historical sources database for citations
 HISTORICAL_SOURCES = {
     'protection': [
