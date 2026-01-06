@@ -70,9 +70,9 @@ export const ARCHETYPES = [
   },
   {
     id: 'kathleen',
-    name: 'Kathleen Winifred Malzard',
+    name: 'Cathleen Winifred Malzard',
     title: 'The Keeper of Secrets',
-    shortName: 'Kathleen',
+    shortName: 'Cathleen',
     era: 'Interwar & WWII Period',
     birdSymbol: 'Owls & Doves',
     birdEmoji: '🦉',
