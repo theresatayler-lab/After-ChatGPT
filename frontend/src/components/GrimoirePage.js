@@ -588,7 +588,7 @@ export const GrimoirePage = ({ spell, archetype, imageBase64, onNewSpell }) => {
               
               <div className="mt-4 pt-4 border-t border-secondary/20">
                 <p className="font-montserrat text-xs text-muted-foreground italic text-center">
-                  "Carry your ward close—a physical anchor for invisible magic." — Cathleen
+                  &ldquo;Carry your ward close—a physical anchor for invisible magic.&rdquo; — Cathleen
                 </p>
               </div>
             </div>
