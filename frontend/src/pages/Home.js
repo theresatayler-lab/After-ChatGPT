@@ -6,78 +6,191 @@ import { GlassCard } from '../components/GlassCard';
 import { DecorativeDivider } from '../components/DecorativeDivider';
 import { WaitlistForm } from '../components/WaitlistForm';
 
+// Ornate corner SVG component
+const OrnateCorner = ({ className }) => (
+  <svg viewBox="0 0 100 100" className={className} fill="none" stroke="currentColor" strokeWidth="1">
+    <path d="M0,30 Q0,0 30,0" />
+    <path d="M0,20 Q0,0 20,0" opacity="0.5" />
+    <path d="M5,35 Q5,5 35,5" opacity="0.3" />
+    <circle cx="8" cy="8" r="2" fill="currentColor" opacity="0.6" />
+  </svg>
+);
+
+// Mystical section divider
+const MysticalDivider = ({ variant = 'default' }) => (
+  <div className="flex items-center justify-center gap-4 py-6">
+    <div className="h-px bg-gradient-to-r from-transparent via-primary/30 to-primary/50 flex-1 max-w-32" />
+    <div className="flex items-center gap-2 text-primary/50">
+      {variant === 'crow' ? (
+        <span className="text-2xl">🐦‍⬛</span>
+      ) : variant === 'moon' ? (
+        <>
+          <span className="text-sm">✦</span>
+          <span className="text-xl">☽</span>
+          <span className="text-sm">✦</span>
+        </>
+      ) : (
+        <>
+          <span className="text-xs">◆</span>
+          <span className="text-lg">❧</span>
+          <span className="text-xs">◆</span>
+        </>
+      )}
+    </div>
+    <div className="h-px bg-gradient-to-l from-transparent via-primary/30 to-primary/50 flex-1 max-w-32" />
+  </div>
+);
+
 export const Home = () => {
   return (
-    <div className="min-h-screen">
+    <div 
+      className="min-h-screen"
+      style={{
+        background: 'linear-gradient(to bottom, #1a1512 0%, #2d2319 50%, #1a1512 100%)',
+      }}
+    >
+      {/* Parchment texture overlay */}
+      <div 
+        className="fixed inset-0 pointer-events-none opacity-[0.03] z-0"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+        }}
+      />
+
       {/* Hero Section */}
-      <div className="relative min-h-[85vh] flex items-center justify-center overflow-hidden py-12">
+      <div className="relative min-h-[90vh] flex items-center justify-center overflow-hidden py-12">
+        {/* Background with vignette */}
         <div
           className="absolute inset-0 z-0"
           style={{
             backgroundImage: 'url(https://customer-assets.emergentagent.com/job_mystic-circle-2/artifacts/t5tfc6i3_COuld_we_creatre_more_of_these_--profile_bsfwy2d_--v_7_d08b86ee-a6ac-4cf3-a814-1344b45b3380_1.png)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-            opacity: '0.35',
-            mixBlendMode: 'multiply',
+            opacity: '0.25',
           }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/50 to-background" />
-        </div>
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#1a1512]/90 via-[#1a1512]/60 to-[#1a1512] z-0" />
+        <div className="absolute inset-0 bg-gradient-radial from-transparent to-[#1a1512]/80 z-0" />
+        
+        {/* Decorative corner ornaments */}
+        <OrnateCorner className="absolute top-8 left-8 w-16 h-16 text-primary/20 rotate-0" />
+        <OrnateCorner className="absolute top-8 right-8 w-16 h-16 text-primary/20 rotate-90" />
+        <OrnateCorner className="absolute bottom-8 left-8 w-16 h-16 text-primary/20 -rotate-90" />
+        <OrnateCorner className="absolute bottom-8 right-8 w-16 h-16 text-primary/20 rotate-180" />
         
         <div className="relative z-10 text-center max-w-5xl px-4 sm:px-6 flex flex-col items-center">
-          {/* Ornate Logo - multiply blend removes white background */}
-          <img 
-            src="https://customer-assets.emergentagent.com/job_mystic-circle-2/artifacts/li34ks3x_Where%20the%20Crowlands%20Logos.png"
-            alt="Where The Crowlands"
-            className="w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 mb-4 sm:mb-6 object-contain"
-            style={{ mixBlendMode: 'multiply' }}
-          />
+          {/* Ornate Logo with glow effect */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1 }}
+            className="relative"
+          >
+            <div 
+              className="absolute inset-0 blur-2xl opacity-30"
+              style={{ background: 'radial-gradient(circle, rgba(139, 90, 43, 0.4) 0%, transparent 70%)' }}
+            />
+            <img 
+              src="https://customer-assets.emergentagent.com/job_mystic-circle-2/artifacts/li34ks3x_Where%20the%20Crowlands%20Logos.png"
+              alt="Where The Crowlands"
+              className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 mb-4 sm:mb-6 object-contain drop-shadow-2xl"
+              style={{ mixBlendMode: 'multiply', filter: 'brightness(1.1) contrast(1.1)' }}
+            />
+          </motion.div>
           
           <div className="max-w-3xl">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <h1 className="font-italiana text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-primary mb-4 sm:mb-5 tracking-tight leading-none">
-              Where The Crowlands
-            </h1>
-            
-            <p className="font-cinzel text-lg sm:text-xl md:text-2xl text-secondary mb-6 sm:mb-8">
-              Magic, math and science aren't such strange bedfellows.
-            </p>
-            
-            <div className="font-crimson text-sm sm:text-base md:text-lg text-foreground/90 leading-relaxed max-w-3xl mx-auto px-4 space-y-4">
-              <p>
-                Where the Crowlands is a toolkit for alchemizing what you already hold. Rooted in history; from the 
-                Huguenot mystics fleeing persecution, Jersey witches shaping weather and fate, Irish and Celtic keepers 
-                of forbidden knowledge, to those closer to my own heart and timeline, the table-tappers and spiritualists 
-                revealing the hidden world, Churchill's secret army of Cockney rebels defending the home front. The druids, 
-                templers, occultists, astrologers, hermetic philosophers, "witches" midwives and alchemists before them…
-              </p>
-            </div>
-
-            {/* Waitlist Form - Positioned prominently */}
-            <div className="mt-8 sm:mt-10 mb-8 sm:mb-10">
-              <WaitlistForm source="homepage" />
-            </div>
-            
-            <div className="font-crimson text-sm sm:text-base md:text-lg text-foreground/90 leading-relaxed max-w-3xl mx-auto px-4 space-y-4">
-              <p>
-                The magic we've abandoned isn't "woo woo"—it's intention, craft, commitment, and ritual. It is that intention paired with action can change history. Whether our ancestors named it or not, that power is still yours to work with. Inspired by real people—my family—and grounded in plenty of creative lore, Where the Crowlands offers a fun, practical way to bring alchemy, magic, and beauty into your life. Access the data and practises of the past to create your own spells, rituals, and road.
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
+              <h1 
+                className="font-italiana text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-amber-100 mb-4 sm:mb-5 tracking-tight leading-none"
+                style={{ textShadow: '0 4px 20px rgba(139, 90, 43, 0.5)' }}
+              >
+                Where The Crowlands
+              </h1>
+              
+              <p 
+                className="font-cinzel text-lg sm:text-xl md:text-2xl text-amber-200/80 mb-6 sm:mb-8 tracking-wide"
+                style={{ textShadow: '0 2px 10px rgba(0, 0, 0, 0.5)' }}
+              >
+                Magic, math and science aren't such strange bedfellows.
               </p>
               
-              <p className="text-accent italic">
-                While rooted primarily in British history and mysticism, we plan to expand, honouring all cultures—every 
-                tradition has drawn from what lies beneath the veil. As uncertainty and shifting world powers challenge 
-                our sense of and inherent belief system about what constitutes light and dark, it's time to bring a little magic back ;)
-              </p>
-            </div>
+              <MysticalDivider variant="moon" />
+              
+              <div className="font-crimson text-sm sm:text-base md:text-lg text-amber-100/80 leading-relaxed max-w-3xl mx-auto px-4 space-y-4">
+                <p className="first-letter:text-4xl first-letter:font-italiana first-letter:text-amber-400 first-letter:float-left first-letter:mr-2 first-letter:leading-none">
+                  Where the Crowlands is a toolkit for alchemizing what you already hold. Rooted in history; from the 
+                  Huguenot mystics fleeing persecution, Jersey witches shaping weather and fate, Irish and Celtic keepers 
+                  of forbidden knowledge, to those closer to my own heart and timeline, the table-tappers and spiritualists 
+                  revealing the hidden world, Churchill's secret army of Cockney rebels defending the home front. The druids, 
+                  templers, occultists, astrologers, hermetic philosophers, "witches" midwives and alchemists before them…
+                </p>
+              </div>
 
-            
-            {/* Art Deco accent line */}
-            <div className="flex items-center justify-center gap-3 mt-12 mb-6 sm:mb-8">
-              <div className="h-px w-12 sm:w-20 bg-gradient-to-r from-transparent to-deep-blue/40"></div>
+              {/* Waitlist Form - Styled with ornate border */}
+              <div className="mt-10 mb-10">
+                <div className="relative max-w-md mx-auto">
+                  <div className="absolute inset-0 border border-amber-500/20 rounded-lg" />
+                  <div className="absolute inset-1 border border-amber-500/10 rounded-md" />
+                  <div className="relative p-1">
+                    <WaitlistForm source="homepage" />
+                  </div>
+                </div>
+              </div>
+              
+              <MysticalDivider variant="crow" />
+              
+              <div className="font-crimson text-sm sm:text-base md:text-lg text-amber-100/80 leading-relaxed max-w-3xl mx-auto px-4 space-y-4">
+                <p>
+                  The magic we've abandoned isn't "woo woo"—it's intention, craft, commitment, and ritual. It is that intention paired with action can change history. Whether our ancestors named it or not, that power is still yours to work with. Inspired by real people—my family—and grounded in plenty of creative lore, Where the Crowlands offers a fun, practical way to bring alchemy, magic, and beauty into your life.
+                </p>
+                
+                <p className="text-amber-300/90 italic border-l-2 border-amber-500/30 pl-4">
+                  While rooted primarily in British history and mysticism, we plan to expand, honouring all cultures—every 
+                  tradition has drawn from what lies beneath the veil. As uncertainty and shifting world powers challenge 
+                  our sense of and inherent belief system about what constitutes light and dark, it's time to bring a little magic back ;)
+                </p>
+              </div>
+
+              <MysticalDivider />
+              
+              {/* CTA Buttons with ornate styling */}
+              <motion.div 
+                className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+              >
+                <Link
+                  to="/spell-request"
+                  className="group relative px-8 py-4 overflow-hidden"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-amber-700 via-amber-600 to-amber-700 rounded-sm" />
+                  <div className="absolute inset-px bg-gradient-to-r from-amber-800 via-amber-700 to-amber-800 rounded-sm" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-sm" />
+                  <span className="relative flex items-center gap-2 font-montserrat text-amber-100 tracking-widest uppercase text-sm">
+                    <Sparkles className="w-4 h-4" />
+                    Begin Your Journey
+                  </span>
+                </Link>
+                
+                <Link
+                  to="/guides"
+                  className="group relative px-8 py-4 border border-amber-500/30 hover:border-amber-500/50 rounded-sm transition-all"
+                >
+                  <span className="flex items-center gap-2 font-montserrat text-amber-200/80 tracking-widest uppercase text-sm group-hover:text-amber-100 transition-colors">
+                    <Users className="w-4 h-4" />
+                    Meet Your Guides
+                  </span>
+                </Link>
+              </motion.div>
+            </motion.div>
+          </div>
+        </div>
+      </div>
               <span className="text-deep-blue/60 text-sm">✦</span>
               <div className="h-px w-12 sm:w-20 bg-gradient-to-l from-transparent to-deep-blue/40"></div>
             </div>
