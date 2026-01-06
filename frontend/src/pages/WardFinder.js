@@ -177,6 +177,8 @@ const WardFinder = () => {
   const [personality, setPersonality] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState(null);
+  const [savingWards, setSavingWards] = useState({});  // Track which wards are being saved
+  const [savedWards, setSavedWards] = useState({});    // Track which wards have been saved
   
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -188,6 +190,7 @@ const WardFinder = () => {
     
     setIsLoading(true);
     setResult(null);
+    setSavedWards({});  // Reset saved state for new results
     
     try {
       const response = await fetch(`${API_URL}/api/ai/suggest-ward`, {
@@ -211,6 +214,57 @@ const WardFinder = () => {
       toast.error('Something went wrong. Please try again.');
     } finally {
       setIsLoading(false);
+    }
+  };
+  
+  const handleSaveWard = async (ward) => {
+    const token = localStorage.getItem('token');
+    
+    if (!token) {
+      toast.error('Please log in to save wards to your grimoire');
+      navigate('/auth');
+      return;
+    }
+    
+    const wardKey = ward.name;
+    setSavingWards(prev => ({ ...prev, [wardKey]: true }));
+    
+    try {
+      const response = await fetch(`${API_URL}/api/grimoire/save-ward`, {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          ward_data: ward,
+          situation: situation.trim(),
+          archetype_id: 'kathleen',
+          archetype_name: 'Cathleen'
+        })
+      });
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        if (errorData.detail?.error === 'feature_locked') {
+          toast.error('Upgrade to Pro to save wards to your grimoire!', {
+            action: {
+              label: 'Upgrade',
+              onClick: () => navigate('/upgrade')
+            }
+          });
+          return;
+        }
+        throw new Error('Failed to save ward');
+      }
+      
+      setSavedWards(prev => ({ ...prev, [wardKey]: true }));
+      toast.success(`${ward.name} saved to your grimoire!`);
+    } catch (error) {
+      console.error('Save ward error:', error);
+      toast.error('Failed to save ward. Please try again.');
+    } finally {
+      setSavingWards(prev => ({ ...prev, [wardKey]: false }));
     }
   };
   
