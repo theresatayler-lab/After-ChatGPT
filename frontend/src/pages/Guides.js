@@ -105,6 +105,8 @@ export const Guides = () => {
 };
 
 const GuideCard = ({ archetype, index, isCurrentGuide, isExpanded, onToggle, onSelectAsGuide }) => {
+  const navigate = useNavigate();
+  
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
