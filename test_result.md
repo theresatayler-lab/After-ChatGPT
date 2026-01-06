@@ -239,11 +239,13 @@ metadata:
 
 test_plan:
   current_focus:
+    - "Katherine Protection Spell Generation Flow"
     - "Auth Page - Login/Registration Toggle"
     - "Spell Limit Banner for Free Users"
     - "Save to Grimoire - Pro Only Restriction"
     - "Save as PDF - Pro Only Restriction"
   stuck_tasks:
+    - "Katherine Protection Spell Generation Flow"
     - "Auth Page - Login/Registration Toggle"
     - "Spell Limit Banner for Free Users"
     - "Save to Grimoire - Pro Only Restriction"
