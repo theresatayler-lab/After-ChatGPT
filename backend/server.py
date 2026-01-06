@@ -1174,6 +1174,67 @@ CATHLEEN_MATERIALS = {
     ]
 }
 
+# Cathleen's WWII Concealment Tradecraft (for "Keep Your Secrets Close" suggestions)
+CATHLEEN_CONCEALMENT_METHODS = {
+    'historical_examples': [
+        {
+            'name': 'Button Compass',
+            'history': 'MI9 hid tiny compasses inside ordinary-looking RAF buttons. Sister Sylvia Muir of the Australian Army Nursing Service carried one as a POW—a black Bakelite button with hidden orientation markings and embedded magnet.',
+            'modern_adaptation': 'Sew a meaningful small object (folded paper with intention, tiny charm, pressed flower) into a decorative button on your coat. The button opens with a twist or has a hollow back.',
+            'best_for': 'Protection intentions, travel safety, keeping courage close'
+        },
+        {
+            'name': 'Hairbrush Compartment',
+            'history': 'SOE agents carried oval hairbrushes with hidden compartments beneath the bristles—containing maps, miniature saws, and compasses. The bristle section lifted out to reveal the secret space.',
+            'modern_adaptation': 'Use a brush with a removable bristle pad, or a compact with a false bottom. Keep folded spells, affirmations, or small wards inside. Your daily grooming ritual becomes a moment of magical connection.',
+            'best_for': 'Daily protection, carrying written spells, morning ritual anchors'
+        },
+        {
+            'name': 'Compact Mirror Code',
+            'history': 'The CIA used modified makeup compacts with messages hidden inside the mirror—visible only when held at a certain angle. The compact looked entirely ordinary.',
+            'modern_adaptation': 'Tape a folded intention, sigil, or small photograph behind the mirror of your compact or phone case. Every time you check your reflection, you reconnect with your intention.',
+            'best_for': 'Self-image work, confidence spells, identity protection'
+        },
+        {
+            'name': 'Pendant Pouch',
+            'history': 'Small compasses were sealed in plastic and worn around the neck on cotton tape during operations—looking like a simple pendant but serving as a survival tool.',
+            'modern_adaptation': 'Wear a locket or small pouch pendant containing a tiny scroll of words, a pinch of protective herbs, or a small ward object. Keep your magic literally close to your heart.',
+            'best_for': 'Heart protection, grief work, carrying the essence of loved ones'
+        },
+        {
+            'name': 'Seam Concealment',
+            'history': 'Messages and maps were sewn into the seams and linings of clothing—invisible from the outside but always carried on the body. Tailors and dressmakers were essential to these operations.',
+            'modern_adaptation': 'Open a seam in your favorite jacket or coat lining. Insert a small paper with your intention, a pressed leaf, or a tiny ward. Stitch it closed. Your protection travels with you everywhere.',
+            'best_for': 'Long-term protection, spells that need to "live" with you, ancestral connection'
+        },
+        {
+            'name': 'Book Hollow',
+            'history': 'Hollowed books have been used for centuries to hide valuables and messages. During wartime, "innocent" books concealed everything from maps to radio parts.',
+            'modern_adaptation': 'Choose a book meaningful to you. Carefully cut a hollow in the pages. Keep your grimoire notes, special wards, or private items inside. It hides in plain sight on your shelf.',
+            'best_for': 'Protecting written magic, hiding a private grimoire, home protection'
+        },
+        {
+            'name': 'Nail Brush Secret',
+            'history': 'SOE nail brushes had wooden backs that lifted to reveal hidden compartments for escape tools.',
+            'modern_adaptation': 'Many toiletry items have removable backs or bases. A soap dish, jewelry box, or decorative container can hold your magical items in a bathroom or bedroom shrine that no visitor would question.',
+            'best_for': 'Bathroom magic, cleansing rituals, hidden altar space'
+        },
+        {
+            'name': 'Coin Concealment',
+            'history': 'Hollow coins containing microdots or tiny messages were carried openly—who questions pocket change? Some had screw threads; others had magnetic closures.',
+            'modern_adaptation': 'Carry a meaningful coin in your pocket or purse. Even without a hollow, the coin becomes a touchstone—a physical anchor for intention that you can hold when you need grounding or courage.',
+            'best_for': 'Abundance work, quick grounding, courage in public situations'
+        }
+    ],
+    'general_principles': [
+        'Hide in plain sight—the best concealment looks utterly ordinary',
+        'Make it part of your daily routine—grooming, dressing, checking your phone',
+        'Choose containers you already carry and touch often',
+        'The act of concealment is itself a spell—intention wrapped in discretion',
+        'What you hide becomes charged with the energy of protection'
+    ]
+}
+
 # Cathleen-specific historical sources
 CATHLEEN_HISTORICAL_SOURCES = {
     'morrigan_traditions': [
