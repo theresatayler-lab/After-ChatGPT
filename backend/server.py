@@ -641,6 +641,15 @@ async def admin_seed_katherine_spells():
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+@api_router.post('/admin/seed-cathleen-spells')
+async def admin_seed_cathleen_spells():
+    """Seed Cathleen's sample spells into the database (admin only)"""
+    try:
+        count = await seed_cathleen_spells(db)
+        return {"message": f"Successfully seeded {count} Cathleen sample spells", "count": count}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
 # Historical sources database for citations
 HISTORICAL_SOURCES = {
     'protection': [
