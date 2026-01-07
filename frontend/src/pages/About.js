@@ -52,11 +52,13 @@ export const About = () => {
             <div>
               <h3 className="font-cinzel text-base sm:text-lg text-primary mb-2">Shigg</h3>
               <p className="font-montserrat text-sm sm:text-base text-foreground/80 leading-relaxed">
-                The Birds of Parliament Poet Laureate. Born around 1927 in Dagenham, Shigg survived the 
-                Blitz and found solace in birdsong and the Rubáiyát of Omar Khayyám. Her magic is gentle 
-                and grounded—tea rituals, bird oracle readings, remembrance work, and the wisdom that 
-                &ldquo;the moving finger writes, and having writ, moves on.&rdquo; She teaches through tendencies, 
-                not predictions, and believes the sacred lives in ordinary moments.
+                The Birds of Parliament Poet Laureate. Born in London&apos;s West End, Shigg survived the 
+                Blitz in Dagenham with her sisters and parents, finding strength in poetry and family. 
+                The Rubáiyát of Omar Khayyám became her guiding star—its verses on impermanence and 
+                savoring the moment shaped her philosophy. She believed in the magic of the mundane: 
+                that a line of verse could be a spell, and the ordinary was always laced with wonder. 
+                She teaches that strength is found in gentleness, and every ritual—no matter how humble—can 
+                be an act of courage.
               </p>
             </div>
 
