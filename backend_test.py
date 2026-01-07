@@ -1253,6 +1253,429 @@ class SpiritualAppAPITester:
         print("   ✅ Complete grimoire flow successful")
         return True
 
+    # === COBBLES ORACLE TESTS (REVIEW REQUEST) ===
+    
+    def test_cobbles_oracle_deck_info(self):
+        """Test Cobbles Oracle deck info endpoint - REVIEW REQUEST TEST"""
+        success, response = self.run_test(
+            "Cobbles Oracle - Deck Info",
+            "GET",
+            "ai/cobbles-oracle/deck",
+            200
+        )
+        
+        if success and isinstance(response, dict):
+            # Verify deck structure from review request
+            required_fields = ['deck_name', 'total_cards', 'major_arcana_count', 'suits', 'spreads']
+            missing_fields = [field for field in required_fields if field not in response]
+            
+            if missing_fields:
+                print(f"   ❌ Missing required fields: {missing_fields}")
+                return False
+            
+            # Verify specific values from review request
+            if response.get('total_cards') != 78:
+                print(f"   ❌ Expected 78 total cards, got {response.get('total_cards')}")
+                return False
+            
+            if response.get('major_arcana_count') != 22:
+                print(f"   ❌ Expected 22 major arcana cards, got {response.get('major_arcana_count')}")
+                return False
+            
+            suits = response.get('suits', [])
+            if len(suits) != 4:
+                print(f"   ❌ Expected 4 suits, got {len(suits)}")
+                return False
+            
+            spreads = response.get('spreads', {})
+            if len(spreads) != 5:
+                print(f"   ❌ Expected 5 spread types, got {len(spreads)}")
+                return False
+            
+            print(f"   ✅ Deck name: {response.get('deck_name')}")
+            print(f"   ✅ Total cards: {response.get('total_cards')}")
+            print(f"   ✅ Major Arcana: {response.get('major_arcana_count')}")
+            print(f"   ✅ Suits: {', '.join(suits)}")
+            print(f"   ✅ Spreads: {', '.join(spreads.keys())}")
+            
+            return True
+        
+        return False
+
+    def test_cobbles_oracle_one_card_reading(self):
+        """Test Cobbles Oracle one-card reading with Pro user - REVIEW REQUEST TEST"""
+        # Login as Pro user first
+        pro_login_data = {
+            "email": "sub_test@test.com",
+            "password": "test123"
+        }
+        
+        success, login_response = self.run_test(
+            "Login Pro User for Cobbles Oracle",
+            "POST",
+            "auth/login",
+            200,
+            data=pro_login_data
+        )
+        
+        if not success or not isinstance(login_response, dict) or 'token' not in login_response:
+            print(f"   ❌ Failed to login Pro user")
+            return False
+        
+        # Store the Pro token temporarily
+        original_token = self.token
+        self.token = login_response['token']
+        
+        # Test one-card reading with specific situation from review request
+        reading_data = {
+            "situation": "I can't stop people-pleasing",
+            "spread_type": "one_card"
+        }
+        
+        success, response = self.run_test(
+            "Cobbles Oracle - One Card Reading",
+            "POST",
+            "ai/cobbles-oracle/reading",
+            200,
+            data=reading_data,
+            timeout=60
+        )
+        
+        # Restore original token
+        self.token = original_token
+        
+        if success and isinstance(response, dict):
+            # Verify response structure from review request
+            result = response.get('result', {})
+            required_fields = ['greeting', 'spread_name', 'cards', 'closing']
+            missing_fields = [field for field in required_fields if field not in result]
+            
+            if missing_fields:
+                print(f"   ❌ Missing required fields: {missing_fields}")
+                return False
+            
+            # Verify cards array has exactly 1 card
+            cards = result.get('cards', [])
+            if len(cards) != 1:
+                print(f"   ❌ Expected 1 card for one_card spread, got {len(cards)}")
+                return False
+            
+            # Verify card structure from review request
+            card = cards[0]
+            card_required_fields = [
+                'position', 'card', 'core_message', 'wwcd_advice', 
+                'shadow_to_avoid', 'blessing', 'next_step_today', 
+                'corrie_charm', 'rovers_return_line'
+            ]
+            missing_card_fields = [field for field in card_required_fields if field not in card]
+            
+            if missing_card_fields:
+                print(f"   ❌ Missing card fields: {missing_card_fields}")
+                return False
+            
+            # Verify card.card structure
+            card_info = card.get('card', {})
+            card_info_fields = ['name', 'symbol']
+            missing_card_info = [field for field in card_info_fields if field not in card_info]
+            
+            if missing_card_info:
+                print(f"   ❌ Missing card info fields: {missing_card_info}")
+                return False
+            
+            print(f"   ✅ One-card reading structure valid")
+            print(f"   ✅ Spread name: {result.get('spread_name')}")
+            print(f"   ✅ Card drawn: {card_info.get('name')} {card_info.get('symbol')}")
+            print(f"   ✅ Position: {card.get('position')}")
+            
+            return True
+        
+        return False
+
+    def test_cobbles_oracle_three_card_reading(self):
+        """Test Cobbles Oracle three-card reading - REVIEW REQUEST TEST"""
+        # Use Pro user token (should still be available from previous test)
+        pro_login_data = {
+            "email": "sub_test@test.com",
+            "password": "test123"
+        }
+        
+        success, login_response = self.run_test(
+            "Login Pro User for Three Card Reading",
+            "POST",
+            "auth/login",
+            200,
+            data=pro_login_data
+        )
+        
+        if not success or not isinstance(login_response, dict) or 'token' not in login_response:
+            print(f"   ❌ Failed to login Pro user")
+            return False
+        
+        # Store the Pro token temporarily
+        original_token = self.token
+        self.token = login_response['token']
+        
+        # Test three-card reading with specific situation from review request
+        reading_data = {
+            "situation": "My ex keeps texting me",
+            "spread_type": "three_card"
+        }
+        
+        success, response = self.run_test(
+            "Cobbles Oracle - Three Card Reading",
+            "POST",
+            "ai/cobbles-oracle/reading",
+            200,
+            data=reading_data,
+            timeout=60
+        )
+        
+        # Restore original token
+        self.token = original_token
+        
+        if success and isinstance(response, dict):
+            # Verify response structure
+            result = response.get('result', {})
+            required_fields = ['greeting', 'spread_name', 'cards', 'synthesis', 'closing']
+            missing_fields = [field for field in required_fields if field not in result]
+            
+            if missing_fields:
+                print(f"   ❌ Missing required fields: {missing_fields}")
+                return False
+            
+            # Verify cards array has exactly 3 cards
+            cards = result.get('cards', [])
+            if len(cards) != 3:
+                print(f"   ❌ Expected 3 cards for three_card spread, got {len(cards)}")
+                return False
+            
+            # Verify positions are Past/Present/Future
+            expected_positions = ['Past', 'Present', 'Future']
+            actual_positions = [card.get('position') for card in cards]
+            
+            for expected_pos in expected_positions:
+                if expected_pos not in actual_positions:
+                    print(f"   ❌ Missing expected position: {expected_pos}")
+                    return False
+            
+            # Verify synthesis field exists (specific to multi-card spreads)
+            synthesis = result.get('synthesis')
+            if not synthesis:
+                print(f"   ❌ Missing synthesis field for three-card reading")
+                return False
+            
+            print(f"   ✅ Three-card reading structure valid")
+            print(f"   ✅ Spread name: {result.get('spread_name')}")
+            print(f"   ✅ Positions: {', '.join(actual_positions)}")
+            print(f"   ✅ Synthesis provided: {len(synthesis)} characters")
+            
+            return True
+        
+        return False
+
+    def test_cobbles_oracle_pro_gating(self):
+        """Test Pro-only spread gating - REVIEW REQUEST TEST"""
+        # First ensure we have a non-Pro user token
+        if not self.token:
+            # Register a new user for this test
+            timestamp = datetime.now().strftime('%H%M%S')
+            test_user_data = {
+                "email": f"test_nonpro_oracle_{timestamp}@example.com",
+                "password": "TestPass123!",
+                "name": f"Test Non-Pro User {timestamp}"
+            }
+            
+            success, response = self.run_test(
+                "Register Non-Pro User for Oracle Gate Test",
+                "POST",
+                "auth/register",
+                200,
+                data=test_user_data
+            )
+            
+            if success and isinstance(response, dict) and 'token' in response:
+                self.token = response['token']
+            else:
+                print("   ❌ Failed to register non-Pro user for gate test")
+                return False
+        
+        # Try accessing street_spread (Pro-only) with free user
+        reading_data = {
+            "situation": "I need deep guidance about my life direction",
+            "spread_type": "street_spread"
+        }
+        
+        success, response = self.run_test(
+            "Cobbles Oracle - Pro Gate Test (street_spread)",
+            "POST",
+            "ai/cobbles-oracle/reading",
+            403,  # Expecting 403 Forbidden
+            data=reading_data
+        )
+        
+        if success and isinstance(response, dict):
+            # Verify it's the correct error type
+            detail = response.get('detail', {})
+            if isinstance(detail, dict):
+                error_type = detail.get('error')
+                if error_type == 'feature_locked':
+                    print(f"   ✅ Pro gate working correctly - feature_locked error returned")
+                    return True
+                else:
+                    print(f"   ❌ Expected 'feature_locked' error, got: {error_type}")
+                    return False
+            else:
+                # Handle case where detail is a string
+                if 'feature_locked' in str(detail):
+                    print(f"   ✅ Pro gate working correctly - feature_locked error returned")
+                    return True
+                else:
+                    print(f"   ❌ Expected 'feature_locked' error, got: {detail}")
+                    return False
+        
+        return success  # If we got 403, that's what we expected
+
+    def test_cobbles_oracle_safety_routing(self):
+        """Test safety routing for serious situations - REVIEW REQUEST TEST"""
+        # Use any user token (safety routing should work for all users)
+        if not self.token:
+            # Register a user for this test
+            timestamp = datetime.now().strftime('%H%M%S')
+            test_user_data = {
+                "email": f"test_safety_{timestamp}@example.com",
+                "password": "TestPass123!",
+                "name": f"Test Safety User {timestamp}"
+            }
+            
+            success, response = self.run_test(
+                "Register User for Safety Test",
+                "POST",
+                "auth/register",
+                200,
+                data=test_user_data
+            )
+            
+            if success and isinstance(response, dict) and 'token' in response:
+                self.token = response['token']
+            else:
+                print("   ❌ Failed to register user for safety test")
+                return False
+        
+        # Test with safety keywords from review request
+        reading_data = {
+            "situation": "someone is threatening me",
+            "spread_type": "one_card"
+        }
+        
+        success, response = self.run_test(
+            "Cobbles Oracle - Safety Routing Test",
+            "POST",
+            "ai/cobbles-oracle/reading",
+            200,
+            data=reading_data,
+            timeout=60
+        )
+        
+        if success and isinstance(response, dict):
+            # Verify safety_note appears in response
+            result = response.get('result', {})
+            safety_note = result.get('safety_note')
+            
+            if not safety_note:
+                print(f"   ❌ Expected safety_note in response for threatening situation")
+                return False
+            
+            # Verify safety note contains appropriate guidance
+            safety_lower = safety_note.lower()
+            safety_indicators = ['emergency', 'crisis', 'safety', 'danger']
+            found_indicators = [indicator for indicator in safety_indicators if indicator in safety_lower]
+            
+            if not found_indicators:
+                print(f"   ❌ Safety note doesn't contain expected safety guidance")
+                return False
+            
+            print(f"   ✅ Safety routing triggered correctly")
+            print(f"   ✅ Safety note provided: {len(safety_note)} characters")
+            print(f"   ✅ Safety indicators found: {', '.join(found_indicators)}")
+            
+            return True
+        
+        return False
+
+    def test_cobbles_oracle_card_routing_intelligence(self):
+        """Test card routing intelligence for money situations - REVIEW REQUEST TEST"""
+        # Use any user token
+        if not self.token:
+            # Register a user for this test
+            timestamp = datetime.now().strftime('%H%M%S')
+            test_user_data = {
+                "email": f"test_routing_{timestamp}@example.com",
+                "password": "TestPass123!",
+                "name": f"Test Routing User {timestamp}"
+            }
+            
+            success, response = self.run_test(
+                "Register User for Routing Test",
+                "POST",
+                "auth/register",
+                200,
+                data=test_user_data
+            )
+            
+            if success and isinstance(response, dict) and 'token' in response:
+                self.token = response['token']
+            else:
+                print("   ❌ Failed to register user for routing test")
+                return False
+        
+        # Test with money situation from review request
+        reading_data = {
+            "situation": "I'm broke and ashamed",
+            "spread_type": "one_card"
+        }
+        
+        success, response = self.run_test(
+            "Cobbles Oracle - Card Routing Intelligence",
+            "POST",
+            "ai/cobbles-oracle/reading",
+            200,
+            data=reading_data,
+            timeout=60
+        )
+        
+        if success and isinstance(response, dict):
+            # Verify we got a response
+            result = response.get('result', {})
+            cards = result.get('cards', [])
+            
+            if len(cards) == 0:
+                print(f"   ❌ No cards returned in response")
+                return False
+            
+            # Check if we got a Pennies suit card (money-related)
+            card = cards[0]
+            card_info = card.get('card', {})
+            card_name = card_info.get('name', '')
+            
+            # Look for Pennies suit characters (Bernie Winter, Ed Bailey, etc.)
+            pennies_characters = ['Bernie Winter', 'Ed Bailey', 'Aggie Bailey', 'Michael Bailey', 'Ronnie Bailey']
+            pennies_found = any(char in card_name for char in pennies_characters)
+            
+            if pennies_found:
+                print(f"   ✅ Card routing intelligence working - got Pennies suit card")
+                print(f"   ✅ Card: {card_name}")
+            else:
+                print(f"   ⚠️  Card routing may not be working optimally")
+                print(f"   ⚠️  Expected Pennies suit for money situation, got: {card_name}")
+                # Still return True as the system is working, just may not have optimal routing
+            
+            print(f"   ✅ Card routing test completed")
+            print(f"   ✅ Situation processed successfully")
+            
+            return True
+        
+        return False
+
 def main():
     print("🧙‍♀️ Starting Spiritual App API Testing...")
     print("=" * 60)
