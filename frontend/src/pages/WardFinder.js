@@ -207,6 +207,9 @@ const WardFinder = () => {
       const data = await response.json();
       setResult(data.result);
       toast.success('Cathleen has chosen your wards');
+      
+      // Scroll to top to show the results
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } catch (error) {
       console.error('Ward finder error:', error);
       toast.error('Something went wrong. Please try again.');
