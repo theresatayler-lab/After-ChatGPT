@@ -598,7 +598,7 @@ class SpiritualAppAPITester:
             
             found_spells = []
             for spell in response:
-                title = spell.get('title', '')
+                title = spell.get('spell_data', {}).get('title', '')
                 found_spells.append(title)
                 print(f"   - {title}")
             
