@@ -9,8 +9,8 @@ body {
     font-family: 'Crimson Text', serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #D8CBB3;
-    color: #1a1410;
+    background-color: #0a1628;
+    color: #e8e4dc;
 }
 
 code {
@@ -19,25 +19,25 @@ code {
 
 @layer base {
     :root {
-        --background: #D8CBB3;
-        --foreground: #1a1410;
-        --card: #e8dcc8;
-        --card-foreground: #1a1410;
-        --popover: #e8dcc8;
-        --popover-foreground: #1a1410;
-        --primary: #750609;
-        --primary-foreground: #f5efe0;
-        --secondary: #06133c;
-        --secondary-foreground: #f5efe0;
-        --muted: #c4b8a4;
-        --muted-foreground: #4a443a;
-        --accent: #4B5A3E;
-        --accent-foreground: #f5efe0;
-        --destructive: #750609;
-        --destructive-foreground: #f5efe0;
-        --border: #b8a890;
-        --input: #e8dcc8;
-        --ring: #750609;
+        --background: #0a1628;
+        --foreground: #e8e4dc;
+        --card: #0f1f38;
+        --card-foreground: #e8e4dc;
+        --popover: #0f1f38;
+        --popover-foreground: #e8e4dc;
+        --primary: #a61c1c;
+        --primary-foreground: #f5f3ef;
+        --secondary: #162844;
+        --secondary-foreground: #f5f3ef;
+        --muted: #1a3050;
+        --muted-foreground: #8b9bb0;
+        --accent: #c9a962;
+        --accent-foreground: #0a1628;
+        --destructive: #8b1a1a;
+        --destructive-foreground: #f5f3ef;
+        --border: #1e3a5f;
+        --input: #0f1f38;
+        --ring: #a61c1c;
         --radius: 0.5rem;
     }
 }
