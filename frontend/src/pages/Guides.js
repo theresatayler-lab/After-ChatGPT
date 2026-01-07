@@ -310,6 +310,17 @@ const GuideCard = ({ archetype, index, isCurrentGuide, isExpanded, onToggle, onS
             <span>Find Your Ward</span>
           </button>
         )}
+        
+        {/* Special Shigg Feature - What Would Corrie Do */}
+        {archetype.id === 'shiggy' && (
+          <button
+            onClick={() => navigate('/corrie-tarot')}
+            className="w-full mt-3 px-4 py-2 bg-primary/20 text-primary border border-primary/40 rounded-sm font-montserrat tracking-widest uppercase text-xs hover:bg-primary/30 transition-all flex items-center justify-center gap-2"
+          >
+            <span className="text-base">📺</span>
+            <span>What Would Corrie Do?</span>
+          </button>
+        )}
       </div>
     </motion.div>
   );
