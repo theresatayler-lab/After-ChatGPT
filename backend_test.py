@@ -743,6 +743,30 @@ class SpiritualAppAPITester:
 
     def test_corrie_tarot_pro_gate(self):
         """Test Corrie Tarot Pro gate (should return 403 without Pro) - REVIEW REQUEST TEST"""
+        # First ensure we have a non-Pro user token
+        if not self.token:
+            # Register a new user for this test
+            timestamp = datetime.now().strftime('%H%M%S')
+            test_user_data = {
+                "email": f"test_nonpro_{timestamp}@example.com",
+                "password": "TestPass123!",
+                "name": f"Test Non-Pro User {timestamp}"
+            }
+            
+            success, response = self.run_test(
+                "Register Non-Pro User for Gate Test",
+                "POST",
+                "auth/register",
+                200,
+                data=test_user_data
+            )
+            
+            if success and isinstance(response, dict) and 'token' in response:
+                self.token = response['token']
+            else:
+                print("   ❌ Failed to register non-Pro user for gate test")
+                return False
+        
         # Use regular user token (not Pro)
         tarot_data = {
             "situation": "Career change at 45",
