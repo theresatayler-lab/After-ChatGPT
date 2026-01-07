@@ -18,6 +18,7 @@ from emergentintegrations.payments.stripe.checkout import StripeCheckout, Checko
 import base64
 from katherine_spells import KATHERINE_SAMPLE_SPELLS, seed_katherine_spells
 from cathleen_spells import CATHLEEN_SAMPLE_SPELLS, seed_cathleen_spells
+from shigg_spells import SHIGG_SAMPLE_SPELLS, SHIGG_BIRD_ORACLE, SHIGG_CORRIE_CHARACTERS, seed_shigg_spells
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
