@@ -8,27 +8,48 @@
 ## Backend Tasks
 - task: "Shigg Archetype - Full Backend Implementation"
   implemented: true
-  working: needs_testing
+  working: true
   file: "/app/backend/server.py, /app/backend/shigg_spells.py"
   priority: "high"
+  stuck_count: 0
+  needs_retesting: false
   status_history:
     - working: pending
       agent: "main"
       comment: "Created shigg_spells.py with 4 sample spells (Dawn Cup Blessing, Boundaries Veil, Rosemary for Remembrance, Moving Finger Practice). Updated server.py with full Shigg persona as Birds of Parliament Poet Laureate. Added bird oracle and corrie tarot endpoints."
+    - working: true
+      agent: "testing"
+      comment: "✅ PASSED - All Shigg archetype features working correctly. GET /api/archetypes returns Shigg with correct name 'Shigg' and title 'The Birds of Parliament Poet Laureate'. GET /api/sample-spells/shiggy returns all 4 expected spells: The Dawn Cup Blessing, The Boundaries Veil, Rosemary for Remembrance, The Moving Finger Practice. Spell generation with Shigg archetype includes bird oracle elements as expected."
 
 - task: "Bird Oracle Reading Endpoint"
   implemented: true
-  working: needs_testing
+  working: true
   file: "/app/backend/server.py"
   priority: "high"
-  notes: "POST /api/ai/bird-oracle-reading - returns personalized bird oracle readings"
+  stuck_count: 0
+  needs_retesting: false
+  status_history:
+    - working: pending
+      agent: "main"
+      comment: "POST /api/ai/bird-oracle-reading - returns personalized bird oracle readings"
+    - working: true
+      agent: "testing"
+      comment: "✅ PASSED - Bird Oracle endpoint working correctly. POST /api/ai/bird-oracle-reading returns proper structure with greeting, birds array (containing name, symbol, message, ritual, prompt), poetic_reflection, and closing. Birds are selected appropriately based on user situation and question."
 
 - task: "Corrie Tarot Endpoint (Pro-only)"
   implemented: true
-  working: needs_testing
+  working: true
   file: "/app/backend/server.py"
   priority: "high"
-  notes: "POST /api/ai/corrie-tarot - Pro users only, 3-card past/present/future Coronation Street reading"
+  stuck_count: 0
+  needs_retesting: false
+  status_history:
+    - working: pending
+      agent: "main"
+      comment: "POST /api/ai/corrie-tarot - Pro users only, 3-card past/present/future Coronation Street reading"
+    - working: true
+      agent: "testing"
+      comment: "✅ PASSED - Corrie Tarot endpoint working correctly. Pro users can access POST /api/ai/corrie-tarot and receive proper 3-card reading with past/present/future characters from Coronation Street. Each character includes name, era, archetype, symbol, message, and wisdom. Non-Pro users correctly receive 403 with feature_locked error. Pro gate functioning as expected."
 
 ## Frontend Tasks
 - task: "Shigg Archetype Profile"
