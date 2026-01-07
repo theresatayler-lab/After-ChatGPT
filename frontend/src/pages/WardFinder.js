@@ -461,8 +461,6 @@ const WardFinder = () => {
           </motion.div>
         </div>
       </main>
-      
-      <Footer />
     </div>
   );
 };
