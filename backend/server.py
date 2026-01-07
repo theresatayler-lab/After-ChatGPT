@@ -1781,7 +1781,14 @@ CATHLEEN_HISTORICAL_SOURCES = {
 
 # Archetype-specific image style prompts
 ARCHETYPE_IMAGE_STYLES = {
-    'shiggy': 'vintage WWII era wartime poster style, Rubáiyát of Omar Khayyám illustration, Edmund Dulac aesthetic, muted earth tones with gold accents, birds and poetry motifs, 1940s British home front imagery',
+    'shiggy': """Edmund J. Sullivan Rubáiyát illustration style, intricate black and white pen-and-ink engraving, 
+detailed cross-hatching and fine linework for shading, Victorian occult grimoire aesthetic, 
+memento mori imagery with roses and botanical elements, celestial symbols like armillary spheres and astrological charts, 
+Art Nouveau flowing organic lines in drapery and foliage, mystical figures with halos and wings, 
+birds as spiritual messengers (crows, doves, finches), alchemical and esoteric symbolism, 
+contemplative melancholic mood, late Victorian/Edwardian book illustration quality, 
+high contrast black and white with rich textured cross-hatched shadows, 
+romantic symbolism of mortality and transformation, no color - strictly black ink on aged paper texture""",
     'kathleen': 'Celtic goddess aesthetic, the Morrigan imagery with crows and ravens, intimate candlelit home circle, East End London 1930s-1940s Blitz era, parachute silk textures, table-tipping séance atmosphere, warm domestic setting with mystical undertones, silver talismans and brooches, protective motherly energy, deep blue and black tones with silver and red accents, voice and song motifs, lace and fine fabric textures',
     'catherine': '1920s British spiritualist séance aesthetic, Art Deco meets Victorian mourning, Spitalfields weaver imagery, needle and thread motifs, shadow and candlelight, blackout séance room atmosphere, spirit photography aesthetic with ethereal double exposures, crows and magpies as messengers, tarot and scrying mirrors, parchment and textile textures, Huguenot precision meets occult mystery, sepia and deep burgundy tones',
     'theresa': 'modern collage aesthetic with vintage elements, birds in flight, family photographs and artifacts, investigative journalism style, truth-seeking imagery, contemporary with ancestral echoes',
