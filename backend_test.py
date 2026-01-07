@@ -1688,6 +1688,15 @@ def main():
     if not tester.test_auth_register():
         print("❌ Registration failed, continuing with other tests...")
     
+    # === COBBLES ORACLE TESTS (REVIEW REQUEST PRIORITY) ===
+    print("\n🎴 Testing Cobbles Oracle Features (REVIEW REQUEST)...")
+    tester.test_cobbles_oracle_deck_info()
+    tester.test_cobbles_oracle_one_card_reading()
+    tester.test_cobbles_oracle_three_card_reading()
+    tester.test_cobbles_oracle_pro_gating()
+    tester.test_cobbles_oracle_safety_routing()
+    tester.test_cobbles_oracle_card_routing_intelligence()
+    
     # Test archetype system (priority tests from review request)
     print("\n🎭 Testing Archetype System...")
     tester.test_archetype_endpoint()
