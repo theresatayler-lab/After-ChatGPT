@@ -280,14 +280,14 @@ export const Home = () => {
         </div>
       </div>
 
-      {/* Features Section with dark mystical styling */}
+      {/* Features Section with enhanced ornate styling */}
       <div className="relative py-20 px-4">
         <div className="max-w-6xl mx-auto">
-          <MysticalDivider variant="moon" />
+          <OrnateDivider variant="eye" size="large" />
           
           <h2 
-            className="font-italiana text-3xl md:text-4xl text-champagne-light text-center mb-12"
-            style={{ textShadow: '0 2px 20px rgba(201, 169, 98, 0.4)' }}
+            className="font-italiana text-3xl md:text-4xl text-gold-light text-center mb-12"
+            style={{ textShadow: '0 2px 20px rgba(212, 168, 75, 0.5)' }}
           >
             Your Path Awaits
           </h2>
@@ -305,14 +305,25 @@ export const Home = () => {
                 transition={{ delay: i * 0.2 }}
                 className="relative group"
               >
-                <div className="absolute inset-0 border border-champagne/20 rounded-lg group-hover:border-champagne/40 transition-colors bg-navy-mid/30" />
-                <div className="absolute inset-2 border border-crimson/10 rounded-md" />
+                {/* Outer gold border */}
+                <div className="absolute inset-0 border-2 border-gold/30 rounded-lg group-hover:border-gold/50 transition-colors" />
+                {/* Inner crimson accent border */}
+                <div className="absolute inset-2 border border-crimson/20 rounded-md group-hover:border-crimson/40 transition-colors" />
+                {/* Background */}
+                <div className="absolute inset-0 bg-navy-mid/50 rounded-lg backdrop-blur-sm" />
+                
+                {/* Corner diamonds */}
+                <span className="absolute -top-2 -left-2 text-crimson text-sm opacity-60 group-hover:opacity-100 transition-opacity">◆</span>
+                <span className="absolute -top-2 -right-2 text-crimson text-sm opacity-60 group-hover:opacity-100 transition-opacity">◆</span>
+                <span className="absolute -bottom-2 -left-2 text-crimson text-sm opacity-60 group-hover:opacity-100 transition-opacity">◆</span>
+                <span className="absolute -bottom-2 -right-2 text-crimson text-sm opacity-60 group-hover:opacity-100 transition-opacity">◆</span>
+                
                 <div className="relative p-8 text-center">
-                  <feature.icon className="w-10 h-10 text-crimson-bright mx-auto mb-4" />
-                  <h3 className="font-cinzel text-xl text-champagne mb-3">{feature.title}</h3>
+                  <feature.icon className="w-12 h-12 text-crimson-bright mx-auto mb-4 group-hover:scale-110 transition-transform" style={{ filter: 'drop-shadow(0 0 10px rgba(184, 35, 48, 0.4))' }} />
+                  <h3 className="font-cinzel text-xl text-gold mb-3">{feature.title}</h3>
                   <p className="font-crimson text-silver-mist/80">{feature.desc}</p>
                   {feature.tooltip && (
-                    <p className="font-montserrat text-xs text-champagne/50 mt-3 opacity-0 group-hover:opacity-100 transition-opacity italic">
+                    <p className="font-montserrat text-xs text-gold/50 mt-3 opacity-0 group-hover:opacity-100 transition-opacity italic">
                       {feature.tooltip}
                     </p>
                   )}
@@ -321,7 +332,7 @@ export const Home = () => {
             ))}
           </div>
           
-          <MysticalDivider />
+          <OrnateDivider size="medium" />
         </div>
       </div>
     </div>
