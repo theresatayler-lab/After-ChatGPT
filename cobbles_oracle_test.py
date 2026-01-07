@@ -334,7 +334,7 @@ class CobbleOracleAPITester:
         
         # Test with safety keywords from review request
         reading_data = {
-            "situation": "someone is threatening me",
+            "situation": "someone is making threats against me",  # Using exact keyword "threats"
             "spread_type": "one_card"
         }
         
