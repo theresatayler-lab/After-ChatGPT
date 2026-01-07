@@ -12,53 +12,62 @@ const API_URL = process.env.REACT_APP_BACKEND_URL;
 // Shigg's image
 const SHIGG_IMAGE = "https://customer-assets.emergentagent.com/job_diywizardry/artifacts/127im9d9_Shig50.png";
 
-// Card component for each position (Past/Present/Future)
-const CorrieTarotCard = ({ position, data, index }) => {
-  const [expanded, setExpanded] = useState(true);
-  
-  const positionLabels = {
-    past: { label: 'Past', color: 'text-amber-400', bg: 'bg-amber-500/10', border: 'border-amber-500/30' },
-    present: { label: 'Present', color: 'text-emerald-400', bg: 'bg-emerald-500/10', border: 'border-emerald-500/30' },
-    future: { label: 'Future', color: 'text-violet-400', bg: 'bg-violet-500/10', border: 'border-violet-500/30' }
+// Oracle Card component - displays a single card in the reading
+const OracleCard = ({ cardData, position, index, isExpanded, onToggle }) => {
+  const positionColors = {
+    'Past': { bg: 'bg-amber-500/10', border: 'border-amber-500/30', text: 'text-amber-400' },
+    'Present': { bg: 'bg-emerald-500/10', border: 'border-emerald-500/30', text: 'text-emerald-400' },
+    'Future': { bg: 'bg-violet-500/10', border: 'border-violet-500/30', text: 'text-violet-400' },
+    'The Message': { bg: 'bg-primary/10', border: 'border-primary/30', text: 'text-primary' }
   };
   
-  const style = positionLabels[position];
+  const colors = positionColors[position] || positionColors['The Message'];
   
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.3 }}
-      className={`${style.bg} ${style.border} border rounded-lg overflow-hidden`}
+      transition={{ delay: index * 0.2 }}
+      className={`${colors.bg} ${colors.border} border rounded-lg overflow-hidden`}
     >
-      {/* Header */}
+      {/* Card Header */}
       <div 
         className="p-4 cursor-pointer hover:bg-secondary/5 transition-colors"
-        onClick={() => setExpanded(!expanded)}
+        onClick={onToggle}
       >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className={`text-3xl`}>{data.symbol}</div>
+            <div className="text-4xl">{cardData.card?.symbol || '🎴'}</div>
             <div>
-              <p className={`font-montserrat text-xs ${style.color} uppercase tracking-wider`}>
-                {style.label}
+              <p className={`font-montserrat text-xs ${colors.text} uppercase tracking-wider`}>
+                {position}
               </p>
-              <h3 className="font-cinzel text-xl text-foreground">{data.character}</h3>
-              <p className="font-montserrat text-xs text-muted-foreground">{data.era}</p>
+              <h3 className="font-cinzel text-lg text-foreground">{cardData.card?.name}</h3>
+              {cardData.card?.suit && (
+                <p className="font-montserrat text-xs text-muted-foreground">
+                  {cardData.card.arcana} • {cardData.card.suit}
+                </p>
+              )}
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <span className="font-montserrat text-xs text-secondary/60 px-2 py-1 bg-secondary/10 rounded">
-              {data.archetype}
-            </span>
-            {expanded ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
+            {isExpanded ? (
+              <ChevronUp className="w-5 h-5 text-muted-foreground" />
+            ) : (
+              <ChevronDown className="w-5 h-5 text-muted-foreground" />
+            )}
           </div>
         </div>
+        
+        {/* Core Message - Always visible */}
+        <p className={`font-crimson text-base ${colors.text} mt-3 italic`}>
+          "{cardData.core_message}"
+        </p>
       </div>
       
       {/* Expanded Content */}
       <AnimatePresence>
-        {expanded && (
+        {isExpanded && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
@@ -67,19 +76,59 @@ const CorrieTarotCard = ({ position, data, index }) => {
             className="border-t border-secondary/20 overflow-hidden"
           >
             <div className="p-5 space-y-4">
-              {/* Message */}
+              {/* WWCD Advice */}
               <div>
-                <p className="font-montserrat text-sm text-foreground/90 leading-relaxed">
-                  {data.message}
-                </p>
+                <h4 className="font-montserrat text-xs uppercase tracking-wider text-secondary mb-2">
+                  What Would Corrie Do?
+                </h4>
+                <ul className="space-y-2">
+                  {cardData.wwcd_advice?.map((advice, i) => (
+                    <li key={i} className="flex items-start gap-2">
+                      <span className="text-primary">•</span>
+                      <span className="font-montserrat text-sm text-foreground/90">{advice}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
               
-              {/* Wisdom Quote */}
-              <div className={`p-3 ${style.bg} rounded-lg border ${style.border}`}>
-                <p className="font-crimson text-sm text-foreground/80 italic">
-                  &ldquo;{data.wisdom}&rdquo;
+              {/* Because They */}
+              {cardData.because_they && (
+                <div className={`p-3 ${colors.bg} rounded-lg`}>
+                  <p className="font-montserrat text-sm text-foreground/80">
+                    <span className="font-semibold">Because they...</span> {cardData.because_they}
+                  </p>
+                </div>
+              )}
+              
+              {/* Shadow & Blessing */}
+              <div className="grid grid-cols-2 gap-3">
+                <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-lg">
+                  <p className="font-montserrat text-xs uppercase tracking-wider text-red-400 mb-1">Shadow to Avoid</p>
+                  <p className="font-montserrat text-sm text-foreground/80">{cardData.shadow_to_avoid}</p>
+                </div>
+                <div className="p-3 bg-green-500/10 border border-green-500/20 rounded-lg">
+                  <p className="font-montserrat text-xs uppercase tracking-wider text-green-400 mb-1">Blessing</p>
+                  <p className="font-montserrat text-sm text-foreground/80">{cardData.blessing}</p>
+                </div>
+              </div>
+              
+              {/* Next Step */}
+              <div className="p-3 bg-secondary/10 border border-secondary/20 rounded-lg">
+                <p className="font-montserrat text-xs uppercase tracking-wider text-secondary mb-1">Next Step Today</p>
+                <p className="font-montserrat text-sm text-foreground">{cardData.next_step_today}</p>
+              </div>
+              
+              {/* Corrie Charm */}
+              <div className="p-3 bg-primary/10 border border-primary/20 rounded-lg">
+                <p className="font-montserrat text-xs uppercase tracking-wider text-primary mb-1">🕯️ Corrie Charm</p>
+                <p className="font-montserrat text-sm text-foreground/90 italic">{cardData.corrie_charm}</p>
+              </div>
+              
+              {/* Rovers Return Line */}
+              <div className="text-center pt-2">
+                <p className="font-cinzel text-lg text-secondary">
+                  "{cardData.rovers_return_line}"
                 </p>
-                <p className={`font-montserrat text-xs ${style.color} mt-2`}>— {data.character}</p>
               </div>
             </div>
           </motion.div>
@@ -93,8 +142,10 @@ const CorrieTarot = () => {
   const navigate = useNavigate();
   const [situation, setSituation] = useState('');
   const [question, setQuestion] = useState('');
+  const [spreadType, setSpreadType] = useState('one_card');
   const [isLoading, setIsLoading] = useState(false);
   const [result, setResult] = useState(null);
+  const [expandedCards, setExpandedCards] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
   const [isPro, setIsPro] = useState(false);
   
@@ -120,6 +171,13 @@ const CorrieTarot = () => {
     checkUserStatus();
   }, []);
   
+  const toggleCardExpand = (index) => {
+    setExpandedCards(prev => ({
+      ...prev,
+      [index]: !prev[index]
+    }));
+  };
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     
@@ -137,9 +195,10 @@ const CorrieTarot = () => {
     
     setIsLoading(true);
     setResult(null);
+    setExpandedCards({ 0: true }); // Auto-expand first card
     
     try {
-      const response = await fetch(`${API_URL}/api/ai/corrie-tarot`, {
+      const response = await fetch(`${API_URL}/api/ai/cobbles-oracle/reading`, {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
@@ -147,12 +206,14 @@ const CorrieTarot = () => {
         },
         body: JSON.stringify({
           situation: situation.trim(),
-          question: question.trim() || null
+          question: question.trim() || null,
+          spread_type: spreadType
         })
       });
       
       if (response.status === 403) {
-        toast.error('What Would Corrie Do is a Pro feature!', {
+        const error = await response.json();
+        toast.error(error.detail?.message || 'This spread is a Pro feature!', {
           action: {
             label: 'Upgrade',
             onClick: () => navigate('/upgrade')
@@ -168,9 +229,9 @@ const CorrieTarot = () => {
       
       const data = await response.json();
       setResult(data.result);
-      toast.success('Shigg has consulted the Street');
+      toast.success('The cards have been drawn');
     } catch (error) {
-      console.error('Corrie tarot error:', error);
+      console.error('Oracle error:', error);
       toast.error('Something went wrong. Please try again.');
     } finally {
       setIsLoading(false);
@@ -181,7 +242,14 @@ const CorrieTarot = () => {
     setResult(null);
     setSituation('');
     setQuestion('');
+    setExpandedCards({});
   };
+  
+  const spreadOptions = [
+    { id: 'one_card', name: 'Quick Draw', description: 'One card, one message', pro: false },
+    { id: 'three_card', name: 'Past, Present, Future', description: 'Three cards through time', pro: false },
+    { id: 'street_spread', name: 'The Street Spread', description: 'Five-card deep dive', pro: true }
+  ];
   
   return (
     <div className="min-h-screen bg-background pt-16">
@@ -192,7 +260,7 @@ const CorrieTarot = () => {
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-12"
+            className="text-center mb-10"
           >
             <button
               onClick={() => navigate('/guides')}
@@ -204,7 +272,7 @@ const CorrieTarot = () => {
             
             <div className="flex justify-center mb-6">
               <div className="relative">
-                <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-secondary/50">
+                <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-secondary/50">
                   <img 
                     src={SHIGG_IMAGE} 
                     alt="Shigg" 
@@ -212,28 +280,21 @@ const CorrieTarot = () => {
                   />
                 </div>
                 <div className="absolute -bottom-1 -right-1 bg-primary text-primary-foreground p-1.5 rounded-full">
-                  <Tv className="w-4 h-4" />
+                  <Tv className="w-3 h-3" />
                 </div>
               </div>
             </div>
             
-            <h1 className="font-cinzel text-3xl md:text-4xl text-foreground mb-3">
-              What Would Corrie Do?
+            <h1 className="font-cinzel text-3xl md:text-4xl text-foreground mb-2">
+              The Cobbles Oracle
             </h1>
-            <p className="font-montserrat text-lg text-secondary mb-2">
-              with Shigg, Birds of Parliament Poet Laureate
+            <p className="font-montserrat text-base text-secondary mb-2">
+              What Would Corrie Do?
             </p>
-            <p className="font-montserrat text-sm text-muted-foreground max-w-xl mx-auto">
-              The characters of Coronation Street aren&apos;t just TV—they&apos;re mirrors showing how ordinary 
-              people handle extraordinary troubles. Tell me what you&apos;re facing, and I&apos;ll draw three 
-              characters to guide you: Past, Present, and Future.
+            <p className="font-montserrat text-sm text-muted-foreground max-w-lg mx-auto">
+              78 cards drawn from Coronation Street's wisdom. Characters and places that 
+              know how ordinary people handle extraordinary troubles.
             </p>
-            
-            {/* Pro Badge */}
-            <div className="mt-4 inline-flex items-center gap-2 px-3 py-1.5 bg-primary/10 border border-primary/30 rounded-full">
-              <Crown className="w-4 h-4 text-primary" />
-              <span className="font-montserrat text-xs text-primary">Pro Feature</span>
-            </div>
           </motion.div>
           
           {/* Not logged in message */}
@@ -246,7 +307,7 @@ const CorrieTarot = () => {
               <Lock className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
               <h3 className="font-cinzel text-xl text-foreground mb-2">Please Log In</h3>
               <p className="font-montserrat text-sm text-muted-foreground mb-4">
-                What Would Corrie Do readings are available to Pro members.
+                Log in to receive your Cobbles Oracle reading.
               </p>
               <button
                 onClick={() => navigate('/auth')}
@@ -257,30 +318,8 @@ const CorrieTarot = () => {
             </motion.div>
           )}
           
-          {/* Not Pro message */}
-          {isLoggedIn && !isPro && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="text-center p-8 bg-card/50 border border-primary/30 rounded-lg mb-8"
-            >
-              <Crown className="w-12 h-12 text-primary mx-auto mb-4" />
-              <h3 className="font-cinzel text-xl text-foreground mb-2">Pro Feature</h3>
-              <p className="font-montserrat text-sm text-muted-foreground mb-4">
-                What Would Corrie Do readings are exclusive to Pro members. Upgrade to unlock 
-                Shigg&apos;s special Coronation Street wisdom!
-              </p>
-              <button
-                onClick={() => navigate('/upgrade')}
-                className="px-6 py-2 bg-primary text-primary-foreground rounded-lg font-montserrat text-sm hover:bg-primary/90 transition-colors"
-              >
-                Upgrade to Pro
-              </button>
-            </motion.div>
-          )}
-          
           {/* Form or Results */}
-          {isLoggedIn && isPro && (
+          {isLoggedIn && (
             <AnimatePresence mode="wait">
               {!result ? (
                 <motion.form
@@ -291,6 +330,38 @@ const CorrieTarot = () => {
                   onSubmit={handleSubmit}
                   className="space-y-6 max-w-2xl mx-auto"
                 >
+                  {/* Spread Type Selection */}
+                  <div>
+                    <label className="block font-montserrat text-sm text-foreground mb-3">
+                      Choose Your Spread
+                    </label>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                      {spreadOptions.map((spread) => (
+                        <button
+                          key={spread.id}
+                          type="button"
+                          disabled={spread.pro && !isPro}
+                          onClick={() => setSpreadType(spread.id)}
+                          className={`p-4 rounded-lg border text-left transition-all ${
+                            spreadType === spread.id
+                              ? 'border-primary bg-primary/10'
+                              : 'border-border bg-card/50 hover:border-secondary/50'
+                          } ${spread.pro && !isPro ? 'opacity-50 cursor-not-allowed' : ''}`}
+                        >
+                          <div className="flex items-center justify-between mb-1">
+                            <span className="font-cinzel text-sm text-foreground">{spread.name}</span>
+                            {spread.pro && (
+                              <Crown className="w-3 h-3 text-primary" />
+                            )}
+                          </div>
+                          <p className="font-montserrat text-xs text-muted-foreground">
+                            {spread.description}
+                          </p>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                  
                   {/* Situation Input */}
                   <div>
                     <label className="block font-montserrat text-sm text-foreground mb-2">
@@ -299,8 +370,8 @@ const CorrieTarot = () => {
                     <textarea
                       value={situation}
                       onChange={(e) => setSituation(e.target.value)}
-                      placeholder="I'm struggling with a decision about... / I'm dealing with conflict in... / I need guidance about..."
-                      className="w-full h-32 px-4 py-3 bg-card border border-border rounded-lg font-montserrat text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary resize-none"
+                      placeholder="I'm struggling with... / I need guidance about... / I'm facing a decision..."
+                      className="w-full h-28 px-4 py-3 bg-card border border-border rounded-lg font-montserrat text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary resize-none"
                       disabled={isLoading}
                     />
                   </div>
@@ -314,14 +385,14 @@ const CorrieTarot = () => {
                       type="text"
                       value={question}
                       onChange={(e) => setQuestion(e.target.value)}
-                      placeholder="Should I...? / How do I...? / What would they say about...?"
+                      placeholder="Should I...? / How do I...? / What would they say...?"
                       className="w-full px-4 py-3 bg-card border border-border rounded-lg font-montserrat text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary"
                       disabled={isLoading}
                     />
                   </div>
                   
                   {/* Submit Button */}
-                  <div className="pt-4">
+                  <div className="pt-2">
                     <button
                       type="submit"
                       disabled={isLoading || !situation.trim()}
@@ -330,12 +401,12 @@ const CorrieTarot = () => {
                       {isLoading ? (
                         <>
                           <Loader2 className="w-5 h-5 animate-spin" />
-                          Shigg is consulting the Street...
+                          Drawing the cards...
                         </>
                       ) : (
                         <>
                           <Tv className="w-5 h-5" />
-                          What Would Corrie Do?
+                          Draw the Cards
                         </>
                       )}
                     </button>
@@ -347,39 +418,54 @@ const CorrieTarot = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  className="space-y-8"
+                  className="space-y-6"
                 >
+                  {/* Safety Note */}
+                  {result.safety_note && (
+                    <div className="p-4 bg-red-500/10 border border-red-500/30 rounded-lg">
+                      <p className="font-montserrat text-sm text-red-400">
+                        ⚠️ {result.safety_note}
+                      </p>
+                    </div>
+                  )}
+                  
                   {/* Greeting */}
-                  <div className="bg-card/50 border border-secondary/20 rounded-lg p-6 text-center">
+                  <div className="bg-card/50 border border-secondary/20 rounded-lg p-5 text-center">
                     <p className="font-crimson text-lg text-foreground/90 italic leading-relaxed">
-                      &ldquo;{result.greeting}&rdquo;
+                      "{result.greeting}"
                     </p>
                   </div>
                   
-                  {/* Tarot Cards */}
-                  <div className="space-y-4">
-                    <h2 className="font-cinzel text-xl text-center text-secondary mb-6">
-                      Your Reading
-                    </h2>
-                    
-                    {result.reading && (
-                      <>
-                        <CorrieTarotCard position="past" data={result.reading.past} index={0} />
-                        <CorrieTarotCard position="present" data={result.reading.present} index={1} />
-                        <CorrieTarotCard position="future" data={result.reading.future} index={2} />
-                      </>
-                    )}
+                  {/* Spread Name */}
+                  <div className="text-center">
+                    <span className="inline-block px-4 py-1 bg-secondary/10 border border-secondary/30 rounded-full font-montserrat text-xs text-secondary uppercase tracking-wider">
+                      {result.spread_name}
+                    </span>
                   </div>
                   
-                  {/* Overall Guidance */}
-                  {result.overall_guidance && (
-                    <div className="bg-primary/5 border border-primary/30 rounded-lg p-6">
+                  {/* Cards */}
+                  <div className="space-y-4">
+                    {result.cards?.map((cardData, index) => (
+                      <OracleCard
+                        key={index}
+                        cardData={cardData}
+                        position={cardData.position}
+                        index={index}
+                        isExpanded={expandedCards[index] ?? index === 0}
+                        onToggle={() => toggleCardExpand(index)}
+                      />
+                    ))}
+                  </div>
+                  
+                  {/* Synthesis (for multi-card spreads) */}
+                  {result.synthesis && result.cards?.length > 1 && (
+                    <div className="bg-primary/5 border border-primary/30 rounded-lg p-5">
                       <div className="flex items-start gap-3">
                         <Heart className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
                         <div>
-                          <h3 className="font-cinzel text-lg text-foreground mb-2">What They&apos;re All Telling You</h3>
+                          <h3 className="font-cinzel text-lg text-foreground mb-2">What They're All Saying</h3>
                           <p className="font-montserrat text-sm text-foreground/90 leading-relaxed">
-                            {result.overall_guidance}
+                            {result.synthesis}
                           </p>
                         </div>
                       </div>
@@ -387,9 +473,9 @@ const CorrieTarot = () => {
                   )}
                   
                   {/* Closing */}
-                  <div className="bg-card/50 border border-secondary/20 rounded-lg p-6 text-center">
-                    <p className="font-crimson text-lg text-foreground/90 italic leading-relaxed">
-                      &ldquo;{result.closing}&rdquo;
+                  <div className="bg-card/50 border border-secondary/20 rounded-lg p-5 text-center">
+                    <p className="font-crimson text-base text-foreground/90 italic leading-relaxed">
+                      "{result.closing}"
                     </p>
                     <p className="font-montserrat text-xs text-secondary/60 mt-3">— Shigg</p>
                   </div>
@@ -421,18 +507,15 @@ const CorrieTarot = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
-            className="mt-16 text-center"
+            className="mt-12 text-center"
           >
-            <div className="inline-block bg-card/30 border border-border/50 rounded-lg p-6 max-w-lg">
-              <h3 className="font-cinzel text-lg text-foreground mb-3">About What Would Corrie Do</h3>
-              <p className="font-montserrat text-sm text-muted-foreground leading-relaxed">
-                Coronation Street has been on air since 1960—over sixty years of ordinary people 
-                facing extraordinary troubles. These characters aren&apos;t archetypes to be worshipped; 
-                they&apos;re neighbours to learn from. Their stories show us how to survive, how to love, 
-                and how to keep going when the chips are down.
-              </p>
-              <p className="font-crimson text-sm text-secondary italic mt-3">
-                &ldquo;That&apos;s not just television—that&apos;s comfort in story form.&rdquo;
+            <div className="inline-block bg-card/30 border border-border/50 rounded-lg p-5 max-w-lg">
+              <h3 className="font-cinzel text-base text-foreground mb-2">The Cobbles Oracle</h3>
+              <p className="font-montserrat text-xs text-muted-foreground leading-relaxed">
+                78 cards: 22 Major Arcana from street locations and legendary characters, 
+                plus 56 Minor Arcana in four suits—Pints (heart), Sparks (drive), 
+                Keys (truth), and Pennies (stability). Each card carries the wisdom of 
+                Coronation Street's 60+ years of ordinary people facing extraordinary troubles.
               </p>
             </div>
           </motion.div>
