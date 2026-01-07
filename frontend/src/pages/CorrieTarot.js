@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
+import { setCurrentArchetype } from '../components/OnboardingModal';
 
 const API_URL = process.env.REACT_APP_BACKEND_URL;
 
