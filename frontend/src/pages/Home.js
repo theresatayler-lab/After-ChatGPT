@@ -1,135 +1,262 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Moon, BookOpen, Users, MapPin, Sparkles } from 'lucide-react';
+import { Moon, BookOpen, Users, MapPin, Sparkles, Star, Eye } from 'lucide-react';
 import { GlassCard } from '../components/GlassCard';
 import { DecorativeDivider } from '../components/DecorativeDivider';
 import { WaitlistForm } from '../components/WaitlistForm';
 
-// Enhanced Ornate corner SVG component
-const OrnateCorner = ({ className }) => (
-  <svg viewBox="0 0 100 100" className={className} fill="none" stroke="currentColor" strokeWidth="1.5">
-    <path d="M0,40 Q0,0 40,0" strokeWidth="2" />
-    <path d="M0,30 Q0,0 30,0" opacity="0.7" />
-    <path d="M0,20 Q0,0 20,0" opacity="0.4" />
-    <path d="M8,50 Q8,8 50,8" opacity="0.2" />
-    <circle cx="12" cy="12" r="3" fill="currentColor" opacity="0.8" />
-    <circle cx="6" cy="6" r="1.5" fill="currentColor" opacity="0.5" />
-    {/* Decorative flourish */}
-    <path d="M15,0 L15,8 M0,15 L8,15" strokeWidth="1" opacity="0.4" />
-  </svg>
-);
+// ===== ENHANCED ORNATE COMPONENTS =====
 
-// Large Ornate Divider with crimson diamonds and gold lines
-const OrnateDivider = ({ variant = 'default', size = 'medium' }) => {
-  const sizeClasses = {
-    small: 'py-4',
-    medium: 'py-8',
-    large: 'py-12'
-  };
+// Elaborate Corner Ornament with multiple layers
+const ElaborateCorner = ({ className, variant = 'gold' }) => {
+  const colors = variant === 'gold' 
+    ? { primary: '#d4a84b', secondary: '#b82330', tertiary: '#e6c068' }
+    : { primary: '#b82330', secondary: '#d4a84b', tertiary: '#d42a3a' };
   
   return (
-    <div className={`flex items-center justify-center gap-6 ${sizeClasses[size]}`}>
-      {/* Left gold line with gradient */}
-      <div className="flex-1 max-w-48 h-0.5 bg-gradient-to-r from-transparent via-gold/60 to-gold" />
+    <svg viewBox="0 0 120 120" className={className} fill="none">
+      {/* Outer flourish */}
+      <path d="M0,60 Q0,0 60,0" stroke={colors.primary} strokeWidth="2" opacity="0.8" />
+      <path d="M0,45 Q0,0 45,0" stroke={colors.primary} strokeWidth="1.5" opacity="0.6" />
+      <path d="M0,30 Q0,0 30,0" stroke={colors.tertiary} strokeWidth="1" opacity="0.4" />
       
-      {/* Left crimson diamond */}
-      <span className="text-crimson-bright text-xl glow-crimson">◆</span>
+      {/* Inner decorative curves */}
+      <path d="M10,70 Q10,10 70,10" stroke={colors.secondary} strokeWidth="1" opacity="0.5" />
+      <path d="M15,80 Q15,15 80,15" stroke={colors.primary} strokeWidth="0.5" opacity="0.3" />
       
-      {/* Center ornament */}
-      <div className="flex items-center gap-3 text-gold">
-        {variant === 'moon' ? (
-          <>
-            <span className="text-2xl opacity-60">☾</span>
-            <span className="text-3xl glow-gold">☽</span>
-            <span className="text-2xl opacity-60">☽</span>
-          </>
-        ) : variant === 'crow' ? (
-          <span className="text-3xl">🐦‍⬛</span>
-        ) : variant === 'eye' ? (
-          <span className="text-3xl">👁</span>
-        ) : (
-          <>
-            <span className="text-lg opacity-60">✧</span>
-            <span className="text-2xl glow-gold">❧</span>
-            <span className="text-lg opacity-60">✧</span>
-          </>
-        )}
+      {/* Corner diamond cluster */}
+      <polygon points="15,15 20,8 25,15 20,22" fill={colors.secondary} opacity="0.9" />
+      <polygon points="8,8 12,4 16,8 12,12" fill={colors.primary} opacity="0.7" />
+      <circle cx="30" cy="30" r="2" fill={colors.primary} opacity="0.6" />
+      <circle cx="8" cy="25" r="1.5" fill={colors.secondary} opacity="0.5" />
+      <circle cx="25" cy="8" r="1.5" fill={colors.secondary} opacity="0.5" />
+      
+      {/* Decorative dots */}
+      <circle cx="40" cy="5" r="1" fill={colors.primary} opacity="0.4" />
+      <circle cx="5" cy="40" r="1" fill={colors.primary} opacity="0.4" />
+      <circle cx="50" cy="10" r="0.8" fill={colors.tertiary} opacity="0.3" />
+      <circle cx="10" cy="50" r="0.8" fill={colors.tertiary} opacity="0.3" />
+    </svg>
+  );
+};
+
+// Grand Ornate Divider - Much larger and more elaborate
+const GrandDivider = ({ variant = 'default', light = false }) => {
+  const bgClass = light ? 'bg-cream' : 'bg-navy-dark';
+  const lineColor = light ? 'from-navy-dark/20 via-crimson/60 to-navy-dark/20' : 'from-transparent via-gold to-transparent';
+  const accentColor = light ? 'text-crimson' : 'text-crimson-bright';
+  const symbolColor = light ? 'text-navy-dark' : 'text-gold';
+  
+  return (
+    <div className={`relative py-10 ${bgClass}`}>
+      {/* Top decorative line */}
+      <div className={`absolute top-0 left-1/4 right-1/4 h-px bg-gradient-to-r ${lineColor}`} />
+      
+      {/* Main divider content */}
+      <div className="flex items-center justify-center gap-4 sm:gap-8">
+        {/* Left ornate section */}
+        <div className="flex items-center gap-2">
+          <span className={`${accentColor} text-lg sm:text-xl opacity-60`}>✧</span>
+          <div className={`h-0.5 w-12 sm:w-24 bg-gradient-to-r ${light ? 'from-transparent to-crimson/60' : 'from-transparent to-gold/80'}`} />
+          <span className={`${accentColor} text-xl sm:text-2xl glow-crimson`}>◆</span>
+        </div>
+        
+        {/* Center symbol */}
+        <div className={`${symbolColor} flex items-center gap-2 sm:gap-3`}>
+          {variant === 'moon' ? (
+            <>
+              <span className="text-xl sm:text-2xl opacity-50">☾</span>
+              <span className={`text-3xl sm:text-4xl ${light ? '' : 'glow-gold'}`}>☽</span>
+              <span className="text-xl sm:text-2xl opacity-50">☽</span>
+            </>
+          ) : variant === 'eye' ? (
+            <>
+              <span className="text-xl sm:text-2xl opacity-50">✦</span>
+              <span className={`text-3xl sm:text-4xl ${light ? '' : 'glow-gold'}`}>👁</span>
+              <span className="text-xl sm:text-2xl opacity-50">✦</span>
+            </>
+          ) : variant === 'crow' ? (
+            <span className="text-3xl sm:text-4xl">🐦‍⬛</span>
+          ) : variant === 'pentacle' ? (
+            <>
+              <span className="text-xl sm:text-2xl opacity-50">☆</span>
+              <span className={`text-3xl sm:text-4xl ${light ? '' : 'glow-gold'}`}>⛤</span>
+              <span className="text-xl sm:text-2xl opacity-50">☆</span>
+            </>
+          ) : (
+            <>
+              <span className="text-xl sm:text-2xl opacity-60">❦</span>
+              <span className={`text-2xl sm:text-3xl ${light ? '' : 'glow-gold'}`}>❧</span>
+              <span className="text-xl sm:text-2xl opacity-60">❦</span>
+            </>
+          )}
+        </div>
+        
+        {/* Right ornate section */}
+        <div className="flex items-center gap-2">
+          <span className={`${accentColor} text-xl sm:text-2xl glow-crimson`}>◆</span>
+          <div className={`h-0.5 w-12 sm:w-24 bg-gradient-to-l ${light ? 'from-transparent to-crimson/60' : 'from-transparent to-gold/80'}`} />
+          <span className={`${accentColor} text-lg sm:text-xl opacity-60`}>✧</span>
+        </div>
       </div>
       
-      {/* Right crimson diamond */}
-      <span className="text-crimson-bright text-xl glow-crimson">◆</span>
-      
-      {/* Right gold line with gradient */}
-      <div className="flex-1 max-w-48 h-0.5 bg-gradient-to-l from-transparent via-gold/60 to-gold" />
+      {/* Bottom decorative line */}
+      <div className={`absolute bottom-0 left-1/4 right-1/4 h-px bg-gradient-to-r ${lineColor}`} />
     </div>
   );
 };
 
-// Ornate Section Border
-const OrnateSectionBorder = ({ children, className = '' }) => (
+// Parchment Section - Light colored section for contrast
+const ParchmentSection = ({ children, className = '' }) => (
   <div className={`relative ${className}`}>
-    {/* Top border with center diamond */}
-    <div className="absolute top-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-gold to-transparent" />
-    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-navy-dark px-3">
-      <span className="text-crimson text-sm">◆</span>
-    </div>
+    {/* Light parchment background with subtle texture */}
+    <div 
+      className="absolute inset-0"
+      style={{
+        background: 'linear-gradient(135deg, #f5f0e6 0%, #e8e0d0 50%, #f5f0e6 100%)',
+      }}
+    />
+    {/* Subtle pattern overlay */}
+    <div 
+      className="absolute inset-0 opacity-[0.03]"
+      style={{
+        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 30L45 15M30 30L15 45M30 30L45 45M30 30L15 15' stroke='%230e1629' stroke-width='0.5' fill='none'/%3E%3C/svg%3E")`,
+      }}
+    />
+    {/* Top ornate border */}
+    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-crimson to-transparent" />
+    <div className="absolute top-1 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
     
-    {/* Side borders */}
-    <div className="absolute top-8 bottom-8 left-0 w-px bg-gradient-to-b from-transparent via-gold/40 to-transparent" />
-    <div className="absolute top-8 bottom-8 right-0 w-px bg-gradient-to-b from-transparent via-gold/40 to-transparent" />
-    
-    {/* Bottom border with center diamond */}
-    <div className="absolute bottom-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-gold to-transparent" />
-    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 bg-navy-dark px-3">
-      <span className="text-crimson text-sm">◆</span>
-    </div>
+    {/* Bottom ornate border */}
+    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
+    <div className="absolute bottom-0.5 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-crimson to-transparent" />
     
     {/* Corner ornaments */}
-    <span className="absolute top-2 left-2 text-gold/50 text-lg">✦</span>
-    <span className="absolute top-2 right-2 text-gold/50 text-lg">✦</span>
-    <span className="absolute bottom-2 left-2 text-gold/50 text-lg">✦</span>
-    <span className="absolute bottom-2 right-2 text-gold/50 text-lg">✦</span>
+    <ElaborateCorner className="absolute top-2 left-2 w-16 h-16 sm:w-20 sm:h-20" variant="crimson" />
+    <ElaborateCorner className="absolute top-2 right-2 w-16 h-16 sm:w-20 sm:h-20 rotate-90" variant="crimson" />
+    <ElaborateCorner className="absolute bottom-2 left-2 w-16 h-16 sm:w-20 sm:h-20 -rotate-90" variant="crimson" />
+    <ElaborateCorner className="absolute bottom-2 right-2 w-16 h-16 sm:w-20 sm:h-20 rotate-180" variant="crimson" />
     
-    <div className="px-6 py-8">
+    <div className="relative z-10">
       {children}
     </div>
   </div>
 );
 
-// Keep the simple divider for smaller uses
-const MysticalDivider = ({ variant = 'default' }) => (
-  <div className="flex items-center justify-center gap-4 py-6">
-    <div className="h-0.5 bg-gradient-to-r from-transparent via-gold/40 to-gold/60 flex-1 max-w-32" />
-    <div className="flex items-center gap-2 text-gold/70">
-      {variant === 'crow' ? (
-        <span className="text-2xl">🐦‍⬛</span>
-      ) : variant === 'moon' ? (
-        <>
-          <span className="text-base text-crimson glow-crimson">◆</span>
-          <span className="text-xl glow-gold">☽</span>
-          <span className="text-base text-crimson glow-crimson">◆</span>
-        </>
-      ) : (
-        <>
-          <span className="text-sm text-crimson">◆</span>
-          <span className="text-lg glow-gold">❧</span>
-          <span className="text-sm text-crimson">◆</span>
-        </>
-      )}
+// Ornate Card Frame - For feature cards with dramatic styling
+const OrnateCardFrame = ({ children, className = '', hover = true }) => (
+  <div className={`relative group ${className}`}>
+    {/* Multi-layer border effect */}
+    <div className="absolute inset-0 border-2 border-gold/50 rounded-sm group-hover:border-gold/80 transition-all duration-500" />
+    <div className="absolute inset-1 border border-crimson/30 rounded-sm group-hover:border-crimson/50 transition-all duration-500" />
+    <div className="absolute inset-2 border border-gold/20 rounded-sm" />
+    
+    {/* Background with gradient */}
+    <div className="absolute inset-0 bg-gradient-to-br from-navy-mid/80 via-navy-dark/90 to-navy-mid/80 rounded-sm backdrop-blur-sm" />
+    
+    {/* Hover glow effect */}
+    {hover && (
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-sm"
+        style={{ background: 'radial-gradient(ellipse at center, rgba(184, 35, 48, 0.1) 0%, transparent 70%)' }}
+      />
+    )}
+    
+    {/* Corner diamonds - larger and more prominent */}
+    <span className="absolute -top-2.5 -left-2.5 text-crimson text-xl opacity-70 group-hover:opacity-100 group-hover:scale-125 transition-all duration-300 glow-crimson">◆</span>
+    <span className="absolute -top-2.5 -right-2.5 text-crimson text-xl opacity-70 group-hover:opacity-100 group-hover:scale-125 transition-all duration-300 glow-crimson">◆</span>
+    <span className="absolute -bottom-2.5 -left-2.5 text-crimson text-xl opacity-70 group-hover:opacity-100 group-hover:scale-125 transition-all duration-300 glow-crimson">◆</span>
+    <span className="absolute -bottom-2.5 -right-2.5 text-crimson text-xl opacity-70 group-hover:opacity-100 group-hover:scale-125 transition-all duration-300 glow-crimson">◆</span>
+    
+    {/* Star accents on edges */}
+    <span className="absolute top-1/2 -left-1.5 -translate-y-1/2 text-gold text-xs opacity-50 group-hover:opacity-80 transition-opacity">✦</span>
+    <span className="absolute top-1/2 -right-1.5 -translate-y-1/2 text-gold text-xs opacity-50 group-hover:opacity-80 transition-opacity">✦</span>
+    
+    <div className="relative z-10">
+      {children}
     </div>
-    <div className="h-0.5 bg-gradient-to-l from-transparent via-gold/40 to-gold/60 flex-1 max-w-32" />
   </div>
 );
 
+// Ornate Waitlist Frame - Dramatic frame for the signup
+const OrnateWaitlistFrame = ({ children }) => (
+  <div className="relative max-w-lg mx-auto">
+    {/* Outer glow */}
+    <div 
+      className="absolute -inset-4 opacity-30 blur-xl"
+      style={{ background: 'radial-gradient(ellipse at center, rgba(212, 168, 75, 0.4) 0%, transparent 70%)' }}
+    />
+    
+    {/* Triple border frame */}
+    <div className="absolute inset-0 border-2 border-gold rounded-sm" />
+    <div className="absolute inset-1.5 border border-crimson/60 rounded-sm" />
+    <div className="absolute inset-3 border border-gold/40 rounded-sm" />
+    
+    {/* Background */}
+    <div className="absolute inset-0 bg-navy-mid/60 backdrop-blur-md rounded-sm" />
+    
+    {/* Corner flourishes - very elaborate */}
+    <ElaborateCorner className="absolute -top-4 -left-4 w-24 h-24 sm:w-28 sm:h-28" variant="gold" />
+    <ElaborateCorner className="absolute -top-4 -right-4 w-24 h-24 sm:w-28 sm:h-28 rotate-90" variant="gold" />
+    <ElaborateCorner className="absolute -bottom-4 -left-4 w-24 h-24 sm:w-28 sm:h-28 -rotate-90" variant="gold" />
+    <ElaborateCorner className="absolute -bottom-4 -right-4 w-24 h-24 sm:w-28 sm:h-28 rotate-180" variant="gold" />
+    
+    {/* Top center ornament */}
+    <div className="absolute -top-4 left-1/2 -translate-x-1/2 flex items-center gap-1 bg-navy-dark px-4 py-1">
+      <span className="text-gold text-sm">✧</span>
+      <span className="text-crimson text-lg glow-crimson">◆</span>
+      <span className="text-gold text-xl glow-gold">☽</span>
+      <span className="text-crimson text-lg glow-crimson">◆</span>
+      <span className="text-gold text-sm">✧</span>
+    </div>
+    
+    {/* Bottom center ornament */}
+    <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-1 bg-navy-dark px-4 py-1">
+      <span className="text-gold text-sm">✦</span>
+      <span className="text-crimson text-base">◆</span>
+      <span className="text-gold text-sm">✦</span>
+    </div>
+    
+    <div className="relative z-10 p-6 sm:p-8">
+      {children}
+    </div>
+  </div>
+);
+
+// Simple divider for smaller uses
+const MysticalDivider = ({ variant = 'default', light = false }) => {
+  const lineColor = light ? 'via-crimson/40' : 'via-gold/60';
+  const accentColor = light ? 'text-crimson' : 'text-crimson-bright';
+  const symbolColor = light ? 'text-navy-dark' : 'text-gold';
+  
+  return (
+    <div className="flex items-center justify-center gap-4 py-6">
+      <div className={`h-0.5 bg-gradient-to-r from-transparent ${lineColor} to-transparent flex-1 max-w-32`} />
+      <div className={`flex items-center gap-2 ${symbolColor}`}>
+        {variant === 'crow' ? (
+          <span className="text-2xl">🐦‍⬛</span>
+        ) : variant === 'moon' ? (
+          <>
+            <span className={`text-base ${accentColor} glow-crimson`}>◆</span>
+            <span className={`text-xl ${light ? '' : 'glow-gold'}`}>☽</span>
+            <span className={`text-base ${accentColor} glow-crimson`}>◆</span>
+          </>
+        ) : (
+          <>
+            <span className={`text-sm ${accentColor}`}>◆</span>
+            <span className={`text-lg ${light ? '' : 'glow-gold'}`}>❧</span>
+            <span className={`text-sm ${accentColor}`}>◆</span>
+          </>
+        )}
+      </div>
+      <div className={`h-0.5 bg-gradient-to-l from-transparent ${lineColor} to-transparent flex-1 max-w-32`} />
+    </div>
+  );
+};
+
 export const Home = () => {
   return (
-    <div 
-      className="min-h-screen"
-      style={{
-        background: 'linear-gradient(to bottom, #0e1629 0%, #121d33 50%, #0e1629 100%)',
-      }}
-    >
+    <div className="min-h-screen bg-navy-dark">
       {/* Subtle radial glow overlay */}
       <div 
         className="fixed inset-0 pointer-events-none opacity-50 z-0"
