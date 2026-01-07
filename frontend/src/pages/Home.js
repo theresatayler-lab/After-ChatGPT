@@ -1,14 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Moon, BookOpen, Users, MapPin, Sparkles, Star, Eye } from 'lucide-react';
-import { GlassCard } from '../components/GlassCard';
-import { DecorativeDivider } from '../components/DecorativeDivider';
+import { Moon, BookOpen, Users, Sparkles, Star, Feather, Heart } from 'lucide-react';
 import { WaitlistForm } from '../components/WaitlistForm';
 
-// ===== ENHANCED ORNATE COMPONENTS =====
+// ===== ELABORATE ORNATE COMPONENTS =====
 
-// Elaborate Corner Ornament with multiple layers
+// Multi-layered corner ornament
 const ElaborateCorner = ({ className, variant = 'gold' }) => {
   const colors = variant === 'gold' 
     ? { primary: '#d4a84b', secondary: '#b82330', tertiary: '#e6c068' }
@@ -16,451 +14,342 @@ const ElaborateCorner = ({ className, variant = 'gold' }) => {
   
   return (
     <svg viewBox="0 0 120 120" className={className} fill="none">
-      {/* Outer flourish */}
-      <path d="M0,60 Q0,0 60,0" stroke={colors.primary} strokeWidth="2" opacity="0.8" />
-      <path d="M0,45 Q0,0 45,0" stroke={colors.primary} strokeWidth="1.5" opacity="0.6" />
-      <path d="M0,30 Q0,0 30,0" stroke={colors.tertiary} strokeWidth="1" opacity="0.4" />
-      
-      {/* Inner decorative curves */}
-      <path d="M10,70 Q10,10 70,10" stroke={colors.secondary} strokeWidth="1" opacity="0.5" />
-      <path d="M15,80 Q15,15 80,15" stroke={colors.primary} strokeWidth="0.5" opacity="0.3" />
-      
-      {/* Corner diamond cluster */}
-      <polygon points="15,15 20,8 25,15 20,22" fill={colors.secondary} opacity="0.9" />
-      <polygon points="8,8 12,4 16,8 12,12" fill={colors.primary} opacity="0.7" />
-      <circle cx="30" cy="30" r="2" fill={colors.primary} opacity="0.6" />
-      <circle cx="8" cy="25" r="1.5" fill={colors.secondary} opacity="0.5" />
-      <circle cx="25" cy="8" r="1.5" fill={colors.secondary} opacity="0.5" />
-      
-      {/* Decorative dots */}
-      <circle cx="40" cy="5" r="1" fill={colors.primary} opacity="0.4" />
-      <circle cx="5" cy="40" r="1" fill={colors.primary} opacity="0.4" />
-      <circle cx="50" cy="10" r="0.8" fill={colors.tertiary} opacity="0.3" />
-      <circle cx="10" cy="50" r="0.8" fill={colors.tertiary} opacity="0.3" />
+      <path d="M0,60 Q0,0 60,0" stroke={colors.primary} strokeWidth="2.5" opacity="0.9" />
+      <path d="M0,48 Q0,0 48,0" stroke={colors.primary} strokeWidth="1.5" opacity="0.6" />
+      <path d="M0,36 Q0,0 36,0" stroke={colors.tertiary} strokeWidth="1" opacity="0.4" />
+      <path d="M12,72 Q12,12 72,12" stroke={colors.secondary} strokeWidth="1" opacity="0.4" />
+      <polygon points="18,18 24,10 30,18 24,26" fill={colors.secondary} opacity="0.95" />
+      <polygon points="10,10 14,5 18,10 14,15" fill={colors.primary} opacity="0.7" />
+      <circle cx="36" cy="36" r="2.5" fill={colors.primary} opacity="0.6" />
+      <circle cx="10" cy="30" r="1.5" fill={colors.secondary} opacity="0.5" />
+      <circle cx="30" cy="10" r="1.5" fill={colors.secondary} opacity="0.5" />
+      <circle cx="48" cy="6" r="1" fill={colors.primary} opacity="0.4" />
+      <circle cx="6" cy="48" r="1" fill={colors.primary} opacity="0.4" />
     </svg>
   );
 };
 
-// Grand Ornate Divider - Much larger and more elaborate
+// Grand section divider
 const GrandDivider = ({ variant = 'default', light = false }) => {
-  const bgClass = light ? 'bg-cream' : 'bg-navy-dark';
-  const lineColor = light ? 'from-navy-dark/20 via-crimson/60 to-navy-dark/20' : 'from-transparent via-gold to-transparent';
+  const lineColor = light ? 'from-navy-dark/30 via-crimson/50 to-navy-dark/30' : 'from-transparent via-gold/80 to-transparent';
   const accentColor = light ? 'text-crimson' : 'text-crimson-bright';
   const symbolColor = light ? 'text-navy-dark' : 'text-gold';
   
   return (
-    <div className={`relative py-10 ${bgClass}`}>
-      {/* Top decorative line */}
-      <div className={`absolute top-0 left-1/4 right-1/4 h-px bg-gradient-to-r ${lineColor}`} />
-      
-      {/* Main divider content */}
-      <div className="flex items-center justify-center gap-4 sm:gap-8">
-        {/* Left ornate section */}
-        <div className="flex items-center gap-2">
-          <span className={`${accentColor} text-lg sm:text-xl opacity-60`}>✧</span>
-          <div className={`h-0.5 w-12 sm:w-24 bg-gradient-to-r ${light ? 'from-transparent to-crimson/60' : 'from-transparent to-gold/80'}`} />
-          <span className={`${accentColor} text-xl sm:text-2xl glow-crimson`}>◆</span>
-        </div>
+    <div className="relative py-8 sm:py-10">
+      <div className="flex items-center justify-center gap-3 sm:gap-6">
+        <span className={`${accentColor} text-sm sm:text-base opacity-60`}>✧</span>
+        <div className={`h-0.5 w-16 sm:w-32 bg-gradient-to-r ${lineColor}`} />
+        <span className={`${accentColor} text-lg sm:text-2xl glow-crimson`}>◆</span>
         
-        {/* Center symbol */}
-        <div className={`${symbolColor} flex items-center gap-2 sm:gap-3`}>
+        <div className={`${symbolColor} flex items-center gap-2`}>
           {variant === 'moon' ? (
             <>
               <span className="text-xl sm:text-2xl opacity-50">☾</span>
-              <span className={`text-3xl sm:text-4xl ${light ? '' : 'glow-gold'}`}>☽</span>
+              <span className={`text-2xl sm:text-4xl ${light ? '' : 'glow-gold'}`}>☽</span>
               <span className="text-xl sm:text-2xl opacity-50">☽</span>
             </>
           ) : variant === 'eye' ? (
             <>
-              <span className="text-xl sm:text-2xl opacity-50">✦</span>
-              <span className={`text-3xl sm:text-4xl ${light ? '' : 'glow-gold'}`}>👁</span>
-              <span className="text-xl sm:text-2xl opacity-50">✦</span>
+              <span className="text-lg sm:text-xl opacity-50">✦</span>
+              <span className={`text-2xl sm:text-4xl ${light ? '' : 'glow-gold'}`}>👁</span>
+              <span className="text-lg sm:text-xl opacity-50">✦</span>
             </>
           ) : variant === 'crow' ? (
-            <span className="text-3xl sm:text-4xl">🐦‍⬛</span>
-          ) : variant === 'pentacle' ? (
-            <>
-              <span className="text-xl sm:text-2xl opacity-50">☆</span>
-              <span className={`text-3xl sm:text-4xl ${light ? '' : 'glow-gold'}`}>⛤</span>
-              <span className="text-xl sm:text-2xl opacity-50">☆</span>
-            </>
+            <span className="text-2xl sm:text-4xl">🐦‍⬛</span>
           ) : (
             <>
-              <span className="text-xl sm:text-2xl opacity-60">❦</span>
-              <span className={`text-2xl sm:text-3xl ${light ? '' : 'glow-gold'}`}>❧</span>
-              <span className="text-xl sm:text-2xl opacity-60">❦</span>
+              <span className="text-lg sm:text-xl opacity-60">❦</span>
+              <span className={`text-xl sm:text-3xl ${light ? '' : 'glow-gold'}`}>❧</span>
+              <span className="text-lg sm:text-xl opacity-60">❦</span>
             </>
           )}
         </div>
         
-        {/* Right ornate section */}
-        <div className="flex items-center gap-2">
-          <span className={`${accentColor} text-xl sm:text-2xl glow-crimson`}>◆</span>
-          <div className={`h-0.5 w-12 sm:w-24 bg-gradient-to-l ${light ? 'from-transparent to-crimson/60' : 'from-transparent to-gold/80'}`} />
-          <span className={`${accentColor} text-lg sm:text-xl opacity-60`}>✧</span>
-        </div>
+        <span className={`${accentColor} text-lg sm:text-2xl glow-crimson`}>◆</span>
+        <div className={`h-0.5 w-16 sm:w-32 bg-gradient-to-l ${lineColor}`} />
+        <span className={`${accentColor} text-sm sm:text-base opacity-60`}>✧</span>
       </div>
-      
-      {/* Bottom decorative line */}
-      <div className={`absolute bottom-0 left-1/4 right-1/4 h-px bg-gradient-to-r ${lineColor}`} />
     </div>
   );
 };
 
-// Parchment Section - Light colored section for contrast
-const ParchmentSection = ({ children, className = '' }) => (
-  <div className={`relative ${className}`}>
-    {/* Light parchment background with subtle texture */}
-    <div 
-      className="absolute inset-0"
-      style={{
-        background: 'linear-gradient(135deg, #f5f0e6 0%, #e8e0d0 50%, #f5f0e6 100%)',
-      }}
-    />
-    {/* Subtle pattern overlay */}
-    <div 
-      className="absolute inset-0 opacity-[0.03]"
-      style={{
-        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 30L45 15M30 30L15 45M30 30L45 45M30 30L15 15' stroke='%230e1629' stroke-width='0.5' fill='none'/%3E%3C/svg%3E")`,
-      }}
-    />
-    {/* Top ornate border */}
-    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-crimson to-transparent" />
-    <div className="absolute top-1 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
-    
-    {/* Bottom ornate border */}
-    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
-    <div className="absolute bottom-0.5 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-crimson to-transparent" />
-    
-    {/* Corner ornaments */}
-    <ElaborateCorner className="absolute top-2 left-2 w-16 h-16 sm:w-20 sm:h-20" variant="crimson" />
-    <ElaborateCorner className="absolute top-2 right-2 w-16 h-16 sm:w-20 sm:h-20 rotate-90" variant="crimson" />
-    <ElaborateCorner className="absolute bottom-2 left-2 w-16 h-16 sm:w-20 sm:h-20 -rotate-90" variant="crimson" />
-    <ElaborateCorner className="absolute bottom-2 right-2 w-16 h-16 sm:w-20 sm:h-20 rotate-180" variant="crimson" />
-    
-    <div className="relative z-10">
-      {children}
-    </div>
-  </div>
-);
-
-// Ornate Card Frame - For feature cards with dramatic styling
-const OrnateCardFrame = ({ children, className = '', hover = true }) => (
-  <div className={`relative group ${className}`}>
-    {/* Multi-layer border effect */}
-    <div className="absolute inset-0 border-2 border-gold/50 rounded-sm group-hover:border-gold/80 transition-all duration-500" />
-    <div className="absolute inset-1 border border-crimson/30 rounded-sm group-hover:border-crimson/50 transition-all duration-500" />
-    <div className="absolute inset-2 border border-gold/20 rounded-sm" />
-    
-    {/* Background with gradient */}
-    <div className="absolute inset-0 bg-gradient-to-br from-navy-mid/80 via-navy-dark/90 to-navy-mid/80 rounded-sm backdrop-blur-sm" />
-    
-    {/* Hover glow effect */}
-    {hover && (
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-sm"
-        style={{ background: 'radial-gradient(ellipse at center, rgba(184, 35, 48, 0.1) 0%, transparent 70%)' }}
-      />
-    )}
-    
-    {/* Corner diamonds - larger and more prominent */}
-    <span className="absolute -top-2.5 -left-2.5 text-crimson text-xl opacity-70 group-hover:opacity-100 group-hover:scale-125 transition-all duration-300 glow-crimson">◆</span>
-    <span className="absolute -top-2.5 -right-2.5 text-crimson text-xl opacity-70 group-hover:opacity-100 group-hover:scale-125 transition-all duration-300 glow-crimson">◆</span>
-    <span className="absolute -bottom-2.5 -left-2.5 text-crimson text-xl opacity-70 group-hover:opacity-100 group-hover:scale-125 transition-all duration-300 glow-crimson">◆</span>
-    <span className="absolute -bottom-2.5 -right-2.5 text-crimson text-xl opacity-70 group-hover:opacity-100 group-hover:scale-125 transition-all duration-300 glow-crimson">◆</span>
-    
-    {/* Star accents on edges */}
-    <span className="absolute top-1/2 -left-1.5 -translate-y-1/2 text-gold text-xs opacity-50 group-hover:opacity-80 transition-opacity">✦</span>
-    <span className="absolute top-1/2 -right-1.5 -translate-y-1/2 text-gold text-xs opacity-50 group-hover:opacity-80 transition-opacity">✦</span>
-    
-    <div className="relative z-10">
-      {children}
-    </div>
-  </div>
-);
-
-// Ornate Waitlist Frame - Dramatic frame for the signup
-const OrnateWaitlistFrame = ({ children }) => (
-  <div className="relative max-w-lg mx-auto">
-    {/* Outer glow */}
-    <div 
-      className="absolute -inset-4 opacity-30 blur-xl"
-      style={{ background: 'radial-gradient(ellipse at center, rgba(212, 168, 75, 0.4) 0%, transparent 70%)' }}
-    />
-    
-    {/* Triple border frame */}
-    <div className="absolute inset-0 border-2 border-gold rounded-sm" />
-    <div className="absolute inset-1.5 border border-crimson/60 rounded-sm" />
-    <div className="absolute inset-3 border border-gold/40 rounded-sm" />
-    
-    {/* Background */}
-    <div className="absolute inset-0 bg-navy-mid/60 backdrop-blur-md rounded-sm" />
-    
-    {/* Corner flourishes - very elaborate */}
-    <ElaborateCorner className="absolute -top-4 -left-4 w-24 h-24 sm:w-28 sm:h-28" variant="gold" />
-    <ElaborateCorner className="absolute -top-4 -right-4 w-24 h-24 sm:w-28 sm:h-28 rotate-90" variant="gold" />
-    <ElaborateCorner className="absolute -bottom-4 -left-4 w-24 h-24 sm:w-28 sm:h-28 -rotate-90" variant="gold" />
-    <ElaborateCorner className="absolute -bottom-4 -right-4 w-24 h-24 sm:w-28 sm:h-28 rotate-180" variant="gold" />
-    
-    {/* Top center ornament */}
-    <div className="absolute -top-4 left-1/2 -translate-x-1/2 flex items-center gap-1 bg-navy-dark px-4 py-1">
-      <span className="text-gold text-sm">✧</span>
-      <span className="text-crimson text-lg glow-crimson">◆</span>
-      <span className="text-gold text-xl glow-gold">☽</span>
-      <span className="text-crimson text-lg glow-crimson">◆</span>
-      <span className="text-gold text-sm">✧</span>
-    </div>
-    
-    {/* Bottom center ornament */}
-    <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-1 bg-navy-dark px-4 py-1">
-      <span className="text-gold text-sm">✦</span>
-      <span className="text-crimson text-base">◆</span>
-      <span className="text-gold text-sm">✦</span>
-    </div>
-    
-    <div className="relative z-10 p-6 sm:p-8">
-      {children}
-    </div>
-  </div>
-);
-
-// Simple divider for smaller uses
+// Simple divider
 const MysticalDivider = ({ variant = 'default', light = false }) => {
   const lineColor = light ? 'via-crimson/40' : 'via-gold/60';
   const accentColor = light ? 'text-crimson' : 'text-crimson-bright';
   const symbolColor = light ? 'text-navy-dark' : 'text-gold';
   
   return (
-    <div className="flex items-center justify-center gap-4 py-6">
-      <div className={`h-0.5 bg-gradient-to-r from-transparent ${lineColor} to-transparent flex-1 max-w-32`} />
+    <div className="flex items-center justify-center gap-4 py-4 sm:py-6">
+      <div className={`h-0.5 bg-gradient-to-r from-transparent ${lineColor} to-transparent flex-1 max-w-24 sm:max-w-32`} />
       <div className={`flex items-center gap-2 ${symbolColor}`}>
         {variant === 'crow' ? (
-          <span className="text-2xl">🐦‍⬛</span>
+          <span className="text-xl sm:text-2xl">🐦‍⬛</span>
         ) : variant === 'moon' ? (
           <>
-            <span className={`text-base ${accentColor} glow-crimson`}>◆</span>
-            <span className={`text-xl ${light ? '' : 'glow-gold'}`}>☽</span>
-            <span className={`text-base ${accentColor} glow-crimson`}>◆</span>
+            <span className={`text-sm sm:text-base ${accentColor}`}>◆</span>
+            <span className={`text-lg sm:text-xl ${light ? '' : 'glow-gold'}`}>☽</span>
+            <span className={`text-sm sm:text-base ${accentColor}`}>◆</span>
           </>
         ) : (
           <>
-            <span className={`text-sm ${accentColor}`}>◆</span>
-            <span className={`text-lg ${light ? '' : 'glow-gold'}`}>❧</span>
-            <span className={`text-sm ${accentColor}`}>◆</span>
+            <span className={`text-xs sm:text-sm ${accentColor}`}>◆</span>
+            <span className={`text-base sm:text-lg ${light ? '' : 'glow-gold'}`}>❧</span>
+            <span className={`text-xs sm:text-sm ${accentColor}`}>◆</span>
           </>
         )}
       </div>
-      <div className={`h-0.5 bg-gradient-to-l from-transparent ${lineColor} to-transparent flex-1 max-w-32`} />
+      <div className={`h-0.5 bg-gradient-to-l from-transparent ${lineColor} to-transparent flex-1 max-w-24 sm:max-w-32`} />
     </div>
   );
 };
 
+// Ornate waitlist frame
+const OrnateWaitlistFrame = ({ children }) => (
+  <div className="relative max-w-lg mx-auto">
+    <div className="absolute -inset-4 opacity-30 blur-xl" style={{ background: 'radial-gradient(ellipse at center, rgba(212, 168, 75, 0.4) 0%, transparent 70%)' }} />
+    <div className="absolute inset-0 border-2 border-gold rounded-sm" />
+    <div className="absolute inset-1.5 border border-crimson/50 rounded-sm" />
+    <div className="absolute inset-3 border border-gold/30 rounded-sm" />
+    <div className="absolute inset-0 bg-navy-mid/70 backdrop-blur-md rounded-sm" />
+    
+    <ElaborateCorner className="absolute -top-5 -left-5 w-20 h-20 sm:w-24 sm:h-24" variant="gold" />
+    <ElaborateCorner className="absolute -top-5 -right-5 w-20 h-20 sm:w-24 sm:h-24 rotate-90" variant="gold" />
+    <ElaborateCorner className="absolute -bottom-5 -left-5 w-20 h-20 sm:w-24 sm:h-24 -rotate-90" variant="gold" />
+    <ElaborateCorner className="absolute -bottom-5 -right-5 w-20 h-20 sm:w-24 sm:h-24 rotate-180" variant="gold" />
+    
+    <div className="absolute -top-3 left-1/2 -translate-x-1/2 flex items-center gap-1 bg-navy-dark px-3 py-0.5">
+      <span className="text-gold text-xs">✧</span>
+      <span className="text-crimson text-sm glow-crimson">◆</span>
+      <span className="text-gold text-lg glow-gold">☽</span>
+      <span className="text-crimson text-sm glow-crimson">◆</span>
+      <span className="text-gold text-xs">✧</span>
+    </div>
+    
+    <div className="relative z-10 p-5 sm:p-8">{children}</div>
+  </div>
+);
+
+// Feature card with ornate styling
+const OrnateFeatureCard = ({ icon: Icon, title, desc, tooltip }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    className="relative group"
+  >
+    <div className="absolute inset-0 border-2 border-gold/40 rounded-lg group-hover:border-gold/70 transition-all duration-500" />
+    <div className="absolute inset-1.5 border border-crimson/25 rounded-md group-hover:border-crimson/50 transition-all duration-500" />
+    <div className="absolute inset-0 bg-navy-mid/60 rounded-lg backdrop-blur-sm" />
+    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-lg" style={{ background: 'radial-gradient(ellipse at center, rgba(184, 35, 48, 0.1) 0%, transparent 70%)' }} />
+    
+    <span className="absolute -top-2 -left-2 text-crimson text-lg opacity-60 group-hover:opacity-100 group-hover:scale-125 transition-all duration-300 glow-crimson">◆</span>
+    <span className="absolute -top-2 -right-2 text-crimson text-lg opacity-60 group-hover:opacity-100 group-hover:scale-125 transition-all duration-300 glow-crimson">◆</span>
+    <span className="absolute -bottom-2 -left-2 text-crimson text-lg opacity-60 group-hover:opacity-100 group-hover:scale-125 transition-all duration-300 glow-crimson">◆</span>
+    <span className="absolute -bottom-2 -right-2 text-crimson text-lg opacity-60 group-hover:opacity-100 group-hover:scale-125 transition-all duration-300 glow-crimson">◆</span>
+    <span className="absolute top-1/2 -left-1 -translate-y-1/2 text-gold text-xs opacity-40 group-hover:opacity-70">✦</span>
+    <span className="absolute top-1/2 -right-1 -translate-y-1/2 text-gold text-xs opacity-40 group-hover:opacity-70">✦</span>
+    
+    <div className="relative p-6 sm:p-8 text-center">
+      <Icon className="w-10 h-10 sm:w-12 sm:h-12 text-crimson-bright mx-auto mb-4 group-hover:scale-110 transition-transform" style={{ filter: 'drop-shadow(0 0 12px rgba(184, 35, 48, 0.5))' }} />
+      <h3 className="font-cinzel text-lg sm:text-xl text-gold mb-3">{title}</h3>
+      <p className="font-crimson text-sm sm:text-base text-silver-mist/85">{desc}</p>
+      {tooltip && <p className="font-montserrat text-xs text-gold/50 mt-3 opacity-0 group-hover:opacity-100 transition-opacity italic">{tooltip}</p>}
+    </div>
+  </motion.div>
+);
+
 export const Home = () => {
   return (
-    <div className="min-h-screen bg-navy-dark">
-      {/* Subtle radial glow overlay */}
-      <div 
-        className="fixed inset-0 pointer-events-none opacity-50 z-0"
-        style={{
-          background: 'radial-gradient(ellipse at 50% 0%, rgba(184, 35, 48, 0.12) 0%, transparent 50%), radial-gradient(ellipse at 50% 100%, rgba(26, 45, 77, 0.3) 0%, transparent 50%)',
-        }}
-      />
-
-      {/* Hero Section */}
-      <div className="relative min-h-[90vh] flex items-center justify-center overflow-hidden py-12">
-        {/* Background with vignette */}
-        <div
-          className="absolute inset-0 z-0"
-          style={{
-            backgroundImage: 'url(https://customer-assets.emergentagent.com/job_mystic-circle-2/artifacts/t5tfc6i3_COuld_we_creatre_more_of_these_--profile_bsfwy2d_--v_7_d08b86ee-a6ac-4cf3-a814-1344b45b3380_1.png)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            opacity: '0.12',
-            filter: 'hue-rotate(200deg) saturate(0.7)',
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0e1629]/95 via-[#0e1629]/70 to-[#0e1629] z-0" />
-        <div className="absolute inset-0 bg-gradient-radial from-transparent to-[#0e1629]/90 z-0" />
+    <div className="min-h-screen">
+      {/* ===== DARK HERO SECTION ===== */}
+      <div className="relative min-h-screen flex items-center justify-center overflow-hidden bg-navy-dark">
+        {/* Background layers */}
+        <div className="absolute inset-0 z-0" style={{
+          backgroundImage: 'url(https://customer-assets.emergentagent.com/job_mystic-circle-2/artifacts/t5tfc6i3_COuld_we_creatre_more_of_these_--profile_bsfwy2d_--v_7_d08b86ee-a6ac-4cf3-a814-1344b45b3380_1.png)',
+          backgroundSize: 'cover', backgroundPosition: 'center', opacity: '0.06', filter: 'hue-rotate(200deg) saturate(0.5)',
+        }} />
+        <div className="absolute inset-0 z-0" style={{
+          background: 'radial-gradient(ellipse at 50% 30%, rgba(184, 35, 48, 0.12) 0%, transparent 50%), radial-gradient(ellipse at 30% 70%, rgba(212, 168, 75, 0.08) 0%, transparent 40%)',
+        }} />
+        <div className="absolute inset-0 bg-gradient-to-b from-navy-dark/40 via-transparent to-navy-dark z-0" />
         
-        {/* Decorative corner ornaments - enhanced size */}
-        <OrnateCorner className="absolute top-6 left-6 w-20 h-20 text-gold/40 rotate-0" />
-        <OrnateCorner className="absolute top-6 right-6 w-20 h-20 text-gold/40 rotate-90" />
-        <OrnateCorner className="absolute bottom-6 left-6 w-20 h-20 text-gold/40 -rotate-90" />
-        <OrnateCorner className="absolute bottom-6 right-6 w-20 h-20 text-gold/40 rotate-180" />
+        {/* Elaborate corners */}
+        <ElaborateCorner className="absolute top-3 left-3 w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32" variant="gold" />
+        <ElaborateCorner className="absolute top-3 right-3 w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 rotate-90" variant="gold" />
+        <ElaborateCorner className="absolute bottom-3 left-3 w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 -rotate-90" variant="gold" />
+        <ElaborateCorner className="absolute bottom-3 right-3 w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 rotate-180" variant="gold" />
         
-        {/* Additional corner crimson accents */}
-        <span className="absolute top-12 left-12 text-crimson/60 text-2xl glow-crimson">◆</span>
-        <span className="absolute top-12 right-12 text-crimson/60 text-2xl glow-crimson">◆</span>
-        <span className="absolute bottom-12 left-12 text-crimson/60 text-2xl glow-crimson">◆</span>
-        <span className="absolute bottom-12 right-12 text-crimson/60 text-2xl glow-crimson">◆</span>
+        {/* Edge decorations */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 flex items-center gap-2 mt-3 sm:mt-4">
+          <span className="text-gold/40 text-xs sm:text-sm">✧</span>
+          <span className="text-crimson/60 text-sm sm:text-base">◆</span>
+          <span className="text-gold/40 text-xs sm:text-sm">✧</span>
+        </div>
+        <div className="hidden sm:flex absolute left-3 top-1/2 -translate-y-1/2 flex-col items-center gap-3 opacity-40">
+          <span className="text-gold text-xs">✦</span>
+          <div className="w-px h-12 bg-gradient-to-b from-transparent via-gold to-transparent" />
+          <span className="text-crimson text-sm">◆</span>
+          <div className="w-px h-12 bg-gradient-to-b from-transparent via-gold to-transparent" />
+          <span className="text-gold text-xs">✦</span>
+        </div>
+        <div className="hidden sm:flex absolute right-3 top-1/2 -translate-y-1/2 flex-col items-center gap-3 opacity-40">
+          <span className="text-gold text-xs">✦</span>
+          <div className="w-px h-12 bg-gradient-to-b from-transparent via-gold to-transparent" />
+          <span className="text-crimson text-sm">◆</span>
+          <div className="w-px h-12 bg-gradient-to-b from-transparent via-gold to-transparent" />
+          <span className="text-gold text-xs">✦</span>
+        </div>
         
-        <div className="relative z-10 text-center max-w-5xl px-4 sm:px-6 flex flex-col items-center">
-          {/* Ornate Logo with enhanced glow effect */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1 }}
-            className="relative"
-          >
-            <div 
-              className="absolute inset-0 blur-3xl opacity-50"
-              style={{ background: 'radial-gradient(circle, rgba(184, 35, 48, 0.4) 0%, rgba(212, 168, 75, 0.25) 50%, transparent 70%)' }}
-            />
-            <img 
-              src="https://customer-assets.emergentagent.com/job_mystic-circle-2/artifacts/li34ks3x_Where%20the%20Crowlands%20Logos.png"
-              alt="Where The Crowlands"
-              className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 mb-4 sm:mb-6 object-contain drop-shadow-2xl"
-              style={{ filter: 'brightness(1.3) contrast(1.1) drop-shadow(0 0 40px rgba(212, 168, 75, 0.4))' }}
-            />
+        <div className="relative z-10 text-center max-w-5xl px-4 sm:px-6 py-12 sm:py-16">
+          {/* Logo */}
+          <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1.2 }} className="relative mb-4 sm:mb-6">
+            <div className="absolute inset-0 blur-3xl opacity-60" style={{ background: 'radial-gradient(circle, rgba(184, 35, 48, 0.5) 0%, rgba(212, 168, 75, 0.3) 40%, transparent 70%)' }} />
+            <img src="https://customer-assets.emergentagent.com/job_mystic-circle-2/artifacts/li34ks3x_Where%20the%20Crowlands%20Logos.png" alt="Where The Crowlands"
+              className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-72 md:h-72 mx-auto object-contain"
+              style={{ filter: 'brightness(1.4) contrast(1.1) drop-shadow(0 0 50px rgba(212, 168, 75, 0.5))' }} />
           </motion.div>
-          
-          <div className="max-w-3xl">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-            >
-              <h1 
-                className="font-italiana text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-gold-light mb-4 sm:mb-5 tracking-tight leading-none"
-                style={{ textShadow: '0 4px 30px rgba(212, 168, 75, 0.5), 0 0 60px rgba(184, 35, 48, 0.3)' }}
-              >
-                Where The Crowlands
-              </h1>
-              
-              <p 
-                className="font-cinzel text-lg sm:text-xl md:text-2xl text-silver-mist mb-6 sm:mb-8 tracking-wide"
-                style={{ textShadow: '0 2px 10px rgba(0, 0, 0, 0.5)' }}
-              >
-                Magic, math and science aren't such strange bedfellows.
+
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }}>
+            <h1 className="font-italiana text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-gold-light mb-3 sm:mb-4 tracking-tight leading-none"
+              style={{ textShadow: '0 4px 40px rgba(212, 168, 75, 0.6), 0 0 80px rgba(184, 35, 48, 0.4)' }}>
+              Where The Crowlands
+            </h1>
+            <p className="font-cinzel text-base sm:text-xl md:text-2xl text-cream/90 mb-6 sm:mb-8 tracking-wide"
+              style={{ textShadow: '0 2px 15px rgba(0, 0, 0, 0.6)' }}>
+              Magic, math and science aren't such strange bedfellows.
+            </p>
+            
+            <GrandDivider variant="moon" />
+            
+            <div className="font-crimson text-sm sm:text-base md:text-lg text-cream/85 leading-relaxed max-w-3xl mx-auto px-2 sm:px-4">
+              <p className="first-letter:text-4xl sm:first-letter:text-5xl first-letter:font-italiana first-letter:text-crimson-bright first-letter:float-left first-letter:mr-2 sm:first-letter:mr-3 first-letter:leading-none first-letter:glow-crimson">
+                Where the Crowlands is a toolkit for alchemizing what you already hold. Rooted in history; from the 
+                Huguenot mystics fleeing persecution, Jersey witches shaping weather and fate, Irish and Celtic keepers 
+                of forbidden knowledge, to the table-tappers and spiritualists revealing the hidden world.
               </p>
-              
-              <OrnateDivider variant="moon" size="medium" />
-              
-              <div className="font-crimson text-sm sm:text-base md:text-lg text-parchment/85 leading-relaxed max-w-3xl mx-auto px-4 space-y-4">
-                <p className="first-letter:text-4xl first-letter:font-italiana first-letter:text-crimson-bright first-letter:float-left first-letter:mr-2 first-letter:leading-none first-letter:glow-crimson">
-                  Where the Crowlands is a toolkit for alchemizing what you already hold. Rooted in history; from the 
-                  Huguenot mystics fleeing persecution, Jersey witches shaping weather and fate, Irish and Celtic keepers 
-                  of forbidden knowledge, to those closer to my own heart and timeline, the table-tappers and spiritualists 
-                  revealing the hidden world, Churchill's secret army of Cockney rebels defending the home front. The druids, 
-                  templers, occultists, astrologers, hermetic philosophers, "witches" midwives and alchemists before them…
-                </p>
-              </div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
 
-              {/* Waitlist Form - Enhanced ornate styling */}
-              <div className="mt-12 mb-12">
-                <OrnateSectionBorder className="max-w-md mx-auto bg-navy-mid/40 backdrop-blur-sm">
-                  <WaitlistForm source="homepage" />
-                </OrnateSectionBorder>
-              </div>
-              
-              <OrnateDivider variant="crow" size="small" />
-              
-              <div className="font-crimson text-sm sm:text-base md:text-lg text-parchment/85 leading-relaxed max-w-3xl mx-auto px-4 space-y-4">
-                <p>
-                  The magic we've abandoned isn't "woo woo"—it's intention, craft, commitment, and ritual. It is that intention paired with action can change history. Whether our ancestors named it or not, that power is still yours to work with. Inspired by real people—my family—and grounded in plenty of creative lore, Where the Crowlands offers a fun, practical way to bring alchemy, magic, and beauty into your life.
-                </p>
-                
-                <p className="text-gold/90 italic border-l-4 border-crimson/60 pl-4 py-2 bg-crimson/5">
-                  While rooted primarily in British history and mysticism, we plan to expand, honouring all cultures—every 
-                  tradition has drawn from what lies beneath the veil. As uncertainty and shifting world powers challenge 
-                  our sense of and inherent belief system about what constitutes light and dark, it's time to bring a little magic back ;)
-                </p>
-              </div>
-
-              <OrnateDivider size="small" />
-              
-              {/* CTA Buttons with enhanced ornate styling */}
-              <motion.div 
-                className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.6 }}
-              >
-                <Link
-                  to="/spell-request"
-                  className="group relative px-10 py-4 overflow-hidden"
-                >
-                  {/* Outer gold border */}
-                  <div className="absolute inset-0 border-2 border-gold/60 rounded-sm" />
-                  {/* Inner crimson fill */}
-                  <div className="absolute inset-1 bg-gradient-to-r from-crimson-deep via-crimson to-crimson-deep rounded-sm" />
-                  <div className="absolute inset-1 bg-gradient-to-t from-black/30 to-transparent rounded-sm" />
-                  {/* Hover glow */}
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
-                  <span className="relative flex items-center gap-2 font-montserrat text-cream tracking-widest uppercase text-sm">
-                    <Sparkles className="w-4 h-4" />
-                    Begin Your Journey
-                  </span>
-                </Link>
-                
-                <Link
-                  to="/guides"
-                  className="group relative px-10 py-4 border-2 border-gold/50 hover:border-gold/80 rounded-sm transition-all hover:bg-gold/5 backdrop-blur-sm"
-                >
-                  <span className="flex items-center gap-2 font-montserrat text-gold/90 tracking-widest uppercase text-sm group-hover:text-gold transition-colors">
-                    <Users className="w-4 h-4" />
-                    Meet Your Guides
-                  </span>
-                </Link>
-              </motion.div>
-            </motion.div>
+      {/* ===== LIGHT PARCHMENT SECTION - Waitlist ===== */}
+      <div className="relative py-16 sm:py-24" style={{ background: 'linear-gradient(135deg, #f5f0e6 0%, #e8e0d0 50%, #f5f0e6 100%)' }}>
+        {/* Subtle pattern */}
+        <div className="absolute inset-0 opacity-[0.02]" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 30L45 15M30 30L15 45M30 30L45 45M30 30L15 15' stroke='%230e1629' stroke-width='0.5' fill='none'/%3E%3C/svg%3E")`,
+        }} />
+        
+        {/* Ornate borders */}
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-crimson to-transparent" />
+        <div className="absolute top-1 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
+        <div className="absolute bottom-0.5 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-crimson to-transparent" />
+        
+        {/* Corners */}
+        <ElaborateCorner className="absolute top-2 left-2 w-16 h-16 sm:w-20 sm:h-20" variant="crimson" />
+        <ElaborateCorner className="absolute top-2 right-2 w-16 h-16 sm:w-20 sm:h-20 rotate-90" variant="crimson" />
+        <ElaborateCorner className="absolute bottom-2 left-2 w-16 h-16 sm:w-20 sm:h-20 -rotate-90" variant="crimson" />
+        <ElaborateCorner className="absolute bottom-2 right-2 w-16 h-16 sm:w-20 sm:h-20 rotate-180" variant="crimson" />
+        
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6">
+          <GrandDivider variant="crow" light />
+          
+          <div className="font-crimson text-sm sm:text-base md:text-lg text-navy-dark/85 leading-relaxed max-w-3xl mx-auto px-2 sm:px-4 space-y-4 mb-8 sm:mb-12">
+            <p>
+              The magic we've abandoned isn't "woo woo"—it's intention, craft, commitment, and ritual. Whether our ancestors 
+              named it or not, that power is still yours to work with. Inspired by real people—my family—and grounded in plenty 
+              of creative lore, Where the Crowlands offers a fun, practical way to bring alchemy, magic, and beauty into your life.
+            </p>
+            <p className="text-crimson/90 italic border-l-4 border-gold/60 pl-4 py-2 bg-gold/10 rounded-r">
+              While rooted primarily in British history and mysticism, we plan to expand, honouring all cultures—every tradition 
+              has drawn from what lies beneath the veil. It's time to bring a little magic back.
+            </p>
+          </div>
+          
+          <OrnateWaitlistFrame>
+            <WaitlistForm source="homepage" />
+          </OrnateWaitlistFrame>
+          
+          <MysticalDivider variant="moon" light />
+          
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
+            <Link to="/spell-request" className="group relative px-8 sm:px-10 py-3 sm:py-4 overflow-hidden">
+              <div className="absolute inset-0 border-2 border-gold rounded-sm" />
+              <div className="absolute inset-1 bg-gradient-to-r from-crimson-deep via-crimson to-crimson-deep rounded-sm" />
+              <div className="absolute inset-1 bg-gradient-to-t from-black/30 to-transparent rounded-sm" />
+              <span className="relative flex items-center gap-2 font-montserrat text-cream tracking-widest uppercase text-xs sm:text-sm">
+                <Sparkles className="w-4 h-4" /> Begin Your Journey
+              </span>
+            </Link>
+            <Link to="/guides" className="group relative px-8 sm:px-10 py-3 sm:py-4 border-2 border-navy-dark/40 hover:border-crimson/70 rounded-sm transition-all hover:bg-crimson/5">
+              <span className="flex items-center gap-2 font-montserrat text-navy-dark/90 tracking-widest uppercase text-xs sm:text-sm group-hover:text-crimson transition-colors">
+                <Users className="w-4 h-4" /> Meet Your Guides
+              </span>
+            </Link>
           </div>
         </div>
       </div>
 
-      {/* Features Section with enhanced ornate styling */}
-      <div className="relative py-20 px-4">
-        <div className="max-w-6xl mx-auto">
-          <OrnateDivider variant="eye" size="large" />
+      {/* ===== DARK FEATURES SECTION ===== */}
+      <div className="relative py-16 sm:py-24 px-4 bg-navy-dark">
+        <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at 50% 50%, rgba(26, 45, 77, 0.4) 0%, transparent 60%)' }} />
+        
+        <div className="relative z-10 max-w-6xl mx-auto">
+          <GrandDivider variant="eye" />
           
-          <h2 
-            className="font-italiana text-3xl md:text-4xl text-gold-light text-center mb-12"
-            style={{ textShadow: '0 2px 20px rgba(212, 168, 75, 0.5)' }}
-          >
+          <h2 className="font-italiana text-2xl sm:text-3xl md:text-4xl text-gold-light text-center mb-10 sm:mb-14"
+            style={{ textShadow: '0 2px 25px rgba(212, 168, 75, 0.5)' }}>
             Your Path Awaits
           </h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              { icon: Sparkles, title: 'Craft Your Spells', desc: 'Generate personalized rituals guided by four ancestral archetypes' },
-              { icon: BookOpen, title: 'Build Your Grimoire', desc: 'A living archive of wonder—save spells, collect wards, and build your personal magical practice', tooltip: 'From the French for "grammar"—every ritual has its own language for shaping reality' },
-              { icon: Moon, title: 'Explore the Archives', desc: 'Discover historical practices, deities, and sacred sites' },
-            ].map((feature, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.2 }}
-                className="relative group"
-              >
-                {/* Outer gold border */}
-                <div className="absolute inset-0 border-2 border-gold/30 rounded-lg group-hover:border-gold/50 transition-colors" />
-                {/* Inner crimson accent border */}
-                <div className="absolute inset-2 border border-crimson/20 rounded-md group-hover:border-crimson/40 transition-colors" />
-                {/* Background */}
-                <div className="absolute inset-0 bg-navy-mid/50 rounded-lg backdrop-blur-sm" />
-                
-                {/* Corner diamonds */}
-                <span className="absolute -top-2 -left-2 text-crimson text-sm opacity-60 group-hover:opacity-100 transition-opacity">◆</span>
-                <span className="absolute -top-2 -right-2 text-crimson text-sm opacity-60 group-hover:opacity-100 transition-opacity">◆</span>
-                <span className="absolute -bottom-2 -left-2 text-crimson text-sm opacity-60 group-hover:opacity-100 transition-opacity">◆</span>
-                <span className="absolute -bottom-2 -right-2 text-crimson text-sm opacity-60 group-hover:opacity-100 transition-opacity">◆</span>
-                
-                <div className="relative p-8 text-center">
-                  <feature.icon className="w-12 h-12 text-crimson-bright mx-auto mb-4 group-hover:scale-110 transition-transform" style={{ filter: 'drop-shadow(0 0 10px rgba(184, 35, 48, 0.4))' }} />
-                  <h3 className="font-cinzel text-xl text-gold mb-3">{feature.title}</h3>
-                  <p className="font-crimson text-silver-mist/80">{feature.desc}</p>
-                  {feature.tooltip && (
-                    <p className="font-montserrat text-xs text-gold/50 mt-3 opacity-0 group-hover:opacity-100 transition-opacity italic">
-                      {feature.tooltip}
-                    </p>
-                  )}
-                </div>
-              </motion.div>
-            ))}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+            <OrnateFeatureCard icon={Sparkles} title="Craft Your Spells" desc="Generate personalized rituals guided by four ancestral archetypes" />
+            <OrnateFeatureCard icon={BookOpen} title="Build Your Grimoire" desc="A living archive of wonder—save spells, collect wards, and build your personal magical practice" tooltip="From the French for 'grammar'—every ritual has its own language for shaping reality" />
+            <OrnateFeatureCard icon={Moon} title="Explore the Archives" desc="Discover historical practices, deities, and sacred sites" />
           </div>
           
-          <OrnateDivider size="medium" />
+          <GrandDivider />
         </div>
+      </div>
+
+      {/* ===== LIGHT TESTIMONIAL/PHILOSOPHY SECTION ===== */}
+      <div className="relative py-16 sm:py-24" style={{ background: 'linear-gradient(180deg, #f5f0e6 0%, #e8e0d0 100%)' }}>
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-crimson to-transparent" />
+        <ElaborateCorner className="absolute top-2 left-2 w-14 h-14 sm:w-16 sm:h-16" variant="crimson" />
+        <ElaborateCorner className="absolute top-2 right-2 w-14 h-14 sm:w-16 sm:h-16 rotate-90" variant="crimson" />
+        
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center">
+          <MysticalDivider variant="crow" light />
+          
+          <h2 className="font-italiana text-2xl sm:text-3xl md:text-4xl text-crimson mb-6 sm:mb-8"
+            style={{ textShadow: '0 2px 15px rgba(184, 35, 48, 0.3)' }}>
+            The Lineage
+          </h2>
+          
+          <div className="font-crimson text-sm sm:text-base md:text-lg text-navy-dark/85 leading-relaxed space-y-4 mb-8">
+            <p>
+              The druids, templers, occultists, astrologers, hermetic philosophers, "witches" midwives and alchemists before them…
+              These four women span over a century of practice—from Victorian Spitalfields to contemporary London. Each carried the 
+              magic forward in her own way: through craft, through secrets, through poetry, and through truth-telling.
+            </p>
+            <p className="text-gold-dark italic">
+              You don't need to choose just one. Their wisdom overlaps, contradicts, and complements. Like any family, they argue. 
+              Like any lineage, they build on what came before.
+            </p>
+          </div>
+          
+          <Link to="/about" className="inline-flex items-center gap-2 font-montserrat text-xs sm:text-sm tracking-widest uppercase text-crimson hover:text-crimson-bright transition-colors border-b border-crimson/30 hover:border-crimson pb-1">
+            <Feather className="w-4 h-4" /> Learn Our Story
+          </Link>
+          
+          <MysticalDivider light />
+        </div>
+        
+        <ElaborateCorner className="absolute bottom-2 left-2 w-14 h-14 sm:w-16 sm:h-16 -rotate-90" variant="crimson" />
+        <ElaborateCorner className="absolute bottom-2 right-2 w-14 h-14 sm:w-16 sm:h-16 rotate-180" variant="crimson" />
+        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-crimson to-transparent" />
       </div>
     </div>
   );
