@@ -970,8 +970,8 @@ class SpiritualAppAPITester:
         if success and isinstance(response, dict):
             # Verify archetype info for neutral
             archetype = response.get('archetype', {})
-            if archetype.get('name') != 'The Crowlands Guide':
-                print(f"   ❌ Expected archetype name 'The Crowlands Guide', got '{archetype.get('name')}'")
+            if archetype.get('name') != 'Where the Crowlands Guide':
+                print(f"   ❌ Expected archetype name 'Where the Crowlands Guide', got '{archetype.get('name')}'")
                 return False
             
             # Verify spell structure
