@@ -416,72 +416,79 @@ export const SpellRequest = ({ selectedArchetype: propArchetype }) => {
               </div>
             }
 
-          {/* Preview Section */}
-          <div className="lg:col-span-3" ref={videoSectionRef}>
-            <GlassCard hover={false} testId="spell-response-card">
-              <h3 className="font-cinzel text-lg sm:text-xl text-secondary mb-4">
-                {currentGuide ? `Spell by ${currentGuide.shortName}` : 'Your Custom Spell'}
-              </h3>
-              
-              {loading ? (
-                <div className="flex flex-col items-center justify-center min-h-[400px] sm:h-[500px] text-center">
-                  {/* Show guide video if available */}
-                  {currentGuide && currentGuide.video ? (
-                    <div className="w-full max-w-md mb-6">
-                      <div className="relative rounded-sm overflow-hidden border-2 border-primary/30 shadow-xl">
-                        <video
-                          src={currentGuide.video}
-                          autoPlay
-                          loop
-                          muted
-                          playsInline
-                          className="w-full h-auto"
-                          style={{ maxHeight: '350px', objectFit: 'cover' }}
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-transparent to-transparent pointer-events-none" />
-                      </div>
+            {/* Preview Section */}
+            <div className="lg:col-span-3" ref={videoSectionRef}>
+              <div className="relative group">
+                <div className="absolute inset-0 border-2 border-crimson/30 rounded-lg" />
+                <div className="absolute inset-1.5 border border-gold/30 rounded-md" />
+                <div className="absolute inset-0 bg-cream/90 rounded-lg" />
+                
+                <div className="relative z-10 p-4 sm:p-6" data-testid="spell-response-card">
+                  <h3 className="font-cinzel text-lg sm:text-xl text-crimson mb-4">
+                    {currentGuide ? `Spell by ${currentGuide.shortName}` : 'Your Custom Spell'}
+                  </h3>
+                  
+                  {loading ? (
+                    <div className="flex flex-col items-center justify-center min-h-[400px] sm:h-[500px] text-center">
+                      {currentGuide && currentGuide.video ? (
+                        <div className="w-full max-w-md mb-6">
+                          <div className="relative rounded-sm overflow-hidden border-2 border-crimson/30 shadow-xl">
+                            <video
+                              src={currentGuide.video}
+                              autoPlay
+                              loop
+                              muted
+                              playsInline
+                              className="w-full h-auto"
+                              style={{ maxHeight: '350px', objectFit: 'cover' }}
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-cream/80 via-transparent to-transparent pointer-events-none" />
+                          </div>
+                        </div>
+                      ) : (
+                        <Loader2 className="w-16 h-16 text-crimson animate-spin mb-4" />
+                      )}
+                      
+                      <p className="font-montserrat text-navy-dark/80 mb-2">
+                        {currentGuide 
+                          ? `${currentGuide.shortName} is crafting your ritual...`
+                          : 'Crafting your spell...'}
+                      </p>
+                      <p className="font-montserrat text-sm text-navy-dark/60 mb-4">
+                        This may take a moment as we research historical sources and craft your personalized ritual.
+                      </p>
+                      {generateImage && (
+                        <p className="font-crimson text-sm text-gold-dark italic">
+                          ✦ Generating a custom image for your spell...
+                        </p>
+                      )}
                     </div>
                   ) : (
-                    <Loader2 className="w-16 h-16 text-primary animate-spin mb-4" />
-                  )}
-                  
-                  <p className="font-montserrat text-muted-foreground mb-2">
-                    {currentGuide 
-                      ? `${currentGuide.shortName} is crafting your ritual...`
-                      : 'Crafting your spell...'}
-                  </p>
-                  <p className="font-montserrat text-sm text-muted-foreground/70 mb-4">
-                    This may take a moment as we research historical sources and craft your personalized ritual.
-                  </p>
-                  {generateImage && (
-                    <p className="font-crimson text-sm text-accent italic">
-                      ✦ Generating a custom image for your spell...
-                    </p>
+                    <div className="flex flex-col items-center justify-center h-[500px] text-center">
+                      <BookOpen className="w-16 h-16 text-crimson/30 mb-4" />
+                      <p className="font-montserrat text-navy-dark/80 mb-2">
+                        Your grimoire page will appear here
+                      </p>
+                      <p className="font-montserrat text-sm text-navy-dark/60 max-w-md mb-4">
+                        {currentGuide 
+                          ? `${currentGuide.shortName} will create a complete ritual with materials, steps, historical context, and beautiful imagery.`
+                          : 'Each spell includes materials, step-by-step instructions, historical sources, and optional custom imagery.'}
+                      </p>
+                      <div className="flex flex-wrap gap-2 justify-center">
+                        <span className="px-2 py-1 bg-gold/20 border border-gold/30 rounded-sm text-xs font-montserrat text-navy-dark/70">Materials list</span>
+                        <span className="px-2 py-1 bg-gold/20 border border-gold/30 rounded-sm text-xs font-montserrat text-navy-dark/70">Ritual steps</span>
+                        <span className="px-2 py-1 bg-gold/20 border border-gold/30 rounded-sm text-xs font-montserrat text-navy-dark/70">Spoken words</span>
+                        <span className="px-2 py-1 bg-gold/20 border border-gold/30 rounded-sm text-xs font-montserrat text-navy-dark/70">Historical sources</span>
+                        <span className="px-2 py-1 bg-gold/20 border border-gold/30 rounded-sm text-xs font-montserrat text-navy-dark/70">Custom image</span>
+                      </div>
+                    </div>
                   )}
                 </div>
-              ) : (
-                <div className="flex flex-col items-center justify-center h-[500px] text-center">
-                  <BookOpen className="w-16 h-16 text-primary/30 mb-4" />
-                  <p className="font-montserrat text-muted-foreground mb-2">
-                    Your grimoire page will appear here
-                  </p>
-                  <p className="font-montserrat text-sm text-muted-foreground/70 max-w-md mb-4">
-                    {currentGuide 
-                      ? `${currentGuide.shortName} will create a complete ritual with materials, steps, historical context, and beautiful imagery.`
-                      : 'Each spell includes materials, step-by-step instructions, historical sources, and optional custom imagery.'}
-                  </p>
-                  <div className="flex flex-wrap gap-2 justify-center">
-                    <span className="px-2 py-1 bg-muted/30 rounded-sm text-xs font-montserrat text-muted-foreground">Materials list</span>
-                    <span className="px-2 py-1 bg-muted/30 rounded-sm text-xs font-montserrat text-muted-foreground">Ritual steps</span>
-                    <span className="px-2 py-1 bg-muted/30 rounded-sm text-xs font-montserrat text-muted-foreground">Spoken words</span>
-                    <span className="px-2 py-1 bg-muted/30 rounded-sm text-xs font-montserrat text-muted-foreground">Historical sources</span>
-                    <span className="px-2 py-1 bg-muted/30 rounded-sm text-xs font-montserrat text-muted-foreground">Custom image</span>
-                  </div>
-                </div>
-              )}
-            </GlassCard>
+              </div>
+            </div>
           </div>
-        </div>
+
+          <MysticalDivider light />
 
         {/* Historical Context */}
         <div className="mt-12">
