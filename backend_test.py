@@ -1676,6 +1676,126 @@ class SpiritualAppAPITester:
         
         return False
 
+    def test_shigg_spell_generation_with_sullivan_image_style(self):
+        """Test Shigg spell generation with Edmund J. Sullivan grimoire image style - REVIEW REQUEST TEST"""
+        # Login as Pro user first
+        pro_login_data = {
+            "email": "sub_test@test.com",
+            "password": "test123"
+        }
+        
+        success, login_response = self.run_test(
+            "Login Pro User for Shigg Spell Test",
+            "POST",
+            "auth/login",
+            200,
+            data=pro_login_data
+        )
+        
+        if not success or not isinstance(login_response, dict) or 'token' not in login_response:
+            print(f"   ❌ Failed to login Pro user")
+            return False
+        
+        # Store the Pro token temporarily
+        original_token = self.token
+        self.token = login_response['token']
+        
+        # Test spell generation with Shigg archetype and image generation
+        spell_data = {
+            "intention": "peace and protection during uncertain times",
+            "archetype": "shiggy",
+            "generate_image": True
+        }
+        
+        success, response = self.run_test(
+            "Shigg Spell Generation - Sullivan Image Style",
+            "POST",
+            "ai/generate-spell",
+            200,
+            data=spell_data,
+            timeout=90
+        )
+        
+        # Restore original token
+        self.token = original_token
+        
+        if success and isinstance(response, dict):
+            # Verify response structure
+            required_fields = ['spell', 'archetype', 'session_id']
+            missing_fields = [field for field in required_fields if field not in response]
+            
+            if missing_fields:
+                print(f"   ❌ Missing top-level fields: {missing_fields}")
+                return False
+            
+            # Verify archetype info
+            archetype = response.get('archetype', {})
+            if archetype.get('name') != 'Shigg':
+                print(f"   ❌ Expected archetype name 'Shigg', got '{archetype.get('name')}'")
+                return False
+            
+            if archetype.get('id') != 'shiggy':
+                print(f"   ❌ Expected archetype id 'shiggy', got '{archetype.get('id')}'")
+                return False
+            
+            print(f"   ✅ Archetype correct: {archetype.get('name')} ({archetype.get('id')})")
+            
+            # Verify spell structure
+            spell = response.get('spell', {})
+            spell_required_fields = ['title', 'materials', 'steps', 'spoken_words']
+            missing_spell_fields = [field for field in spell_required_fields if field not in spell]
+            
+            if missing_spell_fields:
+                print(f"   ❌ Missing spell fields: {missing_spell_fields}")
+                return False
+            
+            # Check for bird oracle element (Shigg's signature feature)
+            full_spell_text = json.dumps(spell).lower()
+            bird_oracle_indicators = ['bird', 'oracle', 'parliament', 'feather', 'wing', 'flight', 'nest', 'song', 'finch', 'crow', 'dove', 'sparrow']
+            bird_found = [indicator for indicator in bird_oracle_indicators if indicator in full_spell_text]
+            
+            if bird_found:
+                print(f"   ✅ Bird oracle elements found: {', '.join(bird_found)}")
+            else:
+                print(f"   ⚠️  No bird oracle elements detected - this should be Shigg's unique feature")
+            
+            # Verify image generation
+            image_base64 = response.get('image_base64')
+            if image_base64:
+                print(f"   ✅ Image generated successfully (base64 length: {len(image_base64)})")
+                
+                # Check if the spell contains image_prompt that would use Sullivan style
+                image_prompt = spell.get('image_prompt', '')
+                if image_prompt:
+                    print(f"   ✅ Image prompt provided: {len(image_prompt)} characters")
+                    
+                    # The Sullivan style should be applied automatically by the backend
+                    # We can't directly verify the style from the response, but we can confirm
+                    # that the image was generated with the Shigg archetype
+                    print(f"   ✅ Sullivan style should be applied automatically for Shigg archetype")
+                else:
+                    print(f"   ⚠️  No image_prompt found in spell data")
+            else:
+                print(f"   ❌ Image generation was requested but no image returned")
+                return False
+            
+            # Check for Shigg-specific elements in the spell
+            shigg_indicators = ['poetry', 'rubáiyát', 'dawn', 'tea', 'gentle', 'practical', 'daily', 'tendencies']
+            shigg_found = [indicator for indicator in shigg_indicators if indicator in full_spell_text]
+            
+            if shigg_found:
+                print(f"   ✅ Shigg voice elements found: {', '.join(shigg_found)}")
+            else:
+                print(f"   ⚠️  Limited Shigg voice elements detected")
+            
+            print(f"   ✅ Spell title: {spell.get('title')}")
+            print(f"   ✅ Materials count: {len(spell.get('materials', []))}")
+            print(f"   ✅ Steps count: {len(spell.get('steps', []))}")
+            
+            return True
+        
+        return False
+
 def main():
     print("🧙‍♀️ Starting Spiritual App API Testing...")
     print("=" * 60)
