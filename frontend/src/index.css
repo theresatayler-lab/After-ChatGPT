@@ -9,7 +9,7 @@ body {
     font-family: 'Crimson Text', serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #0a1628;
+    background-color: #0e1629;
     color: #e8e4dc;
 }
 
@@ -19,26 +19,31 @@ code {
 
 @layer base {
     :root {
-        --background: #0a1628;
+        --background: #0e1629;
         --foreground: #e8e4dc;
-        --card: #0f1f38;
+        --card: #121d33;
         --card-foreground: #e8e4dc;
-        --popover: #0f1f38;
+        --popover: #121d33;
         --popover-foreground: #e8e4dc;
-        --primary: #a61c1c;
+        --primary: #b82330;
         --primary-foreground: #f5f3ef;
-        --secondary: #162844;
+        --secondary: #1a2d4d;
         --secondary-foreground: #f5f3ef;
         --muted: #1a3050;
-        --muted-foreground: #8b9bb0;
-        --accent: #c9a962;
-        --accent-foreground: #0a1628;
+        --muted-foreground: #9aabc0;
+        --accent: #d4a84b;
+        --accent-foreground: #0e1629;
         --destructive: #8b1a1a;
         --destructive-foreground: #f5f3ef;
-        --border: #1e3a5f;
-        --input: #0f1f38;
-        --ring: #a61c1c;
+        --border: #2a4163;
+        --input: #121d33;
+        --ring: #b82330;
         --radius: 0.5rem;
+        /* Enhanced ornate colors */
+        --gold: #d4a84b;
+        --gold-light: #e6c068;
+        --crimson: #b82330;
+        --crimson-bright: #d42a3a;
     }
 }
 
