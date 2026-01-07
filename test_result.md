@@ -53,6 +53,18 @@
       agent: "testing"
       comment: "✅ PASSED - Pro gating working correctly. Free users get 403 with feature_locked error when trying to access street_spread. Pro users can access all spreads."
 
+- task: "Shigg Spell Generation with Sullivan Image Style"
+  implemented: true
+  working: true
+  file: "/app/backend/server.py"
+  priority: "high"
+  stuck_count: 0
+  needs_retesting: false
+  status_history:
+    - working: true
+      agent: "testing"
+      comment: "✅ PASSED - Shigg spell generation with Edmund J. Sullivan image style working perfectly. Test verified: 1) Spell generation with archetype 'shiggy' successful, 2) Bird oracle elements included (wing, bird references), 3) Image generation working with base64 output (3.4MB), 4) Sullivan style automatically applied (black and white pen-and-ink, cross-hatching, Victorian occult grimoire aesthetic), 5) Shigg voice elements present (tea, gentle), 6) Valid spell structure with title 'A Haven in the Unseen', 5 materials, 5 steps. ARCHETYPE_IMAGE_STYLES['shiggy'] contains detailed Sullivan aesthetic prompt."
+
 ## Frontend Tasks
 - task: "Cobbles Oracle Page"
   implemented: true
@@ -69,12 +81,12 @@
 metadata:
   created_by: "main_agent"
   version: "1.0"
-  test_sequence: 1
+  test_sequence: 2
   run_ui: false
 
 test_plan:
   current_focus:
-    - "All Cobbles Oracle backend features tested and working"
+    - "Shigg Sullivan Image Style Integration - COMPLETED"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
@@ -82,6 +94,8 @@ test_plan:
 agent_communication:
   - agent: "testing"
     message: "✅ COBBLES ORACLE TESTING COMPLETE - All 6 backend tests passed (100% success rate). Key findings: 1) Deck info endpoint working correctly with 78-card structure, 2) One-card and three-card readings working with proper response structure, 3) Pro gating working (403 for free users on premium spreads), 4) Safety routing working (threats keyword triggers safety note), 5) Card routing intelligence working (money situations route to Pennies suit), 6) All required response fields present (greeting, spread_name, cards array with position/card/core_message/wwcd_advice/shadow_to_avoid/blessing/next_step_today/corrie_charm/rovers_return_line, synthesis for multi-card, closing). Backend APIs are production-ready."
+  - agent: "testing"
+    message: "✅ SHIGG SULLIVAN IMAGE STYLE TESTING COMPLETE - Spell generation endpoint with Shigg archetype verified working perfectly. Test confirmed: 1) POST /api/ai/generate-spell with archetype='shiggy' and generate_image=true successful, 2) Response contains valid spell data (title, materials, steps, spoken_words), 3) Bird oracle message included (Shigg's signature feature), 4) Image base64 data generated (3.4MB), 5) Edmund J. Sullivan style automatically applied via ARCHETYPE_IMAGE_STYLES configuration (black and white pen-and-ink, cross-hatching, Victorian occult grimoire aesthetic), 6) Shigg voice elements present. Integration working as designed."
 
 ## Test Credentials
 - Pro user: sub_test@test.com / test123
@@ -93,6 +107,7 @@ agent_communication:
 4. POST /api/ai/cobbles-oracle/reading with spread_type: "street_spread" (Pro only) - ✅ WORKING (403 for free users)
 5. Safety routing with "threats" keyword - ✅ WORKING
 6. Card routing intelligence for money situations - ✅ WORKING
+7. POST /api/ai/generate-spell with Shigg archetype and image generation - ✅ WORKING
 
 ## Features Tested ✅
 1. One-card "Quick Draw" reading - ✅ WORKING
@@ -100,3 +115,4 @@ agent_communication:
 3. Pro-only spread gating - ✅ WORKING
 4. Safety routing for serious situations - ✅ WORKING
 5. Card routing intelligence - ✅ WORKING
+6. Shigg spell generation with Sullivan image style - ✅ WORKING
