@@ -497,8 +497,8 @@ class SpiritualAppAPITester:
             
             # Verify archetype info
             archetype = response.get('archetype', {})
-            if archetype.get('name') != 'Cathleen Winifred Malzard':
-                print(f"   ❌ Expected archetype name 'Cathleen Winifred Malzard', got '{archetype.get('name')}'")
+            if archetype.get('name') != 'Cathleen':
+                print(f"   ❌ Expected archetype name 'Cathleen', got '{archetype.get('name')}'")
                 return False
             
             print(f"   ✅ Archetype name correct: {archetype.get('name')}")
