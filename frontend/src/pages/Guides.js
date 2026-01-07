@@ -252,18 +252,18 @@ const GuideCard = ({ archetype, index, isCurrentGuide, isExpanded, onToggle, onS
           >
             {/* Ritual Style */}
             <div>
-              <h4 className="font-cinzel text-sm text-secondary mb-2">Ritual Style</h4>
-              <p className="font-montserrat text-xs text-muted-foreground">{archetype.ritualStyle}</p>
+              <h4 className="font-cinzel text-sm text-crimson mb-2">Ritual Style</h4>
+              <p className="font-montserrat text-xs text-navy-dark/70">{archetype.ritualStyle}</p>
             </div>
 
             {/* Specialties */}
             <div>
-              <h4 className="font-cinzel text-sm text-secondary mb-2">Specialties</h4>
+              <h4 className="font-cinzel text-sm text-crimson mb-2">Specialties</h4>
               <div className="flex flex-wrap gap-2">
                 {archetype.specialties.map((specialty, i) => (
                   <span
                     key={i}
-                    className="px-2 py-1 bg-muted/50 text-xs font-montserrat text-muted-foreground rounded-sm"
+                    className="px-2 py-1 bg-gold/20 border border-gold/30 text-xs font-montserrat text-navy-dark/70 rounded-sm"
                   >
                     {specialty}
                   </span>
@@ -273,11 +273,11 @@ const GuideCard = ({ archetype, index, isCurrentGuide, isExpanded, onToggle, onS
 
             {/* Best For */}
             <div>
-              <h4 className="font-cinzel text-sm text-secondary mb-2">Best For</h4>
+              <h4 className="font-cinzel text-sm text-crimson mb-2">Best For</h4>
               <ul className="space-y-1">
                 {archetype.bestFor.map((item, i) => (
-                  <li key={i} className="font-montserrat text-xs text-muted-foreground flex items-start gap-2">
-                    <Sparkles className="w-3 h-3 text-accent flex-shrink-0 mt-0.5" />
+                  <li key={i} className="font-montserrat text-xs text-navy-dark/70 flex items-start gap-2">
+                    <Sparkles className="w-3 h-3 text-gold-dark flex-shrink-0 mt-0.5" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -286,10 +286,10 @@ const GuideCard = ({ archetype, index, isCurrentGuide, isExpanded, onToggle, onS
 
             {/* Tenets */}
             <div>
-              <h4 className="font-cinzel text-sm text-secondary mb-2">Core Tenets</h4>
+              <h4 className="font-cinzel text-sm text-crimson mb-2">Core Tenets</h4>
               <ul className="space-y-1">
                 {archetype.tenets.slice(0, 4).map((tenet, i) => (
-                  <li key={i} className="font-crimson text-xs text-foreground/70 italic">
+                  <li key={i} className="font-crimson text-xs text-navy-dark/70 italic">
                     &ldquo;{tenet}&rdquo;
                   </li>
                 ))}
@@ -298,10 +298,10 @@ const GuideCard = ({ archetype, index, isCurrentGuide, isExpanded, onToggle, onS
 
             {/* Historical Sources */}
             <div>
-              <h4 className="font-cinzel text-sm text-secondary mb-2">Historical Sources</h4>
+              <h4 className="font-cinzel text-sm text-crimson mb-2">Historical Sources</h4>
               <ul className="space-y-1">
                 {archetype.historicalSources.map((source, i) => (
-                  <li key={i} className="font-montserrat text-xs text-muted-foreground">
+                  <li key={i} className="font-montserrat text-xs text-navy-dark/70">
                     • {source}
                   </li>
                 ))}
@@ -314,10 +314,14 @@ const GuideCard = ({ archetype, index, isCurrentGuide, isExpanded, onToggle, onS
         {!isCurrentGuide && (
           <button
             onClick={onSelectAsGuide}
-            className="w-full mt-4 px-4 py-2 bg-primary text-primary-foreground rounded-sm font-montserrat tracking-widest uppercase text-xs hover:bg-primary/90 transition-all flex items-center justify-center gap-2"
+            className="w-full mt-4 px-4 py-2 relative overflow-hidden rounded-sm font-montserrat tracking-widest uppercase text-xs flex items-center justify-center gap-2"
           >
-            <Heart className="w-4 h-4" />
-            <span>Choose as My Guide</span>
+            <span className="absolute inset-0 border border-gold/50 rounded-sm" />
+            <span className="absolute inset-0.5 bg-gradient-to-r from-crimson-deep via-crimson to-crimson-deep rounded-sm" />
+            <span className="relative text-cream flex items-center gap-2">
+              <Heart className="w-4 h-4" />
+              <span>Choose as My Guide</span>
+            </span>
           </button>
         )}
         
@@ -325,7 +329,7 @@ const GuideCard = ({ archetype, index, isCurrentGuide, isExpanded, onToggle, onS
         {archetype.id === 'kathleen' && (
           <button
             onClick={() => navigate('/ward-finder')}
-            className="w-full mt-3 px-4 py-2 bg-secondary/20 text-secondary border border-secondary/40 rounded-sm font-montserrat tracking-widest uppercase text-xs hover:bg-secondary/30 transition-all flex items-center justify-center gap-2"
+            className="w-full mt-3 px-4 py-2 bg-gold/10 text-navy-dark border border-gold/40 rounded-sm font-montserrat tracking-widest uppercase text-xs hover:bg-gold/20 transition-all flex items-center justify-center gap-2"
           >
             <Hand className="w-4 h-4" />
             <span>Find Your Ward</span>
