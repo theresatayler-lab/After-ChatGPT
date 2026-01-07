@@ -38,6 +38,24 @@ function ScrollToTop() {
   return null;
 }
 
+// Conditional Navigation - hide on /early-access
+function ConditionalNavigation({ user, onLogout }) {
+  const { pathname } = useLocation();
+  if (pathname === '/early-access') return null;
+  return <Navigation user={user} onLogout={handleLogout} />;
+  
+  function handleLogout() {
+    onLogout();
+  }
+}
+
+// Conditional Footer - hide on /early-access  
+function ConditionalFooter() {
+  const { pathname } = useLocation();
+  if (pathname === '/early-access') return null;
+  return <Footer />;
+}
+
 function App() {
   const [user, setUser] = useState(null);
   const [selectedArchetype, setSelectedArchetype] = useState(null);
@@ -73,13 +91,16 @@ function App() {
     setSelectedArchetype(archetypeId);
   };
 
+  // Check if current path should hide nav/footer
+  const hideNavFooter = window.location.pathname === '/early-access';
+
   return (
     <div className="App">
       <BrowserRouter>
         <ScrollToTop />
         {/* OnboardingModal disabled - users go straight to site */}
         {/* <OnboardingModal onSelectArchetype={handleSelectArchetype} /> */}
-        <Navigation user={user} onLogout={handleLogout} />
+        <ConditionalNavigation user={user} onLogout={handleLogout} />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/auth" element={<Auth onLogin={handleLogin} />} />
@@ -109,7 +130,7 @@ function App() {
             element={user ? <Profile user={user} /> : <Navigate to="/auth" />}
           />
         </Routes>
-        <Footer />
+        <ConditionalFooter />
       </BrowserRouter>
       <Toaster position="top-right" />
     </div>
