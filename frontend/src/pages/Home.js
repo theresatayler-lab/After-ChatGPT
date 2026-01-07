@@ -199,8 +199,8 @@ export const Home = () => {
           <MysticalDivider variant="moon" />
           
           <h2 
-            className="font-italiana text-3xl md:text-4xl text-amber-100 text-center mb-12"
-            style={{ textShadow: '0 2px 10px rgba(139, 90, 43, 0.4)' }}
+            className="font-italiana text-3xl md:text-4xl text-champagne-light text-center mb-12"
+            style={{ textShadow: '0 2px 20px rgba(201, 169, 98, 0.4)' }}
           >
             Your Path Awaits
           </h2>
@@ -218,14 +218,14 @@ export const Home = () => {
                 transition={{ delay: i * 0.2 }}
                 className="relative group"
               >
-                <div className="absolute inset-0 border border-amber-500/20 rounded-lg group-hover:border-amber-500/40 transition-colors" />
-                <div className="absolute inset-2 border border-amber-500/10 rounded-md" />
+                <div className="absolute inset-0 border border-champagne/20 rounded-lg group-hover:border-champagne/40 transition-colors bg-navy-mid/30" />
+                <div className="absolute inset-2 border border-crimson/10 rounded-md" />
                 <div className="relative p-8 text-center">
-                  <feature.icon className="w-10 h-10 text-amber-400 mx-auto mb-4" />
-                  <h3 className="font-cinzel text-xl text-amber-100 mb-3">{feature.title}</h3>
-                  <p className="font-crimson text-amber-100/70">{feature.desc}</p>
+                  <feature.icon className="w-10 h-10 text-crimson-bright mx-auto mb-4" />
+                  <h3 className="font-cinzel text-xl text-champagne mb-3">{feature.title}</h3>
+                  <p className="font-crimson text-silver-mist/80">{feature.desc}</p>
                   {feature.tooltip && (
-                    <p className="font-montserrat text-xs text-amber-500/50 mt-3 opacity-0 group-hover:opacity-100 transition-opacity italic">
+                    <p className="font-montserrat text-xs text-champagne/50 mt-3 opacity-0 group-hover:opacity-100 transition-opacity italic">
                       {feature.tooltip}
                     </p>
                   )}
