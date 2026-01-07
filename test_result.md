@@ -54,24 +54,39 @@
 ## Frontend Tasks
 - task: "Shigg Archetype Profile"
   implemented: true
-  working: needs_testing
+  working: true
   file: "/app/frontend/src/data/archetypes.js"
   priority: "high"
-  notes: "Full archetype data with bird oracle birds, signature rituals, traditions"
+  stuck_count: 0
+  needs_retesting: false
+  status_history:
+    - working: true
+      agent: "testing"
+      comment: "✅ PASSED - Shigg archetype data is correctly implemented. Name shows as 'Shigg' (not Sheila or Shiggy), title is 'The Birds of Parliament Poet Laureate', era is 'Dagenham/Romford, Pre/During/Post-WWII (1927-)', and bio contains all key terms: Dagenham, Blitz, Rubáiyát, Coronation Street. All archetype data including bird oracle, signature rituals, and traditions are properly configured."
 
 - task: "Corrie Tarot Page"
   implemented: true
-  working: needs_testing
+  working: true
   file: "/app/frontend/src/pages/CorrieTarot.js"
   priority: "high"
-  notes: "New page at /corrie-tarot with Pro-only gating"
+  stuck_count: 0
+  needs_retesting: false
+  status_history:
+    - working: true
+      agent: "testing"
+      comment: "✅ PASSED - Corrie Tarot page working perfectly. Page loads at /corrie-tarot with correct title 'What Would Corrie Do?', subtitle 'with Shigg, Birds of Parliament Poet Laureate', description about Coronation Street, and 'Pro Feature' badge. Login gate works correctly - shows 'Please Log In' message when not logged in, redirects to auth page, and Pro users can access the form. All UI elements render properly."
 
 - task: "Guides Page - Shigg Button"
   implemented: true
-  working: needs_testing
+  working: true
   file: "/app/frontend/src/pages/Guides.js"
   priority: "high"
-  notes: "Added 'What Would Corrie Do?' button to Shigg's card"
+  stuck_count: 0
+  needs_retesting: false
+  status_history:
+    - working: true
+      agent: "testing"
+      comment: "✅ PASSED - Shigg's card on Guides page displays correctly with 'What Would Corrie Do?' button. Button is visible, clickable, and correctly navigates to /corrie-tarot page. All Shigg information is accurate including name, title, era, and bio content. Mobile responsiveness verified. Navigation appears normal with no duplicates."
 
 ## Test Credentials
 - Pro user: sub_test@test.com / test123
