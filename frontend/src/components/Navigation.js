@@ -35,20 +35,20 @@ export const Navigation = ({ user, onLogout }) => {
     <nav 
       className="sticky top-0 z-50"
       style={{
-        background: 'linear-gradient(to bottom, rgba(10, 22, 40, 0.98) 0%, rgba(10, 22, 40, 0.95) 100%)',
+        background: 'linear-gradient(to bottom, rgba(14, 22, 41, 0.98) 0%, rgba(14, 22, 41, 0.95) 100%)',
         backdropFilter: 'blur(8px)',
-        borderBottom: '1px solid rgba(201, 169, 98, 0.2)',
+        borderBottom: '2px solid rgba(212, 168, 75, 0.3)',
       }}
     >
-      {/* Decorative top border */}
-      <div className="h-px bg-gradient-to-r from-transparent via-crimson/50 to-transparent" />
+      {/* Decorative top border with crimson accent */}
+      <div className="h-0.5 bg-gradient-to-r from-transparent via-crimson/60 to-transparent" />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo with glow */}
           <Link to="/" className="flex items-center space-x-2 group" data-testid="nav-logo" onClick={handleLinkClick}>
             <div className="relative">
-              <div className="absolute inset-0 blur-md opacity-0 group-hover:opacity-50 transition-opacity bg-champagne/30" />
+              <div className="absolute inset-0 blur-md opacity-0 group-hover:opacity-50 transition-opacity bg-gold/30" />
               <img 
                 src="https://customer-assets.emergentagent.com/job_mystic-circle-2/artifacts/li34ks3x_Where%20the%20Crowlands%20Logos.png" 
                 alt="Where The Crowlands Logo"
@@ -72,8 +72,8 @@ export const Navigation = ({ user, onLogout }) => {
                   data-testid={`nav-${link.label.toLowerCase().replace(' ', '-')}`}
                   className={`px-3 py-2 rounded-sm font-montserrat text-xs tracking-wider transition-all duration-300 flex items-center space-x-1 ${
                     isActive 
-                      ? 'text-champagne bg-champagne/10 border-b-2 border-champagne' 
-                      : 'text-silver-mist/80 hover:text-champagne hover:bg-champagne/5'
+                      ? 'text-gold bg-gold/10 border-b-2 border-gold' 
+                      : 'text-silver-mist/80 hover:text-gold hover:bg-gold/5'
                   }`}
                 >
                   <Icon className="w-4 h-4" />
@@ -87,7 +87,7 @@ export const Navigation = ({ user, onLogout }) => {
                 <Link
                   to="/profile"
                   data-testid="nav-profile"
-                  className="px-3 py-2 rounded-sm font-montserrat text-xs tracking-wider transition-all duration-300 flex items-center space-x-1 text-silver-mist/80 hover:text-champagne hover:bg-champagne/5"
+                  className="px-3 py-2 rounded-sm font-montserrat text-xs tracking-wider transition-all duration-300 flex items-center space-x-1 text-silver-mist/80 hover:text-gold hover:bg-gold/5"
                 >
                   <User className="w-4 h-4" />
                   <span>{user.name}</span>
@@ -104,9 +104,13 @@ export const Navigation = ({ user, onLogout }) => {
               <Link
                 to="/auth"
                 data-testid="nav-login"
-                className="ml-4 px-4 py-2 bg-gradient-to-r from-crimson via-crimson-bright to-crimson text-parchment rounded-sm font-montserrat text-xs tracking-widest uppercase hover:from-crimson-bright hover:via-[#d43030] hover:to-crimson-bright transition-all duration-300"
+                className="ml-4 px-5 py-2.5 relative overflow-hidden rounded-sm font-montserrat text-xs tracking-widest uppercase transition-all duration-300 group"
               >
-                Login
+                {/* Gold border */}
+                <span className="absolute inset-0 border border-gold/50 rounded-sm" />
+                {/* Crimson fill */}
+                <span className="absolute inset-0.5 bg-gradient-to-r from-crimson-deep via-crimson to-crimson-deep rounded-sm" />
+                <span className="relative text-cream">Login</span>
               </Link>
             )}
           </div>
