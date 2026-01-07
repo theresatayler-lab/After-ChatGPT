@@ -493,7 +493,7 @@ const CorrieTarot = () => {
                       Ask About Something Else
                     </button>
                     <button
-                      onClick={() => navigate('/grimoire')}
+                      onClick={() => navigate('/spell-request')}
                       className="px-6 py-3 bg-secondary text-secondary-foreground rounded-lg font-montserrat text-sm hover:bg-secondary/90 transition-colors flex items-center justify-center gap-2"
                     >
                       <Sparkles className="w-4 h-4" />
