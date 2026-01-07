@@ -414,7 +414,7 @@ export const SpellRequest = ({ selectedArchetype: propArchetype }) => {
                   </div>
                 </div>
               </div>
-            }
+            </div>
 
             {/* Preview Section */}
             <div className="lg:col-span-3" ref={videoSectionRef}>
