@@ -293,24 +293,24 @@ export const Home = () => {
       </div>
 
       {/* ===== DARK FEATURES SECTION ===== */}
-      <div className="relative py-16 sm:py-24 px-4 bg-navy-dark">
+      <div className="relative py-10 sm:py-14 px-4 bg-navy-dark">
         <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at 50% 50%, rgba(26, 45, 77, 0.4) 0%, transparent 60%)' }} />
         
         <div className="relative z-10 max-w-6xl mx-auto">
-          <GrandDivider variant="eye" />
+          <MysticalDivider variant="default" />
           
-          <h2 className="font-italiana text-2xl sm:text-3xl md:text-4xl text-gold-light text-center mb-10 sm:mb-14"
+          <h2 className="font-italiana text-xl sm:text-2xl md:text-3xl text-gold-light text-center mb-8 sm:mb-10"
             style={{ textShadow: '0 2px 25px rgba(212, 168, 75, 0.5)' }}>
             Your Path Awaits
           </h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
             <OrnateFeatureCard icon={Sparkles} title="Craft Your Spells" desc="Generate personalized rituals guided by four ancestral archetypes" />
             <OrnateFeatureCard icon={BookOpen} title="Build Your Grimoire" desc="A living archive of wonder—save spells, collect wards, and build your personal magical practice" tooltip="From the French for 'grammar'—every ritual has its own language for shaping reality" />
             <OrnateFeatureCard icon={Moon} title="Explore the Archives" desc="Discover historical practices, deities, and sacred sites" />
           </div>
           
-          <GrandDivider />
+          <MysticalDivider />
         </div>
       </div>
 
