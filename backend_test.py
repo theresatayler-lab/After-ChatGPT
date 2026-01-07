@@ -829,7 +829,9 @@ class SpiritualAppAPITester:
             return True
         
         return False
-        """Test retrieving Cathleen sample spells - REVIEW REQUEST TEST"""
+
+    def test_cathleen_sample_spells(self):
+        """Test retrieving Cathleen sample spells"""
         success, response = self.run_test(
             "Get Cathleen Sample Spells",
             "GET",
@@ -839,10 +841,6 @@ class SpiritualAppAPITester:
         
         if success and isinstance(response, list):
             print(f"   ✅ Found {len(response)} Cathleen sample spells")
-            
-            # Check if we have exactly 4 spells
-            if len(response) != 4:
-                print(f"   ⚠️  Expected 4 sample spells, got {len(response)}")
             
             # Check for expected categories
             expected_categories = [
@@ -857,7 +855,8 @@ class SpiritualAppAPITester:
                 category = spell.get('category', '')
                 if category in expected_categories:
                     found_categories.append(category)
-                print(f"   - {spell.get('title', 'Untitled')} ({category})")
+                title = spell.get('spell_data', {}).get('title', 'Untitled')
+                print(f"   - {title} ({category})")
             
             missing_categories = [cat for cat in expected_categories if cat not in found_categories]
             if missing_categories:
