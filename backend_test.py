@@ -1236,8 +1236,16 @@ def main():
     print("\n🎭 Testing Archetype System...")
     tester.test_archetype_endpoint()
     
-    # Test Cathleen-specific functionality (REVIEW REQUEST PRIORITY)
-    print("\n🌟 Testing Cathleen Archetype Enrichment (REVIEW REQUEST)...")
+    # Test Shigg-specific functionality (REVIEW REQUEST PRIORITY)
+    print("\n🐦 Testing Shigg Archetype Features (REVIEW REQUEST)...")
+    tester.test_shigg_sample_spells()
+    tester.test_bird_oracle_reading()
+    tester.test_corrie_tarot_pro_user()
+    tester.test_corrie_tarot_pro_gate()
+    tester.test_spell_generation_with_shigg()
+    
+    # Test Cathleen-specific functionality (PREVIOUS TESTS)
+    print("\n🌟 Testing Cathleen Archetype Features...")
     tester.test_cathleen_spell_generation()
     tester.test_cathleen_sample_spells()
     
