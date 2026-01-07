@@ -110,12 +110,14 @@ export const Guides = () => {
                     <p className="font-crimson text-base text-gold-dark italic">
                       You don&apos;t need to choose just one. Their wisdom overlaps, contradicts, and complements. 
                       Like any family, they argue. Like any lineage, they build on what came before.
-                </p>
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
-          </GlassCard>
-        </motion.div>
-      </div>
+          </motion.div>
+        </div>
+      </LightSection>
     </div>
   );
 };
