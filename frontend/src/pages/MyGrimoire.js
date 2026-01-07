@@ -147,13 +147,54 @@ export const MyGrimoire = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-12"
+          className="text-center mb-8"
         >
           <BookOpen className="w-16 h-16 text-primary mx-auto mb-4" />
           <h1 className="font-italiana text-4xl md:text-6xl text-primary mb-4">My Grimoire</h1>
           <p className="font-montserrat text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
-            Your personal collection of spells and rituals
+            Your personal collection of spells, rituals, and wards
           </p>
+        </motion.div>
+
+        {/* What is a Grimoire - Expandable Introduction */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2 }}
+          className="max-w-3xl mx-auto mb-10"
+        >
+          <details className="group bg-card/30 border border-border/50 rounded-lg overflow-hidden">
+            <summary className="px-6 py-4 cursor-pointer flex items-center justify-between hover:bg-card/50 transition-colors">
+              <span className="font-cinzel text-sm text-secondary flex items-center gap-2">
+                <Sparkles className="w-4 h-4" />
+                What is a Grimoire?
+              </span>
+              <span className="text-muted-foreground text-xs font-montserrat group-open:hidden">Click to discover</span>
+              <span className="text-muted-foreground text-xs font-montserrat hidden group-open:inline">Click to close</span>
+            </summary>
+            <div className="px-6 pb-6 pt-2">
+              <p className="font-crimson text-base text-foreground/80 leading-relaxed italic">
+                A grimoire is more than just a spellbook—it&apos;s a living archive of wonder, wisdom, and the wild unknown. 
+                Think of it as the storyteller&apos;s toolkit for the magical world: a collection of rituals, symbols, and 
+                secret recipes passed down through generations, each page humming with the memory of those who dared to 
+                seek deeper truths.
+              </p>
+              <p className="font-crimson text-base text-foreground/80 leading-relaxed italic mt-4">
+                Grimoires gather spells and incantations, astrological charts, talismans, and the instructions for weaving 
+                the invisible threads between worlds. Their roots trace back to the French word for &ldquo;grammar,&rdquo; a reminder 
+                that every symbol and ritual has its own language—a precise way of shaping reality.
+              </p>
+              <p className="font-crimson text-base text-foreground/70 leading-relaxed mt-4">
+                Some say these books hold power on their own, but their real magic lies in the hands and hearts of those 
+                who use them to explore the mysteries that connect us all.
+              </p>
+              <div className="mt-4 pt-4 border-t border-border/30 flex flex-wrap gap-4 text-xs font-montserrat text-muted-foreground">
+                <span className="flex items-center gap-1"><Sparkles className="w-3 h-3 text-primary" /> Save spells from your guides</span>
+                <span className="flex items-center gap-1"><Hand className="w-3 h-3 text-secondary" /> Collect wards from Cathleen</span>
+                <span className="flex items-center gap-1"><Heart className="w-3 h-3 text-red-400" /> Build your personal practice</span>
+              </div>
+            </div>
+          </details>
         </motion.div>
 
         {loading ? (
