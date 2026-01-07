@@ -48,55 +48,68 @@ export const Guides = () => {
           
           <GrandDivider variant="crow" />
 
-        {/* Current Guide Banner */}
-        {currentArchetypeId && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="mb-8 p-4 bg-primary/10 border border-primary/30 rounded-sm text-center"
-          >
-            <p className="font-montserrat text-sm text-primary">
-              <Check className="w-4 h-4 inline mr-2" />
-              Your current guide: <strong>{getArchetypeById(currentArchetypeId)?.shortName}</strong>
-            </p>
-          </motion.div>
-        )}
-
-        {/* Guides Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {ARCHETYPES.map((archetype, index) => (
-            <GuideCard
-              key={archetype.id}
-              archetype={archetype}
-              index={index}
-              isCurrentGuide={currentArchetypeId === archetype.id}
-              isExpanded={selectedGuide === archetype.id}
-              onToggle={() => setSelectedGuide(selectedGuide === archetype.id ? null : archetype.id)}
-              onSelectAsGuide={() => handleSelectAsGuide(archetype.id)}
-            />
-          ))}
+          {/* Current Guide Banner */}
+          {currentArchetypeId && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mb-6 p-4 bg-gold/10 border border-gold/40 rounded-sm text-center"
+            >
+              <p className="font-montserrat text-sm text-gold">
+                <Check className="w-4 h-4 inline mr-2" />
+                Your current guide: <strong className="text-gold-light">{getArchetypeById(currentArchetypeId)?.shortName}</strong>
+              </p>
+            </motion.div>
+          )}
         </div>
+      </DarkSection>
 
-        {/* Philosophy Section */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          className="mt-16"
-        >
-          <GlassCard hover={false}>
-            <div className="flex items-start gap-4">
-              <BookOpen className="w-8 h-8 text-primary flex-shrink-0" />
-              <div>
-                <h3 className="font-cinzel text-xl text-secondary mb-3">The Lineage</h3>
-                <p className="font-montserrat text-sm text-foreground/80 leading-relaxed mb-3">
-                  These four women span over a century of practice—from Victorian Spitalfields to contemporary 
-                  London. Each carried the magic forward in her own way: through craft, through secrets, through 
-                  poetry, and through truth-telling.
-                </p>
-                <p className="font-crimson text-base text-accent italic">
-                  You don&apos;t need to choose just one. Their wisdom overlaps, contradicts, and complements. 
-                  Like any family, they argue. Like any lineage, they build on what came before.
+      {/* Light Section - Guides Grid */}
+      <LightSection className="py-12 sm:py-16 px-4 sm:px-6">
+        <div className="max-w-6xl mx-auto">
+          <GrandDivider variant="eye" light />
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {ARCHETYPES.map((archetype, index) => (
+              <GuideCard
+                key={archetype.id}
+                archetype={archetype}
+                index={index}
+                isCurrentGuide={currentArchetypeId === archetype.id}
+                isExpanded={selectedGuide === archetype.id}
+                onToggle={() => setSelectedGuide(selectedGuide === archetype.id ? null : archetype.id)}
+                onSelectAsGuide={() => handleSelectAsGuide(archetype.id)}
+              />
+            ))}
+          </div>
+
+          <MysticalDivider light />
+
+          {/* Philosophy Section */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+            className="mt-8"
+          >
+            <div className="relative">
+              <div className="absolute inset-0 border-2 border-gold/40 rounded-lg" />
+              <div className="absolute inset-1.5 border border-crimson/20 rounded-md" />
+              <div className="absolute inset-0 bg-white/80 rounded-lg" />
+              
+              <div className="relative z-10 p-6">
+                <div className="flex items-start gap-4">
+                  <BookOpen className="w-8 h-8 text-crimson flex-shrink-0" />
+                  <div>
+                    <h3 className="font-cinzel text-xl text-crimson mb-3">The Lineage</h3>
+                    <p className="font-montserrat text-sm text-navy-dark/80 leading-relaxed mb-3">
+                      These four women span over a century of practice—from Victorian Spitalfields to contemporary 
+                      London. Each carried the magic forward in her own way: through craft, through secrets, through 
+                      poetry, and through truth-telling.
+                    </p>
+                    <p className="font-crimson text-base text-gold-dark italic">
+                      You don&apos;t need to choose just one. Their wisdom overlaps, contradicts, and complements. 
+                      Like any family, they argue. Like any lineage, they build on what came before.
                 </p>
               </div>
             </div>
