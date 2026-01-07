@@ -7,48 +7,59 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: '#D8CBB3',
-        foreground: '#1a1410',
+        // New color scheme: Deep blue base, cool champagne, rich crimson accents
+        background: '#0a1628',  // Deep midnight blue
+        foreground: '#e8e4dc',  // Cool off-white
         card: {
-          DEFAULT: '#e8dcc8',
-          foreground: '#1a1410',
+          DEFAULT: '#0f1f38',  // Slightly lighter navy
+          foreground: '#e8e4dc',
         },
         popover: {
-          DEFAULT: '#e8dcc8',
-          foreground: '#1a1410',
+          DEFAULT: '#0f1f38',
+          foreground: '#e8e4dc',
         },
         primary: {
-          DEFAULT: '#750609',
-          foreground: '#f5efe0',
+          DEFAULT: '#a61c1c',  // Rich crimson red
+          foreground: '#f5f3ef',
         },
         secondary: {
-          DEFAULT: '#06133c',
-          foreground: '#f5efe0',
+          DEFAULT: '#162844',  // Navy blue
+          foreground: '#f5f3ef',
         },
         muted: {
-          DEFAULT: '#c4b8a4',
-          foreground: '#4a443a',
+          DEFAULT: '#1a3050',  // Muted navy
+          foreground: '#8b9bb0',
         },
         accent: {
-          DEFAULT: '#4B5A3E',
-          foreground: '#f5efe0',
+          DEFAULT: '#c9a962',  // Cool champagne gold
+          foreground: '#0a1628',
         },
         destructive: {
-          DEFAULT: '#750609',
-          foreground: '#f5efe0',
+          DEFAULT: '#8b1a1a',
+          foreground: '#f5f3ef',
         },
-        border: '#b8a890',
-        input: '#e8dcc8',
-        ring: '#750609',
+        border: '#1e3a5f',  // Blue-tinted border
+        input: '#0f1f38',
+        ring: '#a61c1c',
+        // Legacy colors (kept for backwards compatibility)
         'raven-black': '#1C1C1C',
         'ash-gray': '#A8A8A8',
         'weathered-beige': '#D8CBB3',
         'forest-moss': '#4B5A3E',
-        'blood-red': '#750609',
-        'midnight-blue': '#06133c',
-        'deep-blue': '#1D2847',
-        'parchment': '#e8dcc8',
-        'ink-black': '#1a1410',
+        'blood-red': '#a61c1c',  // Updated
+        'midnight-blue': '#0a1628',  // Updated
+        'deep-blue': '#162844',  // Updated
+        'parchment': '#e8e4dc',  // Cooler
+        'ink-black': '#0a1628',  // Now deep blue
+        // New colors
+        'crimson': '#a61c1c',
+        'crimson-bright': '#c42b2b',
+        'champagne': '#c9a962',
+        'champagne-light': '#dbc07a',
+        'navy-dark': '#0a1628',
+        'navy-mid': '#0f1f38',
+        'navy-light': '#162844',
+        'silver-mist': '#b8c4d4',
       },
       fontFamily: {
         'italiana': ['Italiana', 'serif'],
