@@ -245,8 +245,8 @@ const WardFinder = () => {
       });
       
       if (!response.ok) {
-        const errorData = await response.json();
-        if (errorData.detail?.error === 'feature_locked') {
+        const errorData = await response.json().catch(() => ({}));
+        if (response.status === 403 || errorData.detail?.error === 'feature_locked') {
           toast.error('Upgrade to Pro to save wards to your grimoire!', {
             action: {
               label: 'Upgrade',
