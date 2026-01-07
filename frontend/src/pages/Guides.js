@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { GlassCard } from '../components/GlassCard';
 import { ARCHETYPES, getArchetypeById } from '../data/archetypes';
 import { setCurrentArchetype, getCurrentArchetype } from '../components/OnboardingModal';
-import { Feather, BookOpen, Sparkles, Heart, ArrowRight, Check, Hand } from 'lucide-react';
+import { Feather, BookOpen, Sparkles, Heart, ArrowRight, Check, Hand, Users } from 'lucide-react';
 import { toast } from 'sonner';
+import { DarkSection, LightSection, GrandDivider, MysticalDivider, ElaborateCorner, PageHeader } from '../components/OrnateElements';
 
 export const Guides = () => {
   const [selectedGuide, setSelectedGuide] = useState(null);
@@ -24,26 +25,28 @@ export const Guides = () => {
   };
 
   return (
-    <div className="min-h-screen py-16 sm:py-20 md:py-24 px-4 sm:px-6">
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-8 sm:mb-10 md:mb-12"
-        >
-          <Feather className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 text-primary mx-auto mb-3 sm:mb-4" />
-          <h1 className="font-italiana text-3xl sm:text-4xl md:text-5xl text-primary mb-3 sm:mb-4">
-            Meet the Guides
-          </h1>
-          <p className="font-montserrat text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto mb-2 px-2">
-            Four generations of women who practiced in secret, each with her own wisdom, 
-            ritual style, and way of seeing the world.
-          </p>
-          <p className="font-crimson text-base sm:text-lg text-accent italic px-2">
-            &ldquo;The women who walked before you left their spells in stories, their magic in memories.&rdquo;
-          </p>
-        </motion.div>
+    <div className="min-h-screen">
+      {/* Dark Hero Section */}
+      <DarkSection className="py-12 sm:py-16 md:py-20 px-4 sm:px-6" variant="warm">
+        <ElaborateCorner className="absolute top-3 left-3 w-16 h-16 sm:w-20 sm:h-20" variant="gold" />
+        <ElaborateCorner className="absolute top-3 right-3 w-16 h-16 sm:w-20 sm:h-20 rotate-90" variant="gold" />
+        
+        <div className="max-w-6xl mx-auto relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
+            <PageHeader 
+              icon={Users}
+              title="Meet the Guides"
+              subtitle="Four generations of women who practiced in secret, each with her own wisdom, ritual style, and way of seeing the world."
+            />
+            <p className="font-crimson text-base sm:text-lg text-gold/90 italic text-center max-w-2xl mx-auto px-2">
+              &ldquo;The women who walked before you left their spells in stories, their magic in memories.&rdquo;
+            </p>
+          </motion.div>
+          
+          <GrandDivider variant="crow" />
 
         {/* Current Guide Banner */}
         {currentArchetypeId && (
