@@ -241,7 +241,7 @@ export const Home = () => {
 
               <OrnateDivider size="small" />
               
-              {/* CTA Buttons with ornate styling */}
+              {/* CTA Buttons with enhanced ornate styling */}
               <motion.div 
                 className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10"
                 initial={{ opacity: 0, y: 20 }}
@@ -250,12 +250,16 @@ export const Home = () => {
               >
                 <Link
                   to="/spell-request"
-                  className="group relative px-8 py-4 overflow-hidden"
+                  className="group relative px-10 py-4 overflow-hidden"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-crimson via-crimson-bright to-crimson rounded-sm" />
-                  <div className="absolute inset-px bg-gradient-to-r from-[#8b1a1a] via-crimson to-[#8b1a1a] rounded-sm" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-sm" />
-                  <span className="relative flex items-center gap-2 font-montserrat text-parchment tracking-widest uppercase text-sm">
+                  {/* Outer gold border */}
+                  <div className="absolute inset-0 border-2 border-gold/60 rounded-sm" />
+                  {/* Inner crimson fill */}
+                  <div className="absolute inset-1 bg-gradient-to-r from-crimson-deep via-crimson to-crimson-deep rounded-sm" />
+                  <div className="absolute inset-1 bg-gradient-to-t from-black/30 to-transparent rounded-sm" />
+                  {/* Hover glow */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
+                  <span className="relative flex items-center gap-2 font-montserrat text-cream tracking-widest uppercase text-sm">
                     <Sparkles className="w-4 h-4" />
                     Begin Your Journey
                   </span>
@@ -263,9 +267,9 @@ export const Home = () => {
                 
                 <Link
                   to="/guides"
-                  className="group relative px-8 py-4 border border-champagne/40 hover:border-champagne/70 rounded-sm transition-all hover:bg-champagne/5"
+                  className="group relative px-10 py-4 border-2 border-gold/50 hover:border-gold/80 rounded-sm transition-all hover:bg-gold/5 backdrop-blur-sm"
                 >
-                  <span className="flex items-center gap-2 font-montserrat text-champagne/90 tracking-widest uppercase text-sm group-hover:text-champagne transition-colors">
+                  <span className="flex items-center gap-2 font-montserrat text-gold/90 tracking-widest uppercase text-sm group-hover:text-gold transition-colors">
                     <Users className="w-4 h-4" />
                     Meet Your Guides
                   </span>
