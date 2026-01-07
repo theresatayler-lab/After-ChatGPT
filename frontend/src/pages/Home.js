@@ -6,38 +6,119 @@ import { GlassCard } from '../components/GlassCard';
 import { DecorativeDivider } from '../components/DecorativeDivider';
 import { WaitlistForm } from '../components/WaitlistForm';
 
-// Ornate corner SVG component
+// Enhanced Ornate corner SVG component
 const OrnateCorner = ({ className }) => (
-  <svg viewBox="0 0 100 100" className={className} fill="none" stroke="currentColor" strokeWidth="1">
-    <path d="M0,30 Q0,0 30,0" />
-    <path d="M0,20 Q0,0 20,0" opacity="0.5" />
-    <path d="M5,35 Q5,5 35,5" opacity="0.3" />
-    <circle cx="8" cy="8" r="2" fill="currentColor" opacity="0.6" />
+  <svg viewBox="0 0 100 100" className={className} fill="none" stroke="currentColor" strokeWidth="1.5">
+    <path d="M0,40 Q0,0 40,0" strokeWidth="2" />
+    <path d="M0,30 Q0,0 30,0" opacity="0.7" />
+    <path d="M0,20 Q0,0 20,0" opacity="0.4" />
+    <path d="M8,50 Q8,8 50,8" opacity="0.2" />
+    <circle cx="12" cy="12" r="3" fill="currentColor" opacity="0.8" />
+    <circle cx="6" cy="6" r="1.5" fill="currentColor" opacity="0.5" />
+    {/* Decorative flourish */}
+    <path d="M15,0 L15,8 M0,15 L8,15" strokeWidth="1" opacity="0.4" />
   </svg>
 );
 
-// Mystical section divider
+// Large Ornate Divider with crimson diamonds and gold lines
+const OrnateDivider = ({ variant = 'default', size = 'medium' }) => {
+  const sizeClasses = {
+    small: 'py-4',
+    medium: 'py-8',
+    large: 'py-12'
+  };
+  
+  return (
+    <div className={`flex items-center justify-center gap-6 ${sizeClasses[size]}`}>
+      {/* Left gold line with gradient */}
+      <div className="flex-1 max-w-48 h-0.5 bg-gradient-to-r from-transparent via-gold/60 to-gold" />
+      
+      {/* Left crimson diamond */}
+      <span className="text-crimson-bright text-xl glow-crimson">◆</span>
+      
+      {/* Center ornament */}
+      <div className="flex items-center gap-3 text-gold">
+        {variant === 'moon' ? (
+          <>
+            <span className="text-2xl opacity-60">☾</span>
+            <span className="text-3xl glow-gold">☽</span>
+            <span className="text-2xl opacity-60">☽</span>
+          </>
+        ) : variant === 'crow' ? (
+          <span className="text-3xl">🐦‍⬛</span>
+        ) : variant === 'eye' ? (
+          <span className="text-3xl">👁</span>
+        ) : (
+          <>
+            <span className="text-lg opacity-60">✧</span>
+            <span className="text-2xl glow-gold">❧</span>
+            <span className="text-lg opacity-60">✧</span>
+          </>
+        )}
+      </div>
+      
+      {/* Right crimson diamond */}
+      <span className="text-crimson-bright text-xl glow-crimson">◆</span>
+      
+      {/* Right gold line with gradient */}
+      <div className="flex-1 max-w-48 h-0.5 bg-gradient-to-l from-transparent via-gold/60 to-gold" />
+    </div>
+  );
+};
+
+// Ornate Section Border
+const OrnateSectionBorder = ({ children, className = '' }) => (
+  <div className={`relative ${className}`}>
+    {/* Top border with center diamond */}
+    <div className="absolute top-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-gold to-transparent" />
+    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-navy-dark px-3">
+      <span className="text-crimson text-sm">◆</span>
+    </div>
+    
+    {/* Side borders */}
+    <div className="absolute top-8 bottom-8 left-0 w-px bg-gradient-to-b from-transparent via-gold/40 to-transparent" />
+    <div className="absolute top-8 bottom-8 right-0 w-px bg-gradient-to-b from-transparent via-gold/40 to-transparent" />
+    
+    {/* Bottom border with center diamond */}
+    <div className="absolute bottom-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-gold to-transparent" />
+    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 bg-navy-dark px-3">
+      <span className="text-crimson text-sm">◆</span>
+    </div>
+    
+    {/* Corner ornaments */}
+    <span className="absolute top-2 left-2 text-gold/50 text-lg">✦</span>
+    <span className="absolute top-2 right-2 text-gold/50 text-lg">✦</span>
+    <span className="absolute bottom-2 left-2 text-gold/50 text-lg">✦</span>
+    <span className="absolute bottom-2 right-2 text-gold/50 text-lg">✦</span>
+    
+    <div className="px-6 py-8">
+      {children}
+    </div>
+  </div>
+);
+
+// Keep the simple divider for smaller uses
 const MysticalDivider = ({ variant = 'default' }) => (
   <div className="flex items-center justify-center gap-4 py-6">
-    <div className="h-px bg-gradient-to-r from-transparent via-champagne/30 to-champagne/50 flex-1 max-w-32" />
-    <div className="flex items-center gap-2 text-champagne/60">
+    <div className="h-0.5 bg-gradient-to-r from-transparent via-gold/40 to-gold/60 flex-1 max-w-32" />
+    <div className="flex items-center gap-2 text-gold/70">
       {variant === 'crow' ? (
         <span className="text-2xl">🐦‍⬛</span>
       ) : variant === 'moon' ? (
         <>
-          <span className="text-sm text-crimson">✦</span>
-          <span className="text-xl">☽</span>
-          <span className="text-sm text-crimson">✦</span>
+          <span className="text-base text-crimson glow-crimson">◆</span>
+          <span className="text-xl glow-gold">☽</span>
+          <span className="text-base text-crimson glow-crimson">◆</span>
         </>
       ) : (
         <>
-          <span className="text-xs text-crimson">◆</span>
-          <span className="text-lg">❧</span>
-          <span className="text-xs text-crimson">◆</span>
+          <span className="text-sm text-crimson">◆</span>
+          <span className="text-lg glow-gold">❧</span>
+          <span className="text-sm text-crimson">◆</span>
         </>
       )}
     </div>
-    <div className="h-px bg-gradient-to-l from-transparent via-champagne/30 to-champagne/50 flex-1 max-w-32" />
+    <div className="h-0.5 bg-gradient-to-l from-transparent via-gold/40 to-gold/60 flex-1 max-w-32" />
   </div>
 );
 
@@ -46,7 +127,7 @@ export const Home = () => {
     <div 
       className="min-h-screen"
       style={{
-        background: 'linear-gradient(to bottom, #0a1628 0%, #0f1f38 50%, #0a1628 100%)',
+        background: 'linear-gradient(to bottom, #0e1629 0%, #121d33 50%, #0e1629 100%)',
       }}
     >
       {/* Subtle radial glow overlay */}
