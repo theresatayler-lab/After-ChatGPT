@@ -590,10 +590,10 @@ class SpiritualAppAPITester:
             
             # Check for expected spell names from review request
             expected_spells = [
-                "Dawn Cup Blessing",
-                "Boundaries Veil", 
+                "The Dawn Cup Blessing",
+                "The Boundaries Veil", 
                 "Rosemary for Remembrance",
-                "Moving Finger Practice"
+                "The Moving Finger Practice"
             ]
             
             found_spells = []
