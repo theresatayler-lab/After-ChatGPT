@@ -1,72 +1,74 @@
-backend:
-  - task: "Cathleen Archetype Enrichment - Sample Spells"
-    implemented: true
-    working: true
-    file: "/app/backend/cathleen_spells.py"
-    stuck_count: 0
-    priority: "high"
-    needs_retesting: false
-    status_history:
-      - working: true
-        agent: "main"
-        comment: "Created cathleen_spells.py with 4 detailed sample spells: The Silver Ward Blessing (Wards & Talismans), The Song of Protection (Voice Magic), The Morrigan's Mirror (Shadow Work), The Speaking Table (Spirit Communication). Successfully seeded to database via /api/admin/seed-cathleen-spells endpoint."
+# Test Result Summary
 
-  - task: "Cathleen Archetype Enrichment - Backend Context"
-    implemented: true
-    working: true
-    file: "/app/backend/server.py"
-    stuck_count: 0
-    priority: "high"
-    needs_retesting: false
-    status_history:
-      - working: true
-        agent: "main"
-        comment: "Updated server.py with: CATHLEEN_MATERIALS (signature materials, ward suggestions, voice magic elements), CATHLEEN_HISTORICAL_SOURCES (Morrigan traditions, voice magic, home circle spiritualism, Jersey maritime, wartime sources), comprehensive cathleen_context for spell generation including Morrigan connection, voice as magic, mandatory ward suggestions, and unique categories."
+## Current Testing Focus
+- Shigg Archetype Full Implementation
+- Bird Oracle Feature (integrated into spell generation)
+- "What Would Corrie Do" Pro-only Feature
 
-  - task: "Cathleen Spell Generation Test"
-    implemented: true
-    working: true
-    file: "/app/backend/server.py"
-    stuck_count: 0
-    priority: "high"
-    needs_retesting: false
-    status_history:
-      - working: true
-        agent: "main"
-        comment: "Tested spell generation with Cathleen archetype. Response correctly includes: Silver Raven Charm (ward/talisman), Crow Feather (Morrigan connection), voice-based spell title ('The Voice's Shield'), and Morrigan reference in closing message. Backend integration working properly."
-      - working: true
-        agent: "testing"
-        comment: "COMPREHENSIVE TESTING COMPLETE: ✅ POST /api/ai/generate-spell with archetype 'kathleen' and intention 'I need courage to face a difficult transformation' - Response includes correct archetype name 'Cathleen Winifred Malzard', Cathleen-specific materials (silver, charm, crow, raven, feather, silk, needle, thread), Morrigan/transformation elements (morrigan, crow, raven, transformation, shadow), ward/talisman suggestions (talisman, charm, carry, protection). ✅ GET /api/sample-spells/kathleen returns exactly 4 spells with correct categories: Wards & Talismans, Voice Magic, Shadow Work (The Morrigan's Way), Spirit Communication. ✅ GET /api/archetypes includes kathleen with correct name 'Cathleen Winifred Malzard' and title 'The Keeper of Secrets'. All verification points from review request confirmed working."
+## Backend Tasks
+- task: "Shigg Archetype - Full Backend Implementation"
+  implemented: true
+  working: needs_testing
+  file: "/app/backend/server.py, /app/backend/shigg_spells.py"
+  priority: "high"
+  status_history:
+    - working: pending
+      agent: "main"
+      comment: "Created shigg_spells.py with 4 sample spells (Dawn Cup Blessing, Boundaries Veil, Rosemary for Remembrance, Moving Finger Practice). Updated server.py with full Shigg persona as Birds of Parliament Poet Laureate. Added bird oracle and corrie tarot endpoints."
 
-frontend:
-  - task: "Cathleen Profile Display on /guides"
-    implemented: true
-    working: true
-    file: "/app/frontend/src/data/archetypes.js"
-    stuck_count: 0
-    priority: "high"
-    needs_retesting: false
-    status_history:
-      - working: true
-        agent: "main"
-        comment: "Verified Cathleen's enriched profile displays correctly on /guides page. Shows: correct name 'Cathleen' (not Kathleen), title 'The Keeper of Secrets', era 'Edwardian through WWII (1900-1945)', bird symbol 'Crows & Ravens', full bio with Morrigan connection, voice magic, wartime service, and empowerment quote about voice/breath as magic."
+- task: "Bird Oracle Reading Endpoint"
+  implemented: true
+  working: needs_testing
+  file: "/app/backend/server.py"
+  priority: "high"
+  notes: "POST /api/ai/bird-oracle-reading - returns personalized bird oracle readings"
 
-metadata:
-  created_by: "main_agent"
-  version: "1.2"
-  test_sequence: 3
-  run_ui: false
+- task: "Corrie Tarot Endpoint (Pro-only)"
+  implemented: true
+  working: needs_testing
+  file: "/app/backend/server.py"
+  priority: "high"
+  notes: "POST /api/ai/corrie-tarot - Pro users only, 3-card past/present/future Coronation Street reading"
 
-test_plan:
-  current_focus:
-    - "Cathleen Spell Generation Full Flow Test"
-    - "Verify all 4 Cathleen sample spells retrievable"
-  stuck_tasks: []
-  test_all: false
-  test_priority: "high_first"
+## Frontend Tasks
+- task: "Shigg Archetype Profile"
+  implemented: true
+  working: needs_testing
+  file: "/app/frontend/src/data/archetypes.js"
+  priority: "high"
+  notes: "Full archetype data with bird oracle birds, signature rituals, traditions"
 
-agent_communication:
-  - agent: "main"
-    message: "Cathleen archetype enrichment complete. Created cathleen_spells.py with 4 unique sample spells. Updated server.py with Cathleen-specific materials (CATHLEEN_MATERIALS), historical sources (CATHLEEN_HISTORICAL_SOURCES), and comprehensive cathleen_context for spell generation. Key features: Morrigan connection, voice as primary magic, mandatory ward/talisman suggestions, wartime parachute silk references. Frontend archetypes.js was already updated from previous session. Backend and frontend verified working via API tests and screenshots."
-  - agent: "testing"
-    message: "CATHLEEN ARCHETYPE TESTING COMPLETE - ALL TESTS PASSED: Verified all 3 review request requirements: (1) Cathleen spell generation with transformation intention works correctly with proper archetype name, Morrigan references, voice elements, and ward suggestions, (2) All 4 Cathleen sample spells retrievable with correct categories, (3) Archetype endpoint includes Cathleen with correct name and title. Enrichment is working as designed. Backend APIs fully functional."
+- task: "Corrie Tarot Page"
+  implemented: true
+  working: needs_testing
+  file: "/app/frontend/src/pages/CorrieTarot.js"
+  priority: "high"
+  notes: "New page at /corrie-tarot with Pro-only gating"
+
+- task: "Guides Page - Shigg Button"
+  implemented: true
+  working: needs_testing
+  file: "/app/frontend/src/pages/Guides.js"
+  priority: "high"
+  notes: "Added 'What Would Corrie Do?' button to Shigg's card"
+
+## Test Credentials
+- Pro user: sub_test@test.com / test123
+
+## API Endpoints to Test
+1. GET /api/archetypes - should return Shigg with new title
+2. POST /api/admin/seed-shigg-spells - seeds Shigg's sample spells
+3. GET /api/sample-spells/shiggy - returns Shigg's sample spells
+4. POST /api/ai/bird-oracle-reading - bird oracle readings
+5. POST /api/ai/corrie-tarot - Pro-only Coronation Street readings
+
+## Frontend Pages to Test
+1. /guides - Shigg profile with updated info and "What Would Corrie Do?" button
+2. /corrie-tarot - Pro-only Corrie Tarot page
+3. /spell-request - Spell generation with Shigg as guide
+
+## Incorporate User Feedback
+- User requested Dion Fortune be removed from Shigg and kept for Cathleen - DONE
+- Bird Oracle should be integrated into spell generation, not separate page - DONE
+- "What Would Corrie Do" should be a separate Pro-only page like Ward Finder - DONE
+- Rename all "Sheila" to "Shigg" - DONE
