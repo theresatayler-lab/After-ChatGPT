@@ -50,22 +50,24 @@ export const About = () => {
           </h2>
           <div className="space-y-6">
             <div>
-              <h3 className="font-cinzel text-base sm:text-lg text-primary mb-2">Sheila &ldquo;Shiggy&rdquo; Tayler</h3>
+              <h3 className="font-cinzel text-base sm:text-lg text-primary mb-2">Shigg</h3>
               <p className="font-montserrat text-sm sm:text-base text-foreground/80 leading-relaxed">
-                The Psychic Matriarch of post-war London. Shiggy survived WWII bombings, rationing, and loss, 
-                finding solace in birdsong and the Rubáiyát of Omar Khayyam. Her magic blends poetry, 
-                psychic intuition, and the practical courage of Churchill's Home Guard. She teaches that 
-                courage is a daily practice, not an innate trait.
+                The Birds of Parliament Poet Laureate. Born around 1927 in Dagenham, Shigg survived the 
+                Blitz and found solace in birdsong and the Rubáiyát of Omar Khayyám. Her magic is gentle 
+                and grounded—tea rituals, bird oracle readings, remembrance work, and the wisdom that 
+                &ldquo;the moving finger writes, and having writ, moves on.&rdquo; She teaches through tendencies, 
+                not predictions, and believes the sacred lives in ordinary moments.
               </p>
             </div>
 
             <div>
-              <h3 className="font-cinzel text-base sm:text-lg text-primary mb-2">Cathleen Winifred Malzard</h3>
+              <h3 className="font-cinzel text-base sm:text-lg text-primary mb-2">Cathleen</h3>
               <p className="font-montserrat text-sm sm:text-base text-foreground/80 leading-relaxed">
-                The Keeper of Secrets, bridging Irish Catholic and Huguenot traditions. Cathleen served in 
-                the Women's Voluntary Service and guarded family documents, photos, and the &ldquo;veil spell&rdquo; 
-                that protects truth and reputation. Her magic is layered, protective, and navigates the delicate 
-                balance between revealing and guarding.
+                The Singer of Strength. A trained tailor and couturier from London&apos;s West End, Cathleen&apos;s 
+                voice is her greatest talisman—a powerful soprano that became spellwork. Rooted in British 
+                Spiritualism, she practices table-tipping, home circles, and psychic intuition. Her magic 
+                blends voice, breath, and the wisdom of the Morrigan with the warmth of someone who has 
+                kept secrets for duchesses and factory girls alike.
               </p>
             </div>
 
