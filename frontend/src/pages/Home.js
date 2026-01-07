@@ -315,26 +315,26 @@ export const Home = () => {
       </div>
 
       {/* ===== LIGHT TESTIMONIAL/PHILOSOPHY SECTION ===== */}
-      <div className="relative py-16 sm:py-24" style={{ background: 'linear-gradient(180deg, #f5f0e6 0%, #e8e0d0 100%)' }}>
+      <div className="relative py-10 sm:py-14" style={{ background: 'linear-gradient(180deg, #f5f0e6 0%, #e8e0d0 100%)' }}>
         <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-crimson to-transparent" />
-        <ElaborateCorner className="absolute top-2 left-2 w-14 h-14 sm:w-16 sm:h-16" variant="crimson" />
-        <ElaborateCorner className="absolute top-2 right-2 w-14 h-14 sm:w-16 sm:h-16 rotate-90" variant="crimson" />
+        <ElaborateCorner className="absolute top-2 left-2 w-12 h-12 sm:w-14 sm:h-14" variant="crimson" />
+        <ElaborateCorner className="absolute top-2 right-2 w-12 h-12 sm:w-14 sm:h-14 rotate-90" variant="crimson" />
         
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center">
           <MysticalDivider variant="crow" light />
           
-          <h2 className="font-italiana text-2xl sm:text-3xl md:text-4xl text-crimson mb-6 sm:mb-8"
+          <h2 className="font-italiana text-xl sm:text-2xl md:text-3xl text-crimson mb-4 sm:mb-6"
             style={{ textShadow: '0 2px 15px rgba(184, 35, 48, 0.3)' }}>
             The Lineage
           </h2>
           
-          <div className="font-crimson text-sm sm:text-base md:text-lg text-navy-dark/85 leading-relaxed space-y-4 mb-8">
+          <div className="font-crimson text-sm sm:text-base text-navy-dark/85 leading-relaxed space-y-3 mb-6">
             <p>
               The druids, templers, occultists, astrologers, hermetic philosophers, "witches" midwives and alchemists before them…
               These four women span over a century of practice—from Victorian Spitalfields to contemporary London. Each carried the 
               magic forward in her own way: through craft, through secrets, through poetry, and through truth-telling.
             </p>
-            <p className="text-gold-dark italic">
+            <p className="text-gold-dark italic text-sm">
               You don't need to choose just one. Their wisdom overlaps, contradicts, and complements. Like any family, they argue. 
               Like any lineage, they build on what came before.
             </p>
@@ -347,8 +347,8 @@ export const Home = () => {
           <MysticalDivider light />
         </div>
         
-        <ElaborateCorner className="absolute bottom-2 left-2 w-14 h-14 sm:w-16 sm:h-16 -rotate-90" variant="crimson" />
-        <ElaborateCorner className="absolute bottom-2 right-2 w-14 h-14 sm:w-16 sm:h-16 rotate-180" variant="crimson" />
+        <ElaborateCorner className="absolute bottom-2 left-2 w-12 h-12 sm:w-14 sm:h-14 -rotate-90" variant="crimson" />
+        <ElaborateCorner className="absolute bottom-2 right-2 w-12 h-12 sm:w-14 sm:h-14 rotate-180" variant="crimson" />
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-crimson to-transparent" />
       </div>
     </div>
