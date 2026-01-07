@@ -128,7 +128,7 @@ export const SpellRequest = ({ selectedArchetype: propArchetype }) => {
   // If we have a spell result, show the grimoire page
   if (spellResult && spellResult.spell) {
     return (
-      <div className="min-h-screen py-24 px-6">
+      <DarkSection className="min-h-screen py-16 sm:py-24 px-4 sm:px-6" variant="warm">
         <div className="max-w-4xl mx-auto">
           <GrimoirePage 
             spell={spellResult.spell}
@@ -137,92 +137,99 @@ export const SpellRequest = ({ selectedArchetype: propArchetype }) => {
             onNewSpell={handleNewSpell}
           />
         </div>
-      </div>
+      </DarkSection>
     );
   }
 
   return (
-    <div className="min-h-screen py-16 sm:py-20 md:py-24 px-4 sm:px-6">
-      <div className="max-w-5xl mx-auto">
-        {/* Spell Limit Banner for Free Users */}
-        {subscriptionStatus && subscriptionStatus.subscription_tier === 'free' && (
-          <SpellLimitBanner 
-            remaining={subscriptionStatus.spells_remaining} 
-            limit={subscriptionStatus.spell_limit}
-          />
-        )}
+    <div className="min-h-screen">
+      {/* Dark Hero Section */}
+      <DarkSection className="py-12 sm:py-16 md:py-20 px-4 sm:px-6" variant="warm">
+        {/* Corner ornaments */}
+        <ElaborateCorner className="absolute top-3 left-3 w-16 h-16 sm:w-20 sm:h-20" variant="gold" />
+        <ElaborateCorner className="absolute top-3 right-3 w-16 h-16 sm:w-20 sm:h-20 rotate-90" variant="gold" />
         
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-6 sm:mb-8"
-        >
-          <Sparkles className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 text-primary mx-auto mb-3 sm:mb-4" />
-          <h1 className="font-italiana text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-primary mb-3 sm:mb-4">Build Your Ritual</h1>
-          <p className="font-montserrat text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-2">
-            {currentGuide 
-              ? `Guided by ${currentGuide.shortName}, ${currentGuide.title.toLowerCase()}`
-              : 'Describe your need. Get a practical formula based on tested patterns. Adapt it as you go.'}
-          </p>
-        </motion.div>
+        <div className="max-w-5xl mx-auto relative z-10">
+          {/* Spell Limit Banner for Free Users */}
+          {subscriptionStatus && subscriptionStatus.subscription_tier === 'free' && (
+            <SpellLimitBanner 
+              remaining={subscriptionStatus.spells_remaining} 
+              limit={subscriptionStatus.spell_limit}
+            />
+          )}
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
+            <PageHeader 
+              icon={Sparkles}
+              title="Build Your Ritual"
+              subtitle={currentGuide 
+                ? `Guided by ${currentGuide.shortName}, ${currentGuide.title.toLowerCase()}`
+                : 'Describe your need. Get a practical formula based on tested patterns. Adapt it as you go.'}
+            />
+          </motion.div>
+          
+          <GrandDivider variant="sparkle" />
 
-        {/* Guide Selector */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="mb-8 relative z-50"
-        >
-          <GlassCard hover={false} className="overflow-visible relative z-50">
-            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-              <div className="flex items-center gap-4">
-                {currentGuide ? (
-                  <>
-                    <div 
-                      className="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 border-2 border-border"
-                      style={{ backgroundColor: '#D8CBB3' }}
-                    >
-                      {currentGuide.image ? (
-                        <img 
-                          src={currentGuide.image} 
-                          alt={currentGuide.shortName}
-                          className="w-full h-full object-cover"
-                          style={{ mixBlendMode: 'multiply', objectPosition: '50% 20%' }}
-                        />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center text-2xl">
-                          {currentGuide.birdEmoji}
-                        </div>
-                      )}
-                    </div>
-                    <div>
-                      <p className="font-cinzel text-sm text-secondary">Your Guide</p>
-                      <p className="font-italiana text-xl text-primary">{currentGuide.shortName}</p>
-                      <p className="font-montserrat text-xs text-muted-foreground">{currentGuide.title}</p>
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <div className="w-12 h-12 rounded-full bg-muted/50 flex items-center justify-center">
-                      <User className="w-6 h-6 text-muted-foreground" />
-                    </div>
-                    <div>
-                      <p className="font-cinzel text-sm text-secondary">No Guide Selected</p>
-                      <p className="font-montserrat text-xs text-muted-foreground">Using neutral Crowlands guidance</p>
-                    </div>
-                  </>
-                )}
-              </div>
-              
-              <div className="relative">
-                <button
-                  onClick={() => setShowArchetypeSelector(!showArchetypeSelector)}
-                  className="px-4 py-2 bg-card border border-border rounded-sm font-montserrat text-xs tracking-wider text-muted-foreground hover:border-primary/30 transition-all flex items-center gap-2"
-                  id="change-guide-button"
-                >
-                  <span>Change Guide</span>
-                  <ChevronDown className={`w-4 h-4 transition-transform ${showArchetypeSelector ? 'rotate-180' : ''}`} />
-                </button>
+          {/* Guide Selector */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="mb-8 relative z-50"
+          >
+            <OrnateCard hover={false}>
+              <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                <div className="flex items-center gap-4">
+                  {currentGuide ? (
+                    <>
+                      <div 
+                        className="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 border-2 border-gold/40"
+                        style={{ backgroundColor: '#e8e4dc' }}
+                      >
+                        {currentGuide.image ? (
+                          <img 
+                            src={currentGuide.image} 
+                            alt={currentGuide.shortName}
+                            className="w-full h-full object-cover"
+                            style={{ objectPosition: '50% 20%' }}
+                          />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center text-2xl">
+                            {currentGuide.birdEmoji}
+                          </div>
+                        )}
+                      </div>
+                      <div>
+                        <p className="font-cinzel text-sm text-gold/80">Your Guide</p>
+                        <p className="font-italiana text-xl text-gold-light">{currentGuide.shortName}</p>
+                        <p className="font-montserrat text-xs text-silver-mist/70">{currentGuide.title}</p>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="w-12 h-12 rounded-full bg-navy-light/50 flex items-center justify-center border border-gold/30">
+                        <User className="w-6 h-6 text-gold/60" />
+                      </div>
+                      <div>
+                        <p className="font-cinzel text-sm text-gold/80">No Guide Selected</p>
+                        <p className="font-montserrat text-xs text-silver-mist/70">Using neutral Crowlands guidance</p>
+                      </div>
+                    </>
+                  )}
+                </div>
+                
+                <div className="relative">
+                  <button
+                    onClick={() => setShowArchetypeSelector(!showArchetypeSelector)}
+                    className="px-4 py-2 bg-navy-mid border border-gold/40 rounded-sm font-montserrat text-xs tracking-wider text-gold/80 hover:border-gold/60 hover:text-gold transition-all flex items-center gap-2"
+                    id="change-guide-button"
+                  >
+                    <span>Change Guide</span>
+                    <ChevronDown className={`w-4 h-4 transition-transform ${showArchetypeSelector ? 'rotate-180' : ''}`} />
+                  </button>
                 
                 {showArchetypeSelector && (
                   <div
