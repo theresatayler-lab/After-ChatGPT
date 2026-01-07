@@ -169,10 +169,10 @@ export const Home = () => {
                   to="/spell-request"
                   className="group relative px-8 py-4 overflow-hidden"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-amber-700 via-amber-600 to-amber-700 rounded-sm" />
-                  <div className="absolute inset-px bg-gradient-to-r from-amber-800 via-amber-700 to-amber-800 rounded-sm" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-crimson via-crimson-bright to-crimson rounded-sm" />
+                  <div className="absolute inset-px bg-gradient-to-r from-[#8b1a1a] via-crimson to-[#8b1a1a] rounded-sm" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-sm" />
-                  <span className="relative flex items-center gap-2 font-montserrat text-amber-100 tracking-widest uppercase text-sm">
+                  <span className="relative flex items-center gap-2 font-montserrat text-parchment tracking-widest uppercase text-sm">
                     <Sparkles className="w-4 h-4" />
                     Begin Your Journey
                   </span>
@@ -180,9 +180,9 @@ export const Home = () => {
                 
                 <Link
                   to="/guides"
-                  className="group relative px-8 py-4 border border-amber-500/30 hover:border-amber-500/50 rounded-sm transition-all"
+                  className="group relative px-8 py-4 border border-champagne/40 hover:border-champagne/70 rounded-sm transition-all hover:bg-champagne/5"
                 >
-                  <span className="flex items-center gap-2 font-montserrat text-amber-200/80 tracking-widest uppercase text-sm group-hover:text-amber-100 transition-colors">
+                  <span className="flex items-center gap-2 font-montserrat text-champagne/90 tracking-widest uppercase text-sm group-hover:text-champagne transition-colors">
                     <Users className="w-4 h-4" />
                     Meet Your Guides
                   </span>
