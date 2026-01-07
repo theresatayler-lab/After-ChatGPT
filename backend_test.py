@@ -762,16 +762,20 @@ class SpiritualAppAPITester:
             detail = response.get('detail', {})
             if isinstance(detail, dict):
                 error_type = detail.get('error')
+                if error_type == 'feature_locked':
+                    print(f"   ✅ Pro gate working correctly - feature_locked error returned")
+                    return True
+                else:
+                    print(f"   ❌ Expected 'feature_locked' error, got: {error_type}")
+                    return False
             else:
                 # Handle case where detail is a string
-                error_type = 'feature_locked' if 'feature_locked' in str(detail) else None
-                
-            if error_type == 'feature_locked':
-                print(f"   ✅ Pro gate working correctly - feature_locked error returned")
-                return True
-            else:
-                print(f"   ❌ Expected 'feature_locked' error, got: {error_type}")
-                return False
+                if 'feature_locked' in str(detail):
+                    print(f"   ✅ Pro gate working correctly - feature_locked error returned")
+                    return True
+                else:
+                    print(f"   ❌ Expected 'feature_locked' error, got: {detail}")
+                    return False
         
         return success  # If we got 403, that's what we expected
 
