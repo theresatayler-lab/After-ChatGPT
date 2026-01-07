@@ -74,6 +74,9 @@ export const SpellRequest = ({ selectedArchetype: propArchetype }) => {
       setSpellResult(response);
       toast.success('Your spell has been crafted!');
       
+      // Scroll to top to show the spell result
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      
       // Update subscription status if limits changed
       if (response.limit_info) {
         const token = localStorage.getItem('token');
