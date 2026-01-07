@@ -172,7 +172,7 @@ const GuideCard = ({ archetype, index, isCurrentGuide, isExpanded, onToggle, onS
             </svg>
             <span className="text-3xl mt-2">{archetype.birdEmoji}</span>
             {isCurrentGuide && (
-              <span className="absolute top-3 right-3 text-xs font-montserrat text-primary-foreground bg-primary px-2 py-1 rounded-sm">
+              <span className="absolute top-3 right-3 text-xs font-montserrat text-cream bg-crimson px-2 py-1 rounded-sm">
                 Your Guide
               </span>
             )}
@@ -186,7 +186,7 @@ const GuideCard = ({ archetype, index, isCurrentGuide, isExpanded, onToggle, onS
           <div className="flex items-start gap-4">
             {/* Portrait Image */}
             <div 
-              className="w-16 h-16 rounded-full overflow-hidden flex-shrink-0 border-2 border-champagne/30"
+              className="w-16 h-16 rounded-full overflow-hidden flex-shrink-0 border-2 border-gold/40"
               style={{ backgroundColor: '#e8e4dc' }}
             >
               {archetype.image ? (
@@ -205,31 +205,31 @@ const GuideCard = ({ archetype, index, isCurrentGuide, isExpanded, onToggle, onS
             
             <div>
               <div className="flex items-center gap-2">
-                <h2 className="font-italiana text-2xl text-primary">{archetype.shortName}</h2>
+                <h2 className="font-italiana text-2xl text-crimson">{archetype.shortName}</h2>
                 {isCurrentGuide && (
-                  <span className="text-xs font-montserrat text-primary-foreground bg-primary px-2 py-0.5 rounded-sm">
+                  <span className="text-xs font-montserrat text-cream bg-crimson px-2 py-0.5 rounded-sm">
                     Your Guide
                   </span>
                 )}
               </div>
-              <p className="font-cinzel text-sm text-champagne">{archetype.title}</p>
-              <p className="font-montserrat text-xs text-silver-mist/70 mt-1">{archetype.era}</p>
+              <p className="font-cinzel text-sm text-gold-dark">{archetype.title}</p>
+              <p className="font-montserrat text-xs text-navy-dark/60 mt-1">{archetype.era}</p>
             </div>
           </div>
           <div className="text-right">
             <span className="text-2xl">{archetype.birdEmoji}</span>
-            <p className="font-montserrat text-xs text-champagne">{archetype.birdSymbol}</p>
+            <p className="font-montserrat text-xs text-gold-dark">{archetype.birdSymbol}</p>
           </div>
         </div>
 
         {/* Bio */}
-        <p className="font-montserrat text-sm text-foreground/80 leading-relaxed mb-4">
+        <p className="font-montserrat text-sm text-navy-dark/80 leading-relaxed mb-4">
           {archetype.bio}
         </p>
 
         {/* Empowerment Message */}
-        <div className="p-4 bg-primary/5 border-l-2 border-primary rounded-r-sm mb-4">
-          <p className="font-crimson text-sm text-primary italic">
+        <div className="p-4 bg-crimson/5 border-l-2 border-crimson rounded-r-sm mb-4">
+          <p className="font-crimson text-sm text-crimson/90 italic">
             {archetype.empowermentMessage}
           </p>
         </div>
@@ -237,7 +237,7 @@ const GuideCard = ({ archetype, index, isCurrentGuide, isExpanded, onToggle, onS
         {/* Expandable Details */}
         <button
           onClick={onToggle}
-          className="w-full text-left font-montserrat text-xs text-primary uppercase tracking-wider flex items-center gap-2 mb-4"
+          className="w-full text-left font-montserrat text-xs text-crimson uppercase tracking-wider flex items-center gap-2 mb-4"
         >
           <span>{isExpanded ? 'Show Less' : 'Show Details'}</span>
           <ArrowRight className={`w-3 h-3 transition-transform ${isExpanded ? 'rotate-90' : ''}`} />
