@@ -613,9 +613,9 @@ class SpiritualAppAPITester:
         return False
 
     def test_archetype_endpoint(self):
-        """Test archetype endpoint includes Cathleen - REVIEW REQUEST TEST"""
+        """Test archetype endpoint includes Shigg - REVIEW REQUEST TEST"""
         success, response = self.run_test(
-            "Get Archetypes - Cathleen Check",
+            "Get Archetypes - Shigg Check",
             "GET",
             "archetypes",
             200
@@ -624,30 +624,32 @@ class SpiritualAppAPITester:
         if success and isinstance(response, list):
             print(f"   ✅ Found {len(response)} archetypes")
             
-            # Look for Cathleen specifically
-            cathleen_found = False
+            # Look for Shigg specifically
+            shigg_found = False
             for archetype in response:
-                if archetype.get('id') == 'kathleen':
-                    cathleen_found = True
+                if archetype.get('id') == 'shiggy':
+                    shigg_found = True
                     name = archetype.get('name')
                     title = archetype.get('title')
                     
-                    print(f"   ✅ Cathleen archetype found:")
+                    print(f"   ✅ Shigg archetype found:")
                     print(f"     - ID: {archetype.get('id')}")
                     print(f"     - Name: {name}")
                     print(f"     - Title: {title}")
                     
-                    # Verify expected values
-                    if name != 'Cathleen Winifred Malzard':
-                        print(f"   ⚠️  Expected name 'Cathleen Winifred Malzard', got '{name}'")
+                    # Verify expected values from review request
+                    if name != 'Shigg':
+                        print(f"   ❌ Expected name 'Shigg', got '{name}'")
+                        return False
                     
-                    if title != 'The Keeper of Secrets':
-                        print(f"   ⚠️  Expected title 'The Keeper of Secrets', got '{title}'")
+                    if title != 'The Birds of Parliament Poet Laureate':
+                        print(f"   ❌ Expected title 'The Birds of Parliament Poet Laureate', got '{title}'")
+                        return False
                     
                     break
             
-            if not cathleen_found:
-                print(f"   ❌ Cathleen archetype not found in response")
+            if not shigg_found:
+                print(f"   ❌ Shigg archetype not found in response")
                 print(f"   Available archetypes: {[a.get('id') for a in response]}")
                 return False
             
