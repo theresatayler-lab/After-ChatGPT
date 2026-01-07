@@ -1,7 +1,8 @@
 # Test Result Summary
 
 ## Current Testing Focus
-- Cobbles Oracle - Enhanced 78-card tarot system for "What Would Corrie Do"
+- Shigg Grimoire Imagery - Edmund J. Sullivan style DALL-E prompt integration
+- Updated ARCHETYPE_IMAGE_STYLES in server.py with detailed Sullivan aesthetic
 
 ## Backend Tasks
 - task: "Cobbles Oracle Deck Data"
