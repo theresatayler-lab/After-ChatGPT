@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, Moon, Star, Mail, ArrowRight, Check } from 'lucide-react';
+import { Moon, Mail, ArrowRight, Check } from 'lucide-react';
 import { toast } from 'sonner';
 
 const API_URL = process.env.REACT_APP_BACKEND_URL;
@@ -29,7 +29,6 @@ const ElaborateCorner = ({ className, variant = 'gold' }) => {
 // Mystical floating symbols
 const FloatingSymbols = () => (
   <div className="absolute inset-0 overflow-hidden pointer-events-none">
-    {/* Scattered mystical symbols */}
     {[
       { symbol: '☽', top: '10%', left: '5%', delay: 0, size: 'text-3xl' },
       { symbol: '✧', top: '20%', right: '8%', delay: 0.5, size: 'text-2xl' },
@@ -38,7 +37,7 @@ const FloatingSymbols = () => (
       { symbol: '◆', top: '40%', left: '8%', delay: 2, size: 'text-xl' },
       { symbol: '✦', top: '85%', left: '10%', delay: 2.5, size: 'text-xl' },
       { symbol: '❧', top: '15%', right: '3%', delay: 3, size: 'text-2xl' },
-      { symbol: '☆', top: '50%', right: '4%', delay: 3.5, size: 'text-xl' },
+      { symbol: '🐦‍⬛', top: '50%', right: '4%', delay: 3.5, size: 'text-xl' },
     ].map((item, i) => (
       <motion.span
         key={i}
@@ -61,20 +60,14 @@ const FloatingSymbols = () => (
   </div>
 );
 
-// Grand divider
-const GrandDivider = () => (
-  <div className="flex items-center justify-center gap-3 sm:gap-6 py-6">
-    <span className="text-crimson-bright text-sm opacity-60">✧</span>
-    <div className="h-0.5 w-12 sm:w-24 bg-gradient-to-r from-transparent via-gold/80 to-gold" />
-    <span className="text-crimson-bright text-lg glow-crimson">◆</span>
-    <div className="flex items-center gap-2 text-gold">
-      <span className="text-xl opacity-50">☾</span>
-      <span className="text-2xl sm:text-3xl glow-gold">☽</span>
-      <span className="text-xl opacity-50">☽</span>
-    </div>
-    <span className="text-crimson-bright text-lg glow-crimson">◆</span>
-    <div className="h-0.5 w-12 sm:w-24 bg-gradient-to-l from-transparent via-gold/80 to-gold" />
-    <span className="text-crimson-bright text-sm opacity-60">✧</span>
+// Simple divider
+const MysticalDivider = () => (
+  <div className="flex items-center justify-center gap-3 py-4">
+    <div className="h-0.5 w-8 sm:w-16 bg-gradient-to-r from-transparent to-gold/60" />
+    <span className="text-crimson text-sm">◆</span>
+    <span className="text-gold text-lg">☽</span>
+    <span className="text-crimson text-sm">◆</span>
+    <div className="h-0.5 w-8 sm:w-16 bg-gradient-to-l from-transparent to-gold/60" />
   </div>
 );
 
@@ -107,11 +100,11 @@ const EarlyAccessPage = () => {
       
       if (response.ok) {
         setIsSubmitted(true);
-        toast.success('Welcome to the Crowlands! Check your email for confirmation.');
+        toast.success('Welcome to the Murder! Check your email for confirmation.');
       } else {
         const data = await response.json();
         if (data.detail?.includes('already')) {
-          toast.info('You\'re already on our list! We\'ll be in touch soon.');
+          toast.info('You\'re already part of the Murder! We\'ll be in touch soon.');
           setIsSubmitted(true);
         } else {
           throw new Error(data.detail || 'Failed to join waitlist');
@@ -148,32 +141,32 @@ const EarlyAccessPage = () => {
       <FloatingSymbols />
       
       {/* Corner ornaments */}
-      <ElaborateCorner className="absolute top-4 left-4 w-20 h-20 sm:w-28 sm:h-28" variant="gold" />
-      <ElaborateCorner className="absolute top-4 right-4 w-20 h-20 sm:w-28 sm:h-28 rotate-90" variant="gold" />
-      <ElaborateCorner className="absolute bottom-4 left-4 w-20 h-20 sm:w-28 sm:h-28 -rotate-90" variant="gold" />
-      <ElaborateCorner className="absolute bottom-4 right-4 w-20 h-20 sm:w-28 sm:h-28 rotate-180" variant="gold" />
+      <ElaborateCorner className="absolute top-4 left-4 w-16 h-16 sm:w-24 sm:h-24" variant="gold" />
+      <ElaborateCorner className="absolute top-4 right-4 w-16 h-16 sm:w-24 sm:h-24 rotate-90" variant="gold" />
+      <ElaborateCorner className="absolute bottom-4 left-4 w-16 h-16 sm:w-24 sm:h-24 -rotate-90" variant="gold" />
+      <ElaborateCorner className="absolute bottom-4 right-4 w-16 h-16 sm:w-24 sm:h-24 rotate-180" variant="gold" />
       
       {/* Edge decorations */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 flex items-center gap-2 mt-4">
-        <span className="text-gold/40 text-sm">✧</span>
-        <span className="text-crimson/60 text-base">◆</span>
-        <span className="text-gold/40 text-sm">✧</span>
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 flex items-center gap-2 mt-3">
+        <span className="text-gold/40 text-xs">✧</span>
+        <span className="text-crimson/60 text-sm">◆</span>
+        <span className="text-gold/40 text-xs">✧</span>
       </div>
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex items-center gap-2 mb-4">
-        <span className="text-gold/40 text-sm">✧</span>
-        <span className="text-crimson/60 text-base">◆</span>
-        <span className="text-gold/40 text-sm">✧</span>
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex items-center gap-2 mb-3">
+        <span className="text-gold/40 text-xs">✧</span>
+        <span className="text-crimson/60 text-sm">◆</span>
+        <span className="text-gold/40 text-xs">✧</span>
       </div>
       
       {/* Main content */}
       <motion.div 
-        className="relative z-10 w-full max-w-xl"
+        className="relative z-10 w-full max-w-2xl"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
         {/* Logo */}
-        <div className="text-center mb-6">
+        <div className="text-center mb-4">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -184,7 +177,7 @@ const EarlyAccessPage = () => {
             <img 
               src="https://customer-assets.emergentagent.com/job_mystic-circle-2/artifacts/li34ks3x_Where%20the%20Crowlands%20Logos.png"
               alt="Where The Crowlands"
-              className="relative w-40 h-40 sm:w-48 sm:h-48 mx-auto object-contain"
+              className="relative w-32 h-32 sm:w-40 sm:h-40 mx-auto object-contain"
               style={{ filter: 'brightness(1.4) contrast(1.1) drop-shadow(0 0 40px rgba(212, 168, 75, 0.4))' }}
             />
           </motion.div>
@@ -192,34 +185,66 @@ const EarlyAccessPage = () => {
         
         {/* Title */}
         <motion.div 
-          className="text-center mb-6"
+          className="text-center mb-4"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
         >
-          <h1 className="font-italiana text-3xl sm:text-4xl md:text-5xl text-gold-light mb-3"
+          <h1 className="font-italiana text-2xl sm:text-3xl md:text-4xl text-gold-light mb-2"
             style={{ textShadow: '0 4px 30px rgba(212, 168, 75, 0.5), 0 0 60px rgba(184, 35, 48, 0.3)' }}>
             Where The Crowlands
           </h1>
-          <p className="font-cinzel text-base sm:text-lg text-cream/80 mb-2">
-            Build Your Own Magic
+        </motion.div>
+        
+        <MysticalDivider />
+        
+        {/* Main text */}
+        <motion.div 
+          className="text-center mb-6 px-2"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+        >
+          <p className="font-crimson text-sm sm:text-base text-cream/85 leading-relaxed mb-4">
+            Where the Crowlands is a toolkit for alchemizing what you already hold. Rooted in history; from the 
+            Huguenot mystics fleeing persecution, Jersey witches shaping weather and fate, Irish and Celtic keepers 
+            of forbidden knowledge, to London's table-tappers and spiritualists revealing the hidden world and stoicism 
+            of the WWII era as echoes of Churchill's resolve and the hard-won wisdom of London's East End, where knowing 
+            what to say—and what to keep close—could mean everything.
           </p>
-          <p className="font-montserrat text-xs sm:text-sm text-silver-mist/70 max-w-md mx-auto px-4">
-            A toolkit for crafting personal rituals, guided by four generations of women who practiced in secret.
+          <p className="font-cinzel text-sm text-gold/80 italic mb-4">
+            "Loose lips sink ships" wasn't just a slogan; it was a way of living.
+          </p>
+          <p className="font-montserrat text-xs sm:text-sm text-silver-mist/70">
+            ...spells, history, build your own grimoire... based on family and British lore, 
+            expansion of cultural backbone and context to come.
           </p>
         </motion.div>
         
-        <GrandDivider />
+        {/* Join the Murder text */}
+        <motion.div 
+          className="text-center mb-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6 }}
+        >
+          <p className="font-cinzel text-base sm:text-lg text-crimson-bright">
+            Sign up and join the Murder <span className="text-lg">🐦‍⬛</span>
+          </p>
+          <p className="font-montserrat text-xs text-silver-mist/60 mt-1">
+            Everyone is welcome, from east to west.
+          </p>
+        </motion.div>
         
         {/* Form Card */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
+          transition={{ delay: 0.7 }}
           className="relative"
         >
           {/* Outer glow */}
-          <div className="absolute -inset-4 opacity-30 blur-xl" style={{ background: 'radial-gradient(ellipse at center, rgba(212, 168, 75, 0.3) 0%, transparent 70%)' }} />
+          <div className="absolute -inset-3 opacity-25 blur-xl" style={{ background: 'radial-gradient(ellipse at center, rgba(212, 168, 75, 0.3) 0%, transparent 70%)' }} />
           
           {/* Triple border frame */}
           <div className="absolute inset-0 border-2 border-gold rounded-sm" />
@@ -230,47 +255,39 @@ const EarlyAccessPage = () => {
           <div className="absolute inset-0 bg-navy-mid/80 backdrop-blur-md rounded-sm" />
           
           {/* Corner flourishes */}
-          <ElaborateCorner className="absolute -top-4 -left-4 w-16 h-16 sm:w-20 sm:h-20" variant="gold" />
-          <ElaborateCorner className="absolute -top-4 -right-4 w-16 h-16 sm:w-20 sm:h-20 rotate-90" variant="gold" />
-          <ElaborateCorner className="absolute -bottom-4 -left-4 w-16 h-16 sm:w-20 sm:h-20 -rotate-90" variant="gold" />
-          <ElaborateCorner className="absolute -bottom-4 -right-4 w-16 h-16 sm:w-20 sm:h-20 rotate-180" variant="gold" />
+          <ElaborateCorner className="absolute -top-3 -left-3 w-12 h-12 sm:w-16 sm:h-16" variant="gold" />
+          <ElaborateCorner className="absolute -top-3 -right-3 w-12 h-12 sm:w-16 sm:h-16 rotate-90" variant="gold" />
+          <ElaborateCorner className="absolute -bottom-3 -left-3 w-12 h-12 sm:w-16 sm:h-16 -rotate-90" variant="gold" />
+          <ElaborateCorner className="absolute -bottom-3 -right-3 w-12 h-12 sm:w-16 sm:h-16 rotate-180" variant="gold" />
           
           {/* Top ornament */}
-          <div className="absolute -top-3 left-1/2 -translate-x-1/2 flex items-center gap-1 bg-navy-dark px-3 py-0.5 z-10">
+          <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 flex items-center gap-1 bg-navy-dark px-2 py-0.5 z-10">
             <span className="text-gold text-xs">✧</span>
-            <span className="text-crimson text-sm glow-crimson">◆</span>
-            <span className="text-gold text-lg glow-gold">☽</span>
-            <span className="text-crimson text-sm glow-crimson">◆</span>
+            <span className="text-crimson text-sm">◆</span>
+            <span className="text-gold text-base">☽</span>
+            <span className="text-crimson text-sm">◆</span>
             <span className="text-gold text-xs">✧</span>
           </div>
           
-          <div className="relative z-10 p-6 sm:p-8">
+          <div className="relative z-10 p-5 sm:p-6">
             {!isSubmitted ? (
-              <>
-                <div className="text-center mb-6">
-                  <Moon className="w-8 h-8 text-crimson-bright mx-auto mb-3" style={{ filter: 'drop-shadow(0 0 8px rgba(184, 35, 48, 0.4))' }} />
-                  <h2 className="font-cinzel text-xl sm:text-2xl text-gold mb-2">Join the Early Access</h2>
-                  <p className="font-montserrat text-xs sm:text-sm text-silver-mist/70">
-                    Be the first to explore the grimoire when we launch.
-                  </p>
-                </div>
-                
-                <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
-                    <label className="block font-montserrat text-xs text-gold/70 uppercase tracking-wider mb-2">
-                      Your Name (Optional)
+                    <label className="block font-montserrat text-xs text-gold/70 uppercase tracking-wider mb-1.5">
+                      Your Name
                     </label>
                     <input
                       type="text"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="What shall we call you?"
-                      className="w-full bg-navy-dark/60 border-2 border-gold/40 focus:border-gold/70 focus:ring-1 focus:ring-gold/30 rounded-sm px-4 py-3 text-cream font-montserrat placeholder:text-silver-mist/40"
+                      className="w-full bg-navy-dark/60 border-2 border-gold/40 focus:border-gold/70 focus:ring-1 focus:ring-gold/30 rounded-sm px-3 py-2.5 text-cream text-sm font-montserrat placeholder:text-silver-mist/40"
                     />
                   </div>
                   
                   <div>
-                    <label className="block font-montserrat text-xs text-gold/70 uppercase tracking-wider mb-2">
+                    <label className="block font-montserrat text-xs text-gold/70 uppercase tracking-wider mb-1.5">
                       Email Address *
                     </label>
                     <input
@@ -279,56 +296,56 @@ const EarlyAccessPage = () => {
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="your@email.com"
                       required
-                      className="w-full bg-navy-dark/60 border-2 border-gold/40 focus:border-gold/70 focus:ring-1 focus:ring-gold/30 rounded-sm px-4 py-3 text-cream font-montserrat placeholder:text-silver-mist/40"
+                      className="w-full bg-navy-dark/60 border-2 border-gold/40 focus:border-gold/70 focus:ring-1 focus:ring-gold/30 rounded-sm px-3 py-2.5 text-cream text-sm font-montserrat placeholder:text-silver-mist/40"
                     />
                   </div>
-                  
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full mt-4 px-6 py-4 relative overflow-hidden rounded-sm font-montserrat tracking-widest uppercase text-sm disabled:opacity-50"
-                  >
-                    <span className="absolute inset-0 border-2 border-gold rounded-sm" />
-                    <span className="absolute inset-1 bg-gradient-to-r from-crimson-deep via-crimson to-crimson-deep rounded-sm" />
-                    <span className="absolute inset-1 bg-gradient-to-t from-black/30 to-transparent rounded-sm" />
-                    <span className="relative text-cream flex items-center justify-center gap-2">
-                      {isSubmitting ? (
-                        <>
-                          <motion.span animate={{ rotate: 360 }} transition={{ duration: 1, repeat: Infinity, ease: "linear" }}>✧</motion.span>
-                          Joining...
-                        </>
-                      ) : (
-                        <>
-                          <Mail className="w-4 h-4" />
-                          Claim Your Spot
-                          <ArrowRight className="w-4 h-4" />
-                        </>
-                      )}
-                    </span>
-                  </button>
-                </form>
+                </div>
                 
-                <p className="text-center font-montserrat text-xs text-silver-mist/50 mt-4">
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full mt-2 px-6 py-3 relative overflow-hidden rounded-sm font-cinzel tracking-widest uppercase text-base disabled:opacity-50"
+                >
+                  <span className="absolute inset-0 border-2 border-gold rounded-sm" />
+                  <span className="absolute inset-1 bg-gradient-to-r from-crimson-deep via-crimson to-crimson-deep rounded-sm" />
+                  <span className="absolute inset-1 bg-gradient-to-t from-black/30 to-transparent rounded-sm" />
+                  <span className="relative text-cream flex items-center justify-center gap-3">
+                    {isSubmitting ? (
+                      <>
+                        <motion.span animate={{ rotate: 360 }} transition={{ duration: 1, repeat: Infinity, ease: "linear" }}>✧</motion.span>
+                        Joining the Murder...
+                      </>
+                    ) : (
+                      <>
+                        <span className="text-gold">☽</span>
+                        SO IT IS
+                        <span className="text-gold">☾</span>
+                      </>
+                    )}
+                  </span>
+                </button>
+                
+                <p className="text-center font-montserrat text-xs text-silver-mist/50 mt-2">
                   No spam. Only magic. Unsubscribe anytime.
                 </p>
-              </>
+              </form>
             ) : (
               <motion.div 
-                className="text-center py-6"
+                className="text-center py-4"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
               >
-                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-crimson/20 border-2 border-gold/50 flex items-center justify-center">
-                  <Check className="w-8 h-8 text-gold" />
+                <div className="w-14 h-14 mx-auto mb-3 rounded-full bg-crimson/20 border-2 border-gold/50 flex items-center justify-center">
+                  <Check className="w-7 h-7 text-gold" />
                 </div>
-                <h2 className="font-cinzel text-2xl text-gold mb-3">You're In!</h2>
+                <h2 className="font-cinzel text-xl text-gold mb-2">Welcome to the Murder</h2>
                 <p className="font-montserrat text-sm text-silver-mist/80 mb-2">
-                  Welcome to the Crowlands.
+                  You're part of the flock now. 🐦‍⬛
                 </p>
                 <p className="font-crimson text-base text-cream/70 italic">
                   "The magic begins when you decide it does."
                 </p>
-                <div className="mt-6 flex items-center justify-center gap-2 text-gold/40 text-sm">
+                <div className="mt-4 flex items-center justify-center gap-2 text-gold/40 text-sm">
                   <span>☽</span>
                   <span>✧</span>
                   <span>🐦‍⬛</span>
@@ -342,23 +359,14 @@ const EarlyAccessPage = () => {
         
         {/* Bottom tagline */}
         <motion.div 
-          className="text-center mt-8"
+          className="text-center mt-6"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.8 }}
+          transition={{ delay: 0.9 }}
         >
-          <p className="font-crimson text-sm text-gold/70 italic">
+          <p className="font-crimson text-sm text-gold/60 italic">
             "Magic, math and science aren't such strange bedfellows."
           </p>
-          <div className="flex items-center justify-center gap-3 mt-4 text-silver-mist/40 text-xs">
-            <span>☾</span>
-            <span>Spells</span>
-            <span>◆</span>
-            <span>Wards</span>
-            <span>◆</span>
-            <span>Rituals</span>
-            <span>☽</span>
-          </div>
         </motion.div>
       </motion.div>
     </div>
