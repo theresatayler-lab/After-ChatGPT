@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  Sparkles, Tv, Heart, Clock, ArrowLeft, RefreshCw, 
+  Sparkles, Tv, Heart, ArrowLeft, RefreshCw, 
   Loader2, Crown, Lock, ChevronDown, ChevronUp
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
-import { Footer } from '../components/Footer';
 
 const API_URL = process.env.REACT_APP_BACKEND_URL;
 
