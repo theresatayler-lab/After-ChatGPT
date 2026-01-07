@@ -759,7 +759,13 @@ class SpiritualAppAPITester:
         
         if success and isinstance(response, dict):
             # Verify it's the correct error type
-            error_type = response.get('detail', {}).get('error')
+            detail = response.get('detail', {})
+            if isinstance(detail, dict):
+                error_type = detail.get('error')
+            else:
+                # Handle case where detail is a string
+                error_type = 'feature_locked' if 'feature_locked' in str(detail) else None
+                
             if error_type == 'feature_locked':
                 print(f"   ✅ Pro gate working correctly - feature_locked error returned")
                 return True
