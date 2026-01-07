@@ -234,7 +234,7 @@ export const Home = () => {
       </div>
 
       {/* ===== LIGHT PARCHMENT SECTION - Waitlist ===== */}
-      <div className="relative py-16 sm:py-24" style={{ background: 'linear-gradient(135deg, #f5f0e6 0%, #e8e0d0 50%, #f5f0e6 100%)' }}>
+      <div className="relative py-10 sm:py-14" style={{ background: 'linear-gradient(135deg, #f5f0e6 0%, #e8e0d0 50%, #f5f0e6 100%)' }}>
         {/* Subtle pattern */}
         <div className="absolute inset-0 opacity-[0.02]" style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 30L45 15M30 30L15 45M30 30L45 45M30 30L15 15' stroke='%230e1629' stroke-width='0.5' fill='none'/%3E%3C/svg%3E")`,
@@ -246,22 +246,22 @@ export const Home = () => {
         <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-gold/60 to-transparent" />
         <div className="absolute bottom-0.5 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-crimson to-transparent" />
         
-        {/* Corners */}
-        <ElaborateCorner className="absolute top-2 left-2 w-16 h-16 sm:w-20 sm:h-20" variant="crimson" />
-        <ElaborateCorner className="absolute top-2 right-2 w-16 h-16 sm:w-20 sm:h-20 rotate-90" variant="crimson" />
-        <ElaborateCorner className="absolute bottom-2 left-2 w-16 h-16 sm:w-20 sm:h-20 -rotate-90" variant="crimson" />
-        <ElaborateCorner className="absolute bottom-2 right-2 w-16 h-16 sm:w-20 sm:h-20 rotate-180" variant="crimson" />
+        {/* Corners - smaller */}
+        <ElaborateCorner className="absolute top-2 left-2 w-12 h-12 sm:w-16 sm:h-16" variant="crimson" />
+        <ElaborateCorner className="absolute top-2 right-2 w-12 h-12 sm:w-16 sm:h-16 rotate-90" variant="crimson" />
+        <ElaborateCorner className="absolute bottom-2 left-2 w-12 h-12 sm:w-16 sm:h-16 -rotate-90" variant="crimson" />
+        <ElaborateCorner className="absolute bottom-2 right-2 w-12 h-12 sm:w-16 sm:h-16 rotate-180" variant="crimson" />
         
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6">
-          <GrandDivider variant="crow" light />
+          <MysticalDivider variant="crow" light />
           
-          <div className="font-crimson text-sm sm:text-base md:text-lg text-navy-dark/85 leading-relaxed max-w-3xl mx-auto px-2 sm:px-4 space-y-4 mb-8 sm:mb-12">
+          <div className="font-crimson text-sm sm:text-base text-navy-dark/85 leading-relaxed max-w-3xl mx-auto px-2 sm:px-4 space-y-3 mb-6 sm:mb-8">
             <p>
               The magic we've abandoned isn't "woo woo"—it's intention, craft, commitment, and ritual. Whether our ancestors 
               named it or not, that power is still yours to work with. Inspired by real people—my family—and grounded in plenty 
               of creative lore, Where the Crowlands offers a fun, practical way to bring alchemy, magic, and beauty into your life.
             </p>
-            <p className="text-crimson/90 italic border-l-4 border-gold/60 pl-4 py-2 bg-gold/10 rounded-r">
+            <p className="text-crimson/90 italic border-l-4 border-gold/60 pl-4 py-2 bg-gold/10 rounded-r text-sm">
               While rooted primarily in British history and mysticism, we plan to expand, honouring all cultures—every tradition 
               has drawn from what lies beneath the veil. It's time to bring a little magic back.
             </p>
@@ -274,8 +274,8 @@ export const Home = () => {
           <MysticalDivider variant="moon" light />
           
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
-            <Link to="/spell-request" className="group relative px-8 sm:px-10 py-3 sm:py-4 overflow-hidden">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-6">
+            <Link to="/spell-request" className="group relative px-6 sm:px-8 py-2.5 sm:py-3 overflow-hidden">
               <div className="absolute inset-0 border-2 border-gold rounded-sm" />
               <div className="absolute inset-1 bg-gradient-to-r from-crimson-deep via-crimson to-crimson-deep rounded-sm" />
               <div className="absolute inset-1 bg-gradient-to-t from-black/30 to-transparent rounded-sm" />
@@ -283,7 +283,7 @@ export const Home = () => {
                 <Sparkles className="w-4 h-4" /> Begin Your Journey
               </span>
             </Link>
-            <Link to="/guides" className="group relative px-8 sm:px-10 py-3 sm:py-4 border-2 border-navy-dark/40 hover:border-crimson/70 rounded-sm transition-all hover:bg-crimson/5">
+            <Link to="/guides" className="group relative px-6 sm:px-8 py-2.5 sm:py-3 border-2 border-navy-dark/40 hover:border-crimson/70 rounded-sm transition-all hover:bg-crimson/5">
               <span className="flex items-center gap-2 font-montserrat text-navy-dark/90 tracking-widest uppercase text-xs sm:text-sm group-hover:text-crimson transition-colors">
                 <Users className="w-4 h-4" /> Meet Your Guides
               </span>
