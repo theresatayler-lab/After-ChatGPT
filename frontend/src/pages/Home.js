@@ -207,7 +207,7 @@ export const Home = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               { icon: Sparkles, title: 'Craft Your Spells', desc: 'Generate personalized rituals guided by four ancestral archetypes' },
-              { icon: BookOpen, title: 'Build Your Grimoire', desc: 'Save and organize your magical workings in your personal collection' },
+              { icon: BookOpen, title: 'Build Your Grimoire', desc: 'A living archive of wonder—save spells, collect wards, and build your personal magical practice', tooltip: 'From the French for "grammar"—every ritual has its own language for shaping reality' },
               { icon: Moon, title: 'Explore the Archives', desc: 'Discover historical practices, deities, and sacred sites' },
             ].map((feature, i) => (
               <motion.div
@@ -223,6 +223,11 @@ export const Home = () => {
                   <feature.icon className="w-10 h-10 text-amber-400 mx-auto mb-4" />
                   <h3 className="font-cinzel text-xl text-amber-100 mb-3">{feature.title}</h3>
                   <p className="font-crimson text-amber-100/70">{feature.desc}</p>
+                  {feature.tooltip && (
+                    <p className="font-montserrat text-xs text-amber-500/50 mt-3 opacity-0 group-hover:opacity-100 transition-opacity italic">
+                      {feature.tooltip}
+                    </p>
+                  )}
                 </div>
               </motion.div>
             ))}
