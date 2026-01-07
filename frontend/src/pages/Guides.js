@@ -130,13 +130,17 @@ const GuideCard = ({ archetype, index, isCurrentGuide, isExpanded, onToggle, onS
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1 }}
-      className={`bg-card/50 border-2 rounded-sm overflow-hidden transition-all duration-300 ${
-        isCurrentGuide ? 'border-primary shadow-lg' : 'border-border'
+      className={`relative bg-white/90 border-2 rounded-sm overflow-hidden transition-all duration-300 ${
+        isCurrentGuide ? 'border-crimson shadow-lg' : 'border-gold/40 hover:border-crimson/50'
       }`}
     >
+      {/* Corner accents */}
+      <span className="absolute -top-1 -left-1 text-crimson text-xs z-10">◆</span>
+      <span className="absolute -top-1 -right-1 text-crimson text-xs z-10">◆</span>
+      
       {/* Image or Placeholder */}
       <div 
-        className="w-full h-56 flex items-center justify-center border-b border-border overflow-hidden relative"
+        className="w-full h-56 flex items-center justify-center border-b border-gold/30 overflow-hidden relative"
         style={{ backgroundColor: '#e8e4dc' }}
       >
         {archetype.image ? (
