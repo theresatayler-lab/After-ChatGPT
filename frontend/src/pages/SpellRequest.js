@@ -322,88 +322,99 @@ export const SpellRequest = ({ selectedArchetype: propArchetype }) => {
         <div className="max-w-5xl mx-auto">
           <GrandDivider variant="moon" light />
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 sm:gap-6">
-          {/* Input Section */}
-          <div className="lg:col-span-2">
-            <GlassCard hover={false} testId="spell-request-input-card">
-              <h3 className="font-cinzel text-lg sm:text-xl text-secondary mb-4">
-                {currentGuide ? `Ask ${currentGuide.shortName}` : 'What do you need?'}
-              </h3>
-              
-              <div className="mb-6">
-                <label className="block font-montserrat text-sm text-muted-foreground uppercase tracking-wider mb-2">
-                  Describe your intention
-                </label>
-                <textarea
-                  data-testid="spell-problem-input"
-                  value={problem}
-                  onChange={(e) => setProblem(e.target.value)}
-                  placeholder={currentGuide 
-                    ? `Tell ${currentGuide.shortName} what you need help with...`
-                    : "I need help with..."}
-                  rows={6}
-                  className="w-full bg-input/50 border border-border focus:border-primary focus:ring-1 focus:ring-primary/50 rounded-sm px-4 py-3 text-foreground font-montserrat"
-                />
-              </div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 sm:gap-6">
+            {/* Input Section */}
+            <div className="lg:col-span-2">
+              <div className="relative group">
+                <div className="absolute inset-0 border-2 border-crimson/30 rounded-lg group-hover:border-crimson/50 transition-all" />
+                <div className="absolute inset-1.5 border border-gold/30 rounded-md" />
+                <div className="absolute inset-0 bg-cream/90 rounded-lg" />
+                
+                <div className="relative z-10 p-4 sm:p-6" data-testid="spell-request-input-card">
+                  <h3 className="font-cinzel text-lg sm:text-xl text-crimson mb-4">
+                    {currentGuide ? `Ask ${currentGuide.shortName}` : 'What do you need?'}
+                  </h3>
+                  
+                  <div className="mb-6">
+                    <label className="block font-montserrat text-sm text-navy-dark/70 uppercase tracking-wider mb-2">
+                      Describe your intention
+                    </label>
+                    <textarea
+                      data-testid="spell-problem-input"
+                      value={problem}
+                      onChange={(e) => setProblem(e.target.value)}
+                      placeholder={currentGuide 
+                        ? `Tell ${currentGuide.shortName} what you need help with...`
+                        : "I need help with..."}
+                      rows={6}
+                      className="w-full bg-white/80 border-2 border-gold/40 focus:border-crimson/50 focus:ring-1 focus:ring-crimson/30 rounded-sm px-4 py-3 text-navy-dark font-montserrat placeholder:text-navy-dark/40"
+                    />
+                  </div>
 
-              {/* Image Generation Toggle */}
-              <div className="mb-6 flex items-center justify-between p-3 bg-muted/20 rounded-sm">
-                <div className="flex items-center gap-2">
-                  <ImageIcon className="w-5 h-5 text-primary" />
-                  <span className="font-montserrat text-sm text-foreground">Generate spell image</span>
-                </div>
-                <button
-                  onClick={() => setGenerateImage(!generateImage)}
-                  className={`relative w-12 h-6 rounded-full transition-colors ${
-                    generateImage ? 'bg-primary' : 'bg-muted'
-                  }`}
-                >
-                  <span
-                    className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-transform ${
-                      generateImage ? 'left-7' : 'left-1'
-                    }`}
-                  />
-                </button>
-              </div>
-
-              <button
-                onClick={handleGenerateSpell}
-                data-testid="generate-spell-button"
-                disabled={loading || !problem.trim()}
-                className="w-full px-6 py-3 bg-primary text-primary-foreground rounded-sm font-montserrat tracking-widest uppercase text-sm hover:bg-primary/90 transition-all duration-300 disabled:opacity-50 flex items-center justify-center gap-2"
-              >
-                {loading ? (
-                  <>
-                    <Loader2 className="w-5 h-5 animate-spin" />
-                    <span>{currentGuide ? `${currentGuide.shortName} is crafting...` : 'Crafting your spell...'}</span>
-                  </>
-                ) : (
-                  <>
-                    <Sparkles className="w-5 h-5" />
-                    <span>Generate Spell</span>
-                  </>
-                )}
-              </button>
-
-              <div className="mt-6">
-                <p className="font-montserrat text-xs text-muted-foreground uppercase tracking-wider mb-3">
-                  {currentGuide ? `${currentGuide.shortName}'s Specialties` : 'Example Needs'}
-                </p>
-                <div className="space-y-2">
-                  {getExampleProblems().map((example, idx) => (
+                  {/* Image Generation Toggle */}
+                  <div className="mb-6 flex items-center justify-between p-3 bg-gold/10 rounded-sm border border-gold/30">
+                    <div className="flex items-center gap-2">
+                      <ImageIcon className="w-5 h-5 text-crimson" />
+                      <span className="font-montserrat text-sm text-navy-dark">Generate spell image</span>
+                    </div>
                     <button
-                      key={idx}
-                      data-testid={`example-problem-${idx}`}
-                      onClick={() => setProblem(example)}
-                      className="w-full text-left px-3 py-2 bg-card/50 border border-border rounded-sm font-montserrat text-sm text-foreground hover:border-primary/30 transition-all"
+                      onClick={() => setGenerateImage(!generateImage)}
+                      className={`relative w-12 h-6 rounded-full transition-colors ${
+                        generateImage ? 'bg-crimson' : 'bg-navy-dark/30'
+                      }`}
                     >
-                      {example}
+                      <span
+                        className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-transform ${
+                          generateImage ? 'left-7' : 'left-1'
+                        }`}
+                      />
                     </button>
-                  ))}
+                  </div>
+
+                  <button
+                    onClick={handleGenerateSpell}
+                    data-testid="generate-spell-button"
+                    disabled={loading || !problem.trim()}
+                    className="w-full px-6 py-3 relative overflow-hidden rounded-sm font-montserrat tracking-widest uppercase text-sm disabled:opacity-50 flex items-center justify-center gap-2"
+                  >
+                    <span className="absolute inset-0 border border-gold/50 rounded-sm" />
+                    <span className="absolute inset-0.5 bg-gradient-to-r from-crimson-deep via-crimson to-crimson-deep rounded-sm" />
+                    <span className="relative text-cream flex items-center gap-2">
+                      {loading ? (
+                        <>
+                          <Loader2 className="w-5 h-5 animate-spin" />
+                          <span>{currentGuide ? `${currentGuide.shortName} is crafting...` : 'Crafting your spell...'}</span>
+                        </>
+                      ) : (
+                        <>
+                          <Sparkles className="w-5 h-5" />
+                          <span>Generate Spell</span>
+                        </>
+                      )}
+                    </span>
+                  </button>
+
+                  <div className="mt-6">
+                    <p className="font-montserrat text-xs text-navy-dark/60 uppercase tracking-wider mb-3">
+                      {currentGuide ? `${currentGuide.shortName}'s Specialties` : 'Example Needs'}
+                    </p>
+                    <div className="space-y-2">
+                      {getExampleProblems().map((example, idx) => (
+                        <button
+                          key={idx}
+                          data-testid={`example-problem-${idx}`}
+                          onClick={() => setProblem(example)}
+                          className="w-full text-left px-3 py-2 bg-white/60 border border-gold/30 rounded-sm font-montserrat text-sm text-navy-dark hover:border-crimson/40 hover:bg-gold/10 transition-all"
+                        >
+                          {example}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
-            </GlassCard>
-          </div>
+            }
 
           {/* Preview Section */}
           <div className="lg:col-span-3" ref={videoSectionRef}>
