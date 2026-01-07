@@ -93,3 +93,7 @@
 - Bird Oracle should be integrated into spell generation, not separate page - DONE
 - "What Would Corrie Do" should be a separate Pro-only page like Ward Finder - DONE
 - Rename all "Sheila" to "Shigg" - DONE
+
+## Agent Communication
+- agent: "testing"
+  message: "✅ SHIGG ARCHETYPE TESTING COMPLETE - All backend features working correctly. Tested 6 core features: (1) Archetype endpoint returns Shigg with correct name/title, (2) Sample spells endpoint returns all 4 expected spells, (3) Bird Oracle reading endpoint provides proper structure and bird guidance, (4) Corrie Tarot works for Pro users with 3-card Coronation Street character readings, (5) Pro gate correctly blocks non-Pro users with feature_locked error, (6) Spell generation with Shigg includes bird oracle elements. All tests passed. Backend implementation is solid and ready for frontend integration."
