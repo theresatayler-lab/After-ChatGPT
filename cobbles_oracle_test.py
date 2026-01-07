@@ -88,7 +88,8 @@ class CobbleOracleAPITester:
 
     def register_free_user(self):
         """Register a free user for testing"""
-        timestamp = datetime.now().strftime('%H%M%S')
+        import time
+        timestamp = str(int(time.time() * 1000))  # Use milliseconds for uniqueness
         test_user_data = {
             "email": f"test_free_{timestamp}@example.com",
             "password": "TestPass123!",
