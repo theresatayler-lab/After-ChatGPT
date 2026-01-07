@@ -1082,6 +1082,219 @@ async def get_corrie_tarot_reading(request: CorrieTarotRequest, user = Depends(g
         logging.error(f"Corrie tarot error: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
 
+# === COBBLES ORACLE - Enhanced 78-Card System ===
+
+class CobbleOracleRequest(BaseModel):
+    situation: str
+    question: Optional[str] = None
+    spread_type: str = "one_card"  # one_card, three_card, street_spread, etc.
+
+# System prompt for the enhanced Cobbles Oracle
+COBBLES_ORACLE_PROMPT = """You are Shigg's "What Would Corrie Do?" Cobbles Oracle. You use a 78-card tarot-style deck based on Coronation Street characters and locations.
+
+THE COBBLES ORACLE DECK:
+- 22 Major Arcana: Street forces and turning points (locations like The Rovers Return, The Kabin, The Canal + legendary characters like Ena Sharples, Rita Tanner, Carla Connor)
+- 56 Minor Arcana in 4 suits:
+  * PINTS (Heart): love, grief, belonging, emotional needs
+  * SPARKS (Drive): confidence, ambition, reinvention, bold moves  
+  * KEYS (Truth): boundaries, conflict, secrets, consequences
+  * PENNIES (Stability): money, work, home, long-term security
+
+YOUR VOICE: Warm, pub-cheeky, straight-talking. Northern warmth with no cruel edges. Inclusive, no gendered assumptions.
+
+RESPONSE FORMAT FOR EACH CARD:
+{
+    "card": {
+        "id": "card_id",
+        "name": "Full card name",
+        "symbol": "Emoji symbol",
+        "arcana": "Major or Minor",
+        "suit": "For minor cards"
+    },
+    "core_message": "The one-line essence",
+    "wwcd_advice": ["Bullet 1", "Bullet 2", "Bullet 3"],
+    "because_they": "Why this character/place gives this advice (1-2 sentences)",
+    "shadow_to_avoid": "The trap or what not to do",
+    "blessing": "What you gain if you follow it",
+    "next_step_today": "One concrete action",
+    "corrie_charm": "A tiny ritual (no supernatural promises)",
+    "rovers_return_line": "One-sentence mantra in quotes"
+}
+
+CARD SELECTION RULES:
+1. SAFETY FIRST: If situation involves danger, coercion, abuse → prioritize safety cards (Pat Phelan warning, Yasmeen rebuilding, Police Station documentation)
+2. Match the REAL need, not just keywords
+3. Major Arcana for big turning points, identity shifts, public stakes
+4. Minor Arcana for day-to-day choices and specific guidance
+5. Choose cards that offer UNEXPECTED but FITTING wisdom
+
+You will receive the cards that have been pre-selected based on the user's situation. Your job is to bring them to life with personalized, specific guidance that feels like Shigg is really seeing them."""
+
+@api_router.get('/ai/cobbles-oracle/deck')
+async def get_oracle_deck_info():
+    """Return info about the Cobbles Oracle deck and available spreads"""
+    return {
+        "success": True,
+        "deck_name": COBBLES_ORACLE_DECK["deck_name"],
+        "total_cards": 78,
+        "major_arcana_count": len(COBBLES_ORACLE_DECK["major_arcana"]),
+        "minor_arcana_count": 56,
+        "suits": ["Pints (Heart)", "Sparks (Drive)", "Keys (Truth)", "Pennies (Stability)"],
+        "spreads": ORACLE_SPREADS
+    }
+
+@api_router.post('/ai/cobbles-oracle/reading')
+async def get_cobbles_oracle_reading(request: CobbleOracleRequest, user = Depends(get_current_user)):
+    """Get a Cobbles Oracle reading - Quick Draw free, advanced spreads Pro-only"""
+    try:
+        spread = ORACLE_SPREADS.get(request.spread_type, ORACLE_SPREADS["one_card"])
+        
+        # Check Pro status for advanced spreads
+        is_pro = user.get('subscription_tier', 'free') == 'paid'
+        if spread.get("pro_only", False) and not is_pro:
+            raise HTTPException(
+                status_code=403,
+                detail={
+                    "error": "feature_locked",
+                    "message": f"The {spread['name']} spread is a Pro feature",
+                    "upgrade_prompt": "Upgrade to Pro for advanced oracle spreads!"
+                }
+            )
+        
+        num_cards = len(spread["positions"])
+        situation_lower = request.situation.lower()
+        
+        # Intelligent card selection based on routing rules
+        selected_card_ids = []
+        
+        # Check for safety triggers first
+        safety_triggered = any(kw in situation_lower for kw in CARD_ROUTING_RULES["safety_triggers"]["keywords"])
+        
+        if safety_triggered:
+            # Prioritize safety cards
+            selected_card_ids = CARD_ROUTING_RULES["safety_triggers"]["priority_cards"][:num_cards]
+        else:
+            # Route based on topic
+            for topic, rules in CARD_ROUTING_RULES["topic_routing"].items():
+                if any(kw in situation_lower for kw in rules["keywords"]):
+                    selected_card_ids.extend(rules["primary_cards"])
+                    if len(selected_card_ids) < num_cards:
+                        selected_card_ids.extend(rules["secondary_cards"])
+                    break
+        
+        # If no specific routing, use Major Arcana for variety
+        if not selected_card_ids:
+            major_cards = get_major_arcana()
+            import random
+            random.shuffle(major_cards)
+            selected_card_ids = [c["id"] for c in major_cards[:num_cards]]
+        
+        # Ensure we have enough cards and no duplicates
+        selected_card_ids = list(dict.fromkeys(selected_card_ids))[:num_cards]
+        
+        # Pad with random cards if needed
+        if len(selected_card_ids) < num_cards:
+            all_cards = get_all_cards()
+            import random
+            random.shuffle(all_cards)
+            for card in all_cards:
+                if card["id"] not in selected_card_ids:
+                    selected_card_ids.append(card["id"])
+                    if len(selected_card_ids) >= num_cards:
+                        break
+        
+        # Get the actual card data
+        selected_cards = [get_card_by_id(cid) for cid in selected_card_ids if get_card_by_id(cid)]
+        
+        # Build the AI prompt with the selected cards
+        cards_info = ""
+        for i, card in enumerate(selected_cards):
+            position = spread["positions"][i] if i < len(spread["positions"]) else f"Card {i+1}"
+            cards_info += f"\nPosition: {position}\nCard: {card['name']} ({card['symbol']})\nCore: {card['core']}\nAdvice: {', '.join(card['advice'])}\nShadow: {card['shadow']}\nBlessing: {card['blessing']}\nCharm: {card['charm']}\nMantra: {card['mantra']}\n"
+        
+        oracle_prompt = f"""{COBBLES_ORACLE_PROMPT}
+
+CARDS DRAWN FOR THIS READING:
+{cards_info}
+
+Now personalize these cards for the seeker's specific situation. Make the advice feel like it's JUST for them.
+
+Return JSON:
+{{
+    "greeting": "Shigg's warm greeting (2-3 sentences)",
+    "spread_name": "{spread['name']}",
+    "cards": [
+        {{
+            "position": "Position name",
+            "card": {{
+                "id": "card_id",
+                "name": "Card name",
+                "symbol": "emoji",
+                "arcana": "Major/Minor",
+                "suit": "if minor"
+            }},
+            "core_message": "Personalized one-line message",
+            "wwcd_advice": ["Personal advice 1", "Personal advice 2", "Personal advice 3"],
+            "because_they": "Why this card for this person",
+            "shadow_to_avoid": "What to watch for",
+            "blessing": "What they gain",
+            "next_step_today": "One action",
+            "corrie_charm": "Personal ritual",
+            "rovers_return_line": "Mantra"
+        }}
+    ],
+    "synthesis": "If multiple cards, what they're saying together (2-3 sentences)",
+    "closing": "Warm Shigg closing (1-2 sentences)"
+}}"""
+
+        user_message = f"Seeker's situation: {request.situation}"
+        if request.question:
+            user_message += f"\nTheir question: {request.question}"
+        
+        response = await openai_client.chat.completions.create(
+            model="gpt-4o",
+            messages=[
+                {"role": "system", "content": oracle_prompt},
+                {"role": "user", "content": user_message}
+            ],
+            temperature=0.9,
+            max_tokens=2500
+        )
+        
+        response_text = response.choices[0].message.content
+        
+        # Parse JSON
+        import re
+        json_match = re.search(r'\{[\s\S]*\}', response_text)
+        if json_match:
+            reading_data = json.loads(json_match.group())
+            
+            # Add safety note if triggered
+            if safety_triggered:
+                reading_data["safety_note"] = "If you're in immediate danger, please contact local emergency services or a crisis helpline. Your safety matters."
+            
+            return {
+                "success": True,
+                "archetype": {
+                    "id": "shiggy",
+                    "name": "Shigg",
+                    "title": "The Birds of Parliament Poet Laureate"
+                },
+                "spread_type": request.spread_type,
+                "result": reading_data
+            }
+        else:
+            raise ValueError("Could not parse oracle reading")
+            
+    except HTTPException:
+        raise
+    except json.JSONDecodeError as e:
+        logging.error(f"JSON parse error in Cobbles Oracle: {e}")
+        raise HTTPException(status_code=500, detail="Failed to parse oracle reading")
+    except Exception as e:
+        logging.error(f"Cobbles Oracle error: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
 # Ward Finder - Cathleen's special feature
 class WardRequest(BaseModel):
     situation: str  # The user's problem, need, or situation
