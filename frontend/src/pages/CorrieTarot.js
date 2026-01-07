@@ -439,8 +439,6 @@ const CorrieTarot = () => {
           </motion.div>
         </div>
       </main>
-      
-      <Footer />
     </div>
   );
 };
