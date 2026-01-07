@@ -22,6 +22,7 @@ import { FAQ } from './pages/FAQ';
 import { Privacy } from './pages/Privacy';
 import WardFinder from './pages/WardFinder';
 import CorrieTarot from './pages/CorrieTarot';
+import EarlyAccessPage from './pages/EarlyAccess';
 import { Footer } from './components/Footer';
 import { OnboardingModal } from './components/OnboardingModal';
 import './App.css';
@@ -86,6 +87,7 @@ function App() {
           <Route path="/guides" element={<Guides />} />
           <Route path="/ward-finder" element={<WardFinder />} />
           <Route path="/corrie-tarot" element={<CorrieTarot />} />
+          <Route path="/early-access" element={<EarlyAccessPage />} />
           <Route path="/upgrade" element={<Upgrade />} />
           <Route path="/payment-success" element={<PaymentSuccess />} />
           <Route path="/about" element={<About />} />
