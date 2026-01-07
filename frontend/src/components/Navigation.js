@@ -35,25 +35,25 @@ export const Navigation = ({ user, onLogout }) => {
     <nav 
       className="sticky top-0 z-50"
       style={{
-        background: 'linear-gradient(to bottom, rgba(26, 21, 18, 0.98) 0%, rgba(26, 21, 18, 0.95) 100%)',
+        background: 'linear-gradient(to bottom, rgba(10, 22, 40, 0.98) 0%, rgba(10, 22, 40, 0.95) 100%)',
         backdropFilter: 'blur(8px)',
-        borderBottom: '1px solid rgba(139, 90, 43, 0.2)',
+        borderBottom: '1px solid rgba(201, 169, 98, 0.2)',
       }}
     >
       {/* Decorative top border */}
-      <div className="h-px bg-gradient-to-r from-transparent via-amber-600/50 to-transparent" />
+      <div className="h-px bg-gradient-to-r from-transparent via-crimson/50 to-transparent" />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo with glow */}
           <Link to="/" className="flex items-center space-x-2 group" data-testid="nav-logo" onClick={handleLinkClick}>
             <div className="relative">
-              <div className="absolute inset-0 blur-md opacity-0 group-hover:opacity-50 transition-opacity bg-amber-500/30" />
+              <div className="absolute inset-0 blur-md opacity-0 group-hover:opacity-50 transition-opacity bg-champagne/30" />
               <img 
                 src="https://customer-assets.emergentagent.com/job_mystic-circle-2/artifacts/li34ks3x_Where%20the%20Crowlands%20Logos.png" 
                 alt="Where The Crowlands Logo"
                 className="relative h-10 sm:h-12 md:h-16 w-auto"
-                style={{ filter: 'brightness(1.1)' }}
+                style={{ filter: 'brightness(1.3) contrast(1.1)' }}
               />
             </div>
           </Link>
@@ -72,8 +72,8 @@ export const Navigation = ({ user, onLogout }) => {
                   data-testid={`nav-${link.label.toLowerCase().replace(' ', '-')}`}
                   className={`px-3 py-2 rounded-sm font-montserrat text-xs tracking-wider transition-all duration-300 flex items-center space-x-1 ${
                     isActive 
-                      ? 'text-amber-300 bg-amber-500/10 border-b-2 border-amber-500' 
-                      : 'text-amber-100/70 hover:text-amber-200 hover:bg-amber-500/5'
+                      ? 'text-champagne bg-champagne/10 border-b-2 border-champagne' 
+                      : 'text-silver-mist/80 hover:text-champagne hover:bg-champagne/5'
                   }`}
                 >
                   <Icon className="w-4 h-4" />
@@ -87,7 +87,7 @@ export const Navigation = ({ user, onLogout }) => {
                 <Link
                   to="/profile"
                   data-testid="nav-profile"
-                  className="px-3 py-2 rounded-sm font-montserrat text-xs tracking-wider transition-all duration-300 flex items-center space-x-1 text-amber-100/70 hover:text-amber-200 hover:bg-amber-500/5"
+                  className="px-3 py-2 rounded-sm font-montserrat text-xs tracking-wider transition-all duration-300 flex items-center space-x-1 text-silver-mist/80 hover:text-champagne hover:bg-champagne/5"
                 >
                   <User className="w-4 h-4" />
                   <span>{user.name}</span>
@@ -95,7 +95,7 @@ export const Navigation = ({ user, onLogout }) => {
                 <button
                   onClick={onLogout}
                   data-testid="nav-logout"
-                  className="px-3 py-2 rounded-sm font-montserrat text-xs tracking-wider transition-all duration-300 flex items-center space-x-1 text-amber-100/70 hover:text-red-400 hover:bg-red-500/10"
+                  className="px-3 py-2 rounded-sm font-montserrat text-xs tracking-wider transition-all duration-300 flex items-center space-x-1 text-silver-mist/80 hover:text-crimson hover:bg-crimson/10"
                 >
                   <LogOut className="w-4 h-4" />
                 </button>
@@ -104,7 +104,7 @@ export const Navigation = ({ user, onLogout }) => {
               <Link
                 to="/auth"
                 data-testid="nav-login"
-                className="ml-4 px-4 py-2 bg-gradient-to-r from-amber-700 via-amber-600 to-amber-700 text-amber-50 rounded-sm font-montserrat text-xs tracking-widest uppercase hover:from-amber-600 hover:via-amber-500 hover:to-amber-600 transition-all duration-300"
+                className="ml-4 px-4 py-2 bg-gradient-to-r from-crimson via-crimson-bright to-crimson text-parchment rounded-sm font-montserrat text-xs tracking-widest uppercase hover:from-crimson-bright hover:via-[#d43030] hover:to-crimson-bright transition-all duration-300"
               >
                 Login
               </Link>
@@ -117,14 +117,14 @@ export const Navigation = ({ user, onLogout }) => {
               <Link
                 to="/profile"
                 onClick={handleLinkClick}
-                className="p-2 rounded-sm text-amber-100/70 hover:text-amber-200 transition-all"
+                className="p-2 rounded-sm text-silver-mist/80 hover:text-champagne transition-all"
               >
                 <User className="w-5 h-5" />
               </Link>
             )}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-sm text-amber-100/70 hover:text-amber-200 transition-all"
+              className="p-2 rounded-sm text-silver-mist/80 hover:text-champagne transition-all"
               aria-label="Toggle menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -137,8 +137,8 @@ export const Navigation = ({ user, onLogout }) => {
           <div 
             className="lg:hidden py-4"
             style={{
-              borderTop: '1px solid rgba(139, 90, 43, 0.2)',
-              background: 'rgba(26, 21, 18, 0.98)',
+              borderTop: '1px solid rgba(201, 169, 98, 0.2)',
+              background: 'rgba(10, 22, 40, 0.98)',
             }}
           >
             <div className="space-y-1">
@@ -154,8 +154,8 @@ export const Navigation = ({ user, onLogout }) => {
                     onClick={handleLinkClick}
                     className={`flex items-center space-x-3 px-4 py-3 rounded-sm font-montserrat text-sm transition-all ${
                       isActive
-                        ? 'bg-amber-500/10 text-amber-300 border-l-4 border-amber-500'
-                        : 'text-amber-100/70 hover:bg-amber-500/5 hover:text-amber-200'
+                        ? 'bg-champagne/10 text-champagne border-l-4 border-champagne'
+                        : 'text-silver-mist/80 hover:bg-champagne/5 hover:text-champagne'
                     }`}
                   >
                     <Icon className="w-5 h-5" />
@@ -170,7 +170,7 @@ export const Navigation = ({ user, onLogout }) => {
                     onLogout();
                     handleLinkClick();
                   }}
-                  className="w-full flex items-center space-x-3 px-4 py-3 rounded-sm font-montserrat text-sm text-red-400 hover:bg-red-500/10 transition-all"
+                  className="w-full flex items-center space-x-3 px-4 py-3 rounded-sm font-montserrat text-sm text-crimson hover:bg-crimson/10 transition-all"
                 >
                   <LogOut className="w-5 h-5" />
                   <span>Logout</span>
@@ -179,7 +179,7 @@ export const Navigation = ({ user, onLogout }) => {
                 <Link
                   to="/auth"
                   onClick={handleLinkClick}
-                  className="flex items-center justify-center mx-4 px-4 py-3 bg-gradient-to-r from-amber-700 via-amber-600 to-amber-700 text-amber-50 rounded-sm font-montserrat text-sm tracking-widest uppercase hover:from-amber-600 hover:via-amber-500 hover:to-amber-600 transition-all"
+                  className="flex items-center justify-center mx-4 px-4 py-3 bg-gradient-to-r from-crimson via-crimson-bright to-crimson text-parchment rounded-sm font-montserrat text-sm tracking-widest uppercase hover:from-crimson-bright hover:via-[#d43030] hover:to-crimson-bright transition-all"
                 >
                   Login
                 </Link>
