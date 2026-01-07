@@ -75,6 +75,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        <ScrollToTop />
         {/* OnboardingModal disabled - users go straight to site */}
         {/* <OnboardingModal onSelectArchetype={handleSelectArchetype} /> */}
         <Navigation user={user} onLogout={handleLogout} />
