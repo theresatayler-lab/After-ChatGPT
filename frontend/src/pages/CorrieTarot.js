@@ -230,6 +230,9 @@ const CorrieTarot = () => {
       const data = await response.json();
       setResult(data.result);
       toast.success('The cards have been drawn');
+      
+      // Scroll to top to show the reading
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } catch (error) {
       console.error('Oracle error:', error);
       toast.error('Something went wrong. Please try again.');
