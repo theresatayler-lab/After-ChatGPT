@@ -1828,6 +1828,7 @@ def main():
     tester.test_corrie_tarot_pro_user()
     tester.test_corrie_tarot_pro_gate()
     tester.test_spell_generation_with_shigg()
+    tester.test_shigg_spell_generation_with_sullivan_image_style()
     
     # Test Cathleen-specific functionality (PREVIOUS TESTS)
     print("\n🌟 Testing Cathleen Archetype Features...")
