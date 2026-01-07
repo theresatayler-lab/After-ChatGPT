@@ -112,7 +112,7 @@ const EarlyAccessPage = () => {
         
         {/* Main intro text */}
         <p className="font-crimson text-sm sm:text-base text-cream/90 leading-relaxed mb-4 px-2">
-          Where the Crowlands is a toolkit for alchemizing what you already hold. Rooted in history; from the Huguenot mystics fleeing persecution, Jersey witches shaping weather and fate, Irish and Celtic keepers of forbidden knowledge, to London's table-tappers and spiritualists revealing the hidden world. The stoicism of WWII echoes of Churchill-influenced stoic resolve, and the hard-won wisdom of London's East End, where "Loose lips sink ships" wasn't just a slogan; it was a way of living.
+          Where the Crowlands is a toolkit for alchemizing what you already hold. Rooted in history; from the Huguenot mystics fleeing persecution, Jersey witches shaping weather and fate, Irish and Celtic keepers of forbidden knowledge, to London's table-tappers and spiritualists revealing the hidden world. The stoicism of WWII echoes of Churchill-influenced resolve, and the hard-won wisdom of London's East End, where "Loose lips sink ships" wasn't just a slogan; it was a way of living.
         </p>
         
         {/* Sign-up form */}
