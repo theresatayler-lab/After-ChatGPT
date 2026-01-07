@@ -305,15 +305,22 @@ export const SpellRequest = ({ selectedArchetype: propArchetype }) => {
               <motion.div
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: 'auto' }}
-                className="mt-4 pt-4 border-t border-border"
+                className="mt-4 pt-4 border-t border-gold/20"
               >
-                <p className="font-crimson text-sm text-primary/80 italic">
+                <p className="font-crimson text-sm text-gold/80 italic">
                   {currentGuide.empowermentMessage}
                 </p>
               </motion.div>
             )}
-          </GlassCard>
+          </OrnateCard>
         </motion.div>
+        </div>
+      </DarkSection>
+
+      {/* Light Section - Input Form */}
+      <LightSection className="py-12 sm:py-16 px-4 sm:px-6">
+        <div className="max-w-5xl mx-auto">
+          <GrandDivider variant="moon" light />
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 sm:gap-6">
           {/* Input Section */}
