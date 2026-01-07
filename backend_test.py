@@ -571,7 +571,264 @@ class SpiritualAppAPITester:
         
         return False
 
-    def test_cathleen_sample_spells(self):
+    def test_shigg_sample_spells(self):
+        """Test retrieving Shigg sample spells - REVIEW REQUEST TEST"""
+        success, response = self.run_test(
+            "Get Shigg Sample Spells",
+            "GET",
+            "sample-spells/shiggy",
+            200
+        )
+        
+        if success and isinstance(response, list):
+            print(f"   ✅ Found {len(response)} Shigg sample spells")
+            
+            # Check if we have exactly 4 spells as specified in review request
+            if len(response) != 4:
+                print(f"   ❌ Expected 4 sample spells, got {len(response)}")
+                return False
+            
+            # Check for expected spell names from review request
+            expected_spells = [
+                "Dawn Cup Blessing",
+                "Boundaries Veil", 
+                "Rosemary for Remembrance",
+                "Moving Finger Practice"
+            ]
+            
+            found_spells = []
+            for spell in response:
+                title = spell.get('title', '')
+                found_spells.append(title)
+                print(f"   - {title}")
+            
+            missing_spells = [spell for spell in expected_spells if spell not in found_spells]
+            if missing_spells:
+                print(f"   ❌ Missing expected spells: {', '.join(missing_spells)}")
+                return False
+            else:
+                print(f"   ✅ All expected Shigg spells found")
+            
+            return True
+        
+        return False
+
+    def test_bird_oracle_reading(self):
+        """Test Bird Oracle Reading endpoint - REVIEW REQUEST TEST"""
+        oracle_data = {
+            "situation": "I need guidance about a relationship",
+            "question": "What should I do?"
+        }
+        
+        success, response = self.run_test(
+            "Bird Oracle Reading",
+            "POST",
+            "ai/bird-oracle-reading",
+            200,
+            data=oracle_data,
+            timeout=60
+        )
+        
+        if success and isinstance(response, dict):
+            # Verify response structure from review request
+            result = response.get('result', {})
+            required_fields = ['greeting', 'birds', 'poetic_reflection', 'closing']
+            missing_fields = [field for field in required_fields if field not in result]
+            
+            if missing_fields:
+                print(f"   ❌ Missing required fields: {missing_fields}")
+                return False
+            
+            # Verify birds array structure
+            birds = result.get('birds', [])
+            if not isinstance(birds, list) or len(birds) == 0:
+                print(f"   ❌ Birds array is empty or invalid")
+                return False
+            
+            # Check first bird structure
+            bird = birds[0]
+            bird_required_fields = ['name', 'symbol', 'message', 'ritual', 'prompt']
+            missing_bird_fields = [field for field in bird_required_fields if field not in bird]
+            
+            if missing_bird_fields:
+                print(f"   ❌ Missing bird fields: {missing_bird_fields}")
+                return False
+            
+            print(f"   ✅ Bird Oracle reading structure valid")
+            print(f"   ✅ Found {len(birds)} bird(s) in reading")
+            print(f"   ✅ First bird: {bird.get('name')} {bird.get('symbol')}")
+            
+            return True
+        
+        return False
+
+    def test_corrie_tarot_pro_user(self):
+        """Test Corrie Tarot with Pro user - REVIEW REQUEST TEST"""
+        # First login as Pro user
+        pro_login_data = {
+            "email": "sub_test@test.com",
+            "password": "test123"
+        }
+        
+        success, login_response = self.run_test(
+            "Login Pro User for Corrie Tarot",
+            "POST",
+            "auth/login",
+            200,
+            data=pro_login_data
+        )
+        
+        if not success or not isinstance(login_response, dict) or 'token' not in login_response:
+            print(f"   ❌ Failed to login Pro user")
+            return False
+        
+        # Store the Pro token temporarily
+        original_token = self.token
+        self.token = login_response['token']
+        
+        # Test Corrie Tarot with Pro user
+        tarot_data = {
+            "situation": "Career change at 45",
+            "question": "Should I take the risk?"
+        }
+        
+        success, response = self.run_test(
+            "Corrie Tarot - Pro User",
+            "POST",
+            "ai/corrie-tarot",
+            200,
+            data=tarot_data,
+            timeout=60
+        )
+        
+        # Restore original token
+        self.token = original_token
+        
+        if success and isinstance(response, dict):
+            # Verify response structure from review request
+            result = response.get('result', {})
+            required_fields = ['greeting', 'reading', 'overall_guidance', 'closing']
+            missing_fields = [field for field in required_fields if field not in result]
+            
+            if missing_fields:
+                print(f"   ❌ Missing required fields: {missing_fields}")
+                return False
+            
+            # Verify reading structure (past/present/future)
+            reading = result.get('reading', {})
+            reading_required_fields = ['past', 'present', 'future']
+            missing_reading_fields = [field for field in reading_required_fields if field not in reading]
+            
+            if missing_reading_fields:
+                print(f"   ❌ Missing reading fields: {missing_reading_fields}")
+                return False
+            
+            # Check character structure
+            past_char = reading.get('past', {})
+            char_required_fields = ['character', 'era', 'archetype', 'symbol', 'message', 'wisdom']
+            missing_char_fields = [field for field in char_required_fields if field not in past_char]
+            
+            if missing_char_fields:
+                print(f"   ❌ Missing character fields: {missing_char_fields}")
+                return False
+            
+            print(f"   ✅ Corrie Tarot reading structure valid")
+            print(f"   ✅ Past character: {past_char.get('character')}")
+            print(f"   ✅ Present character: {reading.get('present', {}).get('character')}")
+            print(f"   ✅ Future character: {reading.get('future', {}).get('character')}")
+            
+            return True
+        
+        return False
+
+    def test_corrie_tarot_pro_gate(self):
+        """Test Corrie Tarot Pro gate (should return 403 without Pro) - REVIEW REQUEST TEST"""
+        # Use regular user token (not Pro)
+        tarot_data = {
+            "situation": "Career change at 45",
+            "question": "Should I take the risk?"
+        }
+        
+        success, response = self.run_test(
+            "Corrie Tarot - Pro Gate Test",
+            "POST",
+            "ai/corrie-tarot",
+            403,  # Expecting 403 Forbidden
+            data=tarot_data
+        )
+        
+        if success and isinstance(response, dict):
+            # Verify it's the correct error type
+            error_type = response.get('detail', {}).get('error')
+            if error_type == 'feature_locked':
+                print(f"   ✅ Pro gate working correctly - feature_locked error returned")
+                return True
+            else:
+                print(f"   ❌ Expected 'feature_locked' error, got: {error_type}")
+                return False
+        
+        return success  # If we got 403, that's what we expected
+
+    def test_spell_generation_with_shigg(self):
+        """Test spell generation with Shigg archetype - REVIEW REQUEST TEST"""
+        spell_data = {
+            "intention": "I need courage for a new beginning",
+            "archetype": "shiggy",
+            "generate_image": False
+        }
+        
+        success, response = self.run_test(
+            "Generate Spell - Shigg with Bird Oracle",
+            "POST",
+            "ai/generate-spell",
+            200,
+            data=spell_data,
+            timeout=60
+        )
+        
+        if success and isinstance(response, dict):
+            # Verify response structure
+            required_fields = ['spell', 'archetype', 'session_id']
+            missing_fields = [field for field in required_fields if field not in response]
+            
+            if missing_fields:
+                print(f"   ❌ Missing top-level fields: {missing_fields}")
+                return False
+            
+            # Verify archetype info
+            archetype = response.get('archetype', {})
+            if archetype.get('name') != 'Shigg':
+                print(f"   ❌ Expected archetype name 'Shigg', got '{archetype.get('name')}'")
+                return False
+            
+            print(f"   ✅ Archetype name correct: {archetype.get('name')}")
+            
+            # Verify spell structure
+            spell = response.get('spell', {})
+            spell_required_fields = ['title', 'materials', 'steps', 'spoken_words', 'historical_context']
+            missing_spell_fields = [field for field in spell_required_fields if field not in spell]
+            
+            if missing_spell_fields:
+                print(f"   ❌ Missing spell fields: {missing_spell_fields}")
+                return False
+            
+            # Check for bird oracle element (Shigg's unique feature from review request)
+            full_spell_text = json.dumps(spell).lower()
+            bird_oracle_indicators = ['bird', 'oracle', 'parliament', 'feather', 'wing', 'flight', 'nest', 'song']
+            bird_found = [indicator for indicator in bird_oracle_indicators if indicator in full_spell_text]
+            
+            if bird_found:
+                print(f"   ✅ Bird oracle elements found: {', '.join(bird_found)}")
+            else:
+                print(f"   ⚠️  No bird oracle elements detected - this should be Shigg's unique feature")
+            
+            print(f"   ✅ Spell title: {spell.get('title')}")
+            print(f"   ✅ Materials count: {len(spell.get('materials', []))}")
+            print(f"   ✅ Steps count: {len(spell.get('steps', []))}")
+            
+            return True
+        
+        return False
         """Test retrieving Cathleen sample spells - REVIEW REQUEST TEST"""
         success, response = self.run_test(
             "Get Cathleen Sample Spells",
