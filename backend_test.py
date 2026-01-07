@@ -933,8 +933,8 @@ class SpiritualAppAPITester:
         if success and isinstance(response, dict):
             # Verify archetype info
             archetype = response.get('archetype', {})
-            if archetype.get('name') != 'Catherine Cosgrove (née Foy)':
-                print(f"   ❌ Expected archetype name 'Catherine Cosgrove (née Foy)', got '{archetype.get('name')}'")
+            if archetype.get('name') != 'Katherine':
+                print(f"   ❌ Expected archetype name 'Katherine', got '{archetype.get('name')}'")
                 return False
             
             # Verify spell structure (same validation as above)
