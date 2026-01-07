@@ -3,28 +3,28 @@
 }
 
 .glow-effect {
-  box-shadow: 0 0 20px rgba(166, 28, 28, 0.3);
+  box-shadow: 0 0 20px rgba(184, 35, 48, 0.3);
 }
 
 .glow-effect:hover {
-  box-shadow: 0 0 30px rgba(166, 28, 28, 0.5);
+  box-shadow: 0 0 30px rgba(184, 35, 48, 0.5);
 }
 
 .glow-secondary {
-  box-shadow: 0 0 20px rgba(22, 40, 68, 0.3);
+  box-shadow: 0 0 20px rgba(26, 45, 77, 0.3);
 }
 
 .glow-secondary:hover {
-  box-shadow: 0 0 30px rgba(22, 40, 68, 0.5);
+  box-shadow: 0 0 30px rgba(26, 45, 77, 0.5);
 }
 
-/* Accent glow for champagne gold */
+/* Accent glow for gold */
 .glow-accent {
-  box-shadow: 0 0 20px rgba(201, 169, 98, 0.3);
+  box-shadow: 0 0 20px rgba(212, 168, 75, 0.3);
 }
 
 .glow-accent:hover {
-  box-shadow: 0 0 30px rgba(201, 169, 98, 0.5);
+  box-shadow: 0 0 30px rgba(212, 168, 75, 0.5);
 }
 
 /* Remove white backgrounds from logos */
@@ -33,62 +33,162 @@
   filter: brightness(1.2) saturate(100%);
 }
 
-/* Alternative: screen blend for dark backgrounds */
 .logo-multiply {
   mix-blend-mode: screen;
   opacity: 0.95;
 }
 
-/* Art Deco & Victorian Decorative Elements */
-.art-deco-border {
+/* ===== ORNATE DECORATIVE ELEMENTS ===== */
+
+/* Large ornate border frame */
+.ornate-frame {
+  position: relative;
+  border: 3px solid #d4a84b;
+  background: linear-gradient(135deg, rgba(18, 29, 51, 0.9) 0%, rgba(14, 22, 41, 0.95) 100%);
+}
+
+.ornate-frame::before {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 1px solid #b82330;
+  pointer-events: none;
+}
+
+.ornate-frame::after {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(212, 168, 75, 0.3);
+  pointer-events: none;
+}
+
+/* Ornate corner flourishes */
+.ornate-corners {
   position: relative;
 }
 
-.art-deco-border::before,
-.art-deco-border::after {
-  content: '';
+.ornate-corners::before,
+.ornate-corners::after {
+  content: '◆';
   position: absolute;
-  background: linear-gradient(90deg, transparent, #c9a962, transparent);
-  height: 1px;
+  color: #b82330;
+  font-size: 1.5rem;
+  text-shadow: 0 0 10px rgba(184, 35, 48, 0.5);
+}
+
+.ornate-corners::before {
+  top: -0.75rem;
+  left: -0.75rem;
+}
+
+.ornate-corners::after {
+  bottom: -0.75rem;
+  right: -0.75rem;
+}
+
+/* Large mystical divider with diamond accents */
+.mystical-divider-large {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem 0;
+  position: relative;
+}
+
+.mystical-divider-large::before,
+.mystical-divider-large::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  max-width: 200px;
+  background: linear-gradient(90deg, transparent, #d4a84b 30%, #d4a84b 70%, transparent);
+}
+
+/* Ornate gold line borders */
+.gold-border-top {
+  border-top: 2px solid #d4a84b;
+  position: relative;
+}
+
+.gold-border-top::before {
+  content: '◆';
+  position: absolute;
+  top: -0.6rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #b82330;
+  font-size: 1rem;
+  background: #0e1629;
+  padding: 0 0.5rem;
+}
+
+/* Crimson accent diamonds */
+.crimson-diamond {
+  color: #b82330;
+  text-shadow: 0 0 8px rgba(184, 35, 48, 0.6);
+}
+
+/* Gold ornate text */
+.gold-ornate {
+  color: #d4a84b;
+  text-shadow: 0 2px 10px rgba(212, 168, 75, 0.4);
+}
+
+/* Art Deco style border */
+.art-deco-border {
+  position: relative;
+  padding: 1rem;
 }
 
 .art-deco-border::before {
+  content: '';
+  position: absolute;
   top: 0;
   left: 10%;
   right: 10%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #d4a84b 20%, #b82330 50%, #d4a84b 80%, transparent);
 }
 
 .art-deco-border::after {
+  content: '';
+  position: absolute;
   bottom: 0;
   left: 10%;
   right: 10%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #d4a84b 20%, #b82330 50%, #d4a84b 80%, transparent);
 }
 
-/* Ornate corner accents */
+/* Victorian ornate corners */
 .victorian-corners {
   position: relative;
 }
 
 .victorian-corners::before,
 .victorian-corners::after {
-  content: '✦';
+  content: '❧';
   position: absolute;
-  color: #c9a962;
-  opacity: 0.4;
-  font-size: 1.5rem;
+  color: #d4a84b;
+  opacity: 0.7;
+  font-size: 2rem;
 }
 
 .victorian-corners::before {
-  top: -0.5rem;
-  left: -0.5rem;
+  top: -1rem;
+  left: -1rem;
+  transform: rotate(-45deg);
 }
 
 .victorian-corners::after {
-  bottom: -0.5rem;
-  right: -0.5rem;
+  bottom: -1rem;
+  right: -1rem;
+  transform: rotate(135deg);
 }
 
-/* Mystical divider */
+/* Mystical divider - enhanced */
 .mystical-divider {
   display: flex;
   align-items: center;
@@ -100,8 +200,8 @@
 .mystical-divider::after {
   content: '';
   flex: 1;
-  border-bottom: 1px solid #c9a962;
-  opacity: 0.3;
+  border-bottom: 2px solid #d4a84b;
+  opacity: 0.5;
 }
 
 .mystical-divider::before {
@@ -114,25 +214,64 @@
 
 /* Moon phase decorative element */
 .moon-phases {
-  background: radial-gradient(circle, rgba(201, 169, 98, 0.1) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(212, 168, 75, 0.15) 0%, transparent 70%);
 }
 
-/* Tarot card style frame */
+/* Tarot card style frame - enhanced */
 .tarot-frame {
-  border: 2px solid #c9a962;
+  border: 3px solid #d4a84b;
   border-radius: 0.25rem;
   box-shadow: 
-    0 0 0 1px #0f1f38,
-    0 0 0 3px #c9a962,
-    0 4px 12px rgba(10, 22, 40, 0.5);
+    0 0 0 2px #0e1629,
+    0 0 0 4px #b82330,
+    0 0 0 6px #0e1629,
+    0 0 0 8px rgba(212, 168, 75, 0.3),
+    0 8px 24px rgba(14, 22, 41, 0.6);
 }
 
 /* Ornate text with drop cap */
 .drop-cap::first-letter {
-  font-size: 3.5rem;
+  font-size: 4rem;
   font-family: 'Cinzel Decorative', serif;
-  color: #c9a962;
+  color: #d4a84b;
   float: left;
-  line-height: 0.8;
-  margin: 0.1rem 0.5rem 0 0;
+  line-height: 0.75;
+  margin: 0.1rem 0.75rem 0 0;
+  text-shadow: 2px 2px 4px rgba(14, 22, 41, 0.8);
+}
+
+/* Glowing crimson accent */
+.glow-crimson {
+  text-shadow: 0 0 10px rgba(184, 35, 48, 0.6), 0 0 20px rgba(184, 35, 48, 0.3);
+}
+
+/* Glowing gold accent */
+.glow-gold {
+  text-shadow: 0 0 10px rgba(212, 168, 75, 0.6), 0 0 20px rgba(212, 168, 75, 0.3);
+}
+
+/* Ornate section wrapper */
+.ornate-section {
+  position: relative;
+  padding: 2rem;
+  margin: 2rem 0;
+}
+
+.ornate-section::before {
+  content: '✦';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  color: #b82330;
+  font-size: 1.5rem;
+  background: #0e1629;
+  padding: 0 1rem;
+  text-shadow: 0 0 10px rgba(184, 35, 48, 0.5);
+}
+
+/* Mystical glow background */
+.mystical-glow {
+  background: radial-gradient(ellipse at center, rgba(184, 35, 48, 0.1) 0%, transparent 50%),
+              radial-gradient(ellipse at center, rgba(212, 168, 75, 0.05) 0%, transparent 70%);
 }
