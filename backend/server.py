@@ -1888,6 +1888,9 @@ async def save_ward_to_grimoire(request: SaveWardRequest, user = Depends(get_cur
     
     await db.user_wards.insert_one(saved_ward)
     
+    # Remove MongoDB _id before returning
+    saved_ward.pop('_id', None)
+    
     # Increment saved ward counter
     await db.users.update_one(
         {'id': user['id']},
