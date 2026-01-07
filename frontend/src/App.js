@@ -21,6 +21,7 @@ import { About } from './pages/About';
 import { FAQ } from './pages/FAQ';
 import { Privacy } from './pages/Privacy';
 import WardFinder from './pages/WardFinder';
+import CorrieTarot from './pages/CorrieTarot';
 import { Footer } from './components/Footer';
 import { OnboardingModal } from './components/OnboardingModal';
 import './App.css';
