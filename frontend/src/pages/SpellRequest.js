@@ -490,27 +490,34 @@ export const SpellRequest = ({ selectedArchetype: propArchetype }) => {
 
           <MysticalDivider light />
 
-        {/* Historical Context */}
-        <div className="mt-12">
-          <GlassCard hover={false}>
-            <div className="flex items-start gap-4">
-              <Feather className="w-8 h-8 text-primary flex-shrink-0" />
-              <div>
-                <h4 className="font-cinzel text-lg text-secondary mb-2">Magic as Science</h4>
-                <p className="font-montserrat text-sm text-foreground/80 leading-relaxed mb-3">
-                  These formulas aren&apos;t mystical secrets—they&apos;re patterns that people like Gardner, Fortune, and Crowley 
-                  tested and documented. They work through focused intention, repetition, and symbolic frameworks. 
-                  Like any science, you don&apos;t have to believe in it. You just practice it and see what happens.
-                </p>
-                <p className="font-montserrat text-sm text-accent italic">
-                  You have the power. These are just formulas others used. Adapt them. Break them. Build your own.
-                  No gatekeepers necessary.
-                </p>
+          {/* Historical Context */}
+          <div className="mt-8">
+            <div className="relative">
+              <div className="absolute inset-0 border-2 border-gold/40 rounded-lg" />
+              <div className="absolute inset-1.5 border border-crimson/20 rounded-md" />
+              <div className="absolute inset-0 bg-white/80 rounded-lg" />
+              
+              <div className="relative z-10 p-4 sm:p-6">
+                <div className="flex items-start gap-4">
+                  <Feather className="w-8 h-8 text-crimson flex-shrink-0" />
+                  <div>
+                    <h4 className="font-cinzel text-lg text-crimson mb-2">Magic as Science</h4>
+                    <p className="font-montserrat text-sm text-navy-dark/80 leading-relaxed mb-3">
+                      These formulas aren&apos;t mystical secrets—they&apos;re patterns that people like Gardner, Fortune, and Crowley 
+                      tested and documented. They work through focused intention, repetition, and symbolic frameworks. 
+                      Like any science, you don&apos;t have to believe in it. You just practice it and see what happens.
+                    </p>
+                    <p className="font-montserrat text-sm text-gold-dark italic">
+                      You have the power. These are just formulas others used. Adapt them. Break them. Build your own.
+                      No gatekeepers necessary.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
-          </GlassCard>
+          </div>
         </div>
-      </div>
+      </LightSection>
     </div>
   );
 };
