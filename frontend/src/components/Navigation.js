@@ -121,14 +121,14 @@ export const Navigation = ({ user, onLogout }) => {
               <Link
                 to="/profile"
                 onClick={handleLinkClick}
-                className="p-2 rounded-sm text-silver-mist/80 hover:text-champagne transition-all"
+                className="p-2 rounded-sm text-silver-mist/80 hover:text-gold transition-all"
               >
                 <User className="w-5 h-5" />
               </Link>
             )}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-sm text-silver-mist/80 hover:text-champagne transition-all"
+              className="p-2 rounded-sm text-silver-mist/80 hover:text-gold transition-all"
               aria-label="Toggle menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -141,8 +141,8 @@ export const Navigation = ({ user, onLogout }) => {
           <div 
             className="lg:hidden py-4"
             style={{
-              borderTop: '1px solid rgba(201, 169, 98, 0.2)',
-              background: 'rgba(10, 22, 40, 0.98)',
+              borderTop: '1px solid rgba(212, 168, 75, 0.3)',
+              background: 'rgba(14, 22, 41, 0.98)',
             }}
           >
             <div className="space-y-1">
@@ -158,8 +158,8 @@ export const Navigation = ({ user, onLogout }) => {
                     onClick={handleLinkClick}
                     className={`flex items-center space-x-3 px-4 py-3 rounded-sm font-montserrat text-sm transition-all ${
                       isActive
-                        ? 'bg-champagne/10 text-champagne border-l-4 border-champagne'
-                        : 'text-silver-mist/80 hover:bg-champagne/5 hover:text-champagne'
+                        ? 'bg-gold/10 text-gold border-l-4 border-gold'
+                        : 'text-silver-mist/80 hover:bg-gold/5 hover:text-gold'
                     }`}
                   >
                     <Icon className="w-5 h-5" />
@@ -180,13 +180,17 @@ export const Navigation = ({ user, onLogout }) => {
                   <span>Logout</span>
                 </button>
               ) : (
-                <Link
-                  to="/auth"
-                  onClick={handleLinkClick}
-                  className="flex items-center justify-center mx-4 px-4 py-3 bg-gradient-to-r from-crimson via-crimson-bright to-crimson text-parchment rounded-sm font-montserrat text-sm tracking-widest uppercase hover:from-crimson-bright hover:via-[#d43030] hover:to-crimson-bright transition-all"
-                >
-                  Login
-                </Link>
+                <div className="px-4 pt-2">
+                  <Link
+                    to="/auth"
+                    onClick={handleLinkClick}
+                    className="flex items-center justify-center px-4 py-3 relative overflow-hidden rounded-sm font-montserrat text-sm tracking-widest uppercase transition-all"
+                  >
+                    <span className="absolute inset-0 border border-gold/50 rounded-sm" />
+                    <span className="absolute inset-0.5 bg-gradient-to-r from-crimson-deep via-crimson to-crimson-deep rounded-sm" />
+                    <span className="relative text-cream">Login</span>
+                  </Link>
+                </div>
               )}
             </div>
           </div>
