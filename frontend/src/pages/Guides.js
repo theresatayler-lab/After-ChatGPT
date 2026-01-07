@@ -119,7 +119,7 @@ const GuideCard = ({ archetype, index, isCurrentGuide, isExpanded, onToggle, onS
       {/* Image or Placeholder */}
       <div 
         className="w-full h-56 flex items-center justify-center border-b border-border overflow-hidden relative"
-        style={{ backgroundColor: '#D8CBB3' }}
+        style={{ backgroundColor: '#e8e4dc' }}
       >
         {archetype.image ? (
           <>
@@ -128,8 +128,7 @@ const GuideCard = ({ archetype, index, isCurrentGuide, isExpanded, onToggle, onS
               alt={archetype.shortName}
               className="w-full h-full object-cover"
               style={{ 
-                objectPosition: '50% 25%',
-                mixBlendMode: 'multiply'
+                objectPosition: '50% 25%'
               }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent pointer-events-none" />
@@ -165,15 +164,15 @@ const GuideCard = ({ archetype, index, isCurrentGuide, isExpanded, onToggle, onS
           <div className="flex items-start gap-4">
             {/* Portrait Image */}
             <div 
-              className="w-16 h-16 rounded-full overflow-hidden flex-shrink-0 border-2 border-border"
-              style={{ backgroundColor: '#D8CBB3' }}
+              className="w-16 h-16 rounded-full overflow-hidden flex-shrink-0 border-2 border-champagne/30"
+              style={{ backgroundColor: '#e8e4dc' }}
             >
               {archetype.image ? (
                 <img 
                   src={archetype.image} 
                   alt={archetype.shortName}
                   className="w-full h-full object-cover"
-                  style={{ mixBlendMode: 'multiply', objectPosition: '50% 20%' }}
+                  style={{ objectPosition: '50% 20%' }}
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center text-2xl">
@@ -191,13 +190,13 @@ const GuideCard = ({ archetype, index, isCurrentGuide, isExpanded, onToggle, onS
                   </span>
                 )}
               </div>
-              <p className="font-cinzel text-sm text-secondary">{archetype.title}</p>
-              <p className="font-montserrat text-xs text-muted-foreground mt-1">{archetype.era}</p>
+              <p className="font-cinzel text-sm text-champagne">{archetype.title}</p>
+              <p className="font-montserrat text-xs text-silver-mist/70 mt-1">{archetype.era}</p>
             </div>
           </div>
           <div className="text-right">
             <span className="text-2xl">{archetype.birdEmoji}</span>
-            <p className="font-montserrat text-xs text-accent">{archetype.birdSymbol}</p>
+            <p className="font-montserrat text-xs text-champagne">{archetype.birdSymbol}</p>
           </div>
         </div>
 
