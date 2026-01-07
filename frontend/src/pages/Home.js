@@ -19,25 +19,25 @@ const OrnateCorner = ({ className }) => (
 // Mystical section divider
 const MysticalDivider = ({ variant = 'default' }) => (
   <div className="flex items-center justify-center gap-4 py-6">
-    <div className="h-px bg-gradient-to-r from-transparent via-primary/30 to-primary/50 flex-1 max-w-32" />
-    <div className="flex items-center gap-2 text-primary/50">
+    <div className="h-px bg-gradient-to-r from-transparent via-champagne/30 to-champagne/50 flex-1 max-w-32" />
+    <div className="flex items-center gap-2 text-champagne/60">
       {variant === 'crow' ? (
         <span className="text-2xl">🐦‍⬛</span>
       ) : variant === 'moon' ? (
         <>
-          <span className="text-sm">✦</span>
+          <span className="text-sm text-crimson">✦</span>
           <span className="text-xl">☽</span>
-          <span className="text-sm">✦</span>
+          <span className="text-sm text-crimson">✦</span>
         </>
       ) : (
         <>
-          <span className="text-xs">◆</span>
+          <span className="text-xs text-crimson">◆</span>
           <span className="text-lg">❧</span>
-          <span className="text-xs">◆</span>
+          <span className="text-xs text-crimson">◆</span>
         </>
       )}
     </div>
-    <div className="h-px bg-gradient-to-l from-transparent via-primary/30 to-primary/50 flex-1 max-w-32" />
+    <div className="h-px bg-gradient-to-l from-transparent via-champagne/30 to-champagne/50 flex-1 max-w-32" />
   </div>
 );
 
