@@ -841,6 +841,246 @@ async def admin_seed_cathleen_spells():
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+@api_router.post('/admin/seed-shigg-spells')
+async def admin_seed_shigg_spells():
+    """Seed Shigg's sample spells into the database (admin only)"""
+    try:
+        count = await seed_shigg_spells(db)
+        return {"message": f"Successfully seeded {count} Shigg sample spells", "count": count}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+# Bird Oracle - Shigg's integrated feature
+@api_router.get('/ai/bird-oracle')
+async def get_bird_oracle():
+    """Return Shigg's Bird Oracle data for the frontend"""
+    return {
+        "success": True,
+        "oracle": SHIGG_BIRD_ORACLE
+    }
+
+@api_router.post('/ai/bird-oracle-reading')
+async def get_bird_oracle_reading(request: dict):
+    """Get a personalized bird oracle reading from Shigg"""
+    try:
+        situation = request.get('situation', '')
+        question = request.get('question', '')
+        
+        # Build the prompt
+        bird_oracle_prompt = f"""You are Shigg, the Birds of Parliament Poet Laureate. A seeker has come to you for a Bird Oracle reading.
+
+The Parliament of Birds speaks through you. Choose 1-2 birds from your oracle that speak to this seeker's situation:
+
+AVAILABLE BIRDS:
+- Zebra Finch: Joy in the ordinary, resilience, community
+- Cockatiel: Playfulness, curiosity, gentle communication
+- Magpie: Mystery, duality, secrets, transformation ("One for sorrow, two for joy")
+- Crow: Intelligence, memory, ancestral wisdom, protection
+- Robin: Renewal, hope, comfort after loss
+- Dove: Peace, healing, spiritual messages
+- Sparrow: Humility, community, strength in numbers
+- Wren: Resourcefulness, creativity, small joys
+- Owl: Wisdom, discernment, seeing through illusion
+- Blackbird: Mystical awareness, transformation, the gateway
+- Goldfinch: Joy, beauty, lightness of being
+- Starling: Group harmony, synchronicity, adaptability
+
+Return a JSON response with this structure:
+{{
+    "greeting": "A warm greeting acknowledging their question (2-3 sentences in Shigg's gentle voice)",
+    "birds": [
+        {{
+            "name": "Bird name",
+            "symbol": "Emoji",
+            "message": "The bird's message for this seeker (personal and specific)",
+            "ritual": "A tiny 5-minute ritual to connect with this bird's wisdom",
+            "prompt": "A journaling question for reflection"
+        }}
+    ],
+    "poetic_reflection": "A brief poetic line (1-2 sentences) inspired by the Rubáiyát or your literary anchors",
+    "closing": "A gentle closing with invitation to return (2-3 sentences)"
+}}
+
+Remember: You are warm, dawn-quiet, British-inflected. Use understatement. Offer tendencies, not predictions. Connect to your literary sources where natural."""
+
+        user_message = f"Seeker's situation: {situation}" if situation else ""
+        if question:
+            user_message += f"\nTheir question: {question}"
+        if not user_message:
+            user_message = "The seeker asks for general guidance from the Bird Oracle today."
+
+        response = await openai_client.chat.completions.create(
+            model="gpt-4o",
+            messages=[
+                {"role": "system", "content": bird_oracle_prompt},
+                {"role": "user", "content": user_message}
+            ],
+            temperature=0.9,
+            max_tokens=1500
+        )
+        
+        response_text = response.choices[0].message.content
+        
+        # Parse JSON
+        import re
+        json_match = re.search(r'\{[\s\S]*\}', response_text)
+        if json_match:
+            oracle_data = json.loads(json_match.group())
+            return {
+                "success": True,
+                "archetype": {
+                    "id": "shiggy",
+                    "name": "Shigg",
+                    "title": "The Birds of Parliament Poet Laureate"
+                },
+                "result": oracle_data
+            }
+        else:
+            raise ValueError("Could not parse bird oracle reading")
+            
+    except json.JSONDecodeError as e:
+        logging.error(f"JSON parse error in bird oracle: {e}")
+        raise HTTPException(status_code=500, detail="Failed to parse bird oracle reading")
+    except Exception as e:
+        logging.error(f"Bird oracle error: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+# Corrie Tarot - Shigg's Pro-only feature: "What Would Corrie Do"
+class CorrieTarotRequest(BaseModel):
+    situation: str  # What the seeker is facing
+    question: Optional[str] = None  # Optional specific question
+
+CORRIE_TAROT_PROMPT = """You are Shigg, the Birds of Parliament Poet Laureate, and you're about to do something special—a "What Would Corrie Do" reading. 
+
+Coronation Street has been your comfort since it first aired in 1960. You've watched these characters live, love, lose, and carry on. They're not just TV—they're mirrors. They show us how ordinary people handle extraordinary troubles. And that's magic enough.
+
+AVAILABLE CHARACTERS (choose 3 for Past, Present, Future):
+
+1. ELSIE TANNER (1960-1984) - The Survivor
+   Passionate, flawed, resilient. She loved hard, made mistakes harder, and kept getting back up.
+   
+2. ENA SHARPLES (1960-1980) - The Moral Compass  
+   Sharp-tongued, principled, secretly kind. She held everyone to account, including herself.
+   
+3. ANNIE WALKER (1960-1983) - The Aspirant
+   Snobbish but vulnerable, always reaching for something more. She believed she deserved better.
+   
+4. HILDA OGDEN (1964-1987) - The Dreamer
+   Curlers, headscarf, and a muriel of the Alps. She dreamed of better while scrubbing floors.
+   
+5. KEN BARLOW (1960-present) - The Intellectual
+   Educated, conflicted, never quite belonging anywhere. He wanted to rise above but never fully left.
+   
+6. BETTY WILLIAMS (1969-2012) - The Steady One
+   Reliable, warm, keeper of the hotpot. She held the community together with food and kindness.
+   
+7. JACK DUCKWORTH (1979-2010) - The Loveable Rogue
+   Pigeons, schemes, and a heart of gold beneath the bluster. He meant well, mostly.
+   
+8. VERA DUCKWORTH (1974-2008) - The Fighter
+   Sharp, loyal, fierce. She fought for what was hers and loved harder than she'd ever admit.
+   
+9. DEIRDRE BARLOW (1972-2015) - The Heart
+   Glasses, cigarettes, and the biggest heart on the street. She loved too much and never regretted it.
+   
+10. BLANCHE HUNT (1974-2010) - The Truth-Teller
+    Acid wit, sharp observations, and absolutely zero filter. She said what everyone was thinking.
+
+YOUR READING FORMAT:
+Choose 3 characters—one for Past, one for Present, one for Future. Make them SPECIFIC to this seeker's situation. Don't just match problem to character; find the unexpected wisdom.
+
+Return JSON:
+{
+    "greeting": "A warm Shigg greeting acknowledging their situation (2-3 sentences)",
+    "reading": {
+        "past": {
+            "character": "Character name",
+            "era": "Their era on the show",
+            "archetype": "Their archetype",
+            "symbol": "Relevant emoji",
+            "message": "What this character says about your past (personal to seeker, 3-4 sentences)",
+            "wisdom": "A quote or saying from this character's spirit"
+        },
+        "present": {
+            "character": "Character name",
+            "era": "Their era",
+            "archetype": "Their archetype", 
+            "symbol": "Emoji",
+            "message": "What this character says about your present (3-4 sentences)",
+            "wisdom": "A quote or saying"
+        },
+        "future": {
+            "character": "Character name",
+            "era": "Their era",
+            "archetype": "Their archetype",
+            "symbol": "Emoji", 
+            "message": "What this character says about your future (3-4 sentences)",
+            "wisdom": "A quote or saying"
+        }
+    },
+    "overall_guidance": "Shigg's synthesis of the reading—what all three characters together are telling you (3-4 sentences)",
+    "closing": "A warm closing with Shigg's signature gentle humor (2-3 sentences)"
+}
+
+Remember: This is tender and funny and wise. Corrie characters are not archetypes to be worshipped—they're neighbours to be learned from. Speak as Shigg: warm, witty, British, practical, and always a little bit poetic."""
+
+@api_router.post('/ai/corrie-tarot')
+async def get_corrie_tarot_reading(request: CorrieTarotRequest, user = Depends(get_current_user)):
+    """Get a 'What Would Corrie Do' tarot reading from Shigg - PRO ONLY"""
+    try:
+        # Check if user is Pro
+        if user.get('subscription_tier', 'free') != 'paid':
+            raise HTTPException(
+                status_code=403, 
+                detail={
+                    "error": "feature_locked",
+                    "message": "What Would Corrie Do readings are a Pro feature",
+                    "upgrade_prompt": "Upgrade to Pro to unlock Shigg's special Coronation Street readings!"
+                }
+            )
+        
+        user_message = f"Seeker's situation: {request.situation}"
+        if request.question:
+            user_message += f"\nTheir specific question: {request.question}"
+
+        response = await openai_client.chat.completions.create(
+            model="gpt-4o",
+            messages=[
+                {"role": "system", "content": CORRIE_TAROT_PROMPT},
+                {"role": "user", "content": user_message}
+            ],
+            temperature=0.9,
+            max_tokens=2000
+        )
+        
+        response_text = response.choices[0].message.content
+        
+        # Parse JSON
+        import re
+        json_match = re.search(r'\{[\s\S]*\}', response_text)
+        if json_match:
+            reading_data = json.loads(json_match.group())
+            return {
+                "success": True,
+                "archetype": {
+                    "id": "shiggy",
+                    "name": "Shigg",
+                    "title": "The Birds of Parliament Poet Laureate"
+                },
+                "result": reading_data
+            }
+        else:
+            raise ValueError("Could not parse Corrie tarot reading")
+            
+    except HTTPException:
+        raise
+    except json.JSONDecodeError as e:
+        logging.error(f"JSON parse error in Corrie tarot: {e}")
+        raise HTTPException(status_code=500, detail="Failed to parse Corrie tarot reading")
+    except Exception as e:
+        logging.error(f"Corrie tarot error: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
 # Ward Finder - Cathleen's special feature
 class WardRequest(BaseModel):
     situation: str  # The user's problem, need, or situation
