@@ -98,7 +98,7 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Shigg Sullivan Image Style Integration - COMPLETED"
+    - "New Color Scheme Implementation - COMPLETED"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
