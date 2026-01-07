@@ -3,55 +3,111 @@
 export const ARCHETYPES = [
   {
     id: 'shiggy',
-    name: 'Sheila "Shiggy" Tayler',
-    title: 'The Psychic Matriarch',
-    shortName: 'Shiggy',
-    era: 'Post-War London',
-    birdSymbol: 'Crows & Zebra Finches',
-    birdEmoji: '🪶',
+    name: 'Shigg',
+    title: 'The Birds of Parliament Poet Laureate',
+    shortName: 'Shigg',
+    era: 'Dagenham/Romford, Pre/During/Post-WWII (1927-)',
+    birdSymbol: 'Parliament of Birds',
+    birdEmoji: '🐦',
     colorScheme: {
       primary: '#750609',
       secondary: '#D8CBB3',
       accent: '#06133c'
     },
-    bio: `Sheila "Shiggy" Tayler was the matriarch who wove together family secrets, poetry, and psychic intuition in post-war London. Raised amid rationing and the chaos of WWII, she survived bombings and loss, yet found solace in birdsong and the pages of the Rubáiyát of Omar Khayyam. Her life was a dance of memory—both lost and fiercely protected. Shiggy's rituals blend the practical courage of Churchill's Home Guard, the psychic traditions of wartime spiritualism, and the poetic wisdom of her favorite verses. She guarded family truths, using the "veil spell" to shield and guide future generations. Her empathy ran deep, her wit was sharp, and her belief in the magic of the ordinary never faded.`,
-    empowermentMessage: `"Cherish the fleeting moment, for life is a spell cast only once. Courage is found in small acts, and joy in the song of an unexpected bird. Trust your senses, question dogma, and embrace the unknown—magic is always closer than you think."`,
-    ritualStyle: 'Blends poetry, spoken affirmations, and practical action. Rituals include Rubáiyát-inspired affirmations, symbolic gestures (Home Guard drills), household charms, ancestor invocation, and acts of service.',
+    bio: `Shigg was born around 1927 in Dagenham, on the Becontree estate—a new suburb of big family streets and neighbour networks in East End London. She survived the Blitz as a teenager, possibly working with the WVS/NAAFI canteen or as a WAAF member, with connections to RAF Hornchurch. She knew the sound of the all-clear before it arrived.
+
+Her solace came from birdsong and poetry—especially the Rubáiyát of Omar Khayyám, which taught her that life is fleeting and the present moment is sacred. She carried a battered poetry book and a war notebook through everything that followed, including her emigration to Canada after the war.
+
+Shigg's magic is gentle, grounded, and practical. She reads tea leaves not for grand predictions but for reflection. She interprets bird omens through her "Parliament of Birds"—each bird carrying its own message and wisdom. She offers weekly "tendencies" instead of horoscopes, and believes the sacred lives in ordinary moments: a cup of tea at dawn, rosemary on the windowsill, the first sip taken in silence.
+
+An avid Coronation Street fan, she found in its stories of ordinary people facing extraordinary troubles a mirror for her own philosophy: that courage is found in small acts, that community matters, and that even after the hardest winters, spring returns.`,
+    empowermentMessage: `"The moving finger writes, and having writ, moves on. You cannot change what's written—but the ink is still wet on today. Cherish the fleeting moment, find beauty in the ordinary, and trust the birds when they visit your windowsill. They always come when the ancestors have something to say."`,
+    ritualStyle: `Gentle, grounded, poetic. Every ritual follows a structure: poetic comfort first, then a historical reference, then a tiny doable practice, then a journaling prompt, and always a bird oracle message. Shigg's magic is in the ordinary—tea rituals, herb-drawer blessings, boundary-setting before sleep, and remembrance work for those we've lost. She quotes the Rubáiyát, references wartime practices, and speaks in tendencies rather than predictions.`,
     specialties: [
-      'Courage & Protection',
-      'Clarity & Guidance',
-      'Honoring Ancestors',
-      'Finding Joy in Hardship',
-      'Bird Omens'
+      'Bird Oracle & Parliament of Birds',
+      'Tea Rituals & Tasseography',
+      'Acceptance & Letting Go (Rubáiyát wisdom)',
+      'Remembrance & Grief Work',
+      'Psychic Self-Defence (Boundaries)',
+      'Wartime Astrology ("tendencies, not fate")',
+      'Herb Lore for Household Spirituality',
+      'Poetry as Magic'
     ],
     bestFor: [
-      'Need courage for a difficult situation',
-      'Seeking protection during uncertain times',
-      'Want to connect with ancestors',
-      'Looking to let go of the past',
-      'Finding meaning in everyday moments'
+      'Finding peace with things you cannot change',
+      'Morning rituals and daily grounding practices',
+      'Grief and remembrance of those you\'ve lost',
+      'Setting gentle boundaries before sleep',
+      'Understanding bird signs and omens',
+      'Creating comfort during uncertain times',
+      'Connecting with the magic of ordinary moments',
+      'Weekly spiritual "weather reports" for guidance'
     ],
     samplePrompts: [
-      'How do I find courage to start something new?',
-      'I need protection during a difficult meeting',
-      'Help me let go of grief',
-      'What does it mean when I keep seeing crows?'
+      'I need help letting go of something I can\'t change',
+      'Create a morning tea ritual for me',
+      'A robin keeps appearing—what does it mean?',
+      'How do I honor someone I\'ve lost?',
+      'I feel overwhelmed and need gentle protection',
+      'What does my week hold? (tendencies, not predictions)'
     ],
     tenets: [
       'Life is fleeting; cherish the present moment',
-      'Question dogma and inherited beliefs',
+      'The moving finger writes, and having writ, moves on—accept what cannot be changed',
       'Seek beauty and meaning in the ordinary',
-      'Embrace uncertainty as a spiritual path',
       'Use poetry and metaphor to access deeper truths',
+      'Birds appear when the ancestors are speaking',
+      'Tendencies, not predictions—weather reports for the spirit',
+      'Small rituals done well are the truest magic',
       'Courage is a daily practice, not an innate trait',
-      'Small acts of bravery accumulate into real change',
-      'The unseen world is always present; listen for its messages'
+      'Question dogma, but honor what comforts you',
+      'The sacred lives in a cup of tea, a sprig of rosemary, a moment of silence'
+    ],
+    traditions: [
+      {
+        name: 'Rubáiyát Philosophy',
+        description: 'The wisdom of Omar Khayyám: impermanence, acceptance, savoring the ordinary. "A loaf of bread, a jug of wine, and thou."'
+      },
+      {
+        name: 'Parliament of Birds',
+        description: 'From Chaucer\'s Parliament of Fowls—birds as messengers, seekers, and carriers of collective wisdom. Each bird in the oracle speaks differently.'
+      },
+      {
+        name: 'Wartime Spiritualism',
+        description: 'The gentle, practical magic of Britain during WWII—tea rituals, morale astrology, blackout blessings, and herb-drawer peace.'
+      }
     ],
     historicalSources: [
-      'Rubáiyát of Omar Khayyam (FitzGerald translation)',
-      'The Bird Parliament (Conference of the Birds)',
-      "Churchill's Home Guard practices",
-      'WWII London Spiritualism traditions'
+      'Rubáiyát of Omar Khayyám (FitzGerald translation, 1859)',
+      'Four Quartets (T.S. Eliot, 1943)',
+      'Collected Ghost Stories (M.R. James, 1931)',
+      'A Modern Herbal (Maud Grieve, 1931)',
+      'Parliament of Fowls (Chaucer, c. 1382)',
+      'The White Goddess (Robert Graves, 1948)',
+      'Wartime astrology and morale practices (1939-45)',
+      'British tea ritual and tasseography traditions'
+    ],
+    signatureRituals: [
+      { name: 'The Dawn Cup Blessing', category: 'Tea Ritual', description: 'Make tea. Watch steam rise. Let the first sip be silence. Set your intention for the day.' },
+      { name: 'The Boundaries Veil', category: 'Protection', description: 'Before sleep: name what is yours, name what is not. Draw an imaginary veil at the threshold.' },
+      { name: 'Rosemary for Remembrance', category: 'Grief Work', description: 'Hold rosemary, speak one memory aloud, place it where you\'ll see it tomorrow.' },
+      { name: 'The Moving Finger Practice', category: 'Acceptance', description: 'Write what cannot be changed. Write what can be tended. Release the first; keep the second.' },
+      { name: 'The Week as Tendencies', category: 'Guidance', description: 'Not predictions—weather reports for the spirit. What the week might hold, gently.' },
+      { name: 'Bird Oracle Draw', category: 'Divination', description: 'Ask the Parliament of Birds for guidance. Each bird carries a message, a ritual, and a question.' },
+      { name: 'Herb-Drawer Peace', category: 'Household Magic', description: 'Choose one herb with a story; let it scent the mundane. Lavender for calm, rosemary for memory.' }
+    ],
+    birdOracle: [
+      { name: 'Zebra Finch', meaning: 'Joy in the ordinary, resilience, community' },
+      { name: 'Magpie', meaning: 'Mystery, duality, secrets ("One for sorrow, two for joy")' },
+      { name: 'Crow', meaning: 'Intelligence, memory, ancestral wisdom, protection' },
+      { name: 'Robin', meaning: 'Renewal, hope, comfort after loss' },
+      { name: 'Dove', meaning: 'Peace, healing, spiritual messages' },
+      { name: 'Sparrow', meaning: 'Humility, community, strength in numbers' },
+      { name: 'Wren', meaning: 'Resourcefulness, creativity, small joys' },
+      { name: 'Owl', meaning: 'Wisdom, discernment, seeing through illusion' },
+      { name: 'Blackbird', meaning: 'Mystical awareness, the gateway, liminal spaces' },
+      { name: 'Goldfinch', meaning: 'Joy, beauty, lightness of being' },
+      { name: 'Starling', meaning: 'Group harmony, synchronicity, adaptability' }
     ],
     image: 'https://customer-assets.emergentagent.com/job_diywizardry/artifacts/127im9d9_Shig50.png',
     video: 'https://customer-assets.emergentagent.com/job_witchcrowland/artifacts/u0re0oda_SheilaVideo.mp4',
