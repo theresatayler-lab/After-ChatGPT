@@ -132,9 +132,9 @@ export const Home = () => {
     >
       {/* Subtle radial glow overlay */}
       <div 
-        className="fixed inset-0 pointer-events-none opacity-40 z-0"
+        className="fixed inset-0 pointer-events-none opacity-50 z-0"
         style={{
-          background: 'radial-gradient(ellipse at 50% 0%, rgba(166, 28, 28, 0.15) 0%, transparent 50%), radial-gradient(ellipse at 50% 100%, rgba(22, 40, 68, 0.3) 0%, transparent 50%)',
+          background: 'radial-gradient(ellipse at 50% 0%, rgba(184, 35, 48, 0.12) 0%, transparent 50%), radial-gradient(ellipse at 50% 100%, rgba(26, 45, 77, 0.3) 0%, transparent 50%)',
         }}
       />
 
@@ -147,21 +147,27 @@ export const Home = () => {
             backgroundImage: 'url(https://customer-assets.emergentagent.com/job_mystic-circle-2/artifacts/t5tfc6i3_COuld_we_creatre_more_of_these_--profile_bsfwy2d_--v_7_d08b86ee-a6ac-4cf3-a814-1344b45b3380_1.png)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-            opacity: '0.15',
-            filter: 'hue-rotate(200deg) saturate(0.8)',
+            opacity: '0.12',
+            filter: 'hue-rotate(200deg) saturate(0.7)',
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0a1628]/95 via-[#0a1628]/70 to-[#0a1628] z-0" />
-        <div className="absolute inset-0 bg-gradient-radial from-transparent to-[#0a1628]/90 z-0" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0e1629]/95 via-[#0e1629]/70 to-[#0e1629] z-0" />
+        <div className="absolute inset-0 bg-gradient-radial from-transparent to-[#0e1629]/90 z-0" />
         
-        {/* Decorative corner ornaments */}
-        <OrnateCorner className="absolute top-8 left-8 w-16 h-16 text-champagne/30 rotate-0" />
-        <OrnateCorner className="absolute top-8 right-8 w-16 h-16 text-champagne/30 rotate-90" />
-        <OrnateCorner className="absolute bottom-8 left-8 w-16 h-16 text-champagne/30 -rotate-90" />
-        <OrnateCorner className="absolute bottom-8 right-8 w-16 h-16 text-champagne/30 rotate-180" />
+        {/* Decorative corner ornaments - enhanced size */}
+        <OrnateCorner className="absolute top-6 left-6 w-20 h-20 text-gold/40 rotate-0" />
+        <OrnateCorner className="absolute top-6 right-6 w-20 h-20 text-gold/40 rotate-90" />
+        <OrnateCorner className="absolute bottom-6 left-6 w-20 h-20 text-gold/40 -rotate-90" />
+        <OrnateCorner className="absolute bottom-6 right-6 w-20 h-20 text-gold/40 rotate-180" />
+        
+        {/* Additional corner crimson accents */}
+        <span className="absolute top-12 left-12 text-crimson/60 text-2xl glow-crimson">◆</span>
+        <span className="absolute top-12 right-12 text-crimson/60 text-2xl glow-crimson">◆</span>
+        <span className="absolute bottom-12 left-12 text-crimson/60 text-2xl glow-crimson">◆</span>
+        <span className="absolute bottom-12 right-12 text-crimson/60 text-2xl glow-crimson">◆</span>
         
         <div className="relative z-10 text-center max-w-5xl px-4 sm:px-6 flex flex-col items-center">
-          {/* Ornate Logo with glow effect */}
+          {/* Ornate Logo with enhanced glow effect */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -169,14 +175,14 @@ export const Home = () => {
             className="relative"
           >
             <div 
-              className="absolute inset-0 blur-3xl opacity-40"
-              style={{ background: 'radial-gradient(circle, rgba(166, 28, 28, 0.4) 0%, rgba(201, 169, 98, 0.2) 50%, transparent 70%)' }}
+              className="absolute inset-0 blur-3xl opacity-50"
+              style={{ background: 'radial-gradient(circle, rgba(184, 35, 48, 0.4) 0%, rgba(212, 168, 75, 0.25) 50%, transparent 70%)' }}
             />
             <img 
               src="https://customer-assets.emergentagent.com/job_mystic-circle-2/artifacts/li34ks3x_Where%20the%20Crowlands%20Logos.png"
               alt="Where The Crowlands"
               className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 mb-4 sm:mb-6 object-contain drop-shadow-2xl"
-              style={{ filter: 'brightness(1.3) contrast(1.1) drop-shadow(0 0 30px rgba(201, 169, 98, 0.3))' }}
+              style={{ filter: 'brightness(1.3) contrast(1.1) drop-shadow(0 0 40px rgba(212, 168, 75, 0.4))' }}
             />
           </motion.div>
           
