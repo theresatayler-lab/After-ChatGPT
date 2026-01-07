@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Check } from 'lucide-react';
+import { Check, Sparkles, BookOpen, Moon } from 'lucide-react';
 import { toast } from 'sonner';
 
 const API_URL = process.env.REACT_APP_BACKEND_URL;
@@ -15,13 +15,30 @@ const Corner = ({ className }) => (
 );
 
 // Minimal divider
-const Divider = () => (
+const Divider = ({ variant = 'moon' }) => (
   <div className="flex items-center justify-center gap-2 py-2">
     <div className="h-px w-8 bg-gradient-to-r from-transparent to-gold/40" />
     <span className="text-crimson text-xs">◆</span>
-    <span className="text-gold text-sm">☽</span>
+    {variant === 'eye' ? (
+      <span className="text-gold text-lg">👁</span>
+    ) : (
+      <span className="text-gold text-sm">☽</span>
+    )}
     <span className="text-crimson text-xs">◆</span>
     <div className="h-px w-8 bg-gradient-to-l from-transparent to-gold/40" />
+  </div>
+);
+
+// Feature card for "Your Path Awaits"
+const FeatureCard = ({ icon: Icon, title, desc }) => (
+  <div className="relative group text-center">
+    <div className="absolute inset-0 border border-gold/30 rounded-lg group-hover:border-gold/50 transition-all" />
+    <div className="absolute inset-0 bg-navy-mid/40 rounded-lg backdrop-blur-sm" />
+    <div className="relative p-4">
+      <Icon className="w-8 h-8 text-crimson-bright mx-auto mb-2" style={{ filter: 'drop-shadow(0 0 8px rgba(184, 35, 48, 0.4))' }} />
+      <h3 className="font-cinzel text-sm text-gold mb-1">{title}</h3>
+      <p className="font-crimson text-xs text-silver-mist/80">{desc}</p>
+    </div>
   </div>
 );
 
@@ -64,7 +81,7 @@ const EarlyAccessPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-3 sm:p-4 relative overflow-hidden"
+    <div className="min-h-screen flex flex-col items-center justify-center p-3 sm:p-4 relative overflow-hidden"
       style={{ background: 'linear-gradient(135deg, #0e1629 0%, #121d33 50%, #0e1629 100%)' }}>
       
       {/* Subtle background */}
@@ -76,20 +93,20 @@ const EarlyAccessPage = () => {
         background: 'radial-gradient(ellipse at 50% 30%, rgba(184, 35, 48, 0.08) 0%, transparent 50%)',
       }} />
       
-      {/* Corner ornaments - smaller */}
+      {/* Corner ornaments */}
       <Corner className="absolute top-2 left-2 w-10 h-10 sm:w-14 sm:h-14" />
       <Corner className="absolute top-2 right-2 w-10 h-10 sm:w-14 sm:h-14 rotate-90" />
       <Corner className="absolute bottom-2 left-2 w-10 h-10 sm:w-14 sm:h-14 -rotate-90" />
       <Corner className="absolute bottom-2 right-2 w-10 h-10 sm:w-14 sm:h-14 rotate-180" />
       
-      {/* Main content - tight and compact */}
+      {/* Main content */}
       <motion.div 
-        className="relative z-10 w-full max-w-lg text-center"
+        className="relative z-10 w-full max-w-xl text-center"
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        {/* Logo - compact */}
+        {/* Logo */}
         <img 
           src="https://customer-assets.emergentagent.com/job_mystic-circle-2/artifacts/li34ks3x_Where%20the%20Crowlands%20Logos.png"
           alt="Where The Crowlands"
@@ -97,31 +114,35 @@ const EarlyAccessPage = () => {
           style={{ filter: 'brightness(1.3) drop-shadow(0 0 20px rgba(212, 168, 75, 0.4))' }}
         />
         
-        {/* Title - tighter */}
-        <h1 className="font-italiana text-xl sm:text-2xl text-gold-light mb-1"
+        {/* Title */}
+        <h1 className="font-italiana text-xl sm:text-2xl md:text-3xl text-gold-light mb-1"
           style={{ textShadow: '0 2px 15px rgba(212, 168, 75, 0.5)' }}>
           Where The Crowlands
         </h1>
         
+        {/* Subhead */}
+        <p className="font-cinzel text-xs sm:text-sm text-cream/80 mb-2 italic">
+          A place where magic and science aren't such strange bedfellows
+        </p>
+        
         <Divider />
         
-        {/* Main intro text - your exact content, tighter */}
+        {/* Main intro text */}
         <p className="font-crimson text-sm text-cream/90 leading-relaxed mb-3 px-1">
           Where the Crowlands is a toolkit for alchemizing what you already hold. Rooted in history; from the 
           Huguenot mystics fleeing persecution, Jersey witches shaping weather and fate, Irish and Celtic keepers 
-          of forbidden knowledge, to London's table-tappers and spiritualists revealing the hidden world and stoicism 
-          of the WWII era as echoes of Churchill's resolve and the hard-won wisdom of London's East End, where 
+          of forbidden knowledge, to London's table-tappers and spiritualists revealing the hidden world. The stoicism 
+          of WWII echoes of Churchill-influenced stoic resolve, and the hard-won wisdom of London's East End, where 
           "Loose lips sink ships" wasn't just a slogan; it was a way of living.
         </p>
         
-        {/* Sign-up form - immediately after intro */}
+        {/* Sign-up form */}
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="relative mb-3"
+          className="relative mb-4"
         >
-          {/* Card frame - subtle */}
           <div className="absolute inset-0 border border-gold/40 rounded-sm" />
           <div className="absolute inset-0 bg-navy-mid/60 backdrop-blur-sm rounded-sm" />
           
@@ -181,12 +202,32 @@ const EarlyAccessPage = () => {
         </motion.div>
         
         {/* Secondary text - BELOW the sign-up form */}
-        <p className="font-crimson text-xs sm:text-sm text-cream/70 leading-relaxed px-1">
-          The magic we've abandoned isn't "woo woo"—it's intention, craft, commitment, and ritual. Whether our 
-          ancestors named it or not, that power is still yours to work with. Inspired by real people—my family—and 
-          grounded in plenty of creative lore, Where the Crowlands offers a fun, practical way to bring alchemy, 
-          magic, and beauty into your life.
-        </p>
+        <div className="space-y-3 mb-4">
+          <p className="font-crimson text-xs sm:text-sm text-cream/75 leading-relaxed px-1">
+            The magic we've abandoned isn't "woo woo"—it's intention, craft, commitment, and ritual. Whether our 
+            ancestors named it or not, that power is still yours to work with. Inspired by real people—my family—and 
+            grounded in plenty of creative lore and imagination, Where the Crowlands offers a fun, practical way to bring 
+            alchemy, magic, and beauty into your life.
+          </p>
+          <p className="font-crimson text-xs sm:text-sm text-gold/70 italic leading-relaxed px-1">
+            While rooted primarily in British history and mysticism, we plan to expand, honouring all cultures—every 
+            tradition has drawn from what lies beneath the veil. It's time to bring a little magic back.
+          </p>
+        </div>
+        
+        {/* Your Path Awaits section */}
+        <Divider variant="eye" />
+        
+        <h2 className="font-italiana text-lg sm:text-xl text-gold-light mb-3"
+          style={{ textShadow: '0 2px 15px rgba(212, 168, 75, 0.4)' }}>
+          Your Path Awaits
+        </h2>
+        
+        <div className="grid grid-cols-3 gap-2 sm:gap-3">
+          <FeatureCard icon={Sparkles} title="Craft Spells" desc="Personalized rituals" />
+          <FeatureCard icon={BookOpen} title="Build Grimoire" desc="Your magical archive" />
+          <FeatureCard icon={Moon} title="Explore" desc="History & lore" />
+        </div>
       </motion.div>
     </div>
   );
