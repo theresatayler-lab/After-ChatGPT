@@ -6,6 +6,7 @@ import { aiAPI, subscriptionAPI } from '../utils/api';
 import { ARCHETYPES, getArchetypeById } from '../data/archetypes';
 import { getCurrentArchetype, setCurrentArchetype } from '../components/OnboardingModal';
 import { SpellLimitBanner } from '../components/UpgradePrompt';
+import { DarkSection, LightSection, GrandDivider, MysticalDivider, ElaborateCorner, PageHeader, OrnateCard } from '../components/OrnateElements';
 import { Sparkles, BookOpen, Feather, ChevronDown, Loader2, User, ImageIcon } from 'lucide-react';
 import { toast } from 'sonner';
 import { Link } from 'react-router-dom';
