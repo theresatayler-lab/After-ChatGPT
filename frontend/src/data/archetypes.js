@@ -1,4 +1,4 @@
-// Archetype data for the four women of the Tayler Family Lineage
+// Archetype data for the four women of the Family Lineage
 
 export const ARCHETYPES = [
   {
@@ -112,7 +112,7 @@ She teaches how to let poetry steady your heart, how to use the Rubáiyát's wis
       { name: 'Starling', meaning: 'Group harmony, synchronicity, adaptability' }
     ],
     image: 'https://customer-assets.emergentagent.com/job_diywizardry/artifacts/127im9d9_Shig50.png',
-    video: 'https://customer-assets.emergentagent.com/job_witchcrowland/artifacts/u0re0oda_SheilaVideo.mp4',
+    video: 'https://customer-assets.emergentagent.com/job_witchcrowland/artifacts/u0re0oda_ShiggVideo.mp4',
     galleryImages: [
       'https://customer-assets.emergentagent.com/job_diywizardry/artifacts/d1pes21d_Shig19.png',
       'https://customer-assets.emergentagent.com/job_diywizardry/artifacts/38tunfde_Shig22.png',
@@ -263,7 +263,7 @@ She was both tender and unbreakable. A keeper of secrets and a force in the worl
       secondary: '#D8CBB3',
       accent: '#750609'
     },
-    bio: `Katherine was born into the Spitalfields Huguenot community, daughter of a musician, and became a master tailor, weaver, and court dressmaker in London's West End. She is the first woman to inherit all four magical lineages—Cosgrove (Irish Catholic), Foy (Huguenot), Malzard (Jersey maritime), and Webb (Victorian merchant)—a rare convergence of traditions. Moving between working-class artisan origins and fashionable wealthy circles, she engaged deeply with the spiritualist movement of the 1920s-30s, attending séances with rigorous Huguenot skepticism, testing spirits rather than accepting blindly. She married a sailor and convict, raised her daughter through post-war hardship, and was institutionalized for defiance—not madness. Katherine became a legal warrior, representing herself in London courts to defend her property and autonomy. Her magic lies in craft: every stitch is intention, every pattern holds knowledge. She teaches that darkness is not evil but fertile ground for transformation.`,
+    bio: `Katherine was born into the Spitalfields Huguenot community, daughter of a musician, and became a master tailor, weaver, and court dressmaker in London's West End. She inherited a rare convergence of magical traditions—Irish Catholic, Huguenot, Jersey maritime, and Victorian merchant—passed down through generations of women. Moving between working-class artisan origins and fashionable wealthy circles, she engaged deeply with the spiritualist movement of the 1920s-30s, attending séances with rigorous Huguenot skepticism, testing spirits rather than accepting blindly. She married a sailor and convict, raised her daughter through post-war hardship, and was institutionalized for defiance—not madness. Katherine became a legal warrior, representing herself in London courts to defend her property and autonomy. Her magic lies in craft: every stitch is intention, every pattern holds knowledge. She teaches that darkness is not evil but fertile ground for transformation.`,
     empowermentMessage: `"Hidden knowledge remains hidden because it is precious, not forbidden. Face what is veiled, question what you're told, and never surrender your will. The needle knows what the mind forgets—let your hands weave the spell. Darkness is where seeds germinate; do not fear it."`,
     ritualStyle: `Craft-based sympathetic magic through tailoring and weaving. Shadow work and integration rituals. Séance methodology with intellectual rigor—automatic writing, spirit photography, blackout séances, red light work, and mirror scrying. Protective binding through needle and thread. Astral projection and veil-walking. Every ritual emphasizes testing, discernment, and restraint over recklessness.`,
     specialties: [
@@ -339,7 +339,7 @@ She was both tender and unbreakable. A keeper of secrets and a force in the worl
   },
   {
     id: 'theresa',
-    name: 'Theresa Tayler',
+    name: 'Theresa',
     title: 'The Seer & Storyteller',
     shortName: 'Theresa',
     era: 'Contemporary',
