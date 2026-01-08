@@ -110,6 +110,7 @@ function App() {
           <Route path="/ward-finder" element={<WardFinder />} />
           <Route path="/corrie-tarot" element={<CorrieTarot />} />
           <Route path="/early-access" element={<EarlyAccessPage />} />
+          <Route path="/library" element={<Library />} />
           <Route path="/upgrade" element={<Upgrade />} />
           <Route path="/payment-success" element={<PaymentSuccess />} />
           <Route path="/about" element={<About />} />
