@@ -14,7 +14,7 @@ Each archetype represents a distinct approach to magic, rooted in documented his
 
 ---
 
-# 🐦 SHIGG (Sheila)
+# 🐦 SHIGG
 ## The Birds of Parliament Poet Laureate
 
 ### ERA & SETTING
