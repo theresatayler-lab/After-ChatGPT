@@ -74,7 +74,7 @@ export const About = () => {
             </div>
 
             <div>
-              <h3 className="font-cinzel text-base sm:text-lg text-primary mb-2">Catherine Cosgrove (née Foy)</h3>
+              <h3 className="font-cinzel text-base sm:text-lg text-primary mb-2">Katherine</h3>
               <p className="font-montserrat text-sm sm:text-base text-foreground/80 leading-relaxed">
                 The Bird-Witch of Victorian Spitalfields. A skilled artisan, musician, and mother, Catherine 
                 embodied the creative fusion of Huguenot and Irish folk traditions. Her rituals blend music, 
@@ -84,7 +84,7 @@ export const About = () => {
             </div>
 
             <div>
-              <h3 className="font-cinzel text-base sm:text-lg text-primary mb-2">Theresa Tayler</h3>
+              <h3 className="font-cinzel text-base sm:text-lg text-primary mb-2">Theresa</h3>
               <p className="font-montserrat text-sm sm:text-base text-foreground/80 leading-relaxed">
                 The Seer & Storyteller. Journalist, historian, and truth-seeker, Theresa uncovered hidden 
                 paternity, mapped generational trauma, and broke the &ldquo;veil spell&rdquo; through research and ritual. 
